@@ -1,0 +1,183 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_monitoring.html 
+keywords: monitoring, cloud insights, tenant, acquisition unit, iops, throughput, latency, performance, cloud volumes ontap performance, volume performance 
+summary: Führen Sie einige Schritte durch, um mit der Überwachung der Cloud Volumes ONTAP-Performance zu beginnen. 
+---
+= Monitoring von Cloud Volumes ONTAP in AWS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Führen Sie einige Schritte durch, um mit der Überwachung der Cloud Volumes ONTAP-Performance zu beginnen.
+
+
+
+== Schnellstart
+
+Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den verbleibenden Abschnitten, um ausführliche Informationen zu erhalten.
+
+
+
+==== Überprüfen Sie die Unterstützung Ihrer Konfiguration
+
+[role="quick-margin-para"]
+Sie benötigen eine Neuinstallation von Cloud Manager 3.8.4 oder höher in AWS, Cloud Volumes ONTAP in AWS und als neuer Cloud Insights Kunde.
+
+
+
+==== Aktivieren Sie die Überwachung auf Ihrem neuen oder vorhandenen System
+
+* Neue Arbeitsumgebungen: Achten Sie darauf, Monitoring aktiviert zu halten, wenn Sie die Arbeitsumgebung erstellen (es ist standardmäßig aktiviert).
+* Bestehende Arbeitsumgebungen: Wählen Sie eine Arbeitsumgebung und klicken Sie auf *Monitoring starten*.
+
+
+
+
+==== Anzeigen von Performance-Daten
+
+[role="quick-margin-para"]
+Klicken Sie auf *Monitoring* und zeigen Sie Leistungsdaten für Ihre Volumes an.
+
+
+
+==== Abonnieren Sie Cloud Insights
+
+[role="quick-margin-para"]
+Wenn Sie sich für eine kostenlose 30-Tage-Testversion anmelden, werden auch weiterhin Performance-Daten in Cloud Manager und Cloud Insights gespeichert. https://docs.netapp.com/us-en/cloudinsights/concept_subscribing_to_cloud_insights.html["Erfahren Sie, wie Sie abonniert werden können"^].
+
+
+
+== Anforderungen
+
+Lesen Sie die folgenden Anforderungen, um sicherzustellen, dass Sie über eine unterstützte Konfiguration verfügen.
+
+Unterstützte Cloud Manager Versionen:: Sie benötigen eine neue Installation von Cloud Manager 3.8.4 oder höher. Es ist eine neue Installation erforderlich, weil für den Monitoring-Service eine neue Infrastruktur erforderlich ist. Die Infrastruktur ist bei Neuinstallationen von Cloud Manager 3.8 verfügbar 4.
+Unterstützte Cloud Volumes ONTAP-Versionen:: Jede Version von Cloud Volumes ONTAP in AWS.
+Cloud Insights-Anforderungen:: Sie müssen ein neuer Cloud Insights Kunde sein. Die Überwachung wird nicht unterstützt, wenn Sie bereits über einen Cloud Insights-Mandanten verfügen.
+E-Mail-Adresse für Cloud Central:: Die E-Mail-Adresse für Ihr Cloud Central-Benutzerkonto sollte Ihre geschäftliche E-Mail-Adresse sein. Kostenlose E-Mail-Domains wie gmail und Hotmail werden bei der Erstellung eines Cloud Insights-Mandanten nicht unterstützt.
+Netzwerk für die Akquisitionseinheit:: Die Akquisitionseinheit verwendet eine 2-Wege-/gegenseitige Authentifizierung, um eine Verbindung zum Cloud Insights-Server herzustellen. Das Clientzertifikat muss an den Cloud Insights-Server zur Authentifizierung übergeben werden. Dazu muss der Proxy eingerichtet werden, um die HTTP-Anforderung an den Cloud Insights-Server weiterzuleiten, ohne die Daten zu entschlüsseln.
++
+--
+Die Erfassungseinheit verwendet die folgenden beiden Endpunkte, um mit Cloud Insights zu kommunizieren. Wenn Sie eine Firewall zwischen dem Erfassungs- und dem Cloud Insights-Server besitzen, benötigen Sie diese Endpunkte, wenn Sie Firewall-Regeln konfigurieren:
+
+....
+https://aulogin.<Cloud Insights Domain>
+https://<your-tenant-ID>.<Cloud Insights Domain>
+....
+Beispiel:
+
+....
+https://aulogin.c01.cloudinsights.netapp.com
+https://cg0c586a-ee05-45rb-a5ac-333b5ae7718d7.c01.cloudinsights.netapp.com
+....
+Kontaktieren Sie uns über den Chat in Product, wenn Sie Hilfe bei der Identifizierung Ihrer Cloud Insights-Domain und Mandanten-ID benötigen.
+
+--
+Vernetzung für den Connector:: Ähnlich wie die Erfassungseinheit muss der Connector über eine ausgehende Verbindung zum Cloud Insights-Mandanten verfügen. Aber der Endpunkt, den der Connector kontaktiert, ist etwas anders. Die Mandantenhost-URL wird über die verkürzte Mandanten-ID kontaktiert:
++
+--
+ https://<your-short-tenant-ID>.<Cloud Insights Domain>
+Beispiel:
+
+ https://abcd12345.c01.cloudinsights.netapp.com
+Auch hier können Sie uns über den Produkt-Chat kontaktieren, wenn Sie Hilfe bei der Ermittlung der Mandanten-Host-URL benötigen.
+
+--
+
+
+
+
+== Aktivieren der Überwachung auf einem neuen System
+
+Der Überwachungsdienst ist standardmäßig im Assistenten für die Arbeitsumgebung aktiviert. Achten Sie darauf, dass die Option aktiviert bleibt.
+
+.Schritte
+. Klicken Sie auf *Cloud Volumes ONTAP erstellen*.
+. Wählen Sie Amazon Web Services als Cloud-Provider und wählen Sie dann einen einzelnen Node oder ein HA-System.
+. Füllen Sie die Seite „Details & Credentials“ aus.
+. Lassen Sie auf der Seite Dienste den Dienst aktiviert, und klicken Sie auf *Weiter*.
++
+image:screenshot_monitoring.gif["Ein Screenshot des Überwachungsdienstes, den Sie über den Assistenten für Arbeitsumgebungen aktivieren können."]
+
+
+
+
+
+== Aktivieren der Überwachung auf einem vorhandenen System
+
+Ermöglichen Sie jederzeit die Überwachung aus der Arbeitsumgebung.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf *Arbeitsumgebungen*.
+. Wählen Sie eine Arbeitsumgebung aus.
+. Klicken Sie im rechten Fensterbereich auf *Überwachung starten*.
++
+image:screenshot_enable_monitoring.gif["[Ein Screenshot, der das Symbol Überwachung aktivieren zeigt, das auf der Registerkarte Arbeitsumgebungen verfügbar ist, nachdem Sie eine Arbeitsumgebung ausgewählt haben."]
+
+
+
+
+
+== Monitoring Ihrer Volumes
+
+Monitoring der Performance durch IOPS, Durchsatz und Latenz für jedes der Volumes
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf *Überwachung*.
+. Filtern Sie den Inhalt des Dashboards, um die gewünschten Informationen abzurufen.
++
+** Wählen Sie eine bestimmte Arbeitsumgebung aus.
+** Wählen Sie einen anderen Zeitrahmen aus.
+** Wählen Sie eine bestimmte SVM aus.
+** Suchen Sie nach einem bestimmten Volume.
++
+Die folgende Abbildung zeigt jede dieser Optionen:
+
++
+image:screenshot_filter_options.gif["Ein Screenshot der Registerkarte „Überwachung“ mit den Optionen, mit denen Sie den Inhalt des Dashboards filtern können."]
+
+
+
+. Klicken Sie in der Tabelle auf ein Volume, um die Zeile zu erweitern und einen Zeitplan für IOPS, Durchsatz und Latenz anzuzeigen.
++
+image:screenshot_vol_performance.gif["Ein Screenshot der Performance-Daten für ein Volume"]
+
+. Ermitteln Sie mithilfe der Daten Performance-Probleme, um die Auswirkungen auf Benutzer und Applikationen zu minimieren.
+
+
+
+
+== Weitere Informationen von Cloud Insights
+
+Die Registerkarte „Monitoring“ in Cloud Manager bietet grundlegende Performance-Daten für die Volumes. Über die Cloud Insights Weboberfläche können Sie in Ihrem Browser eine detailliertere Überwachung durchführen und Warnmeldungen für Ihre Cloud Volumes ONTAP Systeme konfigurieren.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf *Überwachung*.
+. Klicken Sie auf den Link *Cloud Insights*.
++
+image:screenshot_cloud_insights.gif["Ein Screenshot, der den Cloud Insights-Link oben rechts auf der Registerkarte Überwachung zeigt."]
+
+
+
+Cloud Insights in einer neuen Browser-Registerkarte öffnen. Wenn Sie Hilfe benötigen, lesen Sie den https://docs.netapp.com/us-en/cloudinsights["Cloud Insights-Dokumentation"^].
+
+
+
+== Überwachung wird deaktiviert
+
+Wenn Sie Cloud Volumes ONTAP nicht mehr überwachen möchten, können Sie den Dienst jederzeit deaktivieren.
+
+
+NOTE: Wenn Sie das Monitoring in jeder Ihrer Arbeitsumgebungen deaktivieren, müssen Sie die EC2-Instanz selbst löschen. Die Instanz heißt _AcquitionUnit_ mit einem generierten Hash (UUID), der mit ihm verknüpft ist. Beispiel: _AcquitionUnit-FAN7FqeH_
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf *Arbeitsumgebungen*.
+. Wählen Sie eine Arbeitsumgebung aus.
+. Klicken Sie im rechten Fensterbereich auf das image:screenshot_gallery_options.gif["Ein Screenshot des Optionssymbols, das nach Auswahl einer Arbeitsumgebung im Bereich „Services“ angezeigt wird"] Symbol und wählen Sie *Scan deaktivieren*.
+

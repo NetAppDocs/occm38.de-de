@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: task_adding_gcp_accounts.html 
+keywords: permissions, gcp, data tiering, tiering, setup, requirements, account for data tiering, account for tiering, interoperable, interoperability, interoperable storage access keys, access keys 
+summary: Sie können zwei Typen von Anmeldeinformationen für die Google Cloud-Plattform über Cloud Manager verwalten, die der VM-Instanz von Connector und den mit einem Cloud Volumes ONTAP 9.6-System für das Daten-Tiering verwendeten Storage-Zugriffsschlüssel zugeordnet sind. 
+---
+= Verwalten von GCP-Anmeldedaten und -Abonnements für Cloud Manager
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Sie können zwei Arten von Anmeldeinformationen für die Google Cloud-Plattform über Cloud Manager verwalten: Die Anmeldeinformationen, die der VM-Instanz von Connector zugewiesen sind, und die mit einem Cloud Volumes ONTAP 9.6-System für verwendeten Storage-Zugriffsschlüssel link:concept_data_tiering.html["Daten-Tiering"].
+
+
+
+== Verknüpfen eines Marketplace-Abonnements mit GCP-Zugangsdaten
+
+Wenn Sie einen Connector in GCP bereitstellen, erstellt Cloud Manager einen Standardsatz von Anmeldeinformationen, die der Connector-VM-Instanz zugeordnet sind. Diese sind die Zugangsdaten, die Cloud Manager zur Implementierung von Cloud Volumes ONTAP verwendet.
+
+Sie können das Marketplace-Abonnement jederzeit ändern, das mit diesen Anmeldedaten verknüpft ist. Mithilfe des Abonnements können Sie ein nutzungsbasiertes Cloud Volumes ONTAP System erstellen und andere NetApp Cloud-Services nutzen.
+
+.Schritte
+. Klicken Sie oben rechts in der Cloud Manager-Konsole auf das Symbol Einstellungen und wählen Sie *Anmeldeinformationen*.
+. Bewegen Sie den Mauszeiger über einen Satz von Anmeldeinformationen, und klicken Sie auf das Aktivitätsmenü.
+. Klicken Sie im Menü auf *Abonnement verknüpfen*.
++
+image:screenshot_gcp_add_subscription.gif["Ein Screenshot der Seite mit den Zugangsdaten, auf der Sie über das Menü ein Abonnement zu den GCP-Anmeldeinformationen hinzufügen können."]
+
+. Wählen Sie ein Google Cloud-Projekt und ein Abonnement aus der Down-Liste aus, oder klicken Sie auf *Abonnement hinzufügen* und befolgen Sie die Schritte, um ein neues Abonnement zu erstellen.
++
+image:screenshot_gcp_associate.gif["Ein Screenshot eines Google Cloud-Projekts und Abonnements, das für Google Cloud-Anmeldedaten ausgewählt wurde."]
+
+. Klicken Sie Auf *Mitarbeiter*.
+
+
+
+
+== Einrichten und Hinzufügen von GCP-Konten für Daten-Tiering mit Cloud Volumes ONTAP 9.6
+
+Wenn Sie ein Cloud Volumes ONTAP 9.6-System für aktivieren möchten link:concept_data_tiering.html["Daten-Tiering"], Sie müssen Cloud Manager mit einem Storage-Zugriffschlüssel für ein Service-Konto bereitstellen, das Storage-Admin-Berechtigungen hat. Cloud Manager verwendet die Zugriffssteuerung zum Einrichten und Managen eines Cloud Storage-Buckets für Daten-Tiering.
+
+
+TIP: Wenn Sie Daten-Tiering mit Cloud Volumes ONTAP 9.7 verwenden möchten, folgen Sie Schritt 4 in link:task_getting_started_gcp.html["Erste Schritte mit Cloud Volumes ONTAP in der Google Cloud Platform"].
+
+
+
+=== Einrichten eines Servicekontos und Zugriffsschlüssel für Google Cloud Storage
+
+Mithilfe eines Service-Kontos kann Cloud Manager Cloud Storage-Buckets authentifizieren und auf sie zugreifen, die für Daten-Tiering verwendet werden. Die Schlüssel sind erforderlich, damit Google Cloud Storage weiß, wer die Anfrage stellt.
+
+.Schritte
+. Öffnen Sie die GCP IAM-Konsole und https://cloud.google.com/iam/docs/creating-custom-roles#creating_a_custom_role["Erstellen Sie ein Dienstkonto mit der Rolle Storage Admin"^].
++
+image:screenshot_gcp_service_account_role.gif["Ein Screenshot der GCP IAM-Konsole, der die Auswahl der Storage-Admin-Rolle für ein Service-Konto zeigt."]
+
+. Gehen Sie zu https://console.cloud.google.com/storage/settings["GCP-Speichereinstellungen"^].
+. Wenn Sie aufgefordert werden, wählen Sie ein Projekt aus.
+. Klicken Sie auf die Registerkarte *Interoperabilität*.
+. Falls Sie dies noch nicht getan haben, klicken Sie auf *Interoperabilitätszugriff aktivieren*.
+. Klicken Sie unter *Zugriffsschlüssel für Servicekonten* auf *Schlüssel für ein Servicekonto erstellen*.
+. Wählen Sie das Servicekonto aus, das Sie in Schritt 1 erstellt haben.
++
+image:screenshot_gcp_access_key.gif["Ein Screenshot der GCP-Storage-Konsole, der ein ausgewähltes Service-Konto für einen neuen Zugriffsschlüssel zeigt."]
+
+. Klicken Sie Auf *Schlüssel Erstellen*.
+. Kopieren Sie den Zugriffsschlüssel und den Schlüssel.
++
+Sie müssen diese Informationen in Cloud Manager eingeben, wenn Sie das GCP-Konto für das Daten-Tiering hinzufügen.
+
+
+
+
+
+=== Hinzufügen eines GCP-Kontos zu Cloud Manager
+
+Nachdem Sie nun über einen Zugriffsschlüssel für ein Service-Konto verfügen, können Sie ihn dem Cloud Manager hinzufügen.
+
+Sie müssen einen Konnektor erstellen, bevor Sie Cloud Manager-Einstellungen ändern können. link:concept_connectors.html#how-to-create-a-connector["Erfahren Sie, wie"].
+
+.Schritte
+. Klicken Sie oben rechts in der Cloud Manager-Konsole auf das Symbol Einstellungen und wählen Sie *Anmeldeinformationen*.
++
+image:screenshot_settings_icon.gif["Ein Screenshot, in dem das Symbol „Einstellungen“ oben rechts in der Cloud Manager Konsole angezeigt wird."]
+
+. Klicken Sie auf *Anmeldeinformationen hinzufügen* und wählen Sie *Google Cloud*.
+. Geben Sie den Zugriffsschlüssel und den Schlüssel für das Servicekonto ein.
++
+Mithilfe der Schlüssel kann Cloud Manager einen Cloud Storage-Bucket für das Daten-Tiering einrichten.
+
+. Bestätigen Sie, dass die Richtlinienanforderungen erfüllt wurden, und klicken Sie dann auf *Konto erstellen*.
+
+
+Sie können jetzt Daten-Tiering für einzelne Volumes auf einem Cloud Volumes ONTAP 9.6 System aktivieren, wenn Sie sie erstellen, ändern oder replizieren. Weitere Informationen finden Sie unter link:task_tiering.html["Tiering inaktiver Daten in kostengünstigen Objektspeicher"].
+
+Bevor Sie jedoch das tun, stellen Sie sicher, dass das Subnetz, in dem sich Cloud Volumes ONTAP befindet, für privaten Google-Zugriff konfiguriert ist. Anweisungen finden Sie unter https://cloud.google.com/vpc/docs/configure-private-google-access["Google Cloud Documentation: Configuring Private Google Access"^].

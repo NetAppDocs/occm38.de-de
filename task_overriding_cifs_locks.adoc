@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: task_overriding_cifs_locks.html 
+keywords: CIFS locks, azure maintenance, maintenance events, cifs sessions, storage failover 
+summary: Der Kontoadministrator kann eine Einstellung in Cloud Manager aktivieren, die Probleme mit dem Cloud Volumes ONTAP Storage Failover bei Azure-Wartungereignissen verhindert. Wenn Sie diese Einstellung aktivieren, sperrt Cloud Volumes ONTAP Vetoes CIFS und setzt aktive CIFS-Sitzungen zurück. 
+---
+= Überschreiben von CIFS-Sperren für Cloud Volumes ONTAP HA in Azure
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Der Kontoadministrator kann eine Einstellung in Cloud Manager aktivieren, die Probleme mit dem Cloud Volumes ONTAP Storage Failover bei Azure-Wartungereignissen verhindert. Wenn Sie diese Einstellung aktivieren, sperrt Cloud Volumes ONTAP Vetoes CIFS und setzt aktive CIFS-Sitzungen zurück.
+
+Microsoft Azure plant regelmäßige Wartungsereignisse auf seinen Virtual Machines. Wenn auf einem Node in einem Cloud Volumes ONTAP HA-Paar ein Wartungsereignis stattfindet, initiiert das HA-Paar das Storage Takeover. Wenn während dieses Wartungsereignisses aktive CIFS-Sitzungen vorhanden sind, können die Sperren von CIFS-Dateien das Storage-Failover verhindern.
+
+Wenn Sie diese Einstellung aktivieren, setzt Cloud Volumes ONTAP die Sperren zurück und setzt die aktiven CIFS-Sitzungen zurück. So kann das HA-Paar während dieser Wartungsereignisse das Storage Failover abschließen.
+
+
+IMPORTANT: Dieser Prozess kann CIFS-Clients stören. Daten, die nicht von CIFS-Clients übertragen werden, können verloren gehen.
+
+Sie müssen einen Konnektor erstellen, bevor Sie Cloud Manager-Einstellungen ändern können. link:concept_connectors.html#how-to-create-a-connector["Erfahren Sie, wie"].
+
+.Schritte
+. Klicken Sie oben rechts in der Cloud Manager-Konsole auf das Symbol Einstellungen und wählen Sie *Cloud Manager-Einstellungen*.
++
+image:screenshot_settings_icon.gif["Ein Screenshot, in dem das Symbol „Einstellungen“ oben rechts in der Cloud Manager Konsole angezeigt wird."]
+
+. Aktivieren Sie unter *HA CIFS locks* das Kontrollkästchen und klicken Sie auf *Speichern*.
+

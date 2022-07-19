@@ -1,0 +1,140 @@
+---
+sidebar: sidebar 
+permalink: task_planning_your_config_gcp.html 
+keywords: license, disk, ebs, storage, size, write speed, volume usage, explore, standard, premium, byol, capacity, limit, configurations, virtual machine, vm, regions, supported disks, disk types, use profile, thin provisioning, deduplication, compression, Cloud Volumes ONTAP explore, Cloud Volumes ONTAP standard, Cloud Volumes ONTAP premium, Cloud Volumes ONTAP byol, shared instance, dedicated instance, write speed, high write speed, normal write speed, network information, worksheet, limit, limits, storage limits, volume limit, aggregate limit, maximum volume size, maximum aggregate size 
+summary: Wenn Sie Cloud Volumes ONTAP implementieren, können Sie ein vorkonfiguriertes System auswählen, das Ihren Workload-Anforderungen entspricht, oder Sie können eine eigene Konfiguration erstellen. Wenn Sie sich für eine eigene Konfiguration entscheiden, sollten Sie sich mit den verfügbaren Optionen vertraut machen. 
+---
+= Cloud Volumes ONTAP-Konfiguration in Google Cloud planen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie Cloud Volumes ONTAP in Google Cloud implementieren, können Sie entweder ein vorkonfiguriertes System wählen, das Ihren Workload-Anforderungen entspricht, oder Sie erstellen Ihre eigene Konfiguration. Wenn Sie sich für eine eigene Konfiguration entscheiden, sollten Sie sich mit den verfügbaren Optionen vertraut machen.
+
+
+
+== Auswahl eines Lizenztyps
+
+Cloud Volumes ONTAP ist in zwei Preisoptionen erhältlich: Nutzungsbasiert und als BYOL-Modell (Bring-Your-Own-License). Für Pay-as-you-go können Sie zwischen drei Lizenzen wählen: Explore, Standard oder Premium. Jede Lizenz bietet verschiedene Kapazitäts- und Computing-Optionen.
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_configs_gcp_97.html["Unterstützte Konfigurationen für Cloud Volumes ONTAP 9.7 in GCP"^]
+
+
+
+== Storage-Grenzen kennen
+
+Die Rohkapazitätsgrenze für ein Cloud Volumes ONTAP System ist an die Lizenz gebunden. Zusätzliche Beschränkungen wirken sich auf die Größe von Aggregaten und Volumes aus. Sie sollten sich dieser Grenzen bei der Planung Ihrer Konfiguration bewusst sein.
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_gcp_97.html["Storage-Grenzen für Cloud Volumes ONTAP 9.7 in GCP"]
+
+
+
+== Dimensionierung Ihres Systems in GCP
+
+Mit der Dimensionierung Ihres Cloud Volumes ONTAP Systems können Sie die Anforderungen an Performance und Kapazität erfüllen. Bei der Auswahl von Maschinentyp, Festplattentyp und Festplattengröße sind einige wichtige Punkte zu beachten:
+
+Maschinentyp:: Sehen Sie sich die unterstützten Maschinentypen im an http://docs.netapp.com/cloud-volumes-ontap/us-en/index.html["Versionshinweise zu Cloud Volumes ONTAP"^] Und dann lesen Sie die Details von Google zu jedem unterstützten Maschinentyp durch. Passen Sie Ihre Workload-Anforderungen an die Anzahl an vCPUs und Speicher für den Maschinentyp an. Beachten Sie, dass jeder CPU-Kern die Netzwerk-Performance steigert.
++
+--
+Weitere Informationen finden Sie im Folgenden:
+
+* https://cloud.google.com/compute/docs/machine-types#n1_machine_types["Google Cloud-Dokumentation: N1 Standard-Maschinentypen"^]
+* https://cloud.google.com/docs/compare/data-centers/networking#performance["Google Cloud Dokumentation: Performance"^]
+
+
+--
+GCP-Festplattentyp:: Bei der Erstellung von Volumes für Cloud Volumes ONTAP müssen Sie den zugrunde liegenden Cloud-Storage auswählen, den Cloud Volumes ONTAP für eine Festplatte verwendet. Der Festplattentyp kann entweder _Zonal SSD Persistent Disks_ oder _Zonal Standard Persistent Disks_ sein.
++
+--
+Persistente SSD-Festplatten eignen sich ideal für Workloads, die eine hohe Anzahl von zufälligen IOPS erfordern, während Standard-persistente Festplatten wirtschaftlich sind und sequenzielle Lese-/Schreibvorgänge verarbeiten können. Weitere Informationen finden Sie unter https://cloud.google.com/compute/docs/disks/#pdspecs["Google Cloud-Dokumentation: Zonal Persistent Disks (Standard und SSD)"^].
+
+--
+GCP-Festplattengröße:: Sie müssen bei der Implementierung eines Cloud Volumes ONTAP Systems die ursprüngliche Festplattengröße auswählen. Danach können Sie mit Cloud Manager die Kapazität eines Systems für Sie verwalten. Wenn Sie jedoch die Aggregate selbst erstellen möchten, beachten Sie Folgendes:
++
+--
+* Alle Festplatten in einem Aggregat müssen dieselbe Größe haben.
+* Ermitteln Sie den Speicherplatz, den Sie benötigen, während Sie gleichzeitig die Performance in Betracht ziehen.
+* Die Performance persistenter Festplatten lässt sich automatisch mit der Festplattengröße und der Anzahl der für das System verfügbaren vCPUs skalieren.
++
+Weitere Informationen finden Sie im Folgenden:
+
++
+** https://cloud.google.com/compute/docs/disks/#pdspecs["Google Cloud-Dokumentation: Zonal Persistent Disks (Standard und SSD)"^]
+** https://cloud.google.com/compute/docs/disks/performance["Google Cloud-Dokumentation: Optimierung von Persistent Disk und lokaler SSD-Performance"^]
+
+
+
+
+--
+
+
+
+
+== Informationarbeitsblatt für das GCP-Netzwerk
+
+Bei der Implementierung von Cloud Volumes ONTAP in GCP müssen Details zu Ihrem virtuellen Netzwerk angegeben werden. Sie können ein Arbeitsblatt verwenden, um die Informationen von Ihrem Administrator zu sammeln.
+
+[cols="30,70"]
+|===
+| GCP-Informationen | Ihr Wert 
+
+
+| Region |  
+
+
+| Zone |  
+
+
+| VPC-Netzwerk |  
+
+
+| Subnetz |  
+
+
+| Firewallrichtlinie (bei Nutzung eigener Richtlinien) |  
+|===
+
+
+== Auswählen einer Schreibgeschwindigkeit
+
+Mit Cloud Manager können Sie eine Einstellung für die Schreibgeschwindigkeit für Cloud Volumes ONTAP Systeme mit einem Node wählen. Bevor Sie sich für eine Schreibgeschwindigkeit entscheiden, sollten Sie die Unterschiede zwischen den normalen und hohen Einstellungen sowie Risiken und Empfehlungen verstehen, wenn Sie eine hohe Schreibgeschwindigkeit verwenden.
+
+
+
+==== Unterschied zwischen normaler Schreibgeschwindigkeit und hoher Schreibgeschwindigkeit
+
+Wenn Sie sich für eine normale Schreibgeschwindigkeit entscheiden, werden die Daten direkt auf die Festplatte geschrieben, wodurch die Wahrscheinlichkeit eines Datenverlusts bei einem ungeplanten Systemausfall verringert wird.
+
+Wenn Sie hohe Schreibgeschwindigkeit wählen, werden die Daten vor dem Schreiben auf die Festplatte im Speicher gepuffert, was eine schnellere Schreibleistung ermöglicht. Aufgrund dieses Cachings besteht die Gefahr eines Datenverlusts, wenn ein ungeplanter Systemausfall auftritt.
+
+Die Datenmenge, die bei einem ungeplanten Systemausfall verloren gehen kann, entspricht der Spanne der letzten beiden Konsistenzpunkte. Ein Konsistenzpunkt ist das Schreiben gepufferter Daten auf die Festplatte. Ein Konsistenzpunkt tritt auf, wenn das Schreibprotokoll voll ist oder nach 10 Sekunden (je nachdem, was zuerst eintritt). Die Performance des AWS EBS-Volumes kann sich jedoch auf die Verarbeitungszeit des Konsistenzpunkts auswirken.
+
+
+
+==== Wann wird hohe Schreibgeschwindigkeit verwendet
+
+Hohe Schreibgeschwindigkeit ist eine gute Wahl, wenn für Ihre Workload eine schnelle Schreibleistung erforderlich ist und Sie das Risiko eines Datenverlusts bei einem ungeplanten Systemausfall überstehen können.
+
+
+
+==== Empfehlungen bei hoher Schreibgeschwindigkeit
+
+Wenn Sie die hohe Schreibgeschwindigkeit aktivieren, sollten Sie den Schreibschutz auf der Anwendungsebene sicherstellen.
+
+
+
+== Auswählen eines Volume-Nutzungsprofils
+
+ONTAP umfasst mehrere Storage-Effizienzfunktionen, mit denen Sie die benötigte Storage-Gesamtmenge reduzieren können. Wenn Sie ein Volume in Cloud Manager erstellen, können Sie ein Profil auswählen, das diese Funktionen aktiviert, oder ein Profil, das sie deaktiviert. Sie sollten mehr über diese Funktionen erfahren, um zu entscheiden, welches Profil Sie verwenden möchten.
+
+NetApp Storage-Effizienzfunktionen bieten folgende Vorteile:
+
+Thin Provisioning:: Bietet Hosts oder Benutzern mehr logischen Storage als in Ihrem physischen Storage-Pool. Anstatt Storage vorab zuzuweisen, wird jedem Volume beim Schreiben von Daten dynamisch Speicherplatz zugewiesen.
+Deduplizierung:: Verbessert die Effizienz, indem identische Datenblöcke lokalisiert und durch Verweise auf einen einzelnen gemeinsam genutzten Block ersetzt werden. Durch diese Technik werden die Storage-Kapazitätsanforderungen reduziert, da redundante Datenblöcke im selben Volume eliminiert werden.
+Komprimierung:: Reduziert die physische Kapazität, die zum Speichern von Daten erforderlich ist, indem Daten in einem Volume auf primärem, sekundärem und Archiv-Storage komprimiert werden.
+

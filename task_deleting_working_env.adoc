@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: task_deleting_working_env.html 
+keywords: terminate, delete, working environment, remove, cloudformation 
+summary: Am besten löschen Sie Cloud Volumes ONTAP Systeme aus Cloud Manager und nicht aus AWS oder Azure. 
+---
+= Löschen einer Cloud Volumes ONTAP Arbeitsumgebung
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Am besten löschen Sie die Cloud Volumes ONTAP Systeme aus dem Cloud Manager, nicht jedoch von der Konsole Ihres Cloud-Providers. Wenn Sie beispielsweise eine lizenzierte Cloud Volumes ONTAP-Instanz von AWS beenden, können Sie den Lizenzschlüssel für eine andere Instanz nicht verwenden. Sie müssen die Arbeitsumgebung aus Cloud Manager löschen, um die Lizenz freizugeben.
+
+Wenn Sie eine Arbeitsumgebung löschen, beendet Cloud Manager Instanzen, löscht Festplatten und Snapshots.
+
+
+IMPORTANT: Cloud Volumes ONTAP Instanzen verfügen über einen aktivierten Kündigungsschutz, um eine versehentliche Beendigung von AWS zu verhindern. Wenn Sie jedoch eine Cloud Volumes ONTAP Instanz von AWS beenden, müssen Sie zur Konsole AWS CloudFormation wechseln und den Stack der Instanz löschen. Der Stack-Name ist der Name der Arbeitsumgebung.
+
+.Schritte
+. Klicken Sie in der Arbeitsumgebung auf das Menüsymbol und dann auf *Löschen*.
+. Geben Sie den Namen der Arbeitsumgebung ein und klicken Sie dann auf *Löschen*.
++
+Das Löschen der Arbeitsumgebung kann bis zu 5 Minuten dauern.
+
+

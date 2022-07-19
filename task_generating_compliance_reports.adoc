@@ -1,0 +1,181 @@
+---
+sidebar: sidebar 
+permalink: task_generating_compliance_reports.html 
+keywords: report, privacy, risk, privacy risk assessment, compliance status, severity, compliance, privacy risk, data subjects, privacy, credit cards, pci dss, hipaa 
+summary: Cloud Compliance stellt Berichte bereit, anhand deren Sie den Status des Datenschutzprogramms Ihres Unternehmens besser verstehen können. 
+---
+= Anzeigen von Compliance-Berichten
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Compliance stellt Berichte bereit, anhand deren Sie den Status des Datenschutzprogramms Ihres Unternehmens besser verstehen können.
+
+Standardmäßig werden auf dem Cloud Compliance-Dashboard Compliance-Daten für alle Arbeitsumgebungen und Datenbanken angezeigt. Wenn Sie Berichte anzeigen möchten, die Daten nur für einige Arbeitsumgebungen enthalten,  the working environments for reports,Wählen Sie diese Arbeitsumgebungen aus.
+
+
+NOTE: NetApp kann keine Garantie für 100 % Genauigkeit der persönlichen Daten und für sensible personenbezogene Daten, die Cloud Compliance identifiziert hat, geben. Überprüfen Sie die Informationen immer, indem Sie die Daten überprüfen.
+
+
+
+== Datenschutzrisiko-Assessment-Bericht
+
+Der Datenschutzrisiko-Assessment-Bericht bietet einen Überblick über den Datenschutzrisikostatus Ihres Unternehmens, wie dies durch Datenschutzvorschriften wie DSGVO und CCPA erforderlich ist. Der Bericht enthält die folgenden Informationen:
+
+Compliance-Status:: A  score,Schweregrad Und die Verteilung von Daten, ganz gleich, ob es sich um unempfindliche, personenbezogene oder sensible Daten handelt.
+Assessment-Übersicht:: Eine Aufschlüsselung der gefundenen Arten von personenbezogenen Daten sowie der Kategorien von Daten.
+Betroffene in dieser Beurteilung:: Die Anzahl der Personen, nach Ort, für die nationale Kennungen gefunden wurden.
+
+
+
+
+=== Generieren des Datenschutzrisikobewertungsberichts
+
+Rufen Sie die Registerkarte Compliance auf, um den Bericht zu erstellen.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf *Cloud Compliance*.
+. Klicken Sie unter *Reports* auf das Download-Symbol neben *Privacy Risk Assessment*.
++
+image:screenshot_privacy_risk_assessment.gif["Ein Screenshot der Registerkarte Compliance in Cloud Manager, in dem der Bereich „Berichte“ angezeigt wird, in dem Sie auf „Privacy Risk Assessment“ klicken können."]
+
+
+
+Cloud Compliance generiert einen PDF-Bericht, den Sie nach Bedarf prüfen und an andere Gruppen senden können.
+
+
+
+=== Schweregrad
+
+Cloud Compliance berechnet den Schweregrad für den Privacy Risk Assessment-Bericht auf der Grundlage von drei Variablen:
+
+* Der Prozentsatz der personenbezogenen Daten aus allen Daten.
+* Der Prozentsatz sensibler personenbezogener Daten aus allen Daten.
+* Der Prozentsatz der Dateien, die betroffene Daten enthalten, die durch nationale Kennungen wie nationale IDs, Sozialversicherungsnummern und Steuerkennzahlen bestimmt werden.
+
+
+Die folgende Logik dient zur Ermittlung der Punktzahl:
+
+[cols="27,73"]
+|===
+| Schweregrad | Logik 
+
+
+| 0 | Alle drei Variablen sind genau 0% 
+
+
+| 1 | Eine der Variablen ist größer als 0 % 
+
+
+| 2 | Eine der Variablen ist größer als 3% 
+
+
+| 3 | Zwei der Variablen sind größer als 3% 
+
+
+| 4 | Drei der Variablen sind größer als 3 % 
+
+
+| 5 | Eine der Variablen ist größer als 6% 
+
+
+| 6 | Zwei der Variablen sind größer als 6% 
+
+
+| 7 | Drei der Variablen sind größer als 6 % 
+
+
+| 8 | Eine der Variablen ist größer als 15% 
+
+
+| 9 | Zwei der Variablen sind größer als 15% 
+
+
+| 10 | Drei der Variablen sind größer als 15 % 
+|===
+
+
+== PCI DSS-Bericht
+
+Der PCI DSS-Bericht (Payment Card Industry Data Security Standard) hilft Ihnen bei der Identifizierung der Verteilung von Kreditkarteninformationen über Ihre Dateien hinweg. Der Bericht enthält die folgenden Informationen:
+
+Überblick:: Wie viele Dateien enthalten Kreditkarteninformationen und in welchen Arbeitsumgebungen.
+Verschlüsselung:: Der Prozentsatz der Dateien, die Kreditkartendaten in verschlüsselten oder nicht verschlüsselten Arbeitsumgebungen enthalten. Diese Informationen sind spezifisch für Cloud Volumes ONTAP.
+Schutz Vor Ransomware:: Der Prozentsatz von Dateien mit Kreditkarteninformationen, die in Arbeitsumgebungen gespeichert sind, für die der Ransomware-Schutz aktiviert ist oder nicht. Diese Informationen sind spezifisch für Cloud Volumes ONTAP.
+Aufbewahrung:: Der Zeitrahmen, in dem die Dateien zuletzt geändert wurden. Dies ist hilfreich, weil Sie Ihre Kreditkartendaten nicht länger aufbewahren sollten, als Sie sie bearbeiten müssen.
+Verteilung der Kreditkarteninformationen:: Die Arbeitsumgebungen, in denen Kreditkartendaten gefunden wurden und ob Verschlüsselung und Ransomware-Schutz aktiviert sind.
+
+
+
+
+=== PCI DSS-Bericht wird erstellt
+
+Rufen Sie die Registerkarte Compliance auf, um den Bericht zu erstellen.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf *Cloud Compliance*.
+. Klicken Sie unter *Reports* auf das Download-Symbol neben *PCI DSS Report*.
++
+image:screenshot_pci_dss.gif["Ein Screenshot der Registerkarte Compliance in Cloud Manager, in dem der Bereich „Berichte“ angezeigt wird, in dem Sie auf „Privacy Risk Assessment“ klicken können."]
+
+
+
+Cloud Compliance generiert einen PDF-Bericht, den Sie nach Bedarf prüfen und an andere Gruppen senden können.
+
+
+
+== HIPAA-Bericht
+
+Der HIPAA-Bericht (Health Insurance Portability and Accountability Act) hilft Ihnen bei der Identifizierung von Dateien, die Gesundheitsdaten enthalten. Es wurde entwickelt, um die Anforderung Ihres Unternehmens zu unterstützen, die HIPAA-Datenschutzgesetze einzuhalten. Die von Cloud Compliance gesucht werden, umfasst:
+
+* Zustandsreferenzmuster
+* ICD-10 CM medizinischer Code
+* ICD-9 CM medizinischer Code
+* HR – Kategorie Gesundheit
+* Datenkategorie für Gesundheitsanwendungen
+
+
+Der Bericht enthält die folgenden Informationen:
+
+Überblick:: Wie viele Dateien enthalten Gesundheitsinformationen und in welchen Arbeitsumgebungen.
+Verschlüsselung:: Der Prozentsatz der Dateien, die Gesundheitsinformationen in verschlüsselten oder nicht verschlüsselten Arbeitsumgebungen enthalten. Diese Informationen sind spezifisch für Cloud Volumes ONTAP.
+Schutz Vor Ransomware:: Der Prozentsatz von Dateien mit Gesundheitsinformationen in Arbeitsumgebungen, in denen Ransomware-Schutz aktiviert ist oder nicht. Diese Informationen sind spezifisch für Cloud Volumes ONTAP.
+Aufbewahrung:: Der Zeitrahmen, in dem die Dateien zuletzt geändert wurden. Dies ist hilfreich, weil Sie Gesundheitsinformationen nicht länger aufbewahren sollten, als Sie sie verarbeiten müssen.
+Verteilung von Gesundheitsinformationen:: In den Arbeitsumgebungen, in denen die Gesundheitsdaten gefunden wurden und ob Verschlüsselung und Ransomware-Schutz aktiviert sind.
+
+
+
+
+=== HIPAA-Bericht wird erstellt
+
+Rufen Sie die Registerkarte Compliance auf, um den Bericht zu erstellen.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf *Cloud Compliance*.
+. Klicken Sie unter *Reports* auf das Download-Symbol neben *HIPAA Report*.
++
+image:screenshot_hipaa.gif["Ein Screenshot der Registerkarte Compliance in Cloud Manager zeigt den Bereich Berichte an, in dem Sie auf HIPAA klicken können."]
+
+
+
+Cloud Compliance generiert einen PDF-Bericht, den Sie nach Bedarf prüfen und an andere Gruppen senden können.
+
+
+
+== Auswählen der Arbeitsumgebungen für Berichte
+
+Sie können die Inhalte des Cloud Compliance Dashboards filtern, um Compliance-Daten für alle Arbeitsumgebungen und Datenbanken oder nur für bestimmte Arbeitsumgebungen anzuzeigen.
+
+Wenn Sie das Dashboard filtern, wird durch Cloud Compliance die Compliance-Daten und -Berichte genau den von Ihnen ausgewählten Arbeitsumgebungen beschrieben.
+
+.Schritte
+. Klicken Sie auf das Dropdown-Menü Filter, wählen Sie die Arbeitsumgebungen aus, für die Sie Daten anzeigen möchten, und klicken Sie auf *Ansicht*.
++
+image:screenshot_cloud_compliance_filter.gif["Ein Screenshot zur Auswahl der Arbeitsumgebungen für die Berichte, die ausgeführt werden sollen."]
+
+

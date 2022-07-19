@@ -1,0 +1,54 @@
+---
+sidebar: sidebar 
+permalink: concept_flash_cache.html 
+keywords: cloud volumes ontap, aws, ec2, flash cache, read-intensive, read, random, databases, email, file services, c5d.4xlarge, c5d.9xlarge, r5d.2xlarge, compression, performance, azure, nvme, standard, l8s, vm type, virtual machine, m5d.8xlarge, m5d.12xlarge, c5d.18xlarge 
+summary: Einige Cloud Volumes ONTAP Konfigurationen in AWS und Azure beinhalten lokalen NVMe-Storage, den Cloud Volumes ONTAP als Flash Cache verwendet, um eine bessere Performance zu erzielen. 
+---
+= Flash Cache
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Einige Cloud Volumes ONTAP Konfigurationen in AWS und Azure beinhalten lokalen NVMe-Storage, den Cloud Volumes ONTAP als _Flash Cache_ verwendet, um eine bessere Performance zu erzielen.
+
+
+
+== Was ist Flash Cache?
+
+Flash Cache beschleunigt den Zugriff auf Daten durch intelligente Cache-Speicherung von kürzlich gelesenen Anwenderdaten und NetApp Metadaten in Echtzeit. Es bringt Vorteile bei Random Read-intensiven Workloads, einschließlich Datenbanken, E-Mail und File Services.
+
+
+
+== Unterstützte Instanzen in AWS
+
+Wählen Sie einen der folgenden EC2-Instanztypen mit einem neuen oder vorhandenen Cloud Volumes ONTAP Premium- oder BYOL-System aus:
+
+* C5d.4xlarge
+* C5d.9xlarge
+* C5d.18xlarge
+* M5d.8xlarge
+* M5d.12xlarge
+* R5d.2xlarge
+
+
+
+
+== Unterstützter VM-Typ in Azure
+
+Wählen Sie in Azure den VM-Typ Standard_L8S_v2 mit einem Cloud Volumes ONTAP BYOL-System mit einem einzelnen Node aus.
+
+
+
+== Einschränkungen
+
+* Um die Performance-Verbesserungen von Flash Cache nutzen zu können, muss die Komprimierung für alle Volumes deaktiviert sein.
++
+Entscheiden Sie sich für keine Storage-Effizienz bei der Erstellung eines Volumes aus Cloud Manager, oder erstellen Sie ein Volume und dann http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-vsmg/GUID-8508A4CB-DB43-4D0D-97EB-859F58B29054.html["Deaktivieren Sie die Datenkomprimierung über die CLI"^].
+
+* Cloud Volumes ONTAP unterstützt das Neustarten des Cache nicht, wenn ein Neustart nach einem Neustart erfolgen soll.
+

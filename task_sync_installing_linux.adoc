@@ -1,0 +1,186 @@
+---
+sidebar: sidebar 
+permalink: task_sync_installing_linux.html 
+keywords: data broker, install, linux, on-prem data broker, on-prem, on prem, on premises, networking, permissions, os, operating system, rhel, red hat, ram, cpu, disk space, install data broker, installing data broker, install a data broker, data broker installation, linux installation, linux operating system, aws access, aws keys, keys, gcp access, aws permissions, gcp permissions, google permissions 
+summary: Wenn Sie eine Synchronisierungsbeziehung erstellen, wählen Sie die Option On-Prem Data Broker, um die Data Broker-Software auf einem lokalen Linux-Host oder auf einem vorhandenen Linux-Host in der Cloud zu installieren. Cloud Sync führt Sie durch den Installationsprozess, aber die Anforderungen und Schritte werden auf dieser Seite wiederholt, um Sie bei der Vorbereitung auf die Installation zu unterstützen. 
+---
+= Installation des Data Brokers auf einem Linux-Host
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie eine Synchronisierungsbeziehung erstellen, wählen Sie die Option On-Prem Data Broker, um die Data Broker-Software auf einem lokalen Linux-Host oder auf einem vorhandenen Linux-Host in der Cloud zu installieren. Cloud Sync führt Sie durch den Installationsprozess, aber die Anforderungen und Schritte werden auf dieser Seite wiederholt, um Sie bei der Vorbereitung auf die Installation zu unterstützen.
+
+
+
+== Anforderungen an Linux-Hosts
+
+* *Betriebssystem*:
++
+** CentOS 7.0, 7.7 und 8.0
+** Red hat Enterprise Linux 7.7 und 8.0
+** Ubuntu Server 18.04 LTS
+** SUSE Linux Enterprise Server 15 SP1
++
+Der Befehl `yum update all` Muss auf dem Host ausgeführt werden, bevor Sie den Daten-Broker installieren.
+
++
+Ein Red Hat Enterprise Linux-System muss bei Red Hat Subscription Management registriert sein. Wenn sie nicht registriert ist, kann das System während der Installation nicht auf Repositorys zugreifen, um die erforderliche Software von Drittanbietern zu aktualisieren.
+
+
+
+* *RAM*: 16 GB
+* *CPU*: 4 Kerne
+* *Freier Speicherplatz*: 10 GB
+* *SELinux*: Wir empfehlen Ihnen zu deaktivieren https://selinuxproject.org/["SELinux"^] Auf dem Host.
++
+SELinux setzt eine Richtlinie durch, die Softwareupdates für den Datentmanager blockiert und den Datenmanager davon absperrt, Endpunkte zu kontaktieren, die für den normalen Betrieb erforderlich sind.
+
+* *OpenSSL*: OpenSSL muss auf dem Linux-Host installiert sein.
+
+
+
+
+== Netzwerkanforderungen
+
+* Der Linux-Host muss eine Verbindung mit der Quelle und dem Ziel haben.
+* Der Dateiserver muss es dem Linux-Host ermöglichen, auf die Exporte zuzugreifen.
+* Port 443 muss auf dem Linux-Host für Outbound-Datenverkehr zu AWS offen sein (der Daten-Broker kommuniziert fortwährend mit dem Amazon SQS Service).
+* NetApp empfiehlt die Konfiguration des Quell-, Ziel- und Daten-Brokers für die Verwendung eines NTP-Services (Network Time Protocol). Die Zeitdifferenz zwischen den drei Komponenten darf 5 Minuten nicht überschreiten.
+
+
+
+
+== Zugriff auf AWS wird ermöglicht
+
+Wenn Sie den Daten-Broker mit einer Synchronisierungsbeziehung mit einem S3-Bucket verwenden möchten, sollten Sie den Linux-Host für den AWS-Zugriff vorbereiten. Nach der Installation des Daten-Brokers müssen Sie AWS Schlüssel für einen AWS-Benutzer bereitstellen, der programmatischen Zugriff und bestimmte Berechtigungen hat.
+
+.Schritte
+. Erstellen Sie eine IAM-Richtlinie mit https://s3.amazonaws.com/metadata.datafabric.io/docs/on_prem_iam_policy.json["Von NetApp bereitgestellt"^]. https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html["AWS-Anweisungen anzeigen"^].
+. Erstellen Sie einen IAM-Benutzer mit programmatischem Zugriff. https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html["AWS-Anweisungen anzeigen"^].
++
+Achten Sie darauf, die AWS-Schlüssel zu kopieren, da Sie sie bei der Installation der Data Broker-Software angeben müssen.
+
+
+
+
+
+== Zugriff auf Google Cloud wird ermöglicht
+
+Wenn Sie den Daten-Broker mit einer Synchronisierung verwenden möchten, die einen Google Cloud Storage Bucket enthält, sollten Sie den Linux-Host für GCP-Zugriff vorbereiten. Nach der Installation des Daten-Brokers müssen Sie einen Schlüssel für ein Servicekonto mit spezifischen Berechtigungen bereitstellen.
+
+.Schritte
+. Erstellen Sie ein GCP-Servicekonto mit Storage Admin-Berechtigungen, wenn Sie noch nicht über eines verfügen.
+. Erstellen Sie einen im JSON-Format gespeicherten Dienstkontenschlüssel. https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys["GCP-Anweisungen anzeigen"^].
++
+Die Datei sollte mindestens die folgenden Eigenschaften enthalten: „Project_id“, „Private_Key“ und „Client_email“
+
++
+
+NOTE: Wenn Sie einen Schlüssel erstellen, wird die Datei generiert und auf Ihren Computer heruntergeladen.
+
+. Speichern Sie die JSON-Datei auf dem Linux-Host.
+
+
+
+
+== Zugriff auf Microsoft Azure wird ermöglicht
+
+Der Zugriff auf Azure wird pro Beziehung definiert. Dazu wird ein Storage-Konto und eine Verbindungszeichenfolge im Assistenten für synchrone Beziehungen bereitgestellt.
+
+
+
+== Installation des Data Brokers
+
+Sie können einen Data Broker auf einem Linux-Host installieren, wenn Sie eine Synchronisierungsbeziehung erstellen.
+
+.Schritte
+. Klicken Sie Auf *Neuen Sync Erstellen*.
+. Wählen Sie auf der Seite *Synchronisierungsbeziehung definieren* eine Quelle und ein Ziel aus und klicken Sie auf *Weiter*.
++
+Führen Sie die Schritte aus, bis Sie zur Seite *Data Broker* gelangen.
+
+. Klicken Sie auf der Seite *Data Broker* auf *Daten Broker erstellen* und wählen Sie dann *On-Prem Data Broker* aus.
++
+Wenn Sie bereits einen Daten-Broker haben, müssen Sie auf klicken image:screenshot_plus_icon.gif["Ein Screenshot, wenn das Pluszeichen angezeigt wird"] Symbol zuerst.
+
++
+image:screenshot_create_data_broker.gif["Screenshot der Seite „Data Broker“ mit der Wahl zwischen einem AWS, Azure, GCP und einem Daten-Broker vor Ort."]
+
++
+
+NOTE: Obwohl die Option mit *_On-Prem_ Data Broker* gekennzeichnet ist, gilt sie für einen Linux-Host vor Ort oder in der Cloud.
+
+. Geben Sie einen Namen für den Daten-Broker ein und klicken Sie auf *Weiter*.
++
+Die Seite mit den Anweisungen wird in Kürze geladen. Sie müssen diese Anweisungen befolgen - sie enthalten einen eindeutigen Link, um das Installationsprogramm herunterzuladen.
+
+. Auf der Seite mit den Anweisungen:
++
+.. Wählen Sie aus, ob der Zugriff auf *AWS*, *Google Cloud* oder beides aktiviert werden soll.
+.. Wählen Sie eine Installationsoption aus: *Kein Proxy*, *Proxy-Server verwenden* oder *Proxy-Server mit Authentifizierung verwenden*.
+.. Verwenden Sie die Befehle, um den Daten-Broker herunterzuladen und zu installieren.
++
+Die folgenden Schritte enthalten Details zu den einzelnen möglichen Installationsoption. Folgen Sie der Seite mit den Anweisungen, um den genauen Befehl basierend auf Ihrer Installationsoption anzuzeigen.
+
+.. Laden Sie das Installationsprogramm herunter:
++
+*** Kein Proxy:
++
+`curl <URI> -o data_broker_installer.sh`
+
+*** Proxy-Server verwenden:
++
+`curl <URI> -o data_broker_installer.sh -x <proxy_host>:<proxy_port>`
+
+*** Proxy-Server mit Authentifizierung verwenden:
++
+`curl <URI> -o data_broker_installer.sh -x <proxy_username>:<proxy_password>@<proxy_host>:<proxy_port>`
+
++
+URI:: Cloud Sync zeigt die URI der Installationsdatei auf der Seite mit den Anweisungen an, die beim Befolgen der Anweisungen zur Bereitstellung des On-Prem-Datenmakers geladen wird. Dieser URI wird hier nicht wiederholt, weil der Link dynamisch erzeugt wird und nur einmal verwendet werden kann.  the data broker,Führen Sie diese Schritte aus, um den URI aus Cloud Sync zu erhalten.
+
+
+
+
+.. Wechseln Sie zu Superuser, machen Sie das Installationsprogramm ausführbar und installieren Sie die Software:
++
+
+NOTE: Jeder der unten aufgeführten Befehle enthält Parameter für AWS-Zugriff und GCP-Zugriff. Folgen Sie der Seite mit den Anweisungen, um den genauen Befehl basierend auf Ihrer Installationsoption anzuzeigen.
+
++
+*** Keine Proxy-Konfiguration:
++
+`sudo -s
+chmod +x data_broker_installer.sh
+./data_broker_installer.sh -a <aws_access_key> -s <aws_secret_key> -g <absolute_path_to_the_json_file>`
+
+*** Proxy-Konfiguration:
++
+`sudo -s
+chmod +x data_broker_installer.sh
+./data_broker_installer.sh -a <aws_access_key> -s <aws_secret_key> -g <absolute_path_to_the_json_file> -h <proxy_host> -p <proxy_port>`
+
+*** Proxy-Konfiguration mit Authentifizierung:
++
+`sudo -s
+chmod +x data_broker_installer.sh
+./data_broker_installer.sh -a <aws_access_key> -s <aws_secret_key> -g <absolute_path_to_the_json_file> -h <proxy_host> -p <proxy_port> -u <proxy_username> -w <proxy_password>`
+
++
+AWS-Schlüssel:: Dies sind die Tasten für den Benutzer, die Sie vorbereitet haben sollten  access to AWS,Befolgen Sie diese Schritte. Die AWS Schlüssel werden im Daten-Broker gespeichert, der in Ihrem lokalen oder Cloud-Netzwerk ausgeführt wird. NetApp verwendet die Schlüssel nicht außerhalb des Datenmaklers.
+JSON-Datei:: Dies ist die JSON-Datei, die einen Service-Account-Schlüssel enthält, den Sie vorbereitet haben sollten  access to Google Cloud,Befolgen Sie diese Schritte.
+
+
+
+
+
+
+. Sobald der Datenvermittler verfügbar ist, klicken Sie in Cloud Sync auf *Weiter*.
+. Füllen Sie die Seiten im Assistenten aus, um die neue Synchronisierungsbeziehung zu erstellen.
+

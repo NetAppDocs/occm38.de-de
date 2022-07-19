@@ -1,0 +1,181 @@
+---
+sidebar: sidebar 
+permalink: task_modifying_ontap_cloud.html 
+keywords: license, licensing, install, instance type, virtual machine type, VM type, change, modify, configuration, subscription, paygo, pay-as-you-go, pay as you go, byol, password, MTU, jumbo frames, c4.xlarge, c4.8xlarge, HA pair, file, license file, install, upload, change, modify, svm, storage virtual machine, password, route tables, nlf, gcp, machine type, virtual machine type, vm instance, write speed, high write speed, normal write speed, storage VM, storage virtual machine, SVM, modify SVM name, change SVM name 
+summary: Möglicherweise müssen Sie die Konfiguration von Cloud Volumes ONTAP-Systemen ändern, wenn sich Ihre Storage-Anforderungen ändern. Sie können beispielsweise zwischen nutzungsbasierten Konfigurationen wechseln, den Instanz- oder VM-Typ ändern und vieles mehr. 
+---
+= Ändern von Cloud Volumes ONTAP Systemen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Möglicherweise müssen Sie die Konfiguration von Cloud Volumes ONTAP-Systemen ändern, wenn sich Ihre Storage-Anforderungen ändern. Sie können beispielsweise zwischen nutzungsbasierten Konfigurationen wechseln, den Instanz- oder VM-Typ ändern und vieles mehr.
+
+
+
+== Ändern des Instanz- oder Maschinentyps für Cloud Volumes ONTAP
+
+Bei der Einführung von Cloud Volumes ONTAP in AWS, Azure oder GCP können Sie zwischen verschiedenen Instanzen oder Maschinentypen wählen. Sie können den Instanz- oder Maschinentyp jederzeit ändern, wenn Sie feststellen, dass er für Ihre Anforderungen unterdimensioniert oder überdimensioniert ist.
+
+.Über diese Aufgabe
+* Automatisches Giveback muss auf einem Cloud Volumes ONTAP HA-Paar aktiviert sein (dies ist die Standardeinstellung). Wenn nicht, schlägt der Vorgang fehl.
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/GUID-3F50DE15-0D01-49A5-BEFD-D529713EC1FA.html["ONTAP 9 Dokumentation: Befehle zur Konfiguration von automatischem Giveback"^]
+
+* Eine Änderung des Instanz- oder Maschinentyps wirkt sich auf die Servicegebühren von Cloud-Providern aus.
+* Der Vorgang startet Cloud Volumes ONTAP neu.
++
+Bei Systemen mit einem Node wird die I/O unterbrochen.
+
++
+Bei HA-Paaren ist die Änderung unterbrechungsfrei. Ha-Paare stellen weiterhin Daten bereit.
+
++
+
+TIP: Cloud Manager ändert den Node nach dem anderen ordnungsgemäß, indem es Takeover und Warten auf Giveback initiiert. Das QA-Team von NetApp testete während dieses Prozesses sowohl das Schreiben als auch das Lesen der Dateien und sah keine Probleme auf Kundenseite. Wenn sich die Verbindungen änderten, wurden Wiederholungen auf I/O-Ebene gesehen, aber die Applikationsebene übergab diese kurze „Re-Wire“ der NFS/CIFS-Verbindungen.
+
+
+
+.Schritte
+. Klicken Sie in der Arbeitsumgebung auf das Menü-Symbol und dann auf *Lizenz oder Instanz ändern* für AWS, *Lizenz ändern oder VM* für Azure oder *Lizenz oder Rechner ändern* für GCP.
+. Wenn Sie eine nutzungsbasierte Konfiguration verwenden, können Sie optional eine andere Lizenz auswählen.
+. Wählen Sie eine Instanz oder einen Maschinentyp aus, aktivieren Sie das Kontrollkästchen, um zu bestätigen, dass Sie die Auswirkungen der Änderung verstehen, und klicken Sie dann auf *OK*.
+
+
+Cloud Volumes ONTAP wird mit der neuen Konfiguration neu gestartet.
+
+
+
+== Wechsel zwischen nutzungsbasierten Konfigurationen
+
+Nachdem Sie Pay-as-you-go Cloud Volumes ONTAP Systeme gestartet haben, können Sie jederzeit zwischen den Konfigurationen Explore, Standard und Premium wechseln, indem Sie die Lizenz ändern. Das Ändern der Lizenz erhöht oder verringert die Obergrenze für die Rohkapazität und ermöglicht die Auswahl aus verschiedenen AWS Instanztypen oder Azure Virtual Machine-Typen.
+
+
+NOTE: In GCP ist für jede Pay-as-you-go-Konfiguration ein einziger Maschinentyp verfügbar. Sie können nicht zwischen verschiedenen Maschinentypen wählen.
+
+Beachten Sie Folgendes, um zwischen nutzungsbasierten Lizenzen zu wechseln:
+
+* Der Vorgang startet Cloud Volumes ONTAP neu.
++
+Bei Systemen mit einem Node wird die I/O unterbrochen.
+
++
+Bei HA-Paaren ist die Änderung unterbrechungsfrei. Ha-Paare stellen weiterhin Daten bereit.
+
+* Eine Änderung des Instanz- oder Maschinentyps wirkt sich auf die Servicegebühren von Cloud-Providern aus.
+
+
+.Schritte
+. Klicken Sie in der Arbeitsumgebung auf das Menü-Symbol und dann auf *Lizenz oder Instanz ändern* für AWS, *Lizenz ändern oder VM* für Azure oder *Lizenz oder Rechner ändern* für GCP.
+. Wählen Sie einen Lizenztyp und einen Instanztyp oder Maschinentyp aus, aktivieren Sie das Kontrollkästchen, um zu bestätigen, dass Sie die Auswirkungen der Änderung verstehen, und klicken Sie dann auf *OK*.
+
+
+Cloud Volumes ONTAP wird mit der neuen Lizenz, dem Instanztyp oder dem Maschinentyp oder beides neu gebootet.
+
+
+
+== Wechsel zu einer alternativen Cloud Volumes ONTAP Konfiguration
+
+Wenn Sie zwischen einem Pay-as-you-go-Abonnement und einem BYOL-Abonnement oder zwischen einem einzelnen Cloud Volumes ONTAP System und einem HA-Paar wechseln möchten, müssen Sie ein neues System implementieren und anschließend Daten aus dem vorhandenen System in das neue System replizieren.
+
+.Schritte
+. Erstellen Sie eine neue Cloud Volumes ONTAP Arbeitsumgebung.
++
+link:task_deploying_otc_aws.html["Starten von Cloud Volumes ONTAP in AWS"]
+link:task_deploying_otc_azure.html["Starten von Cloud Volumes ONTAP in Azure"]
+link:task_deploying_gcp.html["Einführung von Cloud Volumes ONTAP in GCP"]
+
+. link:task_replicating_data.html["Einmalige Datenreplizierung einrichten"] Zwischen den Systemen für jedes zu replizierende Volume wechseln.
+. Beenden Sie das Cloud Volumes ONTAP System, das Sie von nicht mehr benötigen link:task_deleting_working_env.html["Die ursprüngliche Arbeitsumgebung wird gelöscht"].
+
+
+
+
+== Ändern der Schreibgeschwindigkeit auf „Normal“ oder „hoch“
+
+Mit Cloud Manager können Sie eine Einstellung für die Schreibgeschwindigkeit für Cloud Volumes ONTAP Systeme mit einem Node wählen. Die standardmäßige Schreibgeschwindigkeit ist normal. Wenn für Ihren Workload eine hohe Schreib-Performance erforderlich ist, kann die hohe Schreibgeschwindigkeit geändert werden. Bevor Sie die Schreibgeschwindigkeit ändern, sollten Sie dies tun link:task_planning_your_config.html#choosing-a-write-speed["Die Unterschiede zwischen den normalen und den hohen Einstellungen verstehen"].
+
+.Über diese Aufgabe
+* Stellen Sie sicher, dass Vorgänge wie die Volume- oder Aggregaterstellung nicht ausgeführt werden.
+* Beachten Sie, dass durch diese Änderung Cloud Volumes ONTAP neu gestartet wird, was bedeutet, dass I/O unterbrochen wird.
+
+
+.Schritte
+. Klicken Sie in der Arbeitsumgebung auf das Menüsymbol und dann auf *Erweitert > Schreibgeschwindigkeit*.
+. Wählen Sie *normal* oder *hoch*.
++
+Wenn Sie „hoch“ wählen, müssen Sie die „Ich verstehe...“-Aussage lesen und bestätigen, indem Sie das Kästchen aktivieren.
+
+. Klicken Sie auf *Speichern*, überprüfen Sie die Bestätigungsmeldung und klicken Sie dann auf *Weiter*.
+
+
+
+
+== Ändern des Namens der Storage-VM
+
+Cloud Manager benennt automatisch die einzelne Storage-VM (SVM), die für Cloud Volumes ONTAP erstellt wird. Sie können den Namen der SVM ändern, wenn Sie strenge Benennungsstandards haben. Beispielsweise sollte der Name Ihnen entsprechen, wie Sie die SVMs für Ihre ONTAP Cluster benennen.
+
+Wenn Sie aber zusätzliche SVMs für Cloud Volumes ONTAP erstellen, können Sie die SVMs nicht aus Cloud Manager umbenennen. Sie müssen dies direkt von Cloud Volumes ONTAP mit System Manager oder der CLI ausführen.
+
+.Schritte
+. Klicken Sie in der Arbeitsumgebung auf das Menü-Symbol und dann auf *Information*.
+. Klicken Sie rechts neben dem Namen der Storage-VM auf das Bearbeiten-Symbol.
++
+image:screenshot_svm.gif["Screenshot: Zeigt das Feld SVM-Name und das Bearbeitungssymbol an, auf das Sie klicken müssen, um den SVM-Namen zu ändern."]
+
+. Ändern Sie im Dialogfeld SVM-Name ändern den Namen und klicken Sie dann auf *Speichern*.
+
+
+
+
+== Ändern des Passworts für Cloud Volumes ONTAP
+
+Cloud Volumes ONTAP enthält ein Cluster-Administratorkonto. Sie können das Kennwort für dieses Konto bei Bedarf über Cloud Manager ändern.
+
+
+IMPORTANT: Sie sollten das Kennwort für das Administratorkonto nicht über System Manager oder die CLI ändern. Das Kennwort wird nicht in Cloud Manager angezeigt. Daher kann Cloud Manager die Instanz nicht ordnungsgemäß überwachen.
+
+.Schritte
+. Klicken Sie in der Arbeitsumgebung auf das Menüsymbol und dann auf *Erweitert > Passwort festlegen*.
+. Geben Sie das neue Passwort zweimal ein und klicken Sie dann auf *Speichern*.
++
+Das neue Kennwort muss sich von einem der letzten sechs Kennwörter unterscheiden.
+
+
+
+
+
+== Ändern der Netzwerk-MTU für c4.4xlarge und c4.8xlarge Instanzen
+
+Standardmäßig ist Cloud Volumes ONTAP so konfiguriert, dass 9.000 MTU (auch Jumbo Frames genannt) verwendet werden, wenn Sie die c4.4xlarge Instanz oder die c4.8xlarge Instanz in AWS auswählen. Sie können die Netzwerk-MTU auf 1.500 Byte ändern, wenn dies für Ihre Netzwerkkonfiguration besser geeignet ist.
+
+Eine maximale Netzwerkübertragungseinheit (Maximum Transmission Unit, MTU) von 9.000 Byte bietet den höchstmöglichen Netzwerkdurchsatz für bestimmte Konfigurationen.
+
+9.000 MTU ist eine gute Wahl, wenn Clients in demselben VPC mit dem Cloud Volumes ONTAP System kommunizieren und einige oder alle dieser Clients ebenfalls 9.000 MTU unterstützen. Wenn der Datenverkehr den VPC verlässt, kann es zu einer Paketfragmentierung kommen, die die Performance beeinträchtigt.
+
+Eine Netzwerk-MTU von 1.500 Byte ist eine gute Wahl, wenn Clients oder Systeme außerhalb des VPC mit dem Cloud Volumes ONTAP System kommunizieren.
+
+.Schritte
+. Klicken Sie in der Arbeitsumgebung auf das Menüsymbol und dann auf *Erweitert > Netzwerknutzung*.
+. Wählen Sie *Standard* oder *Jumbo Frames*.
+. Klicken Sie Auf *Ändern*.
+
+
+
+
+== Ändern von Routingtabellen im Zusammenhang mit HA-Paaren in mehreren AWS AZS
+
+Sie können die AWS-Routing-Tabellen mit Routen zu den unverankerten IP-Adressen für ein HA-Paar ändern. Vielleicht möchten Sie dies tun, wenn neue NFS- oder CIFS-Clients auf ein HA-Paar in AWS zugreifen müssen.
+
+.Schritte
+. Klicken Sie in der Arbeitsumgebung auf das Menü-Symbol und dann auf *Information*.
+. Klicken Sie Auf *Routentabellen*.
+. Ändern Sie die Liste der ausgewählten Routentabellen und klicken Sie dann auf *Speichern*.
+
+
+Cloud Manager sendet eine AWS-Anforderung zum Ändern der Routentabellen.

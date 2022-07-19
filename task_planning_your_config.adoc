@@ -1,0 +1,195 @@
+---
+sidebar: sidebar 
+permalink: task_planning_your_config.html 
+keywords: license, disk, ebs, storage, size, write speed, volume usage, explore, standard, premium, byol, ec2, capacity, limit, configurations, virtual machine, vm, regions, supported disks, disk types, general purpose, gp2 provisioned IOPS, piops, throughput optimized, cold, SSD, HDD, st1, sc1, use profile, thin provisioning, deduplication, compression, Cloud Volumes ONTAP explore, Cloud Volumes ONTAP standard, Cloud Volumes ONTAP premium, Cloud Volumes ONTAP byol, shared instance, dedicated instance, write speed, high write speed, normal write speed, network information, worksheet, limit, limits, storage limits, volume limit, aggregate limit, maximum volume size, maximum aggregate size 
+summary: Wenn Sie Cloud Volumes ONTAP in AWS implementieren, können Sie entweder ein vorkonfiguriertes System wählen, das Ihren Workload-Anforderungen entspricht, oder Sie erstellen Ihre eigene Konfiguration. Wenn Sie sich für eine eigene Konfiguration entscheiden, sollten Sie sich mit den verfügbaren Optionen vertraut machen. 
+---
+= Cloud Volumes ONTAP-Konfiguration in AWS planen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie Cloud Volumes ONTAP in AWS implementieren, können Sie entweder ein vorkonfiguriertes System wählen, das Ihren Workload-Anforderungen entspricht, oder Sie erstellen Ihre eigene Konfiguration. Wenn Sie sich für eine eigene Konfiguration entscheiden, sollten Sie sich mit den verfügbaren Optionen vertraut machen.
+
+
+
+== Auswahl eines Lizenztyps
+
+Cloud Volumes ONTAP ist in zwei Preisoptionen erhältlich: Nutzungsbasiert und als BYOL-Modell (Bring-Your-Own-License). Für Pay-as-you-go können Sie zwischen drei Lizenzen wählen: Explore, Standard oder Premium. Jede Lizenz bietet verschiedene Kapazitäts- und Computing-Optionen.
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_configs_aws_97.html["Unterstützte Konfigurationen für Cloud Volumes ONTAP 9.7 in AWS"^]
+
+
+
+== Storage-Grenzen kennen
+
+Die Rohkapazitätsgrenze für ein Cloud Volumes ONTAP System ist an die Lizenz gebunden. Zusätzliche Beschränkungen wirken sich auf die Größe von Aggregaten und Volumes aus. Sie sollten sich dieser Grenzen bei der Planung Ihrer Konfiguration bewusst sein.
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/reference_limits_aws_97.html["Storage-Limits für Cloud Volumes ONTAP 9.7 in AWS"]
+
+
+
+== Dimensionierung Ihres Systems in AWS
+
+Mit der Dimensionierung Ihres Cloud Volumes ONTAP Systems können Sie die Anforderungen an Performance und Kapazität erfüllen. Bei der Auswahl eines Instanztyps, des Festplattentyp und der Festplattengröße sollten Sie einige wichtige Punkte beachten:
+
+Instanztyp::
++
+--
+* Stimmen Sie die Workload-Anforderungen dem maximalen Durchsatz und IOPS für jeden EC2-Instanztyp ab.
+* Wenn mehrere Benutzer gleichzeitig auf das System schreiben, wählen Sie einen Instanztyp aus, der über genügend CPUs verfügt, um die Anforderungen zu verwalten.
+* Wenn Sie eine Anwendung haben, die hauptsächlich liest, dann wählen Sie ein System mit genügend RAM.
++
+** https://aws.amazon.com/ec2/instance-types/["AWS Dokumentation: Amazon EC2 Instanztypen"^]
+** https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSOptimized.html["AWS Dokumentation: Für Amazon EBS optimierte Instanzen"^]
+
+
+
+
+--
+EBS-Festplattentyp:: Allgemeine SSDs sind der am häufigsten verwendete Festplattentyp für Cloud Volumes ONTAP. Weitere Informationen zu den Anwendungsfällen für EBS-Festplatten finden Sie unter http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html["AWS Dokumentation: EBS Volume-Typen"^].
+EBS-Festplattengröße:: Sie müssen beim Start eines Cloud Volumes ONTAP Systems die ursprüngliche Festplattengröße auswählen. Danach können Sie link:concept_storage_management.html["Cloud Manager managt die Kapazität eines Systems für Sie"], Aber wenn Sie wollen link:task_provisioning_storage.html#creating-aggregates["Erstellen Sie Aggregate selbst"], Verachten Sie auf folgende Punkte:
++
+--
+* Alle Festplatten in einem Aggregat müssen dieselbe Größe haben.
+* Die Performance von EBS-Festplatten ist an die Festplattengröße gebunden. Die Größe bestimmt die IOPS-Basiswerte und die maximale Burst-Dauer für SSD-Festplatten sowie den Baseline- und Burst-Durchsatz für HDD-Festplatten.
+* Am Ende sollten Sie die Festplattengröße wählen, die Ihnen die _dauerhafte Performance_ bietet, die Sie benötigen.
+* Selbst wenn Sie größere Festplatten wählen (z. B. sechs 4-TB-Festplatten), erhalten Sie möglicherweise nicht alle IOPS, da die EC2-Instanz ihr Bandbreitenlimit erreichen kann.
++
+Weitere Informationen zur Performance der EBS Festplatten finden Sie in http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html["AWS Dokumentation: EBS Volume-Typen"^].
+
+
+
+--
+
+
+Sehen Sie sich das folgende Video an, um weitere Informationen zur Dimensionierung Ihres Cloud Volumes ONTAP-Systems in AWS zu erhalten:
+
+video::GELcXmOuYPw[youtube,width=848,height=480]
+
+
+== Auswahl einer Konfiguration, die Flash Cache unterstützt
+
+Einige Cloud Volumes ONTAP Konfigurationen in AWS enthalten lokalen NVMe-Storage, den Cloud Volumes ONTAP für bessere Performance als „ _Flash Cache_“ verwendet. link:concept_flash_cache.html["Weitere Informationen zu Flash Cache"].
+
+
+
+== Arbeitsblatt mit Informationen zum AWS-Netzwerk
+
+Wenn Sie Cloud Volumes ONTAP in AWS starten, müssen Sie Details zu Ihrem VPC-Netzwerk angeben. Sie können ein Arbeitsblatt verwenden, um die Informationen von Ihrem Administrator zu sammeln.
+
+
+
+==== Netzwerkinformationen für Cloud Volumes ONTAP
+
+[cols="30,70"]
+|===
+| AWS-Informationen | Ihr Wert 
+
+
+| Region |  
+
+
+| VPC |  
+
+
+| Subnetz |  
+
+
+| Sicherheitsgruppe (wenn Sie Ihre eigene verwenden) |  
+|===
+
+
+==== Netzwerkinformationen für ein HA-Paar in mehreren AZS
+
+[cols="30,70"]
+|===
+| AWS-Informationen | Ihr Wert 
+
+
+| Region |  
+
+
+| VPC |  
+
+
+| Sicherheitsgruppe (wenn Sie Ihre eigene verwenden) |  
+
+
+| Verfügbarkeitszone von Node 1 |  
+
+
+| Subnetz von Node 1 |  
+
+
+| Verfügbarkeitszone von Node 2 |  
+
+
+| Subnetz von Node 2 |  
+
+
+| Mediator Verfügbarkeitszone |  
+
+
+| Mediator Subnetz |  
+
+
+| Schlüsselpaar für den Vermittler |  
+
+
+| Floating-IP-Adresse für Cluster-Management-Port |  
+
+
+| Unverankerte IP-Adresse für Daten auf Node 1 |  
+
+
+| Unverankerte IP-Adresse für Daten auf Node 2 |  
+
+
+| Routing-Tabellen für unverankerte IP-Adressen |  
+|===
+
+
+== Auswählen einer Schreibgeschwindigkeit
+
+Mit Cloud Manager können Sie eine Einstellung für die Schreibgeschwindigkeit für Cloud Volumes ONTAP Systeme mit einem Node wählen. Bevor Sie sich für eine Schreibgeschwindigkeit entscheiden, sollten Sie die Unterschiede zwischen den normalen und hohen Einstellungen sowie Risiken und Empfehlungen verstehen, wenn Sie eine hohe Schreibgeschwindigkeit verwenden.
+
+
+
+==== Unterschied zwischen normaler Schreibgeschwindigkeit und hoher Schreibgeschwindigkeit
+
+Wenn Sie sich für eine normale Schreibgeschwindigkeit entscheiden, werden die Daten direkt auf die Festplatte geschrieben, wodurch die Wahrscheinlichkeit eines Datenverlusts bei einem ungeplanten Systemausfall verringert wird.
+
+Wenn Sie hohe Schreibgeschwindigkeit wählen, werden die Daten vor dem Schreiben auf die Festplatte im Speicher gepuffert, was eine schnellere Schreibleistung ermöglicht. Aufgrund dieses Cachings besteht die Gefahr eines Datenverlusts, wenn ein ungeplanter Systemausfall auftritt.
+
+Die Datenmenge, die bei einem ungeplanten Systemausfall verloren gehen kann, entspricht der Spanne der letzten beiden Konsistenzpunkte. Ein Konsistenzpunkt ist das Schreiben gepufferter Daten auf die Festplatte. Ein Konsistenzpunkt tritt auf, wenn das Schreibprotokoll voll ist oder nach 10 Sekunden (je nachdem, was zuerst eintritt). Die Performance des AWS EBS-Volumes kann sich jedoch auf die Verarbeitungszeit des Konsistenzpunkts auswirken.
+
+
+
+==== Wann wird hohe Schreibgeschwindigkeit verwendet
+
+Hohe Schreibgeschwindigkeit ist eine gute Wahl, wenn für Ihre Workload eine schnelle Schreibleistung erforderlich ist und Sie das Risiko eines Datenverlusts bei einem ungeplanten Systemausfall überstehen können.
+
+
+
+==== Empfehlungen bei hoher Schreibgeschwindigkeit
+
+Wenn Sie die hohe Schreibgeschwindigkeit aktivieren, sollten Sie den Schreibschutz auf der Anwendungsebene sicherstellen.
+
+
+
+== Auswählen eines Volume-Nutzungsprofils
+
+ONTAP umfasst mehrere Storage-Effizienzfunktionen, mit denen Sie die benötigte Storage-Gesamtmenge reduzieren können. Wenn Sie ein Volume in Cloud Manager erstellen, können Sie ein Profil auswählen, das diese Funktionen aktiviert, oder ein Profil, das sie deaktiviert. Sie sollten mehr über diese Funktionen erfahren, um zu entscheiden, welches Profil Sie verwenden möchten.
+
+NetApp Storage-Effizienzfunktionen bieten folgende Vorteile:
+
+Thin Provisioning:: Bietet Hosts oder Benutzern mehr logischen Storage als in Ihrem physischen Storage-Pool. Anstatt Storage vorab zuzuweisen, wird jedem Volume beim Schreiben von Daten dynamisch Speicherplatz zugewiesen.
+Deduplizierung:: Verbessert die Effizienz, indem identische Datenblöcke lokalisiert und durch Verweise auf einen einzelnen gemeinsam genutzten Block ersetzt werden. Durch diese Technik werden die Storage-Kapazitätsanforderungen reduziert, da redundante Datenblöcke im selben Volume eliminiert werden.
+Komprimierung:: Reduziert die physische Kapazität, die zum Speichern von Daten erforderlich ist, indem Daten in einem Volume auf primärem, sekundärem und Archiv-Storage komprimiert werden.
+

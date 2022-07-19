@@ -1,0 +1,98 @@
+---
+sidebar: sidebar 
+permalink: concept_monitoring.html 
+keywords: concepts, how cloud insights works, how monitoring works, features, monitoring features, cloud insights features, cost, monitoring 
+summary: Durch den Einsatz des NetApp Cloud Insights-Service liefert Cloud Manager Einblicke in den Zustand und die Performance aller Cloud Volumes ONTAP Instanzen und hilft Ihnen bei der Fehlerbehebung und Optimierung der Performance Ihrer Cloud-Storage-Umgebung. 
+---
+= Erfahren Sie mehr über den Monitoring-Service
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Durch die Nutzung der https://cloud.netapp.com/cloud-insights["NetApp Cloud Insights Service"], Cloud Manager liefert Einblicke in den Zustand und die Performance Ihrer Cloud Volumes ONTAP Instanzen und unterstützt Sie bei der Fehlerbehebung und Optimierung der Performance Ihrer Cloud-Storage-Umgebung.
+
+
+
+== Funktionen
+
+* Automatische Überwachung aller Volumes
+* Anzeige von Volume-Performance-Daten in Bezug auf IOPS, Durchsatz und Latenz
+* Identifizieren von Performance-Problemen, um die Auswirkungen auf Benutzer und Applikationen zu minimieren
+
+
+
+
+== Unterstützte Cloud-Provider
+
+Der Monitoring-Service wird mit Cloud Volumes ONTAP für AWS unterstützt.
+
+
+
+== Kosten
+
+Die Überwachung ist derzeit als Vorschau verfügbar. Die Aktivierung ist zwar kostenlos, aber Cloud Manager startet eine Virtual Machine in der VPC, um die Überwachung zu erleichtern. Diese VM verursacht Gebühren von Ihrem Cloud-Provider.
+
+
+
+== Funktionsweise von Cloud Insights mit Cloud Manager
+
+Die Cloud Insights Integration auf höherer Ebene in Cloud Manager funktioniert folgendermaßen:
+
+. Sie aktivieren den Überwachungsdienst auf Cloud Volumes ONTAP.
+. Cloud Manager konfiguriert Ihre Umgebung. Er führt folgende Maßnahmen durch:
++
+.. Erstellt einen Cloud Insights-Mandanten (auch „_Environment_“ genannt) und ordnet alle Benutzer in Ihrem Cloud Central-Konto dem Mandanten zu.
+.. Cloud Insights: 30 Tage kostenlos testen
+.. Implementiert eine Virtual Machine in der VPC, der als „Acquisition Unit“ bezeichnet wird, die das Monitoring von Volumes erleichtert (dies ist die VM, die im Abschnitt „Kosten“ oben erwähnt ist).
+.. Verbindet die Akquisitionseinheit mit Cloud Volumes ONTAP und mit dem Cloud Insights-Mandanten.
+
+
+. In Cloud Manager klicken Sie auf Monitoring und verwenden die Performance-Daten, um Fehler zu beheben und die Performance zu optimieren.
+
+
+Die Beziehung zwischen diesen Komponenten wird in der folgenden Abbildung dargestellt:
+
+image:diagram_cloud_insights.png["Ein Konzeptdiagramm zeigt Cloud Manager, Cloud Volumes ONTAP und eine Acquisition Unit in AWS."]
+
+
+
+=== Die Akquisitionseinheit
+
+Wenn Sie Monitoring aktivieren, implementiert Cloud Manager eine Erfassungseinheit im selben Subnetz wie der Connector.
+
+Eine _Acquisition Unit_ sammelt Performancedaten von Cloud Volumes ONTAP und sendet sie an den Cloud Insights-Mandanten. Cloud Manager fragt diese Daten ab und stellt sie Ihnen zur Verfügung.
+
+Beachten Sie Folgendes über die Instanz der Erfassungseinheit:
+
+* Die Erfassungseinheit wird auf einer instanz mit t3.xlarge mit einem GP2-Volumen von 100 GB ausgeführt.
+* Die Instanz heißt _AcquitionUnit_ mit einem generierten Hash (UUID), der mit ihm verknüpft ist. Beispiel: _AcquitionUnit-FAN7FqeH_
+* Pro Connector wird nur eine Akquisitionseinheit bereitgestellt.
+* Die Instanz muss ausgeführt werden, um auf Leistungsinformationen auf der Registerkarte Überwachung zuzugreifen.
+
+
+
+
+=== Cloud Insights-Mandant
+
+Cloud Manager richtet bei der Aktivierung von Monitoring einen _Tenant_ ein. Ein Cloud Insights-Mandant ermöglicht Ihnen den Zugriff auf die Leistungsdaten, die die Acquisition Unit sammelt. Der Mandant ist eine sichere Datenpartition innerhalb des NetApp Cloud Insights Service.
+
+
+
+=== Cloud Insights Webschnittstelle
+
+Die Registerkarte „Monitoring“ in Cloud Manager bietet grundlegende Performance-Daten für die Volumes. Über die Cloud Insights Weboberfläche können Sie in Ihrem Browser eine detailliertere Überwachung durchführen und Warnmeldungen für Ihre Cloud Volumes ONTAP Systeme konfigurieren.
+
+
+
+=== Kostenlose Testversion und Abonnement
+
+Cloud Manager ermöglicht eine kostenlose 30-Tage-Testversion von Cloud Insights zur Bereitstellung von Performance-Daten innerhalb von Cloud Manager. Sie können sich mit den Funktionen der Cloud Insights Standard Edition beschäftigen.
+
+Sie müssen sich bis zum Ende der kostenlosen Testversion anmelden, anderenfalls wird Ihr Cloud Insights Mandant endgültig gelöscht. Sie können die Basic-, Standard- oder Premium-Edition abonnieren, um die Monitoring-Funktion in Cloud Manager fortzusetzen.
+
+https://docs.netapp.com/us-en/cloudinsights/concept_subscribing_to_cloud_insights.html["Erfahren Sie, wie Sie Cloud Insights abonnieren"^].

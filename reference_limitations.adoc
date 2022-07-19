@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: reference_limitations.html 
+keywords: limitations, active directory, ad, iscsi, key managers, ip address, govcloud, cloud manager, Cloud Volumes ONTAP, days, 14 days, running, Connectors should remain running 
+summary: Bekannte Einschränkungen identifizieren Plattformen, Geräte oder Funktionen, die von dieser Version des Produkts nicht unterstützt werden oder nicht korrekt mit dem Produkt zusammenarbeiten. Lesen Sie diese Einschränkungen sorgfältig durch. 
+---
+= Bekannte Einschränkungen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Bekannte Einschränkungen identifizieren Plattformen, Geräte oder Funktionen, die von dieser Version des Produkts nicht unterstützt werden oder nicht korrekt mit dem Produkt zusammenarbeiten. Lesen Sie diese Einschränkungen sorgfältig durch.
+
+
+
+== Anschlüsse sollten weiterhin ausgeführt werden
+
+Ein Steckverbinder sollte immer weiter laufen. Es ist wichtig für den fortwährenden Zustand und Betrieb der Services, die Sie ermöglichen.
+
+Ein Connector ist beispielsweise eine wichtige Komponente im Zustand und Betrieb von Cloud Volumes ONTAP PAYGO-Systemen. Wenn ein Konnektor heruntergefahren wird, werden die Cloud Volumes ONTAP PAYGO-Systeme nach einem Verlust der Kommunikation mit einem Konnektor länger als 14 Tage heruntergefahren.
+
+
+
+== Die SaaS-Plattform ist für Regierungsregionen deaktiviert
+
+Wenn Sie einen Connector in einer AWS GovCloud Region, einer Azure Gov-Region oder einer Azure DoD-Region implementieren, ist der Zugriff auf Cloud Manager nur über die Host-IP-Adresse eines Connectors verfügbar. Der Zugriff auf die SaaS-Plattform ist für das gesamte Konto deaktiviert.
+
+Das bedeutet, dass nur privilegierte Benutzer, die auf die interne VPC/vnet des Endbenutzers zugreifen können, die UI oder die API von Cloud Manager verwenden können.
+
+Das bedeutet auch, dass folgende Services bei Cloud Manager nicht verfügbar sind:
+
+* Cloud-Compliance
+* Kubernetes
+* Cloud Tiering
+* Globaler Datei-Cache
+* Monitoring (Cloud Insights)
+
+
+Zur Nutzung dieser Services ist die SaaS-Plattform erforderlich.
+
+
+
+== Freigegebene Linux-Hosts werden nicht unterstützt
+
+Der Connector wird nicht auf einem Host unterstützt, der für andere Anwendungen freigegeben ist. Der Host muss ein dedizierter Host sein.
+
+
+
+== Cloud Manager unterstützt FlexGroup Volumes nicht
+
+Cloud Volumes ONTAP unterstützt zwar FlexGroup Volumes, aber Cloud Manager nicht. Wenn Sie ein FlexGroup-Volume aus System Manager oder aus der CLI erstellen, sollten Sie den Modus „Kapazitätsmanagement“ von Cloud Manager auf „manuell“ setzen. Der automatische Modus funktioniert möglicherweise nicht ordnungsgemäß mit FlexGroup-Volumes.

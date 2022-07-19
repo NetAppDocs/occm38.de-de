@@ -1,0 +1,137 @@
+---
+sidebar: sidebar 
+permalink: task_creating_connectors_azure.html 
+keywords: create connector in Azure, create connector in azure, create connector in gcp, launch connector in Azure, launch connector in azure, launch connector in gcp, deploy connector in Azure, deploy connector in azure, deploy connector in gcp 
+summary: Ein Kontoadministrator muss einen Connector bereitstellen, bevor Sie die meisten Funktionen von Cloud Manager nutzen können. Mit dem Connector kann Cloud Manager Ressourcen und Prozesse in Ihrer Public Cloud-Umgebung managen. 
+---
+= Erstellen eines Connectors in Azure über Cloud Manager
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Ein Kontoadministrator muss einen _Connector_ bereitstellen, bevor Sie die meisten Funktionen von Cloud Manager nutzen können. link:concept_connectors.html["Informieren Sie sich, wann ein Anschluss erforderlich ist"]. Mit dem Connector kann Cloud Manager Ressourcen und Prozesse in Ihrer Public Cloud-Umgebung managen.
+
+Auf dieser Seite wird beschrieben, wie Sie direkt aus Cloud Manager einen Connector in Azure erstellen. Sie haben auch die Möglichkeit zu wählen link:task_launching_azure_mktp.html["Erstellen Sie den Connector aus dem Azure Marketplace"], Oder auf link:task_installing_linux.html["Laden Sie die Software herunter und installieren Sie sie auf Ihrem eigenen Host"].
+
+Diese Schritte müssen von einem Benutzer ausgeführt werden, der die Rolle „Account Admin“ hat. Ein Workspace-Administrator kann keinen Konnektor erstellen.
+
+
+TIP: Wenn Sie Ihre erste Cloud Volumes ONTAP-Arbeitsumgebung erstellen, werden Sie von Cloud Manager aufgefordert, einen Connector zu erstellen, falls noch kein Connector vorhanden ist.
+
+
+
+== Einrichten von Azure-Berechtigungen zum Erstellen eines Connectors
+
+Bevor Sie einen Connector von Cloud Manager implementieren können, müssen Sie sicherstellen, dass Ihr Azure-Konto die entsprechenden Berechtigungen hat.
+
+.Schritte
+. Erstellen Sie mithilfe der Azure-Richtlinie für den Connector eine benutzerdefinierte Rolle:
++
+.. Laden Sie die herunter https://s3.amazonaws.com/occm-sample-policies/Policy_for_Setup_As_Service_Azure.json["Azure-Richtlinie für den Connector"^].
++
+
+TIP: Klicken Sie mit der rechten Maustaste auf den Link und klicken Sie auf *Link speichern unter...*, um die Datei herunterzuladen.
+
+.. Ändern Sie die JSON-Datei, indem Sie Ihre Azure Abonnement-ID dem zuweisbaren Umfang hinzufügen.
++
+*Beispiel*
+
++
+[source, json]
+----
+"AssignableScopes": [
+"/subscriptions/d333af45-0d07-4154-943d-c25fbzzzzzzz",
+],
+----
+.. Verwenden Sie die JSON-Datei, um eine benutzerdefinierte Rolle in Azure zu erstellen.
++
+Im folgenden Beispiel wird gezeigt, wie eine benutzerdefinierte Rolle mithilfe der Azure CLI 2.0 erstellt wird:
+
++
+`az role definition create --role-definition C:\Policy_for_Setup_As_Service_Azure.json`
+
++
+Sie sollten jetzt eine benutzerdefinierte Rolle namens _Azure SetupAsService_ haben.
+
+
+
+. Weisen Sie die Rolle dem Benutzer zu, der den Connector aus Cloud Manager bereitstellen soll:
++
+.. Öffnen Sie den Dienst *Abonnements* und wählen Sie das Abonnement des Benutzers aus.
+.. Klicken Sie auf *Access Control (IAM)*.
+.. Klicken Sie auf *Hinzufügen* > *Rollenzuordnung hinzufügen* und fügen Sie dann die Berechtigungen hinzu:
++
+*** Wählen Sie die Rolle *Azure SetupAsService* aus.
++
+
+NOTE: Azure SetupAsService ist der Standardname, der in angegeben wird https://mysupport.netapp.com/site/info/cloud-manager-policies["Connector-Implementierungsrichtlinie für Azure"^]. Wenn Sie einen anderen Namen für die Rolle ausgewählt haben, wählen Sie stattdessen diesen Namen aus.
+
+*** Weisen Sie einem *Azure AD-Benutzer, einer Gruppe oder einer Anwendung* Zugriff zu.
+*** Wählen Sie das Benutzerkonto aus.
+*** Klicken Sie Auf *Speichern*.
+
+
+
+
+
+
+Der Azure-Benutzer verfügt nun über die erforderlichen Berechtigungen, um den Connector aus Cloud Manager zu implementieren.
+
+
+
+== Erstellen eines Connectors in Azure
+
+Mit Cloud Manager können Sie einen Connector in Azure direkt von der Benutzeroberfläche aus erstellen.
+
+.Was Sie und#8217;ll benötigen
+* Der https://mysupport.netapp.com/site/info/cloud-manager-policies["Erforderliche Berechtigungen"^] Für Ihr Azure Konto.
+* Ein Azure Abonnement.
+* Eine vnet und Subnetz in Ihrer bevorzugten Azure-Region.
+
+
+.Schritte
+. Wenn Sie Ihre erste Arbeitsumgebung erstellen, klicken Sie auf *Arbeitsumgebung hinzufügen* und befolgen Sie die Anweisungen. Klicken Sie andernfalls auf das Dropdown-Menü *Connector* und wählen Sie *Connector hinzufügen* aus.
++
+image:screenshot_connector_add.gif["Ein Screenshot, in dem das Symbol Connector in der Kopfzeile und die Aktion Connector hinzufügen angezeigt wird."]
+
+. Klicken Sie auf *Let's Start*.
+. Wählen Sie als Cloud-Provider * Microsoft Azure* aus.
++
+Denken Sie daran, dass der Connector über eine Netzwerkverbindung mit der Art der Arbeitsumgebung, die Sie erstellen, und den Diensten, die Sie für die Aktivierung planen, verfügen muss.
+
++
+link:reference_networking_cloud_manager.html["Erfahren Sie mehr über die Netzwerkanforderungen für den Connector"].
+
+. Überprüfen Sie, was Sie benötigen, und klicken Sie auf *Weiter*.
+. Wenn Sie dazu aufgefordert werden, melden Sie sich bei Ihrem Microsoft-Konto an, das über die erforderlichen Berechtigungen zum Erstellen der virtuellen Maschine verfügt.
++
+Das Formular ist Eigentum von Microsoft und wird von Microsoft gehostet. Ihre Zugangsdaten werden nicht an NetApp bereitgestellt.
+
++
+
+TIP: Wenn Sie bereits bei einem Azure-Konto angemeldet sind, nutzt Cloud Manager das Konto automatisch. Wenn Sie über mehrere Konten verfügen, müssen Sie sich möglicherweise erst abmelden, um sicherzustellen, dass Sie das richtige Konto verwenden.
+
+. Geben Sie die erforderlichen Informationen ein:
++
+** *VM Authentication*: Geben Sie einen Namen für die virtuelle Maschine und einen Benutzernamen und ein Passwort oder einen öffentlichen Schlüssel ein.
+** *Grundeinstellungen*: Wählen Sie ein Azure-Abonnement, eine Azure-Region und ob Sie eine neue Ressourcengruppe erstellen oder eine vorhandene Ressourcengruppe verwenden möchten.
+** *Netzwerk*: Wählen Sie ein vnet und Subnetz, ob eine öffentliche IP-Adresse aktiviert werden soll, und geben Sie optional eine Proxy-Konfiguration an.
+** *Sicherheitsgruppe*: Wählen Sie aus, ob eine neue Sicherheitsgruppe erstellt werden soll oder ob eine vorhandene Sicherheitsgruppe ausgewählt werden soll, die einen eingehenden HTTP-, HTTPS- und SSH-Zugriff erlaubt.
++
+
+NOTE: Es gibt keinen eingehenden Datenverkehr zum Konnektor, es sei denn, Sie initiieren ihn. HTTP und HTTPS bieten den Zugriff auf link:concept_connectors.html#the-local-user-interface["Lokale Benutzeroberfläche"], Die Sie in seltenen Fällen verwenden. SSH ist nur erforderlich, wenn Sie eine Verbindung zum Host zur Fehlerbehebung herstellen müssen.
+
+
+
+. Klicken Sie Auf *Erstellen*.
++
+Die Virtual Machine sollte in ca. 7 Minuten einsatzbereit sein. Sie sollten auf der Seite bleiben, bis der Vorgang abgeschlossen ist.
+
+
+
+Sie müssen einen Connector mit Arbeitsbereichen verknüpfen, damit Arbeitsbereichsadministratoren diese Connectors zum Erstellen von Cloud Volumes ONTAP-Systemen verwenden können. Wenn Sie nur Kontoadministratoren haben, ist es nicht erforderlich, den Connector mit Arbeitsbereichen zu verknüpfen. Account-Administratoren haben standardmäßig die Möglichkeit, auf alle Workspaces in Cloud Manager zuzugreifen. link:task_setting_up_cloud_central_accounts.html#associating-connectors-with-workspaces["Weitere Informationen ."].

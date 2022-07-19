@@ -1,0 +1,146 @@
+---
+sidebar: sidebar 
+permalink: task_scanning_databases.html 
+keywords: cloud compliance, enable cloud compliance, outbound internet, endpoints, cloud compliance internet, web browser connectivity, cloud compliance access, privacy, compliance, databases, database schemas, Oracle, SAP HANA, SQL Server, MongoDB, PostgreSQL 
+summary: Führen Sie einige Schritte durch, um den Scan des Datenbankschemas mit Cloud Compliance zu beginnen. 
+---
+= Datenbankschemas werden gescannt
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Führen Sie einige Schritte durch, um den Scan des Datenbankschemas mit Cloud Compliance zu beginnen.
+
+
+
+== Schnellstart
+
+Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den verbleibenden Abschnitten, um ausführliche Informationen zu erhalten.
+
+
+
+==== Datenbankvoraussetzungen prüfen
+
+[role="quick-margin-para"]
+Stellen Sie sicher, dass Ihre Datenbank unterstützt wird und dass Sie über die erforderlichen Informationen verfügen, um eine Verbindung zur Datenbank herzustellen.
+
+
+
+==== Implementieren der Cloud Compliance-Instanz
+
+[role="quick-margin-para"]
+link:task_deploy_cloud_compliance.html["Cloud Compliance in Cloud Manager implementieren"^] Falls noch keine Instanz implementiert wurde.
+
+
+
+==== Fügen Sie den Datenbankserver hinzu
+
+[role="quick-margin-para"]
+Fügen Sie den Datenbankserver hinzu, auf den Sie zugreifen möchten.
+
+
+
+==== Wählen Sie die Schemas aus
+
+[role="quick-margin-para"]
+Wählen Sie die Schemata aus, die Sie scannen möchten.
+
+
+
+== Voraussetzungen prüfen
+
+Die folgenden Voraussetzungen prüfen, um sicherzustellen, dass Sie über eine unterstützte Konfiguration verfügen, bevor Sie Cloud Compliance aktivieren.
+
+
+
+=== Unterstützte Datenbanken
+
+Cloud Compliance kann Schemen aus den folgenden Datenbanken scannen:
+
+* MongoDB
+* Oracle
+* PostgreSQL
+* SAP HANA
+* SQL Server (MSSQL)
+
+
+
+IMPORTANT: Die Statistik-Sammelfunktion *muss in der Datenbank aktiviert sein.
+
+
+
+=== Datenbankanforderungen erfüllt
+
+Jede Datenbank mit Anbindung an die Cloud Compliance-Instanz kann unabhängig vom gehosteten Speicherort gescannt werden. Sie benötigen lediglich die folgenden Informationen, um eine Verbindung zur Datenbank herzustellen:
+
+* IP-Adresse oder Hostname
+* Port
+* Dienstname (nur für den Zugriff auf Oracle-Datenbanken)
+* Anmeldeinformationen, die einen Lesezugriff auf die Schemas ermöglichen
++
+Bei der Auswahl eines Benutzernamens und Kennworts ist es wichtig, einen zu wählen, der volle Lese-Berechtigungen für alle Schemas und Tabellen, die Sie scannen möchten. Es wird empfohlen, einen dedizierten Benutzer für das Cloud Compliance-System mit allen erforderlichen Berechtigungen zu erstellen.
+
+
+
+*Hinweis:* für MongoDB ist eine schreibgeschützte Administratorrolle erforderlich.
+
+
+
+== Hinzufügen des Datenbankservers
+
+Dieser muss unbedingt vorhanden sein link:task_deploy_cloud_compliance.html["Bereits eine Instanz von Cloud Compliance in Cloud Manager implementiert"^].
+
+Fügen Sie den Datenbankserver dort hinzu, wo sich die Schemas befinden.
+
+. Klicken Sie auf der Seite _Scan Configuration_ auf die Schaltfläche *DB Server hinzufügen*.
++
+image:screenshot_compliance_add_db_server_button.png["Ein Screenshot der Seite Scankonfiguration, auf der Sie auf die Schaltfläche DB-Server hinzufügen klicken können."]
+
+. Geben Sie die erforderlichen Informationen ein, um den Datenbankserver zu identifizieren.
++
+.. Wählen Sie den Datenbanktyp aus.
+.. Geben Sie den Port und den Hostnamen oder die IP-Adresse ein, um eine Verbindung zur Datenbank herzustellen.
+.. Geben Sie für Oracle-Datenbanken den Dienstnamen ein.
+.. Geben Sie die Anmeldeinformationen ein, damit Cloud Compliance auf den Server zugreifen kann.
+.. Klicken Sie auf *DB-Server hinzufügen*.
++
+image:screenshot_compliance_add_db_server_dialog.png["Ein Screenshot der Seite DB Server hinzufügen, sodass Sie die Datenbank identifizieren können."]
+
+
+
+
+
+Die Datenbank wird der Liste der Arbeitsverzeichnisse hinzugefügt.
+
+
+
+== Aktivieren und Deaktivieren von Compliance-Scans auf Datenbankschemas
+
+Sie können die Scanschemata jederzeit anhalten oder starten.
+
+. Klicken Sie auf der Seite _Scan Configuration_ auf die Schaltfläche *Konfiguration* für die zu konfigurierende Datenbank.
++
+image:screenshot_compliance_db_server_config.png["Ein Screenshot der Seite Scankonfiguration, auf der Sie die Schaltfläche Konfiguration auswählen können."]
+
+. Wählen Sie die Schemata aus, die Sie scannen möchten, indem Sie den Schieberegler nach rechts bewegen.
++
+image:screenshot_compliance_select_schemas.png["Ein Screenshot der Seite Scankonfiguration, auf der Sie die zu scannenden Schemas auswählen können."]
+
+
+
+Cloud Compliance beginnt mit dem Scannen der von Ihnen aktivierten Datenbankschemata. Wenn Fehler auftreten, werden sie in der Spalte Status angezeigt, neben der erforderlichen Aktion, um den Fehler zu beheben.
+
+
+
+== Entfernen einer Datenbank aus Cloud Manager
+
+Wenn Sie eine bestimmte Datenbank nicht mehr scannen möchten, können Sie sie über die Cloud Manager Schnittstelle löschen und alle Scans anhalten.
+
+Klicken Sie auf der Seite _Scan Configuration_ auf image:screenshot_gallery_options.gif["Schaltfläche „Mehr“"] Klicken Sie in der Zeile der Datenbank auf *DB Server entfernen*.
+
+image:screenshot_compliance_remove_db.png["Ein Screenshot der Schaltfläche DB Server entfernen auf der Seite Scankonfiguration."]

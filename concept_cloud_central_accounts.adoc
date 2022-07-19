@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: concept_cloud_central_accounts.html 
+keywords: accounts, workspaces, Connector, users, cloud central, admin, Account Admin, Workspace Admin, account settings, workspaces, users, connector, service connector, user accounts, what are users, what is a workspace, users and workspaces 
+summary: Ein Cloud Central Konto bietet Mandantenfähigkeit und ermöglicht es Ihnen, Benutzer und Ressourcen in isolierten Workspaces aus Cloud Manager zu organisieren. 
+---
+= Kontoeinstellungen: Benutzer, Arbeitsbereiche, Anschlüsse und Abonnements
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Ein _Cloud Central Konto_ bietet Mandantenfähigkeit und ermöglicht die Organisation von Benutzern und Ressourcen in isolierten Arbeitsbereichen innerhalb von Cloud Manager.
+
+So können beispielsweise mehrere Benutzer Cloud Volumes ONTAP Systeme in isolierten Umgebungen, sogenannte _Workspaces_, implementieren und managen. Diese Arbeitsbereiche sind für andere Benutzer unsichtbar, es sei denn, sie werden gemeinsam genutzt.
+
+Wenn Sie zum ersten Mal auf Cloud Manager zugreifen, werden Sie aufgefordert, ein Cloud Central Konto auszuwählen oder zu erstellen:
+
+image:screenshot_account_selection.gif["Screenshot aus dem Cloud Manager Setup-Assistenten, in dem Sie zum Cloud Central Konto aufgefordert werden, in dem Sie Cloud Manager erstellen möchten."]
+
+Kontoadministratoren können dann die Einstellungen für dieses Konto ändern, indem sie Benutzer, Arbeitsbereiche, Anschlüsse und Abonnements verwalten:
+
+image:screenshot_account_settings.gif["Ein Screenshot mit dem Widget „Kontoeinstellungen“, über das Sie Benutzer, Arbeitsbereiche und Connectors verwalten können."]
+
+Schritt-für-Schritt-Anweisungen finden Sie unter link:task_setting_up_cloud_central_accounts.html["Einrichten des Cloud Central Kontos"].
+
+
+
+== Kontoeinstellungen
+
+Im Widget „Account Settings“ in Cloud Manager können Kontoadministratoren ein Cloud Central Konto verwalten. Wenn Sie gerade Ihr Konto erstellt, dann beginnen Sie von Grund auf. Wenn Sie jedoch bereits ein Konto eingerichtet haben, sehen Sie _all_ die Benutzer, Arbeitsbereiche, Connectors und Abonnements, die mit dem Konto verknüpft sind.
+
+
+
+== Benutzer
+
+Die in den Kontoeinstellungen angezeigten Benutzer sind NetApp Cloud Central Benutzer, die Sie mit Ihrem Cloud Central Konto verknüpfen. Wenn ein Benutzer mit einem Konto und einem oder mehreren Arbeitsbereichen dieses Kontos verknüpft wird, können diese Benutzer Arbeitsumgebungen in Cloud Manager erstellen und verwalten.
+
+Wenn Sie einen Benutzer zuordnen, weisen Sie ihm eine Rolle zu:
+
+* _Account Admin_: Kann jede Aktion im Cloud Manager ausführen.
+* _Workspace Admin_: Kann Ressourcen im zugewiesenen Arbeitsbereich erstellen und verwalten.
+* _Cloud Compliance Viewer_: Kann Compliance-Informationen nur anzeigen und Berichte für Systeme generieren, auf die sie zugreifen können.
+
+
+
+
+== Arbeitsbereiche
+
+In Cloud Manager isoliert ein Arbeitsbereich beliebig viele _Arbeitsumgebungen_ aus anderen Arbeitsumgebungen. Workspace-Administratoren können nicht auf die Arbeitsumgebungen in einem Arbeitsbereich zugreifen, es sei denn, der Kontoadministrator ordnet den Administrator diesem Arbeitsbereich zu.
+
+Eine Arbeitsumgebung ist ein Speichersystem:
+
+* Single Node Cloud Volumes ONTAP System oder ein HA-Paar
+* Ein On-Premises ONTAP Cluster in Ihrem Netzwerk
+* Ein ONTAP Cluster in einer NetApp Private Storage-Konfiguration
+
+
+
+
+== Anschlüsse
+
+Ein Connector ermöglicht Cloud Manager das Managen von Ressourcen und Prozessen in Ihrer Public Cloud-Umgebung. Der Connector wird auf einer Virtual-Machine-Instanz ausgeführt, die Sie bei Ihrem Cloud-Provider implementieren, oder auf einem von Ihnen konfigurierten On-Premises-Host.
+
+Sie können einen Connector mit mehr als einem NetApp Cloud-Datenservice verwenden. Wenn Sie beispielsweise bereits über einen Connector für Cloud Manager verfügen, können Sie ihn auswählen, wenn Sie den Cloud Tiering-Service einrichten.
+
+
+
+== Abonnements
+
+Im Widget „Account Settings“ werden die NetApp Abonnements für das ausgewählte Konto angezeigt.
+
+Wenn Sie Cloud Manager über den Marktplatz eines Cloud-Providers abonnieren, werden Sie zu Cloud Central umgeleitet. Dort müssen Sie Ihr Abonnement speichern und einem bestimmten Konto zuordnen.
+
+Nach der Anmeldung steht jedes Abonnement über das Widget „Kontoeinstellungen“ zur Verfügung. Sie sehen nur die Abonnements, die mit dem Konto verknüpft sind, das Sie derzeit anzeigen.
+
+Sie haben die Möglichkeit, ein Abonnement umzubenennen und das Abonnement von einem oder mehreren Konten zu entfernen.
+
+Nehmen wir zum Beispiel an, dass Sie zwei Konten haben und jedes über separate Abonnements abgerechnet wird. Sie können ein Abonnement von einem der Konten ablösen, so dass die Benutzer in diesem Konto nicht versehentlich das falsche Abonnement wählen, wenn Sie eine Cloud Volume ONTAP Arbeitsumgebung erstellen.
+
+
+
+== Beispiele
+
+In den folgenden Beispielen wird veranschaulicht, wie Sie Ihre Konten einrichten könnten.
+
+
+NOTE: In den folgenden Beispielabbildern sollten der Connector und die Cloud Volumes ONTAP Systeme nicht _in_ dem NetApp Cloud Central Account residieren – sie laufen bei einem Cloud-Provider. Dies ist eine konzeptionelle Darstellung der Beziehung zwischen den einzelnen Komponenten.
+
+
+
+=== Beispiel 1
+
+Das folgende Beispiel zeigt ein Konto, das zwei Arbeitsbereiche zum Erstellen isolierter Umgebungen verwendet. Der erste Arbeitsbereich ist für eine Produktionsumgebung und der zweite für eine Entwicklungsumgebung.
+
+image:diagram_cloud_central_accounts_one.png["Ein Diagramm mit einem einzelnen Cloud Central Konto, das zwei Arbeitsbereiche enthält. Jeder Arbeitsbereich ist mit demselben Connector verknüpft, und jeder hat seinen eigenen Workspace-Administrator"]
+
+
+
+=== Beispiel 2
+
+Das hier ist ein weiteres Beispiel, das die höchste Mandantenfähigkeit mit zwei separaten Cloud Central Konten belegt. Ein Service-Provider kann beispielsweise Cloud Manager in einem Account nutzen, um seinen Kunden Services bereitzustellen, während er ein anderes Konto verwendet, um eine seiner Geschäftsbereiche Disaster Recovery zu bieten.
+
+Beachten Sie, dass Konto 2 zwei separate Anschlüsse enthält. Dies kann passieren, wenn Systeme in verschiedenen Regionen oder separaten Cloud-Providern vorhanden sind.
+
+image:diagram_cloud_central_accounts_two.png["Ein Diagramm mit zwei Cloud Central-Konten, die jeweils über mehrere Workspaces und zugehörigen Workspace-Administratoren verfügen."]

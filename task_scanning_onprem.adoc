@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: task_scanning_onprem.html 
+keywords: cloud compliance, on-prem, scan on prem data, scan on-prem data 
+summary: Sie können Ihre lokalen ONTAP-Daten mit Cloud-Compliance scannen, indem Sie die On-Premises-Daten in eine Cloud Volumes ONTAP Arbeitsumgebung replizieren und Compliance aktivieren. Das Scannen der Daten direkt aus einer lokalen ONTAP-Arbeitsumgebung wird nicht unterstützt. 
+---
+= Scannen lokaler ONTAP Daten mit Cloud-Compliance mit SnapMirror
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Sie können Ihre lokalen ONTAP-Daten mit Cloud-Compliance scannen, indem Sie die On-Premises-NFS- oder CIFS-Daten in eine Cloud Volumes ONTAP Arbeitsumgebung replizieren und damit Compliance sicherstellen. Das Scannen der Daten direkt aus einer lokalen ONTAP-Arbeitsumgebung wird nicht unterstützt.
+
+Dieser muss unbedingt vorhanden sein link:task_deploy_cloud_compliance.html["Bereits eine Instanz von Cloud Compliance in Cloud Manager implementiert"^].
+
+.Schritte
+. Erstellen Sie in Cloud Manager eine SnapMirror Beziehung zwischen dem lokalen ONTAP Cluster und Cloud Volumes ONTAP.
++
+.. https://docs.netapp.com/us-en/occm/task_discovering_ontap.html["Ermitteln des On-Premises-Clusters in Cloud Manager"^].
+.. https://docs.netapp.com/us-en/occm/task_replicating_data.html["Erstellen einer SnapMirror Replizierung zwischen dem lokalen ONTAP Cluster und Cloud Volumes ONTAP aus Cloud Manager"^].
+
+
+. Konfigurieren Sie bei DP-Volumes, die aus SMB-Quell-Volumes erstellt wurden, über die Befehlszeilenschnittstelle von ONTAP die SMB-Ziel-Volumes für den Datenzugriff. (Dies ist für NFS-Volumes nicht erforderlich, da der Datenzugriff automatisch über Cloud-Compliance aktiviert wird.)
++
+.. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-cifs-cg/GUID-371B7797-B5BE-4B19-BDE4-BBC938F109BF.html["SMB-Freigabe auf dem Ziel-Volume erstellen"^].
+.. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-cifs-cg/GUID-90FCFDB3-F60C-4685-9BBD-6D648F75701C.html["Wenden Sie die entsprechenden ACLs auf die SMB-Freigabe am Ziel-Volume an"^].
+
+
+. Aktivieren Sie über Cloud Manager Cloud Compliance in der Cloud Volumes ONTAP Arbeitsumgebung, die die SnapMirror Daten enthält:
++
+.. Klicken Sie Auf *Arbeitsumgebungen*.
+.. Wählen Sie die Arbeitsumgebung aus, die die SnapMirror Daten enthält, und klicken Sie auf *Compliance aktivieren*.
++
+link:task_getting_started_compliance.html["Klicken Sie hier, wenn Sie Hilfe bei der Aktivierung von Cloud-Compliance auf einem Cloud Volumes ONTAP System benötigen"^].
+
+.. Klicken Sie oben auf der Seite _Scan Configuration_ auf die Schaltfläche *Zugriff auf DP-Volumes* aktivieren.
+.. Aktivieren Sie jedes DP-Volume, das Sie scannen möchten, oder verwenden Sie die Kontrolle *Compliance für alle Volumes aktivieren*, um alle Volumes, einschließlich aller DP-Volumes, zu aktivieren.
+
+
+
+
+Siehe link:task_getting_started_compliance.html#scanning-data-protection-volumes["Scannen von Datensicherungs-Volumes"^] Weitere Informationen zum Scannen von DP-Volumes.

@@ -1,0 +1,249 @@
+---
+sidebar: sidebar 
+permalink: task_scanning_s3.html 
+keywords: cloud compliance, amazon s3, s3 buckets, amazon s3 buckets, scan s3 buckets, scan amazon s3 buckets, enable compliance s3, enable compliance on s3, s3 working environment 
+summary: Cloud Compliance kann Ihre Amazon S3 Buckets scannen, um die persönlichen und sensiblen Daten zu identifizieren, die sich im S3 Objekt-Storage befinden. Cloud Compliance kann jeden Bucket auf dem Konto scannen, unabhängig davon, ob er für eine NetApp Lösung erstellt wurde. 
+---
+= Erste Schritte mit Cloud Compliance für Amazon S3
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Compliance kann Ihre Amazon S3 Buckets scannen, um die persönlichen und sensiblen Daten zu identifizieren, die sich im S3 Objekt-Storage befinden. Cloud Compliance kann jeden Bucket auf dem Konto scannen, unabhängig davon, ob er für eine NetApp Lösung erstellt wurde.
+
+
+
+== Schnellstart
+
+Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den verbleibenden Abschnitten, um ausführliche Informationen zu erhalten.
+
+
+
+==== S3-Anforderungen in Ihrer Cloud-Umgebung einrichten
+
+[role="quick-margin-para"]
+Stellen Sie sicher, dass Ihre Cloud-Umgebung die Anforderungen für Cloud Compliance erfüllen kann, einschließlich der Vorbereitung einer IAM-Rolle und der Einrichtung der Konnektivität von Cloud Compliance bis S3.  S3 prerequisites,Eine vollständige Liste finden Sie hier.
+
+
+
+==== Implementieren der Cloud Compliance-Instanz
+
+[role="quick-margin-para"]
+link:task_deploy_cloud_compliance.html["Cloud Compliance in Cloud Manager implementieren"^] Falls noch keine Instanz implementiert wurde.
+
+
+
+==== Aktivieren Sie Compliance in Ihrer S3-Arbeitsumgebung
+
+[role="quick-margin-para"]
+Wählen Sie die Amazon S3-Arbeitsumgebung aus, klicken Sie auf *Compliance aktivieren* und wählen Sie eine IAM-Rolle aus, die die erforderlichen Berechtigungen enthält.
+
+
+
+==== Wählen Sie die zu scannenden Buckets aus
+
+[role="quick-margin-para"]
+Wählen Sie die Buckets aus, die Sie scannen möchten, und Cloud Compliance beginnt mit dem Scannen.
+
+
+
+== Überprüfen der S3-Voraussetzungen
+
+Die folgenden Anforderungen gelten insbesondere für das Scannen von S3-Buckets.
+
+[[policy-requirements]]
+Einrichten einer IAM-Rolle für die Cloud Compliance-Instanz:: Cloud Compliance benötigt Berechtigungen, um sich mit den S3-Buckets Ihres Kontos zu verbinden und zu scannen. Richten Sie eine IAM-Rolle ein, die die unten aufgeführten Berechtigungen enthält. Cloud Manager fordert Sie auf, eine IAM-Rolle auszuwählen, wenn Sie Cloud Compliance in der Amazon S3-Arbeitsumgebung aktivieren.
++
+--
+[source, json]
+----
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": [
+              "s3:Get*",
+              "s3:List*",
+              "s3:HeadBucket"
+          ],
+          "Resource": "*"
+      },
+      {
+          "Effect": "Allow",
+          "Action": [
+              "iam:GetPolicyVersion",
+              "iam:GetPolicy",
+              "iam:ListAttachedRolePolicies"
+          ],
+          "Resource": [
+              "arn:aws:iam::*:policy/*",
+              "arn:aws:iam::*:role/*"
+          ]
+      }
+  ]
+}
+----
+--
+Bereitstellung der Konnektivität von Cloud Compliance zu Amazon S3:: Cloud Compliance benötigt eine Verbindung zu Amazon S3. Die beste Möglichkeit, eine solche Verbindung bereitzustellen, ist über einen VPC Endpunkt zum S3-Service. Anweisungen hierzu finden Sie unter https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpce-gateway.html#create-gateway-endpoint["AWS Dokumentation: Erstellen eines Gateway-Endpunkts"^].
++
+--
+Wenn Sie den VPC-Endpunkt erstellen, sollten Sie die Region, die VPC und die Routing-Tabelle auswählen, die der Cloud Compliance-Instanz entspricht. Sie müssen auch die Sicherheitsgruppe ändern, um eine ausgehende HTTPS-Regel hinzuzufügen, die Datenverkehr zum S3-Endpunkt ermöglicht. Andernfalls kann Cloud Compliance keine Verbindung zum S3-Service herstellen.
+
+Informationen zu Problemen finden Sie unter https://aws.amazon.com/premiumsupport/knowledge-center/connect-s3-vpc-endpoint/["AWS Support Knowledge Center: Warum kann ich mich nicht über einen Gateway VPC Endpunkt mit einem S3-Bucket verbinden?"^]
+
+Eine Alternative besteht darin, die Verbindung über ein NAT Gateway bereitzustellen.
+
+
+NOTE: Sie können keinen Proxy verwenden, um über das Internet nach S3 zu gelangen.
+
+--
+
+
+
+
+== Bereitstellen der Instanz für Cloud-Compliance
+
+link:task_deploy_cloud_compliance.html["Cloud Compliance in Cloud Manager implementieren"^] Falls noch keine Instanz implementiert wurde.
+
+Sie müssen die Instanz in einem AWS Connector implementieren, damit Cloud Manager die S3-Buckets in diesem AWS-Konto automatisch erkennt und in einer Amazon S3-Arbeitsumgebung angezeigt wird.
+
+
+
+== Aktivierung von Compliance in Ihrer S3-Arbeitsumgebung
+
+Aktivieren Sie Cloud-Compliance auf Amazon S3, nachdem Sie die Voraussetzungen überprüft haben.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf *Arbeitsumgebungen*.
+. Wählen Sie die Amazon S3-Arbeitsumgebung aus.
++
+image:screenshot_s3_we.gif["Ein Screenshot eines Amazon S3 Arbeitsumgebungssymbols"]
+
+. Klicken Sie im rechten Fensterbereich auf *Compliance aktivieren*.
++
+image:screenshot_s3_enable_compliance.gif["Ein Screenshot der Aktivierung des Cloud Compliance Service über das Fenster „Services“"]
+
+. Weisen Sie bei der entsprechenden Aufforderung der Cloud Compliance-Instanz eine IAM-Rolle zu  specific to S3,Die erforderlichen Berechtigungen.
++
+image:screenshot_s3_compliance_iam_role.gif["Screenshot zur Eingabe der AWS IAM-Rolle für Cloud Compliance"]
+
+. Klicken Sie Auf *Compliance Aktivieren*.
+
+
+
+TIP: Sie können Compliance-Scans für eine Arbeitsumgebung auch über die Seite Scankonfiguration aktivieren, indem Sie auf die klicken image:screenshot_gallery_options.gif[""] Und wählen Sie *Compliance aktivieren*.
+
+Cloud Manager weist der Instanz die IAM-Rolle zu.
+
+
+
+== Aktivieren und Deaktivieren von Compliance-Scans auf S3-Buckets
+
+Nachdem Cloud Manager Cloud Compliance in Amazon S3 aktiviert hat, müssen die Buckets konfiguriert werden, die überprüft werden sollen.
+
+Wenn Cloud Manager im AWS Konto ausgeführt wird, das über die S3-Buckets verfügt, die Sie scannen möchten, erkennt es diese Buckets und zeigt sie in einer Amazon S3-Arbeitsumgebung an.
+
+Auch Cloud Compliance kann  buckets from additional AWS accounts,Scannen von S3-Buckets, die in unterschiedlichen AWS Konten vorhanden sind.
+
+.Schritte
+. Wählen Sie die Amazon S3-Arbeitsumgebung aus.
+. Klicken Sie im rechten Fensterbereich auf *Eimer konfigurieren*.
++
+image:screenshot_s3_configure_buckets.gif["Ein Screenshot mit dem Klicken auf Buckets konfigurieren, um die S3-Buckets auszuwählen, die Sie scannen möchten"]
+
+. Aktivieren Sie Compliance in den Buckets, die Sie scannen möchten.
++
+image:screenshot_s3_select_buckets.gif["Ein Screenshot zur Auswahl der S3-Buckets, die gescannt werden sollen"]
+
+
+
+Cloud Compliance beginnt mit dem Scannen der aktivierten S3-Buckets. Wenn Fehler auftreten, werden sie neben der erforderlichen Aktion zur Behebung des Fehlers in der Spalte Status angezeigt.
+
+
+
+== Scannen von Buckets für weitere AWS Konten
+
+Sie können S3-Buckets scannen, die sich unter einem anderen AWS-Konto befinden, indem Sie von diesem Konto eine Rolle zuweisen, um auf die vorhandene Cloud-Compliance-Instanz zuzugreifen.
+
+.Schritte
+. Gehen Sie zum AWS Ziel-Konto, in dem Sie S3 Buckets scannen und eine IAM-Rolle erstellen möchten, indem Sie *ein weiteres AWS-Konto* auswählen.
++
+image:screenshot_iam_create_role.gif[""]
+
++
+Gehen Sie wie folgt vor:
+
++
+** Geben Sie die ID des Kontos ein, auf dem sich die Cloud-Compliance-Instanz befindet.
+** Ändern Sie die maximale CLI/API-Sitzungsdauer* von 1 Stunde auf 12 Stunden und speichern Sie diese Änderung.
+** Hängen Sie die Cloud Compliance IAM-Richtlinie an. Stellen Sie sicher, dass es über die erforderlichen Berechtigungen verfügt.
++
+[source, json]
+----
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Effect": "Allow",
+          "Action": [
+              "s3:Get*",
+              "s3:List*",
+              "s3:HeadBucket"
+          ],
+          "Resource": "*"
+      },
+  ]
+}
+----
+
+
+. Wechseln Sie zum AWS Quellkonto, in dem sich die Cloud Compliance Instanz befindet, und wählen Sie die IAM-Rolle aus, die mit der Instanz verbunden ist.
++
+.. Ändern Sie die maximale CLI/API-Sitzungsdauer* von 1 Stunde auf 12 Stunden und speichern Sie diese Änderung.
+.. Klicken Sie auf *Richtlinien anhängen* und dann auf *Richtlinien erstellen*.
+.. Erstellen Sie eine Richtlinie, die die Aktion „STS:AssumeRole“ und den ARN der Rolle umfasst, die Sie im Zielkonto erstellt haben.
++
+[source, json]
+----
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Resource": "arn:aws:iam::<ADDITIONAL-ACCOUNT-ID>:role/<ADDITIONAL_ROLE_NAME>"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetPolicyVersion",
+                "iam:GetPolicy",
+                "iam:ListAttachedRolePolicies"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:policy/*",
+                "arn:aws:iam::*:role/*"
+            ]
+        }
+    ]
+}
+----
++
+Das Instanzprofil für Cloud Compliance hat nun Zugriff auf das zusätzliche AWS Konto.
+
+
+
+. Gehen Sie auf die Seite *Amazon S3 Scan Configuration* und das neue AWS-Konto wird angezeigt. Beachten Sie, dass es einige Minuten dauern kann, bis Cloud Compliance die Arbeitsumgebung des neuen Kontos synchronisiert und diese Informationen anzeigt.
++
+image:screenshot_activate_and_select_buckets.png[""]
+
+. Klicken Sie auf *Compliance aktivieren & Buckets auswählen* und wählen Sie die Eimer aus, die Sie scannen möchten.
+
+
+Cloud Compliance beginnt mit dem Scannen der neuen aktivierten S3-Buckets.

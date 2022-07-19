@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: concept_accounts_gcp.html 
+keywords: cloud provider accounts, gcp, gcp accounts, google cloud platform, google accounts, google cloud platform accounts, permissions, tiering, data tiering, account for data tiering, account for tiering, project, projects, add project, select new project, gcp project, google project, google cloud project 
+summary: Sie verwenden ein Google Cloud-Konto, um Cloud Manager in einem Projekt zu implementieren. Sie können Cloud Volumes ONTAP dann in demselben oder einem anderen Projekt implementieren. Google Cloud-Konten, die Sie Cloud Manager hinzufügen, werden für das Daten-Tiering genutzt. 
+---
+= Google Cloud Projekte, Berechtigungen und Konten
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Ein Service-Konto bietet Cloud Manager Berechtigungen für die Implementierung und das Management von Cloud Volumes ONTAP Systemen in demselben Projekt wie Cloud Manager oder in verschiedenen Projekten.
+
+
+
+== Projekt und Berechtigungen für Cloud Manager
+
+Bevor Sie Cloud Volumes ONTAP in Google Cloud bereitstellen können, müssen Sie zunächst einen Connector in einem Google Cloud-Projekt bereitstellen. Der Connector kann nicht vor Ort oder bei einem anderen Cloud-Provider ausgeführt werden.
+
+Vor der Bereitstellung eines Connectors direkt aus Cloud Manager müssen zwei Berechtigungssätze vorhanden sein:
+
+. Sie müssen einen Connector mit einem Google-Konto bereitstellen, das über Berechtigungen zum Starten der Connector-VM-Instanz von Cloud Manager verfügt.
+. Bei der Bereitstellung des Connectors werden Sie aufgefordert, ein auszuwählen https://cloud.google.com/iam/docs/service-accounts["Servicekonto"^] Für die VM-Instanz. Cloud Manager erhält Berechtigungen vom Service-Konto, um Cloud Volumes ONTAP Systeme in Ihrem Auftrag zu erstellen und zu managen. Berechtigungen werden durch Hinzufügen einer benutzerdefinierten Rolle an das Servicekonto bereitgestellt.
+
+
+Wir haben zwei YAML-Dateien eingerichtet, die die erforderlichen Berechtigungen für den Benutzer und das Dienstkonto enthalten. link:task_creating_connectors_gcp.html["Erfahren Sie, wie Sie mit den YAML-Dateien Berechtigungen einrichten"].
+
+Das folgende Bild zeigt die in den Nummern 1 und 2 oben beschriebenen Berechtigungsanforderungen:
+
+image:diagram_permissions_gcp.png["Erklärung"]
+
+
+
+== Projekt für Cloud Volumes ONTAP
+
+Cloud Volumes ONTAP kann im selben Projekt wie der Connector oder in einem anderen Projekt residieren. Um Cloud Volumes ONTAP in einem anderen Projekt bereitzustellen, müssen Sie zunächst das Connector-Servicekonto und die Rolle zu diesem Projekt hinzufügen.
+
+* link:task_creating_connectors_gcp.html#setting-up-gcp-permissions-to-create-a-connector["Informationen zur Einrichtung eines Service-Kontos (siehe Schritt 2)"].
+* link:task_deploying_gcp.html["Erfahren Sie, wie Cloud Volumes ONTAP in GCP implementiert und ein Projekt ausgewählt wird"].
+
+
+
+
+== Konto für Daten-Tiering
+
+
+TIP: Cloud Manager erfordert ein GCP-Konto für Cloud Volumes ONTAP 9.6, nicht jedoch für 9.7 und höher. Wenn Sie Daten-Tiering mit Cloud Volumes ONTAP 9.7 verwenden möchten, folgen Sie Schritt 4 in link:task_getting_started_gcp.html["Erste Schritte mit Cloud Volumes ONTAP in der Google Cloud Platform"].
+
+Um Daten-Tiering auf einem Cloud Volumes ONTAP 9.6 System zu ermöglichen, ist das Hinzufügen eines Google Cloud Kontos zu Cloud Manager erforderlich. Daten-Tiering verlagert selten genutzte Daten automatisch auf kostengünstigen Objekt-Storage, sodass Sie Speicherplatz auf dem primären Storage freigeben und den sekundären Storage reduzieren können.
+
+Wenn Sie das Konto hinzufügen, müssen Sie Cloud Manager mit einem Speicherzugriffsschlüssel für ein Servicekonto bereitstellen, das Storage Admin-Berechtigungen hat. Cloud Manager verwendet die Zugriffssteuerung zum Einrichten und Managen eines Cloud Storage-Buckets für Daten-Tiering.
+
+Nachdem Sie ein Google Cloud Konto hinzugefügt haben, können Sie auf einzelnen Volumes das Daten-Tiering aktivieren, wenn Sie sie erstellen, ändern oder replizieren.
+
+* link:task_adding_gcp_accounts.html["Erfahren Sie, wie Sie GCP-Konten in Cloud Manager einrichten und hinzufügen"].
+* link:task_tiering.html["Verschieben Sie inaktive Daten auf kostengünstigen Objekt-Storage"].
+

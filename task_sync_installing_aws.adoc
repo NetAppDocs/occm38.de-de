@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: task_sync_installing_aws.html 
+keywords: data broker, install, aws, networking, permissions, regions, install data broker in aws, install in aws, deploy in aws, deploy data broker in aws, cft, template, iam role, use your own iam role, regions, supported regions, networking requirements, port, ports, 443, port 443, ntp, network time protocol, permissions, iam role, iam permissions, aws data broker 
+summary: Wenn Sie eine Synchronisierungsbeziehung erstellen, wählen Sie die Option AWS Data Broker, um die Data Broker-Software auf einer neuen EC2-Instanz in einem VPC bereitzustellen. Cloud Sync führt Sie durch den Installationsprozess, aber die Anforderungen und Schritte werden auf dieser Seite wiederholt, um Sie bei der Vorbereitung auf die Installation zu unterstützen. 
+---
+= Installation des Data Brokers in AWS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie eine Synchronisierungsbeziehung erstellen, wählen Sie die Option AWS Data Broker, um die Data Broker-Software auf einer neuen EC2-Instanz in einem VPC bereitzustellen. Cloud Sync führt Sie durch den Installationsprozess, aber die Anforderungen und Schritte werden auf dieser Seite wiederholt, um Sie bei der Vorbereitung auf die Installation zu unterstützen.
+
+Sie haben auch die Möglichkeit, den Data Broker auf einem vorhandenen Linux-Host in der Cloud oder vor Ort zu installieren. link:task_sync_installing_linux.html["Weitere Informationen ."].
+
+
+
+== Unterstützte AWS-Regionen
+
+Alle Regionen werden unterstützt, mit Ausnahme der Regionen China und GovCloud (USA).
+
+
+
+== Netzwerkanforderungen
+
+* Der Daten-Broker benötigt eine ausgehende Internetverbindung, damit er den Cloud Sync Service für Aufgaben über Port 443 abfragen kann.
++
+Wenn Cloud Sync den Datenbroker in AWS implementiert, wird eine Sicherheitsgruppe erstellt, die die erforderliche ausgehende Kommunikation ermöglicht. Beachten Sie, dass Sie den Data Broker so konfigurieren können, dass er während des Installationsvorgangs einen Proxyserver verwendet.
+
++
+Wenn Sie die ausgehende Verbindung begrenzen müssen, lesen Sie link:reference_sync_networking.html["Die Liste der Endpunkte, die der Datenmanager kontaktiert"].
+
+* NetApp empfiehlt die Konfiguration des Quell-, Ziel- und Daten-Brokers für die Verwendung eines NTP-Services (Network Time Protocol). Die Zeitdifferenz zwischen den drei Komponenten darf 5 Minuten nicht überschreiten.
+
+
+
+
+== Erforderliche Berechtigungen für die Bereitstellung des Data Brokers in AWS
+
+Das AWS Benutzerkonto, das Sie für die Bereitstellung des Daten-Brokers verwenden, muss über die Berechtigungen in verfügen https://s3.amazonaws.com/metadata.datafabric.io/docs/aws_iam_policy.json["Von NetApp bereitgestellt"^].
+
+
+
+== Anforderungen für die Nutzung Ihrer eigenen IAM-Rolle mit dem AWS Data Broker
+
+Wenn Cloud Sync den Data Broker bereitstellt, erstellt es eine IAM-Rolle für die Data Brokerinstanz. Sie können den Data Broker auf Wunsch mit Ihrer eigenen IAM-Rolle bereitstellen. Sie können diese Option verwenden, wenn Ihr Unternehmen über strenge Sicherheitsrichtlinien verfügt.
+
+Die IAM-Rolle muss die folgenden Anforderungen erfüllen:
+
+* Der EC2-Dienst muss die IAM-Rolle als vertrauenswürdige Einheit übernehmen können.
+* link:media/aws_iam_policy_data_broker.json["Die in dieser JSON-Datei definierten Berechtigungen"^] Muss mit der IAM-Rolle verbunden sein, damit der Daten-Broker ordnungsgemäß funktionieren kann.
+
+
+Befolgen Sie die folgenden Schritte, um die IAM-Rolle beim Bereitstellen des Daten-Brokers anzugeben.
+
+
+
+== Installation des Data Brokers
+
+Sie können einen Daten-Broker in AWS installieren, wenn Sie eine Synchronisierungsbeziehung erstellen.
+
+.Schritte
+. Klicken Sie Auf *Neuen Sync Erstellen*.
+. Wählen Sie auf der Seite *Synchronisierungsbeziehung definieren* eine Quelle und ein Ziel aus und klicken Sie auf *Weiter*.
++
+Führen Sie die Schritte aus, bis Sie zur Seite *Data Broker* gelangen.
+
+. Klicken Sie auf der Seite *Data Broker* auf *Daten Broker erstellen* und wählen Sie dann *Amazon Web Services* aus.
++
+Wenn Sie bereits einen Daten-Broker haben, müssen Sie auf klicken image:screenshot_plus_icon.gif["Ein Screenshot, wenn das Pluszeichen angezeigt wird"] Symbol zuerst.
+
++
+image:screenshot_create_data_broker.gif["Screenshot der Seite „Data Broker“ mit der Wahl zwischen einem AWS, Azure, GCP und einem Daten-Broker vor Ort."]
+
+. Geben Sie einen Namen für den Daten-Broker ein und klicken Sie auf *Weiter*.
+. Geben Sie einen AWS-Zugriffsschlüssel ein, damit Cloud Sync in Ihrem Auftrag den Daten-Broker in AWS erstellen kann.
++
+Die Tasten werden nicht gespeichert oder für andere Zwecke verwendet.
+
++
+Falls Sie keine Zugriffsschlüssel angeben möchten, klicken Sie auf den Link unten auf der Seite, um stattdessen eine CloudFormation-Vorlage zu verwenden. Wenn Sie diese Option verwenden, müssen Sie keine Anmeldedaten angeben, da Sie sich direkt bei AWS anmelden.
+
++
+[[cft]]das folgende Video zeigt, wie die Instanz des Datenmakers mithilfe einer CloudFormation-Vorlage gestartet wird:
+
++
+video::video_cloud_sync.mp4[width=848,height=480]
+. Wenn Sie einen AWS-Zugriffsschlüssel eingegeben haben, wählen Sie einen Speicherort für die Instanz aus, wählen Sie ein Schlüsselpaar aus, wählen Sie aus, ob eine öffentliche IP-Adresse aktiviert werden soll, und wählen Sie dann eine vorhandene IAM-Rolle aus. Lassen Sie das Feld leer, sodass Cloud Sync die Rolle für Sie erstellt.
++
+Wenn Sie Ihre eigene IAM-Rolle wählen, ,Sie müssen die erforderlichen Berechtigungen angeben.
+
++
+image:screenshot_aws_data_broker.gif["Einen Screenshot der Informationen, die Sie zur Bereitstellung eines Daten Brokers in AWS benötigen"]
+
+. Klicken Sie nach Verfügbarkeit des Datenmakers in Cloud Sync auf *Weiter*.
++
+Das folgende Bild zeigt eine erfolgreich implementierte Instanz in AWS:
+
++
+image:screenshot_created_instance.gif["Dieser Screenshot zeigt eine erfolgreich implementierte Instanz. Die Benutzeroberfläche zeigt Details zur Instanz einschließlich AWS-Netzwerk an."]
+
+. Füllen Sie die Seiten im Assistenten aus, um die neue Synchronisierungsbeziehung zu erstellen.
+
+
+Sie haben einen Daten-Broker in AWS implementiert und eine neue Synchronisierungsbeziehung erstellt. Sie können diesen Daten-Broker mit zusätzlichen Synchronisierungsbeziehungen verwenden.

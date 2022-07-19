@@ -1,0 +1,71 @@
+---
+sidebar: sidebar 
+permalink: concept_azure_netapp_files.html 
+keywords: azure netapp files, cost, price, features, azure netapp files features, anf, supported regions, azure regions, azure netapp files regions 
+summary: Mit Azure NetApp Files können Unternehmen ihre Performance-intensiven und latenzkritischen Core-Applikationen in Azure migrieren und ausführen, ohne für die Cloud einen Refactoring durchführen zu müssen. 
+---
+= Weitere Informationen zu Azure NetApp Files
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Mit Azure NetApp Files können Unternehmen ihre Performance-intensiven und latenzkritischen Core-Applikationen in Azure migrieren und ausführen, ohne für die Cloud einen Refactoring durchführen zu müssen.
+
+
+
+== Funktionen
+
+* Da mehrere Protokolle unterstützt werden, kann das „Lift and Shift“ von Linux- und Windows-Applikationen nahtlos in Azure ausgeführt werden.
+* Mehrere Performance-Tiers ermöglichen eine enge Ausrichtung an den Workload-Performance-Anforderungen.
+* Führende Zertifizierungen wie SAP HANA, DSGVO und HIPPA ermöglichen die Migration der anspruchsvollsten Workloads zu Azure.
+
+
+
+
+== Zusätzliche Funktionen in Cloud Manager
+
+* Migrieren Sie NFS- oder SMB-Daten direkt aus Cloud Manager zu Azure NetApp Files. Datenmigrationen sind durch den NetApp Cloud Sync Service möglich. link:concept_cloud_sync.html["Weitere Informationen ."].
+* Mithilfe von künstlicher Intelligenz (KI) hilft Cloud Compliance Ihnen dabei, den Datenkontext zu verstehen und sensible Daten in Ihren Azure NetApp Files-Konten zu identifizieren. link:concept_cloud_compliance.html["Weitere Informationen ."].
+
+
+
+
+== Kosten
+
+https://azure.microsoft.com/pricing/details/netapp/["Informieren Sie sich über die Preise für Azure NetApp Files"^].
+
+Beachten Sie, dass das Abonnement und die Abrechnung über den Azure NetApp Files Service erfolgen und nicht durch Cloud Manager.
+
+
+
+== Unterstützte Regionen
+
+https://cloud.netapp.com/cloud-volumes-global-regions["Unterstützte Azure Regionen anzeigen"^].
+
+
+
+== Zugriff wird angefordert
+
+Sie müssen von Zugriff auf Azure NetApp Files erhalten https://aka.ms/azurenetappfiles["Einreichung einer Online-Anfrage"^]. Sie müssen das Azure NetApp Files-Team erst dann auf die Genehmigung warten, bevor Sie fortfahren können.
+
+
+
+== Hilfe wird abgerufen
+
+Bei Problemen mit dem technischen Support im Zusammenhang mit Azure NetApp Files können Sie im Azure-Portal eine Support-Anfrage an Microsoft protokollieren. Wählen Sie Ihr zugehöriges Microsoft-Abonnement aus, und wählen Sie den *Azure NetApp Files*-Dienstnamen unter *Speicherung* aus. Geben Sie die verbleibenden Informationen an, die für die Erstellung Ihrer Microsoft Support-Anfrage erforderlich sind.
+
+Bei Problemen mit Cloud Sync und Azure NetApp Files können Sie mit NetApp direkt über den Cloud Sync Service mit Ihrer Cloud Sync Seriennummer beginnen. Sie müssen über den Link in Cloud Manager auf den Cloud Sync Service zugreifen. https://docs.netapp.com/us-en/cloudsync/reference_additional_info.html["Prozess zum Aktivieren des Cloud Sync Supports anzeigen"^].
+
+
+
+== Weiterführende Links
+
+* https://cloud.netapp.com/azure-netapp-files["NetApp Cloud Central: Azure NetApp Files"^]
+* https://docs.microsoft.com/azure/azure-netapp-files/["Azure NetApp Files-Dokumentation"^]
+* https://docs.netapp.com/us-en/cloudsync/index.html["Cloud Sync-Dokumentation"^]
+

@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: task_creating_connectors_aws.html 
+keywords: create connector in aws, create connector in azure, create connector in gcp, launch connector in aws, launch connector in azure, launch connector in gcp, deploy connector in aws, deploy connector in azure, deploy connector in gcp 
+summary: Ein Kontoadministrator muss einen Connector bereitstellen, bevor Sie die meisten Funktionen von Cloud Manager nutzen können. Mit dem Connector kann Cloud Manager Ressourcen und Prozesse in Ihrer Public Cloud-Umgebung managen. 
+---
+= Erstellen eines Connectors in AWS über Cloud Manager
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Ein Kontoadministrator muss einen _Connector_ bereitstellen, bevor Sie die meisten Funktionen von Cloud Manager nutzen können. link:concept_connectors.html["Informieren Sie sich, wann ein Anschluss erforderlich ist"]. Mit dem Connector kann Cloud Manager Ressourcen und Prozesse in Ihrer Public Cloud-Umgebung managen.
+
+Auf dieser Seite wird beschrieben, wie Sie einen Connector direkt aus Cloud Manager in AWS erstellen. Sie haben auch die Möglichkeit zu wählen link:task_launching_aws_mktp.html["Erstellen Sie den Connector über den AWS Marketplace"], Oder auf link:task_installing_linux.html["Laden Sie die Software herunter und installieren Sie sie auf Ihrem eigenen Host"].
+
+Diese Schritte müssen von einem Benutzer ausgeführt werden, der die Rolle „Account Admin“ hat. Ein Workspace-Administrator kann keinen Konnektor erstellen.
+
+
+TIP: Wenn Sie Ihre erste Cloud Volumes ONTAP-Arbeitsumgebung erstellen, werden Sie von Cloud Manager aufgefordert, einen Connector zu erstellen, falls noch kein Connector vorhanden ist.
+
+
+
+== Einrichtung von AWS Berechtigungen zum Erstellen eines Konnektors
+
+Bevor Sie einen Connector von Cloud Manager implementieren können, müssen Sie sicherstellen, dass Ihr AWS-Konto die entsprechenden Berechtigungen hat.
+
+.Schritte
+. Laden Sie die IAM-Richtlinie für Connector von folgendem Speicherort herunter:
++
+https://mysupport.netapp.com/site/info/cloud-manager-policies["NetApp Cloud Manager: AWS, Azure und GCP-Richtlinien"^]
+
+. Erstellen Sie von der AWS IAM-Konsole aus Ihre eigene Richtlinie, indem Sie den Text aus der IAM-Richtlinie für Connector kopieren und einfügen.
+. Hängen Sie die Richtlinie, die Sie im vorherigen Schritt erstellt haben, dem IAM-Benutzer an, der den Connector aus Cloud Manager erstellt.
+
+
+Der AWS-Benutzer verfügt nun über die erforderlichen Berechtigungen, um den Connector aus Cloud Manager zu erstellen. Sie müssen für diesen Benutzer die AWS-Zugriffsschlüssel festlegen, wenn Sie von Cloud Manager aufgefordert werden.
+
+
+
+== Erstellen eines Konnektors in AWS
+
+Mit Cloud Manager können Sie einen Connector in AWS direkt von der Benutzeroberfläche aus erstellen.
+
+.Was Sie und#8217;ll benötigen
+* Ein AWS-Zugriffsschlüssel und ein geheimer Schlüssel für einen IAM-Benutzer, der über den verfügt https://mysupport.netapp.com/site/info/cloud-manager-policies["Erforderliche Berechtigungen"^].
+* Ein VPC, Subnetz und Schlüsselpairs in Ihrer bevorzugten AWS Region.
+
+
+.Schritte
+. Wenn Sie Ihre erste Arbeitsumgebung erstellen, klicken Sie auf *Arbeitsumgebung hinzufügen* und befolgen Sie die Anweisungen. Klicken Sie andernfalls auf das Dropdown-Menü *Connector* und wählen Sie *Connector hinzufügen* aus.
++
+image:screenshot_connector_add.gif["Ein Screenshot, in dem das Symbol Connector in der Kopfzeile und die Aktion Connector hinzufügen angezeigt wird."]
+
+. Klicken Sie auf *Let's Start*.
+. Wählen Sie als Cloud-Provider * Amazon Web Services* aus.
++
+Denken Sie daran, dass der Connector über eine Netzwerkverbindung mit der Art der Arbeitsumgebung, die Sie erstellen, und den Diensten, die Sie für die Aktivierung planen, verfügen muss.
+
++
+link:reference_networking_cloud_manager.html["Erfahren Sie mehr über die Netzwerkanforderungen für den Connector"].
+
+. Überprüfen Sie, was Sie benötigen, und klicken Sie auf *Weiter*.
+. Geben Sie die erforderlichen Informationen ein:
++
+** *AWS Credentials*: Geben Sie einen Namen für die Instanz ein und geben Sie den AWS Zugriffsschlüssel und den geheimen Schlüssel an, der die Berechtigungsanforderungen erfüllt.
+** *Standort*: Geben Sie eine AWS Region, VPC und Subnetz für die Instanz an.
+** *Netzwerk*: Wählen Sie das Schlüsselpaar aus, das mit der Instanz verwendet werden soll, ob eine öffentliche IP-Adresse aktiviert werden soll, und geben Sie optional eine Proxy-Konfiguration an.
+** *Sicherheitsgruppe*: Wählen Sie aus, ob eine neue Sicherheitsgruppe erstellt werden soll oder ob eine vorhandene Sicherheitsgruppe ausgewählt werden soll, die einen eingehenden HTTP-, HTTPS- und SSH-Zugriff erlaubt.
++
+
+NOTE: Es gibt keinen eingehenden Datenverkehr zum Konnektor, es sei denn, Sie initiieren ihn. HTTP und HTTPS bieten den Zugriff auf link:concept_connectors.html#the-local-user-interface["Lokale Benutzeroberfläche"], Die Sie in seltenen Fällen verwenden. SSH ist nur erforderlich, wenn Sie eine Verbindung zum Host zur Fehlerbehebung herstellen müssen.
+
+
+
+. Klicken Sie Auf *Erstellen*.
++
+Die Instanz sollte in ca. 7 Minuten fertig sein. Sie sollten auf der Seite bleiben, bis der Vorgang abgeschlossen ist.
+
+
+
+Sie müssen einen Connector mit Arbeitsbereichen verknüpfen, damit Arbeitsbereichsadministratoren diese Connectors zum Erstellen von Cloud Volumes ONTAP-Systemen verwenden können. Wenn Sie nur Kontoadministratoren haben, ist es nicht erforderlich, den Connector mit Arbeitsbereichen zu verknüpfen. Account-Administratoren haben standardmäßig die Möglichkeit, auf alle Workspaces in Cloud Manager zuzugreifen. link:task_setting_up_cloud_central_accounts.html#associating-connectors-with-workspaces["Weitere Informationen ."].

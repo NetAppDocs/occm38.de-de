@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: task_viewing_amazon_s3.html 
+keywords: s3 buckets, s3 storage, s3 working environment, amazon s3 buckets, amazon s3 working environment 
+summary: Nach der Installation eines Connectors in AWS erkennt Cloud Manager automatisch Informationen zu den Amazon S3 Buckets, die sich im AWS Konto befinden und dort installiert sind. 
+---
+= Anzeigen Ihrer Amazon S3 Buckets
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Nach der Installation eines Connectors in AWS erkennt Cloud Manager automatisch Informationen zu den Amazon S3 Buckets, die sich im AWS Konto befinden und dort installiert sind.
+
+Sie sehen Details zu Ihren S3 Buckets, einschließlich Region, Zugriffsebene, Storage-Klasse und ob der Bucket in Verbindung mit Cloud Volumes ONTAP für Backups oder Daten-Tiering verwendet wird. Zudem haben Sie die Möglichkeit, die S3 Buckets mithilfe von Cloud Compliance zu scannen.
+
+.Schritte
+. link:task_creating_connectors_aws.html["Installieren Sie einen Anschluss"] In dem AWS Konto, wo Sie Ihre Amazon S3 Buckets anzeigen möchten.
++
+Sie sollten bald automatisch eine Amazon S3-Arbeitsumgebung sehen.
+
++
+image:screenshot_s3_we.gif["Ein Screenshot einer Amazon S3 Arbeitsumgebung"]
+
+. Klicken Sie auf die Arbeitsumgebung, und wählen Sie eine Aktion im rechten Fensterbereich aus.
++
+image:screenshot_s3_actions.gif["Ein Screenshot, der das Teilfenster „Aktionen“ zeigt, nachdem Sie eine Amazon S3-Arbeitsumgebung ausgewählt haben. Im Teilfenster werden Informationen zu S3 angezeigt: Die Anzahl der Buckets und Regionen. Das Fenster enthält außerdem zwei Aktionen: Aktivieren Sie die Buckets für Compliance und Ansicht."]
+
+. Klicken Sie auf *Compliance aktivieren*, um die S3-Buckets nach persönlichen und sensiblen Daten zu scannen.
++
+Weitere Informationen finden Sie unter link:task_scanning_s3.html["Erste Schritte mit Cloud Compliance für Amazon S3"].
+
+. Klicken Sie auf *Buckets anzeigen*, um Details zu den S3-Buckets in Ihrem AWS-Konto anzuzeigen.
++
+image:screenshot_amazon_s3.gif["Ein Screenshot, der die Details zu einer Amazon S3 Arbeitsumgebung zeigt, wie viele Buckets und Regionen, wie viele Buckets mit aktiven Services und schließlich eine Tabelle mit Details zu den einzelnen S3-Buckets enthält."]
+
+

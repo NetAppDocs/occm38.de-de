@@ -1,0 +1,119 @@
+---
+sidebar: sidebar 
+permalink: task_manage_cloud_volumes_gcp_snapshots.html 
+keywords: Cloud Volumes Service for Google Cloud, gcp, snapshots, on-demand, snapshot schedule 
+summary: Sie können für jedes Volume eine Snapshot-Richtlinie erstellen, sodass Sie den gesamten Inhalt eines Volumes von einer früheren Zeit wiederherstellen können. Bei Bedarf können Sie auch einen On-Demand Snapshot eines Cloud Volumes erstellen. 
+---
+= Managen von Cloud Volumes Snapshots
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Sie können für jedes Volume eine Snapshot-Richtlinie erstellen, sodass Sie den gesamten Inhalt eines Volumes von einer früheren Zeit wiederherstellen können. Bei Bedarf können Sie auch einen On-Demand Snapshot eines Cloud Volumes erstellen.
+
+
+
+== Erstellen Sie einen On-Demand Snapshot
+
+Sie können einen On-Demand-Snapshot eines Cloud Volumes erstellen, wenn Sie einen Snapshot im aktuellen Volume-Zustand erstellen möchten.
+
+.Schritte
+. Öffnen Sie die Arbeitsumgebung.
+. Bewegen Sie den Mauszeiger über den Datenträger und klicken Sie auf *Erstellen Sie eine Snapshot Kopie*.
+. Geben Sie einen Namen für den Snapshot ein, oder verwenden Sie den automatisch generierten Namen, und klicken Sie auf *Erstellen*.
++
+image:screenshot_cvs_ondemand_snapshot.png["Screenshot der Auswahl der Snapshot Kopie, die auf einem neuen Volume wiederhergestellt werden soll"]
+
++
+Der Snapshot wird erstellt.
+
+
+
+
+
+== Erstellen oder Ändern einer Snapshot-Richtlinie
+
+Sie können je nach Bedarf eine Snapshot-Richtlinie für ein Cloud-Volume erstellen oder ändern. Sie definieren die Snapshot-Richtlinie auf der Registerkarte „_Snapshot Policy_“ entweder beim Erstellen eines Volumes oder beim Bearbeiten eines Volumes.
+
+.Schritte
+. Öffnen Sie die Arbeitsumgebung.
+. Bewegen Sie den Mauszeiger über die Lautstärke und klicken Sie auf *Bearbeiten*.
+. Verschieben Sie auf der Registerkarte „_Snapshot Policy_“ den Schieberegler zum Aktivieren der Snapshots nach rechts.
+. Legen Sie den Zeitplan für Snapshots fest:
++
+.. Wählen Sie die Häufigkeit aus: *Stündlich*, *täglich*, *wöchentlich* oder *monatlich*
+.. Wählen Sie die Anzahl der Schnappschüsse aus, die beibehalten werden sollen.
+.. Wählen Sie den Tag, die Stunde und die Minute aus, an dem der Snapshot erstellt werden soll.
++
+image:screenshot_cvs_aws_snapshot_policy.png["Screenshot einer konfigurierten Snapshot-Richtlinie"]
+
+
+
+. Klicken Sie auf *Add Volume* oder *Update Volume*, um Ihre Richtlinieneinstellungen zu speichern.
+
+
+
+
+== Deaktivieren einer Snapshot-Richtlinie
+
+Sie können eine Snapshot-Richtlinie deaktivieren, um die Erstellung von Snapshots für einen kurzen Zeitraum zu verhindern, während Ihre Snapshot-Richtlinieneinstellungen beibehalten werden.
+
+.Schritte
+. Öffnen Sie die Arbeitsumgebung.
+. Bewegen Sie den Mauszeiger über die Lautstärke und klicken Sie auf *Bearbeiten*.
+. Verschieben Sie auf der Registerkarte „_Snapshot Policy_“ den Schieberegler „Snapshots aktivieren“ nach links.
++
+image:screenshot_cvs_aws_snapshot_policy_button_off.png["Screenshot der Schaltfläche „Snapshot Policy“ in der Position „deaktiviert“"]
+
+. Klicken Sie auf *Lautstärke aktualisieren*.
+
+
+Wenn Sie die Snapshot-Richtlinie wieder aktivieren möchten, verschieben Sie den Schieberegler Snapshots aktivieren nach rechts und klicken Sie auf *Datenträger aktualisieren*.
+
+
+
+== Löschen Sie einen Snapshot
+
+Sie können einen Snapshot löschen, wenn er nicht mehr benötigt wird.
+
+.Schritte
+. Öffnen Sie die Arbeitsumgebung.
+. Bewegen Sie den Mauszeiger über das Volume und klicken Sie auf *Löschen einer Snapshot Kopie*.
+. Wählen Sie den Snapshot aus der Dropdown-Liste aus und klicken Sie auf *Löschen*.
++
+image:screenshot_cvs_delete_snapshot.png["Screenshot der Auswahl der zu löschenden Snapshot-Kopie"]
+
+. Klicken Sie im Bestätigungsdialogfeld auf *Löschen*.
+
+
+
+
+== Wiederherstellung eines Snapshots auf einem neuen Volume
+
+Sie können bei Bedarf einen Snapshot auf einem neuen Volume wiederherstellen.
+
+.Schritte
+. Öffnen Sie die Arbeitsumgebung.
+. Bewegen Sie den Mauszeiger über das Volume und klicken Sie auf *auf ein neues Volume wiederherstellen*.
+. Wählen Sie den Snapshot aus der Dropdown-Liste aus, den Sie zum Erstellen des neuen Volumes verwenden möchten.
+. Geben Sie einen Namen für das neue Volume ein und klicken Sie auf *Wiederherstellen*.
++
+image:screenshot_cvs_restore_snapshot.png["Screenshot der Auswahl der Snapshot Kopie, die auf einem neuen Volume wiederhergestellt werden soll"]
+
++
+Das Volume wird in der Arbeitsumgebung erstellt.
+
+. Falls Sie eines der Volume-Attribute wie Volume-Pfad oder Service Level ändern müssen:
++
+.. Bewegen Sie den Mauszeiger über die Lautstärke und klicken Sie auf *Bearbeiten*.
+.. Nehmen Sie Ihre Änderungen vor und klicken Sie auf *Lautstärke aktualisieren*.
+
+
+
+
+Weiter mit link:task_manage_cvs_gcp.html#mount-cloud-volumes["Montieren des Cloud Volumes"^].

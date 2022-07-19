@@ -1,0 +1,275 @@
+---
+sidebar: sidebar 
+permalink: task_replicating_data.html 
+keywords: ontap, cluster, discover, manage, cloud manager, hybrid cloud, replication policy, policy, replication, replicating, snapmirror, snapvault, data replication, fanout, cascade, source, destination, schedule, relationship, break, resync, max transfer, maximum transfer rate, rate, transfer rate, reverse resync, status, replication status, intercluster lif, replication requirement, requirements, disaster recovery, DR, archive, archiving, retention 
+summary: Sie können Daten zwischen den Arbeitsumgebungen von Cloud Manager replizieren. Sie können eine einmalige Datenreplizierung zum Verschieben von Daten in die und aus der Cloud oder einen wiederkehrenden Zeitplan für Disaster Recovery oder langfristige Aufbewahrung wählen. 
+---
+= Replizierung von Daten zwischen Systemen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Sie können Daten zwischen Arbeitsumgebungen replizieren, indem Sie eine einmalige Datenreplizierung für die Datenübertragung oder einen wiederkehrenden Zeitplan für Disaster Recovery oder langfristige Aufbewahrung wählen. Sie können beispielsweise die Datenreplizierung eines lokalen ONTAP-Systems auf Cloud Volumes ONTAP für Disaster Recovery einrichten.
+
+Cloud Manager vereinfacht die Datenreplizierung zwischen Volumes auf separaten Systemen mithilfe von SnapMirror und SnapVault Technologien. Sie müssen lediglich das Quell-Volume und das Ziel-Volume identifizieren und dann eine Replizierungsrichtlinie und einen Zeitplan auswählen. Cloud Manager erwirbt die erforderlichen Festplatten, konfiguriert Beziehungen, wendet die Replizierungsrichtlinie an und initiiert dann den Basistransfer zwischen Volumes.
+
+
+NOTE: Die Basisplanübertragung enthält eine vollständige Kopie der Quelldaten. Nachfolgende Übertragungen enthalten differenzielle Kopien der Quelldaten.
+
+Cloud Manager ermöglicht Datenreplizierung zwischen den folgenden Arbeitsumgebungen:
+
+* Von einem Cloud Volumes ONTAP System zu einem anderen Cloud Volumes ONTAP System
+* Zwischen einem Cloud Volumes ONTAP System und einem ONTAP-Cluster vor Ort
+* Von einem ONTAP-Cluster vor Ort zu einem anderen ONTAP-Cluster vor Ort
+
+
+
+
+== Anforderungen an die Datenreplizierung
+
+Bevor Sie Daten replizieren können, sollten Sie sicherstellen, dass sowohl für Cloud Volumes ONTAP Systeme als auch für ONTAP Cluster spezifische Anforderungen erfüllt sind.
+
+Versionsanforderungen:: Sie sollten überprüfen, ob die Quell- und Ziel-Volumes kompatible ONTAP Versionen ausführen, bevor Sie Daten replizieren. Weitere Informationen finden Sie im http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-dap/home.html["Data Protection Power Guide"^].
+Spezifische Anforderungen für Cloud Volumes ONTAP::
++
+--
+* Die Sicherheitsgruppe der Instanz muss die erforderlichen ein- und ausgehenden Regeln enthalten: Speziell Regeln für ICMP und die Ports 11104 und 11105.
++
+Diese Regeln sind in der vordefinierten Sicherheitsgruppe enthalten.
+
+* Um Daten zwischen zwei Cloud Volumes ONTAP Systemen in verschiedenen Subnetzen zu replizieren, müssen die Subnetze gemeinsam geroutet werden (dies ist die Standardeinstellung).
+* Um Daten zwischen einem Cloud Volumes ONTAP System in AWS und einem System in Azure zu replizieren, müssen Sie über eine VPN-Verbindung zwischen AWS VPC und Azure VNet verfügen.
+
+
+--
+Spezifische Anforderungen für ONTAP Cluster::
++
+--
+* Eine aktive SnapMirror Lizenz muss installiert sein.
+* Wenn sich das Cluster in Ihrem Betrieb befindet, sollten Sie eine Verbindung von Ihrem Unternehmensnetzwerk zu AWS oder Azure haben, bei der es sich in der Regel um eine VPN-Verbindung handelt.
+* ONTAP Cluster müssen zusätzliche Subnetz-, Port-, Firewall- und Cluster-Anforderungen erfüllen.
++
+Weitere Informationen finden Sie im Cluster and SVM Peering Express Guide für Ihre Version von ONTAP.
+
+
+
+--
+
+
+
+
+== Datenreplikation zwischen Systemen einrichten
+
+Sie können Daten zwischen Cloud Volumes ONTAP Systemen und ONTAP Clustern replizieren, indem Sie sich für eine einmalige Datenreplizierung entscheiden, mit der Sie Daten in die und aus der Cloud verschieben können, oder für einen wiederkehrenden Zeitplan, der zur Disaster Recovery oder langfristigen Aufbewahrung beitragen kann.
+
+Cloud Manager unterstützt einfache, fanout- und kaskadierende Datensicherungskonfigurationen:
+
+* In einer einfachen Konfiguration erfolgt die Replizierung von Volume A auf Volume B.
+* In einer Fanout-Konfiguration erfolgt die Replizierung von Volume A zu mehreren Zielen.
+* Bei einer kaskadierten Konfiguration erfolgt die Replizierung von Volume A auf Volume B und von Volume B auf Volume C.
+
+
+Sie können Fanout- und Kaskadenkonfigurationen in Cloud Manager konfigurieren, indem Sie mehrere Datenreplizierungen zwischen Systemen einrichten. Zum Beispiel durch Replizierung eines Volumes von System A auf System B und anschließendes Replizieren desselben Volumes von System B auf System C.
+
+.Schritte
+. Wählen Sie auf der Seite Arbeitsumgebungen die Arbeitsumgebung aus, die das Quell-Volume enthält, und ziehen Sie es in die Arbeitsumgebung, in die Sie das Volume replizieren möchten:
++
+image:screenshot_drag_and_drop.gif["Screenshot: Zeigt eine Arbeitsumgebung, die auf einer anderen Arbeitsumgebung platziert wird, um den Datenreplizierungsprozess zu starten."]
+
+. Wenn die Setup-Seiten für Quell- und Zielpeering angezeigt werden, wählen Sie alle Intercluster-LIFs für die Cluster-Peer-Beziehung aus.
++
+Das Cluster-übergreifende Netzwerk sollte so konfiguriert werden, dass Cluster-Peers _paarweise vollständige Mesh-Konnektivität_ haben. Das bedeutet, dass jedes Cluster-Paar in einer Cluster-Peer-Beziehung über Konnektivität zwischen allen Intercluster LIFs verfügt.
+
++
+Diese Seiten werden angezeigt, wenn ein ONTAP Cluster mit mehreren LIFs Quelle oder Ziel ist.
+
+. Wählen Sie auf der Seite Quellvolumenauswahl das Volume aus, das Sie replizieren möchten.
+. Geben Sie auf der Seite Name und Tiering des Zieldatenträgers den Namen des Zieldatenträgers an, wählen Sie einen zugrunde liegenden Laufwerkstyp aus, ändern Sie eine der erweiterten Optionen, und klicken Sie dann auf *Weiter*.
++
+Wenn das Ziel ein ONTAP Cluster ist, müssen Sie auch das Ziel-SVM und das Aggregat angeben.
+
+. Geben Sie auf der Seite Max. Übertragungsrate die maximale Rate (in Megabyte pro Sekunde) an, mit der Daten übertragen werden können.
+. Wählen Sie auf der Seite Replikationsrichtlinie eine der Standardrichtlinien aus, oder klicken Sie auf *zusätzliche Richtlinien*, und wählen Sie dann eine der erweiterten Richtlinien aus.
++
+Hilfe finden Sie unter link:task_replicating_data.html#choosing-a-replication-policy["Auswählen einer Replizierungsrichtlinie"].
+
++
+Wenn Sie eine benutzerdefinierte Backup- (SnapVault-) Policy wählen, müssen die mit der Policy verknüpften Labels mit den Labels der Snapshot Kopien auf dem Quell-Volume übereinstimmen. Weitere Informationen finden Sie unter link:task_replicating_data.html#how-backup-policies-work["Funktionsweise von Backup-Richtlinien"].
+
+. Wählen Sie auf der Seite Zeitplan eine einmalige Kopie oder einen wiederkehrenden Zeitplan aus.
++
+Es stehen mehrere Standardzeitpläne zur Verfügung. Wenn Sie einen anderen Zeitplan möchten, müssen Sie mithilfe von System Manager einen neuen Zeitplan auf dem Cluster _Destination_ erstellen.
+
+. Überprüfen Sie auf der Seite „Prüfen“ Ihre Auswahl und klicken Sie dann auf *Los*.
+
+
+Cloud Manager startet den Datenreplizierungsprozess. Details zur Replikation können Sie auf der Seite "Replication Status" anzeigen.
+
+
+
+== Managen von Plänen und Beziehungen zur Datenreplizierung
+
+Nachdem Sie die Datenreplizierung zwischen zwei Systemen eingerichtet haben, können Sie den Zeitplan und die Beziehung für die Datenreplizierung über Cloud Manager managen.
+
+.Schritte
+. Zeigen Sie auf der Seite Arbeitsumgebungen den Replikationsstatus für alle Arbeitsumgebungen im Arbeitsbereich oder für eine bestimmte Arbeitsumgebung an:
++
+[cols="15,85"]
+|===
+| Option | Aktion 
+
+
+| Alle Arbeitsumgebungen im Arbeitsbereich  a| 
+Klicken Sie oben im Cloud Manager auf *Replikation*.
+
+
+
+| Eine bestimmte Arbeitsumgebung  a| 
+Öffnen Sie die Arbeitsumgebung und klicken Sie auf *Replikationen*.
+
+|===
+. Überprüfen Sie den Status der Datenreplizierungsbeziehungen, um sicherzustellen, dass sie in Ordnung sind.
++
+
+NOTE: Wenn der Status einer Beziehung inaktiv ist und der Spiegelungsstatus nicht initialisiert ist, müssen Sie die Beziehung vom Zielsystem initialisieren, damit die Datenreplizierung gemäß dem definierten Zeitplan ausgeführt werden kann. Sie können die Beziehung mit System Manager oder der Befehlszeilenschnittstelle (CLI) initialisieren. Diese Zustände können angezeigt werden, wenn das Zielsystem ausfällt und dann wieder online geht.
+
+. Wählen Sie das Menüsymbol neben dem Quellvolume und anschließend eine der verfügbaren Aktionen aus.
++
+image:screenshot_replication_managing.gif["Screenshot: Zeigt die Liste der Aktionen an, die auf der Seite \"Replication Status\" verfügbar sind."]
+
++
+Die folgende Tabelle beschreibt die verfügbaren Aktionen:
+
++
+[cols="15,85"]
+|===
+| Aktion | Beschreibung 
+
+
+| Pause | Bricht die Beziehung zwischen Quell- und Ziel-Volumes und aktiviert das Ziel-Volume für den Datenzugriff. Diese Option wird in der Regel verwendet, wenn das Quell-Volume aufgrund von Ereignissen wie Datenbeschädigung, versehentlichem Löschen oder einem Offline-Status keine Daten bereitstellen kann. Informationen zum Konfigurieren eines Ziel-Volumes für den Datenzugriff und zur Reaktivierung eines Quell-Volumes finden Sie im ONTAP 9 Volume Disaster Recovery Express Guide. 
+
+
+| Neu synchronisieren  a| 
+Stellt eine unterbrochene Beziehung zwischen Volumes wieder her und setzt die Datenreplizierung gemäß dem definierten Zeitplan fort.
+
+
+IMPORTANT: Wenn Sie die Volumes erneut synchronisieren, werden die Inhalte auf dem Ziel-Volume durch die Inhalte auf dem Quell-Volume überschrieben.
+
+Informationen zur Neusynchronisierung, die die Daten vom Ziel-Volume zum Quell-Volume neu synchronisiert, finden Sie im http://docs.netapp.com/ontap-9/topic/com.netapp.doc.exp-sm-ic-fr/home.html["ONTAP 9 Express Guide für die Disaster Recovery von Volumes"^].
+
+
+
+| Reverse Resync | Kehrt die Rollen der Quell- und Ziel-Volumes um. Der Inhalt des ursprünglichen Quell-Volumes wird durch den Inhalt des Ziel-Volumes überschrieben. Dies ist hilfreich, wenn Sie ein Quell-Volume, das offline gegangen ist, reaktivieren möchten. Alle Daten, die zwischen der letzten Datenreplizierung und dem Zeitpunkt, zu dem das Quell-Volume deaktiviert wurde, auf das ursprüngliche Quell-Volume geschrieben wurden, bleiben nicht erhalten. 
+
+
+| Zeitplan bearbeiten | Ermöglicht die Auswahl eines anderen Zeitplans für die Datenreplizierung. 
+
+
+| Richtlinieninformationen | Zeigt die der Datenreplizierungsbeziehung zugewiesene Schutzrichtlinie an. 
+
+
+| Max. Übertragungsrate bearbeiten | Hier können Sie die maximale Rate (in Kilobyte pro Sekunde) bearbeiten, mit der Daten übertragen werden können. 
+
+
+| Aktualisierung | Startet einen inkrementellen Transfer, um das Zielvolume zu aktualisieren. 
+
+
+| Löschen | Löscht die Data-Protection-Beziehung zwischen Quell- und Ziel-Volumes, d. H., die Datenreplizierung findet nicht mehr zwischen den Volumes statt. Durch diese Aktion wird das Ziel-Volume nicht für den Datenzugriff aktiviert. Durch diese Aktion werden auch die Cluster-Peer-Beziehung und die SVM-Peer-Beziehung (Storage Virtual Machine) gelöscht, wenn keine anderen Data-Protection-Beziehungen zwischen den Systemen bestehen. 
+|===
+
+
+Nachdem Sie eine Aktion ausgewählt haben, aktualisiert Cloud Manager die Beziehung oder den Zeitplan.
+
+
+
+== Auswählen einer Replizierungsrichtlinie
+
+Möglicherweise benötigen Sie Hilfe bei der Auswahl einer Replizierungsrichtlinie, wenn Sie die Datenreplizierung in Cloud Manager einrichten. Eine Replizierungsrichtlinie definiert, wie das Storage-System Daten von einem Quell-Volume auf ein Ziel-Volume repliziert.
+
+
+
+=== Was sind Replizierungsrichtlinien
+
+Das Betriebssystem ONTAP erstellt automatisch Backups mit dem Namen Snapshot Kopien. Eine Snapshot Kopie ist ein schreibgeschütztes Image eines Volumes, das den Status des Dateisystems zu einem bestimmten Zeitpunkt erfasst.
+
+Wenn Sie Daten zwischen Systemen replizieren, replizieren Sie Snapshot Kopien von einem Quell-Volume zu einem Ziel-Volume. Eine Replizierungsrichtlinie gibt an, welche Snapshot Kopien vom Quell-Volume auf das Ziel-Volume repliziert werden sollen.
+
+
+TIP: Replizierungsrichtlinien werden auch als _Protection_ -Richtlinien bezeichnet, da sie durch SnapMirror und SnapVault Technologien unterstützt werden, die Disaster Recovery-Schutz und Disk-to-Disk Backup und Recovery bieten.
+
+Die folgende Abbildung zeigt die Beziehung zwischen Snapshot Kopien und Replizierungsrichtlinien:
+
+image:diagram_replication_policies.png["Diese Abbildung zeigt Snapshot Kopien auf einem Quell-Volume und eine Replizierungsrichtlinie, die die Replizierung aller oder bestimmter Snapshot Kopien vom Quell-Volume auf das Ziel-Volume festlegt."]
+
+
+
+=== Arten von Replizierungsrichtlinien
+
+Es gibt drei Arten von Replizierungsrichtlinien:
+
+* Eine _Mirror_ Richtlinie repliziert neu erstellte Snapshot Kopien zu einem Ziel-Volume.
++
+Sie können diese Snapshot Kopien verwenden, um das Quell-Volume als Vorbereitung für die Disaster Recovery oder für die einmalige Datenreplizierung zu schützen. Sie können das Ziel-Volume jederzeit für den Datenzugriff aktivieren.
+
+* Eine _Backup_-Richtlinie repliziert bestimmte Snapshot-Kopien zu einem Ziel-Volume und speichert diese in der Regel für einen längeren Zeitraum, als es auf dem Quell-Volume der Fall wäre.
++
+Sie können Daten aus diesen Snapshot Kopien wiederherstellen, wenn Daten beschädigt oder verloren gehen, und sie zur Einhaltung von Standards und zu anderen Governance-Zwecken aufbewahren.
+
+* Eine Richtlinie „ _Mirror und Backup_“ ermöglicht Disaster Recovery und langfristige Datenhaltung.
++
+Jedes System verfügt über eine standardmäßige Mirror- und Backup-Policy, die in vielen Situationen gut funktioniert. Wenn Sie benutzerdefinierte Richtlinien benötigen, können Sie mit System Manager eigene Richtlinien erstellen.
+
+
+
+Die folgenden Abbildungen zeigen den Unterschied zwischen den Richtlinien für Spiegelung und Sicherung. Eine Spiegelungsrichtlinie spiegelt die auf dem Quell-Volume verfügbaren Snapshot Kopien wider.
+
+image:diagram_replication_snapmirror.png["Diese Abbildung zeigt Snapshot Kopien auf einem Quell-Volume und einem Ziel-Volume mit Mirror, das das Quell-Volume spiegelt."]
+
+Eine Backup-Policy behält Snapshot-Kopien in der Regel länger bei, als sie auf dem Quell-Volume aufbewahrt werden:
+
+image:diagram_replication_snapvault.png["Diese Abbildung zeigt Snapshot-Kopien auf einem Quell-Volume und einem Backup-Ziel-Volume, das mehr Snapshot-Kopien enthält, da SnapVault Snapshot Kopien zur langfristigen Aufbewahrung aufbewahrt."]
+
+
+
+=== Funktionsweise von Backup-Richtlinien
+
+Im Gegensatz zu Spiegelungsrichtlinien replizieren Backup-Richtlinien (SnapVault) bestimmte Snapshot Kopien auf ein Ziel-Volume. Es ist wichtig zu verstehen, wie Backup-Richtlinien funktionieren, wenn Sie Ihre eigenen Richtlinien anstelle der Standardrichtlinien verwenden möchten.
+
+
+
+==== Verständnis der Beziehung zwischen Snapshot Copy Labels und Backup-Richtlinien
+
+Eine Snapshot-Richtlinie definiert, wie das System Snapshot-Kopien von Volumes erstellt. Die Richtlinie gibt an, wann die Snapshot Kopien erstellt werden sollen, wie viele Kopien aufbewahrt werden sollen und wie sie beschriften werden. Ein System erstellt beispielsweise jeden Tag um 12:10 Uhr eine Snapshot Kopie, behält die beiden neuesten Kopien bei und kennzeichnet sie "täglich".
+
+Eine Backup-Richtlinie enthält Regeln, die festlegen, welche benannten Snapshot Kopien auf ein Ziel-Volume repliziert werden sollen und wie viele Kopien aufbewahrt werden sollen. Die in einer Backup-Richtlinie definierten Bezeichnungen müssen mit einer oder mehreren Bezeichnungen übereinstimmen, die in einer Snapshot-Richtlinie definiert sind. Andernfalls kann das System keine Snapshot Kopien replizieren.
+
+Eine Backup-Policy, die beispielsweise die Bezeichnungen "täglich" und "wöchentlich" enthält, führt zur Replizierung von Snapshot Kopien, die nur diese Bezeichnungen enthalten. Es werden keine anderen Snapshot Kopien repliziert, wie im folgenden Bild dargestellt:
+
+image:diagram_replication_snapvault_policy.png["Diese Abbildung zeigt eine Snapshot-Richtlinie, ein Quell-Volume, die aus der Snapshot-Richtlinie erstellten Snapshot-Kopien und anschließend auf der Grundlage einer Backup-Richtlinie die Replizierung dieser Snapshot-Kopien mit den „täglichen“ und „wöchentlichen“ Beschriftungen in ein Ziel-Volume."]
+
+
+
+==== Standardrichtlinien und benutzerdefinierte Richtlinien
+
+Die Standard-Snapshot-Richtlinie erstellt stündlich, täglich und wöchentlich Snapshot Kopien, wobei sechs Stunden, zwei Tage und zwei wöchentliche Snapshot Kopien aufbewahrt werden.
+
+Sie können problemlos eine Standard-Backup-Richtlinie mit der Standard-Snapshot-Richtlinie verwenden. Die Standard-Backup-Richtlinien replizieren tägliche und wöchentliche Snapshot Kopien, wobei sieben tägliche und 52 wöchentliche Snapshot Kopien aufbewahrt werden.
+
+Wenn Sie benutzerdefinierte Richtlinien erstellen, müssen die durch diese Richtlinien definierten Bezeichnungen übereinstimmen. Sie können benutzerdefinierte Richtlinien mit System Manager erstellen.
+
+
+
+== Datenreplizierung von NetApp HCI auf Cloud Volumes ONTAP
+
+Wenn Sie versuchen, Daten von NetApp HCI zu Cloud Volumes ONTAP zu replizieren, können Sie dies auf einem NetApp HCI System tun, auf dem NetApp Element Software mit SnapMirror läuft. Alternativ können Sie Daten auf Volumes replizieren, die auf einem ONTAP Select System erstellt wurden, das als virtueller Gast in einer NetApp HCI Lösung ausgeführt wird, auf Cloud Volumes ONTAP.
+
+Details finden Sie in den folgenden technischen Berichten:
+
+* https://www.netapp.com/us/media/tr-4641.pdf["Technischer Bericht 4641: NetApp HCI Datensicherung"^]
+* https://www.netapp.com/us/media/tr-4651.pdf["Technischer Bericht 4651: NetApp SolidFire SnapMirror Architektur und Konfiguration"^]
+

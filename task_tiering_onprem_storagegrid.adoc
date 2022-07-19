@@ -1,0 +1,191 @@
+---
+sidebar: sidebar 
+permalink: task_tiering_onprem_storagegrid.html 
+keywords: data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, storagegrid, tier to storagegrid, fabricpool storagegrid 
+summary: Durch Tiering von Daten an StorageGRID wird Speicherplatz für ONTAP-Cluster vor Ort freigegeben. Das Daten-Tiering wird durch den NetApp Cloud Tiering Service unterstützt. 
+---
+= Tiering von Daten von lokalen ONTAP Clustern zu StorageGRID
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Durch Tiering von Daten an StorageGRID wird Speicherplatz für ONTAP-Cluster vor Ort freigegeben. Das Daten-Tiering wird durch den NetApp Cloud Tiering Service unterstützt.
+
+
+
+== Schnellstart
+
+Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den verbleibenden Abschnitten, um ausführliche Informationen zu erhalten.
+
+
+
+==== Daten werden auf StorageGRID-Ebene vorbereitet
+
+[role="quick-margin-para"]
+Sie benötigen Folgendes:
+
+* Ein AFF- oder FAS-System mit reinen SSD-Aggregaten, auf denen ONTAP 9.4 oder höher ausgeführt wird, und eine Verbindung über einen vom Benutzer angegebenen Port an StorageGRID.
+* StorageGRID 10.3 oder höher mit AWS-Zugriffsschlüsseln mit S3-Berechtigungen.
+* Ein Connector, der auf Ihrem Gelände installiert ist.
+* Networking für den Connector, der eine ausgehende HTTPS-Verbindung zum ONTAP-Cluster, zu StorageGRID und zum Cloud Tiering-Service ermöglicht.
+
+
+
+
+==== Tiering einrichten
+
+[role="quick-margin-para"]
+Wählen Sie eine lokale Arbeitsumgebung aus, klicken Sie auf *Tiering einrichten* und folgen Sie den Anweisungen zum Tiering von Daten auf StorageGRID.
+
+
+
+== Anforderungen
+
+Überprüfen Sie die Unterstützung für Ihr ONTAP Cluster, richten Sie Ihr Netzwerk ein und bereiten Sie den Objekt-Storage vor.
+
+Die folgende Abbildung zeigt die einzelnen Komponenten und die Verbindungen, die zwischen den Komponenten vorbereitet werden müssen:
+
+image:diagram_cloud_tiering_storagegrid.png["Ein Architekturabbild, das den Cloud Tiering Service mit einer Verbindung zum Service Connector vor Ort, den Service Connector mit einer Verbindung zu Ihrem ONTAP Cluster und eine Verbindung zwischen dem ONTAP Cluster und Objekt-Storage zeigt. Aktive Daten befinden sich auf dem ONTAP Cluster, während sich inaktive Daten im Objekt-Storage befinden."]
+
+
+NOTE: Die Kommunikation zwischen Connector und StorageGRID dient nur der Einrichtung des Objektspeichers.
+
+
+
+=== Vorbereiten der ONTAP Cluster
+
+Ihre ONTAP-Cluster müssen beim Tiering von Daten zu StorageGRID die folgenden Anforderungen erfüllen.
+
+Unterstützte ONTAP Plattformen:: Cloud Tiering unterstützt AFF Systeme und rein SSD-basierte Aggregate auf FAS Systemen.
+Unterstützte ONTAP Version:: ONTAP 9.4 oder höher
+Lizenzierung:: Eine FabricPool Lizenz ist nicht erforderlich auf dem ONTAP Cluster wenn Tiering von Daten zu StorageGRID.
+Netzwerkanforderungen für Cluster::
++
+--
+* Das ONTAP-Cluster initiiert eine HTTPS-Verbindung über einen vom Benutzer angegebenen Port zum StorageGRID (der Port ist während der Tiering-Einrichtung konfigurierbar).
++
+ONTAP liest und schreibt Daten auf und aus dem Objekt-Storage. Objekt-Storage startet nie, er reagiert einfach nur.
+
+* Über den Konnektor ist eine eingehende Verbindung erforderlich, die sich in Ihrem Haus befinden muss.
++
+Es ist keine Verbindung zwischen dem Cluster und dem Cloud Tiering Service erforderlich.
+
+* Auf jedem ONTAP Node, der Tiered Volumes hostet, ist eine Intercluster-LIF erforderlich. Die LIF muss dem _IPspace_ zugewiesen sein, den ONTAP zur Verbindung mit Objekt-Storage verwenden sollte.
++
+IPspaces ermöglichen die Trennung des Netzwerkdatenverkehrs und ermöglichen die Trennung des Client-Datenverkehrs für Datenschutz und Sicherheit. http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-nmg/GUID-69120CF0-F188-434F-913E-33ACB8751A5D.html["Erfahren Sie mehr über IPspaces"^].
+
++
+Wenn Sie Daten-Tiering einrichten, werden Sie von Cloud Tiering aufgefordert, den IP-Speicherplatz zu verwenden. Sie sollten den IPspace auswählen, dem jede LIF zugeordnet ist. Dies kann der „Standard“-IPspace oder ein benutzerdefinierter IPspace sein, den Sie erstellt haben.
+
+
+
+--
+Unterstützte Volumes und Aggregate:: Die Gesamtzahl der Volumes, die in Cloud Tiering Tiers möglich sind, ist unter Umständen kleiner als die Anzahl der Volumes in Ihrem ONTAP System. Das liegt daran, dass Volumes von einigen Aggregaten nicht abgestuft werden können. Sie können beispielsweise keine Daten-Tiers von SnapLock Volumes oder MetroCluster Konfigurationen erstellen. In der ONTAP-Dokumentation finden Sie weitere Informationen link:http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-psmg/GUID-8E421CC9-1DE1-492F-A84C-9EB1B0177807.html["Funktionalität oder Funktionen, die nicht von FabricPool unterstützt werden"^].
+
+
+
+NOTE: Cloud Tiering unterstützt FlexGroup Volumes ab ONTAP 9.5. Setup funktioniert wie jedes andere Volume.
+
+
+
+=== StorageGRID wird vorbereitet
+
+StorageGRID muss folgende Anforderungen erfüllen:
+
+Unterstützte StorageGRID-Versionen:: StorageGRID 10.3 und höher werden unterstützt.
+S3-Anmeldedaten:: Wenn Sie Tiering in StorageGRID einrichten, müssen Sie Cloud Tiering mit einem S3-Zugriffsschlüssel und einem geheimen Schlüssel bereitstellen. Cloud Tiering verwendet die Schlüssel für den Zugriff auf Ihre Buckets.
++
+--
+Diese Zugriffsschlüssel müssen einem Benutzer mit den folgenden Berechtigungen zugeordnet sein:
+
+[source, json]
+----
+"s3:ListAllMyBuckets",
+"s3:ListBucket",
+"s3:GetObject",
+"s3:PutObject",
+"s3:DeleteObject",
+"s3:CreateBucket"
+----
+--
+Objektversionierung:: Sie dürfen die StorageGRID Objektversionierung auf dem Objektspeicher-Bucket nicht aktivieren.
+
+
+
+
+=== Erstellen oder Umschalten von Anschlüssen
+
+Für das Tiering von Daten in die Cloud ist ein Connector erforderlich. Beim Tiering von Daten zu StorageGRID muss an Ihrem Standort ein Connector verfügbar sein. Sie müssen entweder einen neuen Konnektor installieren oder sicherstellen, dass sich der aktuell ausgewählte Connector auf der Prem befindet.
+
+* link:concept_connectors.html["Erfahren Sie mehr über Steckverbinder"]
+* link:reference_cloud_mgr_reqs.html["Connector-Host-Anforderungen"]
+* link:task_installing_linux.html["Installieren des Connectors auf einem vorhandenen Linux-Host"]
+* link:task_managing_connectors.html["Wechseln zwischen den Anschlüssen"]
+
+
+
+
+=== Vorbereiten der Vernetzung für den Connector
+
+Stellen Sie sicher, dass der Connector über die erforderlichen Netzwerkverbindungen verfügt.
+
+.Schritte
+. Stellen Sie sicher, dass das Netzwerk, in dem der Connector installiert ist, folgende Verbindungen ermöglicht:
++
+** Eine ausgehende Internetverbindung zum Cloud Tiering-Service über Port 443 (HTTPS)
+** Eine HTTPS-Verbindung über Port 443 zu StorageGRID
+** Eine HTTPS-Verbindung über Port 443 zu Ihren ONTAP Clustern
+
+
+
+
+
+
+== Tiering inaktiver Daten von dem ersten Cluster zu StorageGRID
+
+Starten Sie nach der Vorbereitung der Umgebung das Tiering inaktiver Daten aus dem ersten Cluster.
+
+.Was Sie und#8217;ll benötigen
+* link:task_discovering_ontap.html["Eine Arbeitsumgebung vor Ort"].
+* Einen AWS-Zugriffsschlüssel mit den erforderlichen S3-Berechtigungen.
+
+
+.Schritte
+. Wählen Sie ein On-Premises-Cluster aus.
+. Klicken Sie Auf *Tiering Einrichten*.
++
+image:screenshot_setup_tiering_onprem.gif["Ein Screenshot, der die Option „Tiering einrichten“ zeigt, die auf der rechten Seite des Bildschirms angezeigt wird, nachdem Sie eine lokale ONTAP Arbeitsumgebung ausgewählt haben."]
+
++
+Sie befinden sich jetzt im Tiering Dashboard.
+
+. Klicken Sie neben dem Cluster auf *Tiering einrichten*.
+. Führen Sie die Schritte auf der Seite *Tiering Setup* aus:
++
+.. *Wählen Sie Ihren Anbieter*: Wählen Sie StorageGRID.
+.. *Server*: Geben Sie den FQDN des StorageGRID-Servers ein, geben Sie den Port ein, den ONTAP für die HTTPS-Kommunikation mit StorageGRID verwenden soll, und geben Sie den Zugriffsschlüssel und den geheimen Schlüssel für ein AWS-Konto ein, das über die erforderlichen S3-Berechtigungen verfügt.
+.. *Bucket*: Fügen Sie einen neuen Bucket hinzu oder wählen Sie einen vorhandenen Bucket für die Tiered Data aus.
+.. *Clusternetzwerk*: Wählen Sie den IPspace aus, den ONTAP verwenden soll, um eine Verbindung zum Objekt-Storage herzustellen, und klicken Sie auf *Weiter*.
++
+Durch die Auswahl des richtigen IPspaces wird sichergestellt, dass Cloud Tiering eine Verbindung von ONTAP mit dem Objekt-Storage Ihres Cloud-Providers einrichten kann.
+
+
+
+. Klicken Sie auf *Weiter*, um die Volumes auszuwählen, die Sie abstufen möchten.
+. Richten Sie auf der Seite *Tier Volumes* Tiering für jedes Volume ein. Klicken Sie auf das image:screenshot_edit_icon.gif["Ein Screenshot des Bearbeiten-Symbols, der am Ende jeder Zeile in der Tabelle für das Tiering von Volumes angezeigt wird"] Symbol, wählen Sie eine Tiering-Richtlinie aus, passen Sie optional die Kühltage an und klicken Sie auf *Apply*.
++
+link:concept_cloud_tiering.html#volume-tiering-policies["Weitere Informationen zu Volume Tiering Policies"].
+
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_select.gif["Ein Screenshot, in dem die auf der Seite Quellvolumen auswählen ausgewählten Volumes angezeigt werden."]
+
+
+
+Sie haben erfolgreich das Daten-Tiering von Volumes auf dem Cluster zu StorageGRID eingerichtet.
+
+Sie können weitere Cluster hinzufügen oder Informationen zu den aktiven und inaktiven Daten auf dem Cluster prüfen. Weitere Informationen finden Sie unter link:task_managing_tiering.html["Managen von Daten-Tiering von Clustern"].

@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: task_managing_connectors.html 
+keywords: managing connectors, uninstall connector, switch connectors, switch between connectors, go to local UI, local interface, local connector, local cloud manager 
+summary: Nachdem Sie einen oder mehrere Anschlüsse erstellt haben, können Sie diese verwalten, indem Sie zwischen den Anschlüssen wechseln, eine Verbindung zur lokalen Benutzeroberfläche herstellen, die auf einem Connector ausgeführt wird, und mehr. 
+---
+= Verwalten vorhandener Anschlüsse
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Nachdem Sie einen oder mehrere Anschlüsse erstellt haben, können Sie diese verwalten, indem Sie zwischen den Anschlüssen wechseln, eine Verbindung zur lokalen Benutzeroberfläche herstellen, die auf einem Connector ausgeführt wird, und mehr.
+
+
+
+== Wechseln zwischen den Anschlüssen
+
+Wenn Sie über mehrere Anschlüsse verfügen, können Sie zwischen diesen wechseln, um die Arbeitsumgebungen zu sehen, die mit einem bestimmten Konnektor verknüpft sind.
+
+Nehmen wir zum Beispiel an, dass Sie in einer Multi-Cloud-Umgebung arbeiten. Möglicherweise verfügen Sie über einen Connector in AWS und einen anderen in Google Cloud. Zum Managen der Cloud Volumes ONTAP Systeme, die in diesen Clouds ausgeführt werden, müsste zwischen diesen Anschlüssen gewechselt werden.
+
+.Schritt
+. Klicken Sie auf das Dropdown-Menü *Connector*, wählen Sie einen anderen Anschluss aus und klicken Sie dann auf *Switch*.
++
+image:screenshot_connector_switch.gif["Ein Screenshot, der das Symbol Connector in der Kopfzeile und die Aktion Switch anzeigt."]
+
++
+Cloud Manager aktualisiert und zeigt die Arbeitsumgebungen an, die mit dem ausgewählten Connector verknüpft sind.
+
+
+
+
+
+== Zugriff auf die lokale Benutzeroberfläche
+
+Während Sie fast alle Aufgaben über die SaaS-Benutzeroberfläche ausführen sollten, steht auf dem Connector weiterhin eine lokale Benutzeroberfläche zur Verfügung. Diese Schnittstelle wird für einige Aufgaben benötigt, die über den Connector selbst ausgeführt werden müssen:
+
+* link:task_configuring_proxy.html["Festlegen eines Proxyservers"]
+* Installation eines Patches (Sie arbeiten in der Regel mit NetApp Mitarbeitern zusammen, um einen Patch zu installieren)
+* Herunterladen von AutoSupport-Meldungen (normalerweise gerichtet von NetApp Mitarbeitern, wenn Sie Probleme haben)
+
+
+.Schritte
+. https://docs.netapp.com/us-en/occm/task_logging_in.html["Melden Sie sich bei der SaaS-Schnittstelle von Cloud Manager an"^] Von einem Computer mit einer Netzwerkverbindung zur Instanz des Connectors.
++
+Wenn der Connector keine öffentliche IP-Adresse hat, benötigen Sie eine VPN-Verbindung oder Sie müssen eine Verbindung von einem Jump-Host herstellen, der sich im gleichen Netzwerk wie der Connector befindet.
+
+. Klicken Sie auf das Dropdown-Menü *Connector*, klicken Sie auf das Aktionsmenü für einen Connector und dann auf *Gehe zu lokaler Benutzeroberfläche*.
++
+image:screenshot_connector_local_ui.gif["Ein Screenshot, der das Symbol Connector in der Kopfzeile und die Aktion Gehe zu lokaler Benutzeroberfläche anzeigt."]
+
++
+Die Cloud Manager-Schnittstelle, die auf dem Connector ausgeführt wird, wird in einer neuen Browser-Registerkarte geladen.
+
+
+
+
+
+== Entfernen von Anschlüssen aus Cloud Manager
+
+Wenn ein Connector inaktiv ist, können Sie ihn aus der Liste der Anschlüsse in Cloud Manager entfernen. Sie können dies tun, wenn Sie die virtuelle Connector-Maschine gelöscht oder die Connector-Software deinstalliert haben.
+
+Beachten Sie Folgendes zum Entfernen eines Konnektors:
+
+* Durch diese Aktion wird die virtuelle Maschine nicht gelöscht.
+* Diese Aktion kann nicht rückgängig gemacht werden: Sobald ein Connector aus Cloud Manager entfernt wurde, kann er nicht wieder zu Cloud Manager hinzugefügt werden.
+
+
+.Schritte
+. Klicken Sie in der Kopfzeile des Cloud Manager auf das Dropdown-Menü Connector.
+. Klicken Sie auf das Aktionsmenü für einen inaktiven Konnektor und klicken Sie auf *Connector entfernen*.
++
+image:screenshot_connector_remove.gif["Ein Screenshot des Connectors-Widgets, in dem Sie einen inaktiven Connector entfernen können."]
+
+. Geben Sie den Namen des zu bestätigenden Connectors ein, und klicken Sie anschließend auf Entfernen.
+
+
+Cloud Manager entfernt den Connector aus seinen Datensätzen.
+
+
+
+== Deinstallieren der Connector-Software
+
+Der Connector enthält ein Deinstallationsskript, mit dem Sie die Software deinstallieren können, um Probleme zu beheben oder die Software dauerhaft vom Host zu entfernen.
+
+.Schritt
+. Führen Sie auf dem Linux-Host das Deinstallationsskript aus:
++
+*/opt/Application/netapp/cloudmanager/bin/uninstall.sh [Silent]*
+
++
+_Silent_ führt das Skript aus, ohne dass Sie zur Bestätigung aufgefordert werden.
+
+
+
+.Wie sieht es mit Software-Upgrades aus?
+****
+Der Connector aktualisiert seine Software automatisch auf die neueste Version, solange er hat link:reference_networking_cloud_manager.html["Outbound-Internetzugang"] Um das Softwareupdate zu erhalten.
+
+****

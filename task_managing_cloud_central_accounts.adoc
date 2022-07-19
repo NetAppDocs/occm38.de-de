@@ -1,0 +1,183 @@
+---
+sidebar: sidebar 
+permalink: task_managing_cloud_central_accounts.html 
+keywords: account settings, workspaces, Connector, account admin, workspace admin, users, associate, disassociate, add user, add users, user management, administer, user, management, remove user, remove users, remove, delete, account, user account, user accounts, add workspace, setup workspace, workspace, Connector, manage Connector, manage workspace, associate Connector 
+summary: Nach der ersten Einrichtung müssen Sie möglicherweise später Benutzer, Arbeitsbereiche, Anschlüsse und Abonnements verwalten. 
+---
+= Verwalten von Benutzern, Arbeitsbereichen, Connectors und Abonnements
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+link:task_setting_up_cloud_central_accounts.html["Nach der ersten Einrichtung"], Möglicherweise müssen Sie Ihre Kontoeinstellungen später durch die Verwaltung von Benutzern, Workspaces, Connectors und Abonnements verwalten.
+
+link:concept_cloud_central_accounts.html["Erfahren Sie mehr über die Funktionsweise von Cloud Central-Accounts"].
+
+
+
+== Benutzer hinzufügen
+
+Cloud Central Benutzer werden mit dem Cloud Central Konto verknüpft, damit diese Arbeitsumgebungen in Cloud Manager erstellen und verwalten können.
+
+.Schritte
+. Wenn der Benutzer dies noch nicht getan hat, bitten Sie den Benutzer, zu wechseln https://cloud.netapp.com["NetApp Cloud Central"^] Und melden Sie sich an.
+. Klicken Sie oben im Cloud Manager auf das Dropdown-Menü *Konto*.
++
+image:screenshot_account_settings_menu.gif["Ein Screenshot, der die Option „Account Settings“ im oberen Banner von Cloud Manager zeigt."]
+
+. Klicken Sie neben dem aktuell ausgewählten Konto auf *Konto verwalten*.
++
+image:screenshot_manage_account_settings.gif["Ein Screenshot, in dem die Option „Kontoeinstellungen verwalten“ angezeigt wird, die im Dropdown-Menü „Konto“ verfügbar ist."]
+
+. Klicken Sie auf der Registerkarte Benutzer auf *Benutzer verknüpfen*.
+. Geben Sie die E-Mail-Adresse des Benutzers ein, und wählen Sie eine Rolle für den Benutzer aus:
++
+** *Account Admin*: Kann jede Aktion in Cloud Manager ausführen.
+** *Workspace Admin*: Kann Ressourcen in zugewiesenen Workspaces erstellen und verwalten.
+** *Compliance Viewer*: Kann nur Compliance-Informationen anzeigen und Berichte für Arbeitsbereiche erstellen, auf die sie zugreifen können.
+
+
+. Wenn Sie Workspace Admin oder Compliance Viewer ausgewählt haben, wählen Sie eine oder mehrere Arbeitsbereiche aus, die diesem Benutzer zugeordnet werden sollen.
++
+image:screenshot_associate_user.gif["Ein Screenshot, der zeigt, wie ein Benutzer durch Auswahl einer Rolle und der zugehörigen Arbeitsbereiche zugeordnet wird."]
+
+. Klicken Sie Auf * Benutzer Verknüpfen*.
+
+
+Der Benutzer sollte eine E-Mail von NetApp Cloud Central mit dem Titel „Account Association“ erhalten. Die E-Mail enthält die für den Zugriff auf Cloud Manager erforderlichen Informationen.
+
+
+
+== Benutzer werden entfernt
+
+Die Trennung der Verknüpfung eines Benutzers wird dadurch erschwert, dass er nicht mehr auf die Ressourcen eines Cloud Central Kontos zugreifen kann.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf das Dropdown-Menü *Konto* und klicken Sie auf *Konto verwalten*.
++
+image:screenshot_manage_account_settings.gif["Ein Screenshot, in dem die Option „Kontoeinstellungen verwalten“ angezeigt wird, die im Dropdown-Menü „Konto“ verfügbar ist."]
+
+. Klicken Sie auf der Registerkarte Benutzer auf das Aktionsmenü in der Zeile, die dem Benutzer entspricht.
++
+image:screenshot_associate_user_workspace.gif["Ein Screenshot, der das Aktionsmenü anzeigt, das verfügbar ist, wenn der Mauszeiger über den Namen eines Benutzers in der Benutzertabelle bewegt wird."]
+
+. Klicken Sie zur Bestätigung auf *Benutzer entzuordnen* und klicken Sie zur Bestätigung auf *Mitarbeiter nicht zuordnen*.
+
+
+Der Benutzer kann nicht mehr auf die Ressourcen in diesem Cloud Central Konto zugreifen.
+
+
+
+== Arbeitsbereiche eines Arbeitsbereichs-Administrators verwalten
+
+Sie können Workspace-Administratoren jederzeit mit Arbeitsbereichen verknüpfen und sie ablösen. Durch die Verknüpfung des Benutzers können die Arbeitsumgebungen in diesem Arbeitsbereich erstellt und angezeigt werden.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf das Dropdown-Menü *Konto* und klicken Sie auf *Konto verwalten*.
++
+image:screenshot_manage_account_settings.gif["Ein Screenshot, in dem die Option „Kontoeinstellungen verwalten“ angezeigt wird, die im Dropdown-Menü „Konto“ verfügbar ist."]
+
+. Klicken Sie auf der Registerkarte Benutzer auf das Aktionsmenü in der Zeile, die dem Benutzer entspricht.
++
+image:screenshot_associate_user_workspace.gif["Ein Screenshot, der das Aktionsmenü anzeigt, das verfügbar ist, wenn der Mauszeiger über den Namen eines Benutzers in der Benutzertabelle bewegt wird."]
+
+. Klicken Sie Auf *Arbeitsbereiche Verwalten*.
+. Wählen Sie die Arbeitsbereiche aus, die dem Benutzer zugeordnet werden sollen, und klicken Sie auf *Anwenden*.
+
+
+Der Benutzer kann jetzt über Cloud Manager auf diese Arbeitsbereiche zugreifen, solange der Connector auch mit den Arbeitsbereichen verknüpft war.
+
+
+
+== Arbeitsbereiche verwalten
+
+Verwalten Sie Ihre Arbeitsbereiche, indem Sie sie erstellen, umbenennen und löschen. Beachten Sie, dass Sie einen Arbeitsbereich nicht löschen können, wenn er Ressourcen enthält. Er muss leer sein.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf das Dropdown-Menü *Konto* und klicken Sie auf *Konto verwalten*.
+. Klicken Sie Auf *Arbeitsbereiche*.
+. Wählen Sie eine der folgenden Optionen:
++
+** Klicken Sie auf *Neuen Arbeitsbereich hinzufügen*, um einen neuen Arbeitsbereich zu erstellen.
+** Klicken Sie auf *Umbenennen*, um den Arbeitsbereich umzubenennen.
+** Klicken Sie auf *Löschen*, um den Arbeitsbereich zu löschen.
+
+
+
+
+
+
+== Verwalten der Arbeitsbereiche eines Connectors
+
+Sie müssen den Connector mit Arbeitsbereichen verknüpfen, damit Workspace-Administratoren über Cloud Manager auf diese Arbeitsbereiche zugreifen können.
+
+Wenn Sie nur Kontoadministratoren haben, ist es nicht erforderlich, den Connector mit Arbeitsbereichen zu verknüpfen. Account-Administratoren haben standardmäßig die Möglichkeit, auf alle Workspaces in Cloud Manager zuzugreifen.
+
+link:concept_cloud_central_accounts.html#users-workspaces-and-service-connectors["Erfahren Sie mehr über Benutzer, Arbeitsbereiche und Connectors"].
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf das Dropdown-Menü *Konto* und klicken Sie auf *Konto verwalten*.
+. Klicken Sie Auf *Connector*.
+. Klicken Sie auf *Arbeitsbereiche verwalten* für den Konnektor, den Sie verknüpfen möchten.
+. Wählen Sie die Arbeitsbereiche aus, die mit dem Connector verknüpft werden sollen, und klicken Sie auf *Anwenden*.
+
+
+
+
+== Verwalten von Abonnements
+
+Nachdem Sie den Marketplace eines Cloud-Providers abonniert haben, steht jedes Abonnement über das Widget „Account Settings“ (Kontoeinstellungen) zur Verfügung. Sie haben die Möglichkeit, ein Abonnement umzubenennen und das Abonnement von einem oder mehreren Konten zu entfernen.
+
+Nehmen wir zum Beispiel an, dass Sie zwei Konten haben und jedes über separate Abonnements abgerechnet wird. Sie können ein Abonnement von einem der Konten ablösen, so dass die Benutzer in diesem Konto nicht versehentlich das falsche Abonnement wählen, wenn Sie eine Cloud Volume ONTAP Arbeitsumgebung erstellen.
+
+link:concept_cloud_central_accounts.html["Weitere Informationen zu Abonnements"].
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf das Dropdown-Menü *Konto* und klicken Sie auf *Konto verwalten*.
+. Klicken Sie Auf *Abonnements*.
++
+Sie sehen nur die Abonnements, die mit dem Konto verknüpft sind, das Sie derzeit anzeigen.
+
+. Klicken Sie in der Zeile auf das Aktionsmenü, das dem Abonnement entspricht, das Sie verwalten möchten.
++
+image:screenshot_subscription_menu.gif["Ein Screenshot des Aktionsmenüs für ein Abonnement."]
+
+. Wählen Sie diese Option, um das Abonnement umzubenennen oder um die Konten zu verwalten, die mit dem Abonnement verbunden sind.
+
+
+
+
+== Ändern des Kontonamens
+
+Ändern Sie Ihren Kontonamen jederzeit, um ihn in etwas Sinnvolles für Sie zu ändern.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf das Dropdown-Menü *Konto* und klicken Sie auf *Konto verwalten*.
+. Klicken Sie auf der Registerkarte *Übersicht* neben dem Kontonamen auf das Bearbeiten-Symbol.
+. Geben Sie einen neuen Kontonamen ein und klicken Sie auf *Speichern*.
+
+
+
+
+== Aktivieren oder Deaktivieren der SaaS-Plattform
+
+Wir empfehlen nicht, die SaaS-Plattform zu deaktivieren, es sei denn, Sie müssen, um die Sicherheitsrichtlinien Ihres Unternehmens zu erfüllen. Durch die Deaktivierung der SaaS-Plattform ist Ihre Fähigkeit zur Nutzung von integrierten NetApp Cloud-Services begrenzt.
+
+Die folgenden Services stehen bei Cloud Manager nicht zur Verfügung, wenn Sie die SaaS-Plattform deaktivieren:
+
+* Cloud-Compliance
+* Kubernetes
+* Cloud Tiering
+* Globaler Datei-Cache
+* Monitoring (Cloud Insights)
+
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf das Dropdown-Menü *Konto* und klicken Sie auf *Konto verwalten*.
+. Aktivieren Sie auf der Registerkarte *Übersicht* die Option zur Nutzung der SaaS-Plattform.
+

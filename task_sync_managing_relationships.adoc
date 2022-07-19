@@ -1,0 +1,124 @@
+---
+sidebar: sidebar 
+permalink: task_sync_managing_relationships.html 
+keywords: sync, immediate, now, schedule, minutes, hours, on, off, delete, group, accelerate, accelerating, grouping, multiple data brokers, sync now, turn off, turn on, sync schedule, settings, change settings, recently modified files, delete files on target, retries, retry, file types, exclude file type, include file type, delete relationship 
+summary: Sie können Synchronisierungsbeziehungen jederzeit verwalten, indem Sie Daten sofort synchronisieren, Zeitpläne ändern und vieles mehr. 
+---
+= Verwalten von Synchronisierungsbeziehungen
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Sie können Synchronisierungsbeziehungen jederzeit verwalten, indem Sie Daten sofort synchronisieren, Zeitpläne ändern und vieles mehr.
+
+
+
+== Durchführen einer sofortigen Datensynchronisierung
+
+Anstatt auf die nächste geplante Synchronisierung zu warten, können Sie eine Taste drücken, um Daten sofort zwischen Quelle und Ziel zu synchronisieren.
+
+.Schritte
+. Bewegen Sie im *Sync Dashboard* den Mauszeiger über die Synchronisierungsbeziehung und klicken Sie auf das Aktivitätsmenü.
++
+image:screenshot_relationship_menu.gif["Ein Screenshot, der das Aktionsmenü zeigt, das angezeigt wird, wenn Sie mit der Maus über eine Synchronisierungsbeziehung fahren."]
+
+. Klicken Sie auf *Jetzt synchronisieren* und dann auf *Sync*, um zu bestätigen.
++
+image:screenshot_dashboard_actions.gif["Dieser Screenshot zeigt die Aktionen, die Sie für eine Synchronisierungsbeziehung ausführen können."]
+
+
+
+Cloud Sync startet den Datensynchronisierungsprozess für die Beziehung.
+
+
+
+== Beschleunigung der Sync-Performance
+
+Beschleunigen Sie die Performance einer Synchronisierungsbeziehung, indem Sie der Beziehung einen zusätzlichen Daten-Broker hinzufügen. Der zusätzliche Daten-Broker muss ein _neuer_ Daten-Broker sein.
+
+Wenn die vorhandenen Datenvermittler in der Beziehung in anderen Synchronisierungsbeziehungen verwendet werden, fügt Cloud Sync diesen Beziehungen automatisch auch den neuen Datenvermittler hinzu.
+
+Nehmen wir zum Beispiel an, Sie haben drei Beziehungen:
+
+* Beziehung 1 verwendet Datenbroker A
+* Beziehung 2 verwendet Datenbroker B.
+* Beziehung 3 verwendet Datenbroker A
+
+
+Sie möchten die Performance von Beziehung 1 beschleunigen, sodass Sie dieser Beziehung einen neuen Daten-Broker hinzufügen (Daten-Broker C). Da Data Broker A auch in Beziehung 3 verwendet wird, wird der neue Data Broker automatisch auch zu Beziehung 3 hinzugefügt.
+
+.Schritte
+. Stellen Sie sicher, dass mindestens einer der vorhandenen Datenvermittler in der Beziehung online ist.
+. Zeigen Sie mit der Maus auf die Synchronisierungsbeziehung, und klicken Sie auf das Aktionsmenü.
+. Klicken Sie Auf *Beschleunigen*.
++
+image:screenshot_accelerate.gif["Ein Screenshot von Cloud Sync, der das Aktionsmenü für eine Synchronisierungsbeziehung anzeigt. Mit dem Mauszeiger wird Accelerate hervorgehoben."]
+
+. Folgen Sie den Anweisungen, um einen neuen Daten-Broker zu erstellen.
+
+
+Cloud Sync fügt den neuen Daten-Broker zu den Synchronisierungsbeziehungen hinzu. Die Performance der nächsten Datensynchronisierung sollte beschleunigt werden.
+
+
+
+== Ändern der Einstellungen für eine Synchronisierungsbeziehung
+
+Ändern Sie Einstellungen, mit denen festgelegt wird, wie Quelldateien und Ordner synchronisiert und am Zielspeicherort verwaltet werden.
+
+. Zeigen Sie mit der Maus auf die Synchronisierungsbeziehung, und klicken Sie auf das Aktionsmenü.
+. Klicken Sie Auf *Einstellungen*.
+. Ändern Sie alle Einstellungen.
++
+image:screenshot_sync_settings.gif["Ein Screenshot, der die Einstellungen für eine Synchronisierungsbeziehung anzeigt."]
+
++
+[[deleteonsource] Hier eine kurze Beschreibung der einzelnen Einstellungen:
+
++
+Zeitplan:: Wählen Sie einen wiederkehrenden Zeitplan für zukünftige Synchronisierungen aus oder deaktivieren Sie den Synchronisationsplan. Sie können eine Beziehung planen, um Daten bis zu alle 1 Minute zu synchronisieren.
+Wiederholungen:: Legen Sie fest, wie oft Cloud Sync versuchen soll, eine Datei zu synchronisieren, bevor Sie sie überspringen.
+Kürzlich geänderte Dateien:: Wählen Sie diese Option aus, um Dateien auszuschließen, die vor der geplanten Synchronisierung zuletzt geändert wurden.
+Dateien auf Quelle löschen:: Wählen Sie diese Option aus, um Dateien vom Quellspeicherort zu löschen, nachdem Cloud Sync die Dateien auf den Zielspeicherort kopiert hat. Diese Option schließt das Risiko eines Datenverlusts ein, da die Quelldateien nach dem Kopieren gelöscht werden.
++
+--
+Wenn Sie diese Option aktivieren, müssen Sie auch einen Parameter in der Datei local.json im Datenvermittler ändern. Öffnen Sie die Datei und ändern Sie den Parameter _workers.transferrer.delete-on-source_ in *true*.
+
+--
+Dateien auf Ziel löschen:: Wählen Sie diese Option aus, um Dateien vom Zielspeicherort zu löschen, wenn sie aus der Quelle gelöscht wurden. Standardmäßig werden Dateien nie vom Zielspeicherort gelöscht.
+Objekt-Tagging:: Wenn AWS S3 das Ziel in einer Synchronisierungsbeziehung ist, markiert Cloud Sync S3-Objekte mit für den Synchronisierungsvorgang relevanten Metadaten. Sie können das Tagging von S3-Objekten deaktivieren, wenn es in Ihrer Umgebung nicht gewünscht ist. Cloud Sync hat keine Auswirkungen, wenn Sie Tagging deaktivieren – Cloud Sync speichert einfach die Sync-Metadaten auf andere Weise.
+Dateitypen:: Definieren Sie die Dateitypen, die in jede Synchronisierung einbezogen werden sollen: Dateien, Verzeichnisse und symbolische Links.
+Dateierweiterungen ausschließen:: Geben Sie Dateierweiterungen an, die vom Sync ausgeschlossen werden sollen, indem Sie die Dateierweiterung eingeben und *Enter* drücken. Geben Sie beispielsweise _log_ oder _.log_ ein, um *.log-Dateien auszuschließen. Für mehrere Erweiterungen ist kein Trennzeichen erforderlich. Das folgende Video enthält eine kurze Demo:
++
+--
+video::video_file_extensions.mp4[width=840,height=240]
+--
+Dateigröße:: Wählen Sie, ob alle Dateien unabhängig von ihrer Größe oder nur Dateien in einem bestimmten Größenbereich synchronisiert werden sollen.
+Änderungsdatum:: Wählen Sie alle Dateien unabhängig vom letzten Änderungsdatum aus, Dateien, die nach einem bestimmten Datum, vor einem bestimmten Datum oder zwischen einem bestimmten Zeitraum geändert wurden.
+Zugriffskontrolllisten auf das Ziel kopieren:: Sie können Zugriffssteuerungslisten (ACLs) zwischen SMB-Quell-Freigaben und SMB-Ziel-Freigaben kopieren. Beachten Sie, dass diese Option nur für Synchronisierungsbeziehungen verfügbar ist, die nach der Version vom 23. Februar 2020 erstellt wurden.
+
+
+. Klicken Sie Auf *Einstellungen Speichern*.
+
+
+Cloud Sync ändert die Synchronisierungsbeziehung mit den neuen Einstellungen.
+
+
+
+== Löschen von Beziehungen
+
+Sie können eine Synchronisierungsbeziehung löschen, wenn Sie keine Daten mehr zwischen Quelle und Ziel synchronisieren müssen. Diese Aktion löscht die Data Brokerinstanz nicht und löscht keine Daten vom Ziel.
+
+.Schritte
+. Zeigen Sie mit der Maus auf die Synchronisierungsbeziehung, und klicken Sie auf das Aktionsmenü.
+. Klicken Sie auf *Löschen* und dann erneut auf *Löschen*, um zu bestätigen.
+
+
+Cloud Sync löscht die Synchronisierungsbeziehung.

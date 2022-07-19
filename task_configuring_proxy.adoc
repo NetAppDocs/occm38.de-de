@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: task_configuring_proxy.html 
+keywords: proxy, proxy server, proxy, internet 
+summary: Wenn Ihre Unternehmensrichtlinien vorschreiben, dass Sie einen Proxyserver für die gesamte HTTP-Kommunikation mit dem Internet verwenden, müssen Sie Cloud Manager so konfigurieren, dass dieser Proxyserver verwendet wird. Der Proxyserver kann sich in der Cloud oder im Netzwerk befinden. 
+---
+= Konfigurieren eines Connectors für die Verwendung eines Proxy-Servers
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Ihre Unternehmensrichtlinien festlegen, dass Sie für die gesamte HTTP-Kommunikation mit dem Internet einen Proxyserver verwenden, müssen Sie Ihre Connectors so konfigurieren, dass sie diesen Proxy-Server verwenden. Der Proxyserver kann sich in der Cloud oder im Netzwerk befinden.
+
+Wenn Sie einen Connector so konfigurieren, dass er einen Proxy-Server verwendet, verwenden dieser Connector und die von ihm verwalteten Cloud Volumes ONTAP-Systeme (einschließlich aller HA-Mediatoren) den Proxy-Server.
+
+.Schritte
+. https://docs.netapp.com/us-en/occm/task_logging_in.html["Melden Sie sich bei der SaaS-Schnittstelle von Cloud Manager an"^] Von einem Computer mit einer Netzwerkverbindung zur Instanz des Connectors.
++
+Wenn der Connector keine öffentliche IP-Adresse hat, benötigen Sie eine VPN-Verbindung oder Sie müssen eine Verbindung von einem Jump-Host herstellen, der sich im gleichen Netzwerk wie der Connector befindet.
+
+. Klicken Sie auf das Dropdown-Menü *Connector* und dann auf *zur lokalen Benutzeroberfläche* für einen bestimmten Konnektor.
++
+image:screenshot_connector_local_ui.gif["Ein Screenshot, der das Symbol Connector in der Kopfzeile und die Aktion Gehe zu lokaler Benutzeroberfläche anzeigt."]
+
++
+Die Cloud Manager-Schnittstelle, die auf dem Connector ausgeführt wird, wird in einer neuen Browser-Registerkarte geladen.
+
+. Klicken Sie oben rechts in der Cloud Manager-Konsole auf das Symbol Einstellungen und wählen Sie *Cloud Manager-Einstellungen*.
++
+image:screenshot_settings_icon.gif["Ein Screenshot, in dem das Symbol „Einstellungen“ oben rechts in der Cloud Manager Konsole angezeigt wird."]
+
+. Geben Sie unter HTTP Proxy den Server mithilfe der Syntax ein http://_address:port_[]Geben Sie einen Benutzernamen und ein Passwort an, wenn eine grundlegende Authentifizierung für den Server erforderlich ist, und klicken Sie dann auf *Speichern*.
++
+
+NOTE: Cloud Manager unterstützt keine Passwörter, die das Zeichen @ enthalten.
+
+
+
+Nachdem Sie den Proxyserver angegeben haben, werden neue Cloud Volumes ONTAP Systeme automatisch so konfiguriert, dass sie den Proxyserver beim Senden von AutoSupport Nachrichten verwenden. Wenn Sie den Proxy-Server nicht angegeben haben, bevor Benutzer Cloud Volumes ONTAP-Systeme erstellen, müssen sie mit System Manager den Proxyserver manuell in den AutoSupport-Optionen für jedes System festlegen.

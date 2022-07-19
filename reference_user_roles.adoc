@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: reference_user_roles.html 
+keywords: user, users, roles, role, task, permission, permissions, tasks, admin, Account Admin, Workspace Admin, Cloud Compliance Viewer 
+summary: Die Rollen Kontoverwaltung, Workspace Admin und Cloud Compliance Viewer bieten Benutzern spezifische Berechtigungen. 
+---
+= Rollen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Die Rollen Kontoverwaltung, Workspace Admin und Cloud Compliance Viewer bieten Benutzern spezifische Berechtigungen.
+
+[cols="31,23,23,23"]
+|===
+| Aufgabe | Kontoadministrator | Workspace-Verwaltung | Cloud Compliance Viewer 
+
+
+| Verwalten von Arbeitsumgebungen | Ja. | Ja. | Nein 
+
+
+| Services in Arbeitsumgebungen ermöglichen | Ja. | Ja. | Nein 
+
+
+| Anzeigen des Status der Datenreplizierung | Ja. | Ja. | Nein 
+
+
+| Zeitachse anzeigen | Ja. | Ja. | Nein 
+
+
+| Wechseln Sie zwischen Arbeitsbereichen | Ja. | Ja. | Ja. 
+
+
+| Anzeigen von Compliance-Scanergebnissen | Ja. | Ja. | Ja. 
+
+
+| Arbeitsumgebungen löschen | Ja. | Nein | Nein 
+
+
+| Kubernetes-Cluster mit Arbeitsumgebungen verbinden | Ja. | Nein | Nein 
+
+
+| Cloud Volumes ONTAP Bericht erhalten | Ja. | Nein | Nein 
+
+
+| Anschlüsse Erstellen | Ja. | Nein | Nein 
+
+
+| Managen von Cloud Central Konten | Ja. | Nein | Nein 
+
+
+| Anmeldeinformationen verwalten | Ja. | Nein | Nein 
+
+
+| Ändern der Cloud Manager-Einstellungen | Ja. | Nein | Nein 
+
+
+| Anzeigen und Verwalten des Support-Dashboards | Ja. | Nein | Nein 
+
+
+| Entfernen Sie Arbeitsumgebungen aus Cloud Manager | Ja. | Nein | Nein 
+
+
+| Installieren Sie ein HTTPS-Zertifikat | Ja. | Nein | Nein 
+|===
+.Weiterführende Links
+* link:task_setting_up_cloud_central_accounts.html["Einrichtung von Workspaces und Benutzern im Cloud Central Konto"^]
+* link:task_managing_cloud_central_accounts.html["Managen von Workspaces und Benutzern im Cloud Central Konto"^]
+

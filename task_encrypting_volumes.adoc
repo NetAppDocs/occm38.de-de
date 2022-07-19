@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: task_encrypting_volumes.html 
+keywords: encrypt, encryption, data, volumes, netapp volume encryption, volume encryption, nve, key managers, kmip, key management servers, license, ssl certificates, nae, netapp aggregate encryption 
+summary: 'Cloud Volumes ONTAP unterstützt sowohl NetApp Volume Encryption (NVE) als auch NetApp Aggregate Encryption (NAE) mit einem externen Schlüsselmanager. NVE und NAE sind standardmäßig aktiviert, wenn Sie einen externen Schlüsselmanager einrichten.' 
+---
+= Verschlüsseln von Volumes mit NetApp Verschlüsselungslösungen
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Cloud Volumes ONTAP unterstützt sowohl NetApp Volume Encryption (NVE) als auch NetApp Aggregate Encryption (NAE) mit einem externen Schlüsselmanager. NVE und NAE sind softwarebasierte Lösungen, mit denen die Verschlüsselung von Volumes im Ruhezustand (FIPS) 140-2-konform unterstützt wird. link:concept_security.html["Weitere Informationen zu diesen Verschlüsselungslösungen"].
+
+Ab Cloud Volumes ONTAP 9.7 werden neue Aggregate standardmäßig NAE aktiviert haben, nachdem Sie einen externen Schlüsselmanager eingerichtet haben. Für neue Volumes, die nicht Teil eines NAE-Aggregats sind, ist NVE standardmäßig aktiviert (bei vorhandenen Aggregaten, die vor dem Einrichten eines externen Schlüsselmanagers erstellt wurden).
+
+Cloud Volumes ONTAP unterstützt kein Onboard-Verschlüsselungsmanagement.
+
+Ihr Cloud Volumes ONTAP System sollte beim NetApp Support registriert sein. Ab Cloud Manager 3.7 wird auf jedem Cloud Volumes ONTAP System, das beim NetApp Support registriert ist, automatisch eine NetApp Volume Encryption Lizenz installiert.
+
+* link:task_adding_nss_accounts.html["Hinzufügen von NetApp Support Site Konten zu Cloud Manager"]
+* link:task_registering.html["Registrieren von Pay-as-you-go-Systemen"]
+
+
+
+NOTE: Cloud Manager installiert die NVE-Lizenz nicht auf Systemen, die sich in der Region China befinden.
+
+.Schritte
+. Überprüfen Sie die Liste der unterstützten Schlüsselmanager im http://mysupport.netapp.com/matrix["NetApp Interoperabilitäts-Matrix-Tool"^].
++
+
+TIP: Suchen Sie nach der *Key Manager*-Lösung.
+
+. link:task_connecting_to_otc.html["Stellen Sie eine Verbindung zur Cloud Volumes ONTAP-CLI her"^].
+. Installieren Sie SSL-Zertifikate und stellen Sie eine Verbindung zu den externen Schlüsselverwaltungsservern her.
++
+http://docs.netapp.com/ontap-9/topic/com.netapp.doc.pow-nve/GUID-DD718B42-038D-4009-84FF-20BBD6530BC2.html["ONTAP 9 NetApp Verschlüsselungs-Leitfaden: Konfiguration externer Verschlüsselungsmanagement"^]
+
+

@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_azure.html 
+keywords: microsoft, azure, netapp, data fabric, hybrid cloud, cloud, public cloud, networking, marketplace, virtual machine, vnet, quick, getting started, install, installing, deploy, deploying, setup, setting up, launching, requirements, prerequisites, cloud central, permissions, custom role, role, json, permissions, virtual machine, video, connectivity, internet, outbound, endpoint, connection, networks, vpn, replicating, policy, iam, setupasservice, sign up, cloud manager, cloud volumes ontap, cloud ontap, subscription, create 
+summary: Erste Schritte mit Cloud Volumes ONTAP für Azure 
+---
+= Erste Schritte mit Cloud Volumes ONTAP für Azure
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Erste Schritte mit Cloud Volumes ONTAP für Azure
+
+
+
+==== Einen Konnektor erstellen
+
+[role="quick-margin-para"]
+Wenn Sie keine haben link:concept_connectors.html["Stecker"] Dennoch muss ein Kontoadministrator einen erstellen. link:task_creating_connectors_azure.html["Erfahren Sie, wie Sie in Azure einen Connector erstellen"].
+
+[role="quick-margin-para"]
+Wenn Sie Ihre erste Cloud Volumes ONTAP-Arbeitsumgebung erstellen, werden Sie von Cloud Manager aufgefordert, einen Connector bereitzustellen, wenn Sie noch keinen haben.
+
+
+
+==== Planen Sie Ihre Konfiguration
+
+[role="quick-margin-para"]
+Cloud Manager bietet vorkonfigurierte Pakete, die Ihren Workload-Anforderungen entsprechen, oder Sie können eine eigene Konfiguration erstellen. Wenn Sie sich für eine eigene Konfiguration entscheiden, sollten Sie sich mit den verfügbaren Optionen vertraut machen. link:task_planning_your_config_azure.html["Weitere Informationen ."].
+
+
+
+==== Richten Sie Ihr Netzwerk ein
+
+. Stellen Sie sicher, dass Ihre vnet und Subnetze Verbindungen zwischen dem Connector und Cloud Volumes ONTAP unterstützen.
+. Aktivieren Sie den ausgehenden Internetzugriff über das Ziel-vnet, damit der Konnektor und der Cloud Volumes ONTAP mehrere Endpunkte kontaktieren können.
++
+Dieser Schritt ist wichtig, da der Connector Cloud Volumes ONTAP nicht ohne Outbound-Internetzugang verwalten kann. Wenn Sie die ausgehende Verbindung begrenzen müssen, lesen Sie die Liste der Endpunkte für link:reference_networking_azure.html["Anschluss und Cloud Volumes ONTAP"].
+
+
+
+[role="quick-margin-para"]
+link:reference_networking_azure.html["Erfahren Sie mehr über Netzwerkanforderungen"].
+
+
+
+==== Starten Sie Cloud Volumes ONTAP mit Cloud Manager
+
+[role="quick-margin-para"]
+Klicken Sie auf *Arbeitsumgebung hinzufügen*, wählen Sie den Systemtyp aus, den Sie bereitstellen möchten, und führen Sie die Schritte im Assistenten aus. link:task_deploying_otc_azure.html["Lesen Sie Schritt-für-Schritt-Anleitungen"].
+
+.Weiterführende Links
+* link:concept_evaluating.html["Bewertung"]
+* link:task_creating_connectors_azure.html["Erstellen eines Connectors über Cloud Manager"]
+* link:task_launching_azure_mktp.html["Erstellen eines Connectors über den Azure Marketplace"]
+* link:task_installing_linux.html["Installieren der Connector-Software auf einem Linux-Host"]
+* link:reference_permissions.html#what-cloud-manager-does-with-azure-permissions["Was Cloud Manager mit Azure-Berechtigungen tut"]
+

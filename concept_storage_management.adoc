@@ -1,0 +1,116 @@
+---
+sidebar: sidebar 
+permalink: concept_storage_management.html 
+keywords: provisioning, capacity management, storage provisioning, manual, automatic, advanced allocation, aggregates, thin provisioning, free space, mode 
+summary: Cloud Manager ermöglicht ein vereinfachtes und erweitertes Management von Cloud Volumes ONTAP Storage. 
+---
+= Storage-Management
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Manager ermöglicht ein vereinfachtes und erweitertes Management von Cloud Volumes ONTAP Storage.
+
+
+IMPORTANT: Alle Festplatten und Aggregate müssen direkt aus Cloud Manager erstellt und gelöscht werden. Sie sollten diese Aktionen nicht über ein anderes Management-Tool ausführen. Dies kann sich auf die Systemstabilität auswirken, die Fähigkeit zum Hinzufügen von Festplatten in der Zukunft beeinträchtigen und möglicherweise Kosten für redundante Cloud-Provider verursachen.
+
+
+
+== Storage-Bereitstellung
+
+Cloud Manager vereinfacht die Storage-Provisionierung für Cloud Volumes ONTAP durch den Kauf von Festplatten und das Management von Aggregaten. Sie müssen einfach Volumes erstellen. Sie können bei Bedarf eine erweiterte Zuweisungsoption verwenden, um Aggregate selbst bereitzustellen.
+
+
+
+=== Vereinfachte Bereitstellung
+
+Aggregate stellen Cloud-Storage für Volumes bereit. Cloud Manager erstellt Aggregate für Sie, wenn Sie eine Instanz starten und wenn Sie zusätzliche Volumes bereitstellen.
+
+Wenn Sie ein Volume erstellen, führt Cloud Manager eine der drei folgenden Aufgaben aus:
+
+* Das Volume wird auf einem vorhandenen Aggregat platziert, das über ausreichend freien Speicherplatz verfügt.
+* Das Volume wird auf einem vorhandenen Aggregat platziert, indem mehr Festplatten für dieses Aggregat erworben werden.
+* Es kauft Festplatten für ein neues Aggregat und platziert das Volume auf diesem Aggregat.
+
+
+Cloud Manager ermittelt, wo ein neues Volume platziert werden soll, indem mehrere Faktoren betrachtet werden: Die maximale Größe eines Aggregats, ob Thin Provisioning aktiviert ist und freie Speicherplatzschwellenwerte für Aggregate.
+
+
+TIP: Der Kontoadministrator kann die Schwellenwerte für freien Speicherplatz auf der Seite *Einstellungen* ändern.
+
+
+
+==== Auswahl der Festplattengröße für Aggregate in AWS
+
+Wenn Cloud Manager neue Aggregate für Cloud Volumes ONTAP in AWS erstellt, erhöht sich die Festplattengröße in einem Aggregat allmählich, wenn die Anzahl der Aggregate im System steigt. Cloud Manager stellt auf diese Weise sicher, dass Sie die maximale Kapazität des Systems nutzen können, bevor es die maximale Anzahl von Datenfestplatten erreicht, die von AWS zulässig sind.
+
+Cloud Manager kann beispielsweise die folgenden Festplattengrößen für Aggregate in einem Cloud Volumes ONTAP Premium oder Byol System wählen:
+
+[cols="3*"]
+|===
+| Aggregatnummer | Festplattengröße | Max. Gesamtkapazität 
+
+
+| 1 | 500 MB | 3 TB 
+
+
+| 4 | 1 TB | 6 TB 
+
+
+| 6 | 2 TB | 12 TB 
+|===
+Sie können die Festplattengröße selbst mithilfe der erweiterten Zuweisungsoption auswählen.
+
+
+
+=== Erweiterte Zuweisung
+
+Anstatt Cloud Manager Aggregate für Sie verwalten zu lassen, können Sie dies selbst tun. link:task_provisioning_storage.html#creating-aggregates["Auf der Seite *Erweiterte Zuweisung*"], Sie können neue Aggregate erstellen, die eine bestimmte Anzahl an Festplatten enthalten, einem vorhandenen Aggregat Festplatten hinzufügen und Volumes in bestimmten Aggregaten erstellen.
+
+
+
+== Kapazitätsmanagement
+
+Der Account Admin kann entscheiden, ob Cloud Manager Sie über Storage-Kapazitätsentscheidungen informiert oder ob Cloud Manager die Kapazitätsanforderungen automatisch managt. Es könnte Ihnen dabei helfen, die Funktionsweise dieser Modi zu verstehen.
+
+
+
+=== Automatisches Kapazitätsmanagement
+
+Der Kapazitätsmanagement-Modus ist standardmäßig auf automatisch eingestellt. In diesem Modus kauft Cloud Manager automatisch neue Festplatten für Cloud Volumes ONTAP-Instanzen, wenn mehr Kapazität benötigt wird, löscht nicht verwendete Festplatten-Sammlungen (Aggregate), verschiebt Volumes zwischen Aggregaten nach Bedarf und versucht, Festplatten nicht ordnungsgemäß zurückzusetzen.
+
+Die folgenden Beispiele veranschaulichen die Funktionsweise dieses Modus:
+
+* Wenn ein Aggregat mit 5 oder weniger EBS-Festplatten den Kapazitätsschwellenwert erreicht, kauft Cloud Manager automatisch neue Festplatten für dieses Aggregat, damit Volumes weiter wachsen können.
+* Wenn ein Aggregat mit 12 Azure Disks den Kapazitätsschwellenwert erreicht, verschiebt Cloud Manager automatisch ein Volume von diesem Aggregat in ein Aggregat mit verfügbarer Kapazität oder in ein neues Aggregat.
++
+Wenn Cloud Manager ein neues Aggregat für das Volume erstellt, wählt es eine Festplattengröße aus, die der Größe des Volumes entspricht.
+
++
+Beachten Sie, dass jetzt freier Speicherplatz auf dem ursprünglichen Aggregat verfügbar ist. Vorhandene Volumes oder neue Volumes können diesen Speicherplatz nutzen. Der Speicherplatz kann in diesem Szenario nicht in AWS, Azure oder GCP zurückgegeben werden.
+
+* Wenn ein Aggregat mehr als 12 Stunden lang keine Volumes enthält, löscht Cloud Manager es.
+
+
+
+
+==== Verwaltung von LUNs mit automatischem Kapazitätsmanagement
+
+Das automatische Kapazitätsmanagement von Cloud Manager gilt nicht für LUNs. Wenn Cloud Manager eine LUN erstellt, wird die Autogrow Funktion deaktiviert.
+
+
+
+==== Verwaltung von Inoden mit automatischem Kapazitätsmanagement
+
+Cloud Manager überwacht die Inode-Nutzung auf einem Volume. Wenn 85 % der Inodes verwendet werden, erhöht Cloud Manager die Größe des Volumes, um die Anzahl der verfügbaren Inodes zu erhöhen. Die Anzahl der Dateien, die ein Volume enthalten kann, wird durch die Anzahl der Inodes bestimmt, die es hat.
+
+
+
+=== Manuelles Kapazitätsmanagement
+
+Wenn der Account-Administrator den Modus für das Kapazitätsmanagement auf manuell setzt, zeigt Cloud Manager Meldungen mit erforderlichen Maßnahmen an, wenn Kapazitätsentscheidungen getroffen werden müssen. Die gleichen Beispiele, die im automatischen Modus beschrieben werden, gelten für den manuellen Modus, aber Sie müssen die Aktionen akzeptieren.

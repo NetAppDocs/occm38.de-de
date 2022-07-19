@@ -1,0 +1,227 @@
+---
+sidebar: sidebar 
+permalink: task_deploy_cloud_compliance.html 
+keywords: cloud compliance, get started, deploy cloud compliance, outbound internet, endpoints, cloud compliance internet, web browser connectivity, cloud compliance access, privacy, compliance 
+summary: Führen Sie einige Schritte durch, um die Cloud Compliance-Instanz in Ihrem Cloud Manager Workspace zu implementieren. 
+---
+= Implementierung Von Cloud Compliance
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Führen Sie einige Schritte durch, um die Cloud Compliance-Instanz in Ihrem Cloud Manager Workspace zu implementieren.
+
+
+
+== Schnellstart
+
+Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den verbleibenden Abschnitten, um ausführliche Informationen zu erhalten.
+
+
+
+==== Einen Konnektor erstellen
+
+[role="quick-margin-para"]
+Falls Sie noch keinen Connector haben, erstellen Sie in Azure oder AWS einen Connector. Siehe link:task_creating_connectors_aws.html["Erstellen eines Konnektors in AWS"] Oder link:task_creating_connectors_azure.html["Erstellen eines Connectors in Azure"].
+
+
+
+==== Voraussetzungen prüfen
+
+[role="quick-margin-para"]
+Stellen Sie sicher, dass Ihre Cloud-Umgebung die Voraussetzungen erfüllt, die 16 vCPUs für die Cloud Compliance Instanz, Outbound-Internetzugang zur Instanz, Konnektivität zwischen Connector und Cloud Compliance über Port 80 umfassen kann.  prerequisites,Eine vollständige Liste finden Sie hier.
+
+
+
+==== Implementierung Von Cloud Compliance
+
+[role="quick-margin-para"]
+Starten Sie den Installationsassistenten, um die Cloud Compliance-Instanz in Cloud Manager zu implementieren.
+
+
+
+==== Abonnieren Sie den Cloud Compliance Service
+
+[role="quick-margin-para"]
+Die ersten 1 TB an Daten, die Cloud Compliance in Cloud Manager scannt, sind kostenlos. Danach ist ein Abonnement für AWS oder Azure Marketplace erforderlich, um mit dem Scannen der Daten fortzufahren.
+
+
+
+== Erstellen eines Connectors
+
+Falls Sie noch keinen Connector haben, erstellen Sie in Azure oder AWS einen Connector. Siehe link:task_creating_connectors_aws.html["Erstellen eines Konnektors in AWS"] Oder link:task_creating_connectors_azure.html["Erstellen eines Connectors in Azure"]. In den meisten Fällen haben Sie wahrscheinlich einen Connector eingerichtet, bevor Sie Cloud Compliance aktivieren, da die meisten davon link:concept_connectors.html#when-a-connector-is-required["Für die Funktionen von Cloud Manager ist ein Connector erforderlich"], Aber es gibt Fälle, wenn Sie eine Einrichtung jetzt.
+
+Es gibt einige Szenarien, in denen ein Connector in AWS oder Azure für Cloud Compliance verwendet werden muss.
+
+* Beim Scannen von Daten in Cloud Volumes ONTAP in AWS oder in AWS S3 Buckets verwenden Sie einen Connector in AWS.
+* Beim Scannen von Daten in Cloud Volumes ONTAP in Azure oder in Azure NetApp Files verwenden Sie einen Konnektor in Azure.
+* Datenbanken können über einen der beiden Connectors gescannt werden.
+
+
+Wie Sie sehen können, gibt es einige Situationen, in denen Sie verwenden müssen link:concept_connectors.html#when-to-use-multiple-connectors["Mehrere Anschlüsse"].
+
+
+NOTE: Wenn Sie Azure NetApp Files scannen möchten, müssen Sie sicherstellen, dass Sie in derselben Region wie die Volumes bereitstellen, die Sie scannen möchten.
+
+
+
+== Voraussetzungen prüfen
+
+Prüfen Sie die folgenden Voraussetzungen, um sicherzustellen, dass Sie über eine unterstützte Konfiguration verfügen, bevor Sie Cloud Compliance bereitstellen.
+
+Aktivieren Sie den Outbound-Internetzugang:: Cloud Compliance erfordert Outbound-Internetzugang. Wenn Ihr virtuelles Netzwerk einen Proxyserver für den Internetzugriff verwendet, stellen Sie sicher, dass die Cloud Compliance-Instanz über einen ausgehenden Internetzugriff verfügt, um die folgenden Endpunkte zu kontaktieren. Beachten Sie, dass Cloud Manager die Cloud Compliance-Instanz im selben Subnetz wie der Connector bereitstellt.
++
+--
+[cols="43,57"]
+|===
+| Endpunkte | Zweck 
+
+
+| \https://cloudmanager.cloud.netapp.com | Kommunikation mit dem Cloud Manager-Service, der Cloud Central-Konten einschließt 
+
+
+| \https://netapp-cloud-account.auth0.com \https://auth0.com | Kommunikation mit NetApp Cloud Central für zentralisierte Benutzerauthentifizierung 
+
+
+| \https://cloud-compliance-support-netapp.s3.us-west-2.amazonaws.com \https://hub.docker.com \https://auth.docker.io \https://registry-1.docker.io \https://index.docker.io/ \https://dseasb33srnrn.cloudfront.net/ \https://production.cloudflare.docker.com/ | Bietet Zugriff auf Software-Images, Manifeste und Vorlagen. 
+
+
+| \https://kinesis.us-east-1.amazonaws.com | Ermöglicht NetApp das Streamen von Daten aus Audit-Datensätzen. 
+
+
+| \https://cognito-idp.us-east-1.amazonaws.com \https://cognito-identity.us-east-1.amazonaws.com | Cloud Compliance ermöglicht es, auf Manifeste und Vorlagen zuzugreifen und diese herunterzuladen sowie Protokolle und Kennzahlen zu senden. 
+|===
+--
+Stellen Sie sicher, dass Cloud Manager über die erforderlichen Berechtigungen verfügt:: Stellen Sie sicher, dass Cloud Manager über die Berechtigungen zum Implementieren von Ressourcen verfügt und Sicherheitsgruppen für die Instanz Cloud Compliance erstellen kann. Die neuesten Berechtigungen von Cloud Manager finden Sie in https://mysupport.netapp.com/site/info/cloud-manager-policies["Die von NetApp bereitgestellten Richtlinien"^].
+Überprüfen Sie Ihre vCPU-Limits:: Stellen Sie sicher, dass das vCPU-Limit Ihres Cloud-Providers die Bereitstellung einer Instanz mit 16 Cores ermöglicht. Sie müssen das vCPU-Limit für die entsprechende Instanzfamilie in der Region, in der Cloud Manager ausgeführt wird, überprüfen.
++
+--
+In AWS lautet die Instanzfamilie _On-Demand Standard-Instanzen_. In Azure ist die Instanzfamilie _Standard DSv3 Family_.
+
+Weitere Informationen zu vCPU-Limits finden Sie im folgenden Dokument:
+
+* https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html["AWS Dokumentation: Amazon EC2 Service Limits"^]
+* https://docs.microsoft.com/en-us/azure/virtual-machines/linux/quotas["Azure Dokumentation: VCPU Kontingente von Virtual Machines"^]
+
+
+--
+Stellen Sie sicher, dass Cloud Manager auf Cloud Compliance zugreifen kann:: Stellen Sie die Verbindung zwischen dem Connector und der Cloud Compliance-Instanz sicher. Die Sicherheitsgruppe für den Connector muss ein- und ausgehenden Datenverkehr über Port 80 zu und von der Cloud Compliance-Instanz ermöglichen.
++
+--
+Diese Verbindung ermöglicht die Bereitstellung der Cloud Compliance-Instanz sowie die Anzeige von Informationen auf der Registerkarte Compliance.
+
+--
+Einrichten der Erkennung von Azure NetApp Files:: Bevor Sie Volumes für Azure NetApp Files scannen können, link:task_manage_anf.html["Cloud Manager muss eingerichtet sein, um die Konfiguration zu ermitteln"^].
+Stellen Sie sicher, dass Cloud-Compliance weiterhin verfügbar ist:: Die Cloud Compliance Instanz muss stets zum kontinuierlichen Scannen Ihrer Daten verfügbar sein.
+Stellen Sie die Verbindung zwischen Webbrowser und Cloud Compliance sicher:: Stellen Sie nach Aktivierung von Cloud Compliance sicher, dass Benutzer von einem Host, der über eine Verbindung zur Cloud Compliance-Instanz verfügt, auf die Cloud Manager-Schnittstelle zugreifen.
++
+--
+Die Cloud Compliance Instanz verwendet eine private IP-Adresse, um sicherzustellen, dass die indizierten Daten nicht für das Internet verfügbar sind. Daher muss der Webbrowser, den Sie für den Zugriff auf Cloud Manager verwenden, über eine Verbindung zu dieser privaten IP-Adresse verfügen. Die Verbindung kann über eine direkte Verbindung zu AWS oder Azure (z. B. ein VPN) oder von einem Host im selben Netzwerk wie die Cloud-Compliance-Instanz hergestellt werden.
+
+--
+
+
+
+
+== Bereitstellen der Instanz für Cloud-Compliance
+
+Sie implementieren für jede Cloud Manager Instanz eine Instanz von Cloud Compliance.
+
+.Schritte
+. Klicken Sie in Cloud Manager auf *Cloud Compliance*.
+. Klicken Sie auf *Cloud Compliance aktivieren*, um den Bereitstellungsassistenten zu starten.
++
+image:screenshot_cloud_compliance_deploy_start.png["Screenshot, wie Sie die Schaltfläche Cloud Compliance aktivieren auswählen, um Cloud Compliance bereitzustellen"]
+
+. Der Assistent zeigt den Fortschritt während der Bereitstellungsschritte an. Er wird angehalten und um Informationen gebeten, wenn es zu Problemen kommt.
++
+image:screenshot_cloud_compliance_wizard_start.png["Ein Screenshot des Cloud Compliance Wizard zur Bereitstellung einer neuen Instanz."]
+
+. Wenn die Instanz bereitgestellt wird, klicken Sie auf *Weiter zur Konfiguration*, um zur Seite _Scan Configuration_ zu gelangen.
+
+
+Cloud Manager implementiert die Cloud Compliance-Instanz bei Ihrem Cloud-Provider.
+
+Auf der Seite Scankonfiguration können Sie die Arbeitsumgebungen, Volumes und Buckets auswählen, die Sie auf Compliance überprüfen möchten. Sie können auch eine Verbindung zu einem Datenbankserver herstellen, um bestimmte Datenbankschemas zu scannen. Aktivieren Sie Cloud Compliance für eine dieser Datenquellen.
+
+
+
+== Abonnieren des Cloud Compliance Service
+
+Es sind die ersten 1 TB an Daten, die Cloud Compliance in einem Cloud Manager Workspace scannt, kostenlos. Danach ist ein Abonnement für AWS oder Azure Marketplace erforderlich, um mit dem Scannen der Daten fortzufahren.
+
+Sie können sich jederzeit für eine Anmeldung anmelden. Die Abrechnung erfolgt erst, wenn die Datenmenge mehr als 1 TB beträgt. Über das Cloud Compliance Dashboard sehen Sie immer die Gesamtdatenmenge an, die gescannt wird. Und die Schaltfläche _Jetzt abonnieren_ erleichtert die Anmeldung, wenn Sie bereit sind.
+
+image:screenshot_compliance_subscribe.png["Ein Screenshot, der zeigt, wie viele Daten gescannt werden, und die Schaltfläche Abonnieren, um den Service zu abonnieren."]
+
+*Hinweis:* Wenn Sie von Cloud Compliance aufgefordert werden, sich zu abonnieren, aber Sie bereits über ein Azure-Abonnement verfügen, verwenden Sie wahrscheinlich das alte *Cloud Manager*-Abonnement und müssen in das neue *NetApp Cloud Manager*-Abonnement wechseln. Siehe to the new Cloud Manager plan in Azure,Änderung im neuen NetApp Cloud Manager Plan in Azure Entsprechende Details.
+
+Diese Schritte müssen von einem Benutzer ausgeführt werden, der über die Rolle _Account Admin_ verfügt.
+
+. Klicken Sie oben rechts in der Cloud Manager-Konsole auf das Symbol Einstellungen und wählen Sie *Anmeldeinformationen*.
++
+image:screenshot_settings_icon.gif["Ein Screenshot des rechten oberen Banners von Cloud Manager, in dem Sie das Symbol „Einstellungen“ auswählen können."]
+
+. Suchen Sie die Zugangsdaten für das AWS Instance Profile oder die Azure Managed Service Identity.
++
+Das Abonnement muss dem Instanzprofil oder der Managed Service Identity hinzugefügt werden. Das Laden funktioniert nicht anders.
+
++
+Wenn Sie bereits ein Abonnement haben, sind Sie alle eingerichtet – es gibt nichts anderes, was Sie tun müssen.
+
++
+image:screenshot_profile_subscription.gif["Ein Screenshot von der Seite Anmeldeinformationen, auf der das Instanzprofil mit einem aktiven Abonnement angezeigt wird."]
+
+. Wenn Sie noch kein Abonnement haben, bewegen Sie den Mauszeiger über die Anmeldeinformationen und klicken Sie auf das Aktionsmenü.
+. Klicken Sie Auf *Abonnement Hinzufügen*.
++
+image:screenshot_add_subscription.gif["Ein Screenshot des Menüs auf der Seite Anmeldeinformationen. Es wird eine Schaltfläche angezeigt, um den Anmeldeinformationen ein Abonnement hinzuzufügen."]
+
+. Klicken Sie auf *Abonnement hinzufügen*, klicken Sie auf *Weiter* und befolgen Sie die Schritte.
++
+Im folgenden Video wird gezeigt, wie Sie ein Marketplace-Abonnement zu einem AWS Abonnement verknüpfen:
+
++
+video::video_subscribing_aws.mp4[width=848,height=480]
++
+Im folgenden Video wird gezeigt, wie Sie ein Marketplace-Abonnement zu einem Azure-Abonnement verknüpfen:
+
++
+video::video_subscribing_azure.mp4[width=848,height=480]
+
+
+
+
+== Änderung beim neuen Cloud Manager Plan in Azure
+
+Cloud Compliance wurde zum Azure Marketplace Abonnement mit dem Namen *NetApp Cloud Manager* zum 7. Oktober 2020 hinzugefügt. Wenn Sie bereits über das ursprüngliche Azure *Cloud Manager*-Abonnement verfügen, können Sie Cloud Compliance nicht nutzen.
+
+Sie müssen diese Schritte ausführen und das neue *NetApp Cloud Manager* Abonnement auswählen und dann das alte *Cloud Manager* Abonnement entfernen.
+
+
+NOTE: Wenn Ihr Abonnement auf einem speziellen privaten Angebot ausgestellt wurde, müssen Sie sich an NetApp wenden, damit wir ein neues privates Angebot mit Compliance inbegriffen anbieten können.
+
+Diese Schritte ähneln dem Hinzufügen eines neuen Abonnements wie oben beschrieben, variieren jedoch an einigen Stellen.
+
+. Klicken Sie oben rechts in der Cloud Manager-Konsole auf das Symbol Einstellungen und wählen Sie *Anmeldeinformationen*.
+. Suchen Sie die Anmeldeinformationen für die Azure Managed Service Identity, für die Sie das Abonnement ändern möchten, und zeigen Sie mit dem Mauszeiger über die Anmeldeinformationen, und klicken Sie auf *Associate Subscription*.
++
+Die Details zu Ihrem aktuellen Marketplace-Abonnement werden angezeigt.
+
+. Klicken Sie auf *Abonnement hinzufügen*, klicken Sie auf *Weiter* und befolgen Sie die Schritte. Sie werden auf das Azure Portal umgeleitet, um das neue Abonnement zu erstellen.
+. Stellen Sie sicher, dass Sie den Plan *NetApp Cloud Manager* für den Zugriff auf Cloud Compliance und nicht *Cloud Manager* wählen.
+. Gehen Sie die Schritte im Video durch, um ein Marketplace-Abonnement für ein Azure-Abonnement zuzuordnen:
++
+video::video_subscribing_azure.mp4[width=848,height=480]
+. Kehren Sie zu Cloud Manager zurück, wählen Sie das neue Abonnement aus und klicken Sie auf *Associate*.
+. Um zu überprüfen, ob sich Ihr Abonnement geändert hat, bewegen Sie den Mauszeiger über das „i“-Abonnement in der Anmeldeinformationen-Karte.
++
+Jetzt können Sie Ihr altes Abonnement vom Azure Portal abbestellen.
+
+. Gehen Sie im Azure-Portal zu Software as a Service (SaaS), wählen Sie das Abonnement aus und klicken Sie auf *Abmelden*.
+

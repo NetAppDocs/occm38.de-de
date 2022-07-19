@@ -1,0 +1,352 @@
+---
+sidebar: sidebar 
+permalink: faq_sync.html 
+keywords: community, forums, help, support, videos, faq, getting help, permissions, access control lists, acls, preserve, preserving, troubleshooting, support 
+summary: Hier erhalten Sie Hilfe zu Cloud Sync. Weitere Informationen finden Sie unter verschiedenen Ressourcen, darunter Foren, Chat-Services und Videos. 
+---
+= Cloud Sync – technische FAQ
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Diese FAQ kann Ihnen helfen, wenn Sie nur eine schnelle Antwort auf eine Frage suchen.
+
+
+
+== Erste Schritte
+
+Die folgenden Fragen beziehen sich auf die ersten Schritte mit Cloud Sync.
+
+
+
+=== Wie funktioniert Cloud Sync?
+
+Cloud Sync synchronisiert mithilfe der Datenmanager-Software von NetApp Daten von einer Quelle zu einem Ziel (dies wird als „_Sync Relationship_“ bezeichnet).
+
+Der Daten-Broker steuert die Synchronisierungsbeziehungen zwischen Ihren Quellen und Zielen. Nachdem Sie eine Synchronisierungsbeziehung eingerichtet haben, analysiert Cloud Sync Ihr Quellsystem und unterteilt es in mehrere Replizierungsstreams, um die ausgewählten Zieldaten per Push zu übertragen.
+
+Nach der ersten Kopie synchronisiert der Service alle geänderten Daten auf der Grundlage des von Ihnen festgelegten Zeitplans.
+
+
+
+=== Wie funktioniert die 14-tägige kostenlose Testversion?
+
+Die 14-tägige kostenlose Testversion beginnt, wenn Sie sich für den Cloud Sync Service anmelden. Sie unterliegen keinen NetApp Kosten für Cloud Sync-Beziehungen, die Sie 14 Tage lang erstellen. Alle Ressourcengebühren für jeden Daten-Broker, den Sie bereitstellen, gelten jedoch weiterhin.
+
+
+
+=== Wie viel kostet Cloud Sync?
+
+Bei der Verwendung von Cloud Sync fallen zwei Kostenarten an: Servicegebühren und Ressourcengebühren.
+
+*Servicegebühren*
+
+Bei nutzungsbasierten Preisen fallen die Servicegebühren für Cloud Sync stündlich an, basierend auf der Anzahl der von Ihnen erstellten Synchronisierungsbeziehungen.
+
+* https://aws.amazon.com/marketplace/pp/B01LZV5DUJ["Pay-as-you-go-Preise in AWS anzeigen"^]
+* https://aws.amazon.com/marketplace/pp/B06XX5V3M2["Jährliche Preise in AWS anzeigen"^]
+* https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-sync-service?tab=PlansAndPrice["Preise in Azure anzeigen"^]
+
+
+Cloud Sync Lizenzen sind auch über Ihren NetApp Ansprechpartner erhältlich. Jede Lizenz ermöglicht 20 Synchronisierungsbeziehungen für 12 Monate.
+
+link:concept_cloud_sync.html["Weitere Informationen zu Lizenzen"].
+
+*Ressourcengebühren*
+
+Die Ressourcenkosten beziehen sich auf die Computing- und Storage-Kosten für die Ausführung des Data Brokers in der Cloud.
+
+
+
+=== Wie wird Cloud Sync abgerechnet?
+
+Es gibt zwei Möglichkeiten, für Synchronisierungsbeziehungen zu bezahlen, nachdem die 14-tägige kostenlose Testversion abgelaufen ist. Die erste Möglichkeit besteht darin, AWS oder Azure zu abonnieren, sodass Sie nutzungsbasiert oder jährlich zahlen können. Die zweite Option besteht darin, Lizenzen direkt von NetApp zu erwerben.
+
+
+
+=== Kann ich Cloud Sync auch außerhalb der Cloud verwenden?
+
+Ja, Sie können Cloud Sync in einer Architektur verwenden, die nicht in der Cloud liegt. Die Quelle und das Ziel können sich vor Ort befinden, so dass der Daten-Broker.
+
+Beachten Sie die folgenden wichtigen Punkte zur Verwendung von Cloud Sync außerhalb der Cloud:
+
+* Für die lokale Synchronisierung ist ein privater Amazon S3-Bucket über NetApp StorageGRID verfügbar.
+* Der Daten-Broker benötigt eine Internetverbindung, um mit dem Cloud Sync Service zu kommunizieren.
+* Wenn Sie keine Lizenz direkt von NetApp erwerben, benötigen Sie ein AWS oder Azure Konto für die Abrechnung des PAYGO Cloud Sync Service.
+
+
+
+
+=== Wie greife ich auf Cloud Sync zu?
+
+Cloud Sync ist im Cloud Manager auf der Registerkarte *Sync* verfügbar.
+
+
+
+== Unterstützte Quellen und Ziele
+
+Die folgenden Fragen beziehen sich auf die Quelle und die Ziele, die in einer Synchronisierungsbeziehung unterstützt werden.
+
+
+
+=== Welche Quellen und Ziele unterstützt Cloud Sync?
+
+Cloud Sync unterstützt viele verschiedene Arten von Synchronisierungsbeziehungen. link:reference_sync_requirements.html["Die gesamte Liste anzeigen"].
+
+
+
+=== Welche Versionen von NFS und SMB werden von Cloud Sync unterstützt?
+
+Cloud Sync unterstützt NFS Version 3 und höher sowie SMB Version 1 und höher.
+
+link:reference_sync_requirements.html["Erfahren Sie mehr über Synchronisierungsanforderungen"].
+
+
+
+=== Wenn Amazon S3 das Ziel ist, können die Daten auf eine bestimmte S3-Storage-Klasse gestaffelt werden?
+
+Ja, Sie können eine bestimmte S3-Storage-Klasse auswählen, wenn AWS S3 das Ziel ist:
+
+* Standard (dies ist die Standardklasse)
+* Intelligent-Tiering
+* Standardzugriff
+* Ein einmaliger Zugriff
+* Glacier
+* Glacier Deep Archive
+
+
+
+
+=== Was ist mit Storage Tiers für Azure Blob Storage?
+
+Sie können eine bestimmte Azure Blob Storage Tier auswählen, wenn ein Blob Container das Ziel ist:
+
+* Hot-Storage
+* Kühl lagern
+
+
+
+
+== Netzwerkbetrieb
+
+Die folgenden Fragen beziehen sich auf die Netzwerkanforderungen für Cloud Sync.
+
+
+
+=== Welche Netzwerkanforderungen gelten für Cloud Sync?
+
+Die Cloud Sync-Umgebung erfordert, dass der Daten-Broker über das ausgewählte Protokoll (NFS, SMB, EFS) oder die Objektspeicher-API (Amazon S3, Azure Blob, IBM Cloud Object Storage) mit der Quelle und dem Ziel verbunden ist.
+
+Darüber hinaus benötigt der Daten-Broker eine ausgehende Internetverbindung über Port 443, damit er mit dem Cloud Sync-Dienst kommunizieren und mit einigen anderen Diensten und Repositorys Kontakt aufnehmen kann.
+
+Weitere Informationen link:reference_sync_networking.html["Netzwerkanforderungen prüfen"].
+
+
+
+=== Gibt es Netzwerkeinschränkungen im Zusammenhang mit der Konnektivität von Data Brokern?
+
+Datenvermittler benötigen einen Internetzugang. Wir unterstützen keinen Proxy-Server wenn wir den Daten-Broker in Azure oder in Google Cloud Platform bereitstellen.
+
+
+
+== Datensynchronisierung
+
+Die folgenden Fragen beziehen sich auf die Funktionsweise der Datensynchronisierung.
+
+
+
+=== Wie oft erfolgt die Synchronisierung?
+
+Der Standardzeitplan ist für die tägliche Synchronisierung festgelegt. Nach der ersten Synchronisierung können Sie:
+
+* Ändern Sie den Synchronisierungszeitplan auf die gewünschte Anzahl von Tagen, Stunden oder Minuten
+* Deaktivieren Sie den Synchronisierungszeitplan
+* Synchronisierungszeitplan löschen (keine Daten verloren; nur die Synchronisierungsbeziehung wird entfernt)
+
+
+
+
+=== Wie ist der Mindestsynchronisierungszeitplan?
+
+Sie können eine Beziehung planen, um Daten bis zu alle 1 Minute zu synchronisieren.
+
+
+
+=== Versucht der Daten-Broker erneut, wenn eine Datei nicht synchronisiert werden kann? Oder wird das Zeitlimit überschritten?
+
+Der Datenvermittler hat kein Timeout, wenn eine einzelne Datei nicht übertragen werden kann. Stattdessen versucht der Daten-Broker dreimal, bevor die Datei übersprungen wird. Der Wiederholungswert kann in den Einstellungen für eine Synchronisierungsbeziehung konfiguriert werden.
+
+link:task_sync_managing_relationships.html#changing-the-settings-for-a-sync-relationship["Hier erfahren Sie, wie Sie die Einstellungen für eine Synchronisierungsbeziehung ändern"].
+
+
+
+=== Was ist, wenn ich einen sehr großen Datensatz habe?
+
+Wenn ein einzelnes Verzeichnis 600,000 oder mehr Dateien enthält, mailto:ng-cloudsync-support@netapp.com[kontaktieren Sie uns], damit wir Ihnen helfen können, den Datenvermittler so zu konfigurieren, dass die Nutzlast behandelt wird. Möglicherweise müssen wir dem Data Broker-Computer zusätzlichen Speicher hinzufügen.
+
+
+
+== Sicherheit
+
+Die folgenden Fragen zur Sicherheit.
+
+
+
+=== Ist Cloud Sync sicher?
+
+Ja. Alle Netzwerkkonnektivität zum Cloud Sync-Service wird mittels ausgeführt https://aws.amazon.com/sqs/["Amazon Simple Queue Service (SQS)"^].
+
+Die gesamte Kommunikation zwischen dem Daten-Broker und Amazon S3, Azure Blob, Google Cloud Storage und IBM Cloud Object Storage erfolgt über das HTTPS-Protokoll.
+
+Wenn Sie Cloud Sync mit On-Premises-Systemen (Quelle oder Ziel) verwenden, sind hier einige empfohlene Konnektivitätsoptionen:
+
+* Eine AWS Direct Connect-, Azure ExpressRoute- oder Google Cloud Interconnect-Verbindung, die nicht über das Internet geroutet wird (und nur mit den von Ihnen angegebenen Cloud-Netzwerken kommunizieren kann)
+* Eine VPN-Verbindung zwischen Ihrem lokalen Gateway-Gerät und Ihren Cloud-Netzwerken
+* Für eine besonders sichere Datenübertragung mit S3-Buckets, Azure Blob Storage oder Google Cloud Storage kann ein Amazon Private S3 Endpoint, Azure Virtual Network Service-Endpunkte oder Private Google Access eingerichtet werden.
+
+
+Jede dieser Methoden stellt eine sichere Verbindung zwischen Ihren lokalen NAS-Servern und einem Cloud Sync Datenbroker her.
+
+
+
+=== Werden Daten mit Cloud Sync verschlüsselt?
+
+* Cloud Sync unterstützt die Verschlüsselung von Daten während des Flugs zwischen Quell- und Ziel-NFS-Servern. link:task_sync_nfs_encryption.html["Weitere Informationen ."].
+* Verschlüsselung wird von SMB nicht unterstützt.
+* Wenn ein Amazon S3-Bucket in einer Synchronisierungsbeziehung das Ziel ist, hat der Kunde die Wahl, ob die Datenverschlüsselung mittels AWS KMS-Verschlüsselung oder AES-256-Verschlüsselung aktiviert werden soll.
+
+
+
+
+== Berechtigungen
+
+Die folgenden Fragen beziehen sich auf Datenberechtigungen.
+
+
+
+=== Werden SMB-Datenberechtigungen mit dem Zielspeicherort synchronisiert?
+
+Sie können Cloud Sync so einrichten, dass Zugriffssteuerungslisten (ACLs) zwischen einer Quell-SMB-Freigabe und einer Ziel-SMB-Freigabe beibehalten werden. Sie können die ACLs auch manuell kopieren. link:task_sync_copying_acls.html["Lesen Sie, wie Sie ACLs zwischen SMB-Freigaben kopieren"].
+
+
+
+=== Werden NFS-Datenberechtigungen mit dem Zielspeicherort synchronisiert?
+
+Cloud Sync kopiert NFS-Berechtigungen automatisch wie folgt zwischen NFS-Servern:
+
+* NFS Version 3: Cloud Sync kopiert die Berechtigungen und den Besitzer der Benutzergruppe.
+* NFS Version 4: Cloud Sync kopiert die ACLs.
+
+
+
+
+== Leistung
+
+Die folgenden Fragen beziehen sich auf die Cloud Sync-Performance.
+
+
+
+=== Was stellt die Fortschrittsanzeige für eine Synchronisierungsbeziehung dar?
+
+Die Synchronisierungsbeziehung zeigt den Durchsatz des Netzwerkadapters des Datenbrokers. Wenn Sie die Synchronisierungsleistung durch die Verwendung mehrerer Datenmakler beschleunigen, ist der Durchsatz die Summe des gesamten Datenverkehrs. Dieser Durchsatz wird alle 20 Sekunden aktualisiert.
+
+
+
+=== Ich habe Performance-Probleme. Können wir die Anzahl der gleichzeitigen Übertragungen begrenzen?
+
+Der Daten-Broker kann 4 Dateien gleichzeitig synchronisieren. Wenn Sie über sehr große Dateien verfügen (jeweils mehrere TB), kann es sehr lange dauern, bis der Übertragungsprozess abgeschlossen ist, und die Performance kann beeinträchtigt werden.
+
+Die Begrenzung der Anzahl gleichzeitiger Übertragungen kann hilfreich sein. Mailto:ng-cloudsync-support@netapp.com[Hilfe anfordern].
+
+
+
+=== Warum ist die Performance mit Azure NetApp Files niedrig?
+
+Wenn Sie Daten mit oder von Azure NetApp Files synchronisieren, können Ausfälle und Performance-Probleme auftreten, sobald das Service-Level der Festplatte Standard ist.
+
+Ändern Sie den Service-Level auf Premium oder Ultra, um die Synchronisationsperformance zu verbessern.
+
+https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-service-levels#throughput-limits["Erfahren Sie mehr über Azure NetApp Files Service-Level und Durchsatz"^].
+
+
+
+=== Warum erhalte ich mit Cloud Volumes Service für AWS eine geringe Performance?
+
+Wenn Sie Daten mit einem oder von einem Cloud-Volume synchronisieren, treten möglicherweise Fehler und Performance-Probleme auf, wenn die Performance für das Cloud-Volume Standard ist.
+
+Ändern Sie den Service-Level in "Premium" oder "Extreme", um die Synchronisierungsleistung zu erhöhen.
+
+
+
+=== Wie viele Daten-Broker sind erforderlich?
+
+Wenn Sie eine neue Beziehung erstellen, beginnen Sie mit einem einzelnen Daten-Broker (es sei denn, Sie haben einen vorhandenen Daten-Broker ausgewählt, der zu einer beschleunigten Synchronisierungsbeziehung gehört). In vielen Fällen kann ein einzelner Daten-Broker die Performance-Anforderungen für eine Synchronisierungsbeziehung erfüllen. Ist dies nicht der Fall, können Sie die Sync Performance durch das Hinzufügen weiterer Datenmanager beschleunigen. Sie sollten jedoch zunächst andere Faktoren prüfen, die sich auf die Synchronisierungsleistung auswirken können.
+
+Mehrere Faktoren können die Datenübertragungsleistung beeinflussen. Die Gesamt-Sync-Performance kann durch Netzwerkbandbreite, Latenz und Netzwerktopologie sowie die VM-Spezifikationen des Data Brokers und die Performance des Storage-Systems beeinträchtigt werden. Ein einzelner Daten-Broker in einer Synchronisierungsbeziehung kann beispielsweise 100 MB/s erreichen, während der Festplattendurchsatz auf dem Ziel möglicherweise nur 64 MB/s zulässt. Folglich versucht der Daten-Broker, die Daten zu kopieren, doch das Ziel kann die Performance des Daten-Brokers nicht erreichen.
+
+Überprüfen Sie also die Performance Ihres Netzwerks und den Festplattendurchsatz auf dem Ziel.
+
+Dann können Sie die Sync-Performance beschleunigen, indem Sie einen zusätzlichen Daten-Broker hinzufügen, um die Last dieser Beziehung gemeinsam zu nutzen. link:task_sync_managing_relationships.html#accelerating-sync-performance["Erfahren Sie, wie Sie die synchrone Performance beschleunigen"].
+
+
+
+== Dinge löschen
+
+Die folgenden Fragen beziehen sich auf das Löschen von Synchronisierungsbeziehungen und -daten aus Quellen und Zielen.
+
+
+
+=== Was passiert, wenn ich meine Cloud Sync-Beziehung lösche?
+
+Durch das Löschen einer Beziehung werden alle zukünftigen Daten synchronisiert und die Zahlung wird beendet. Alle Daten, die mit dem Ziel synchronisiert wurden, bleiben unverändert.
+
+
+
+=== Was passiert, wenn ich etwas von meinem Quellserver lösche? Wird sie auch aus dem Ziel entfernt?
+
+Wenn Sie eine aktive Synchronisierungsbeziehung haben, wird das auf dem Quellserver gelöschte Element bei der nächsten Synchronisierung standardmäßig nicht vom Ziel gelöscht. In den Synchronisierungseinstellungen für jede Beziehung gibt es jedoch eine Option, mit der Sie festlegen können, dass Cloud Sync Dateien im Zielspeicherort löscht, wenn sie aus der Quelle gelöscht wurden.
+
+link:task_sync_managing_relationships.html#changing-the-settings-for-a-sync-relationship["Hier erfahren Sie, wie Sie die Einstellungen für eine Synchronisierungsbeziehung ändern"].
+
+
+
+=== Was passiert, wenn ich etwas von meinem Ziel lösche? Wird es auch aus meiner Quelle entfernt?
+
+Wenn ein Element aus dem Ziel gelöscht wird, wird es nicht aus der Quelle entfernt. Die Beziehung verläuft von der Quelle zum Ziel. Beim nächsten Synchronisierungszyklus vergleicht Cloud Sync die Quelle mit dem Ziel, erkennt, dass das Element fehlt, und Cloud Sync kopiert es erneut von der Quelle zum Ziel.
+
+
+
+== Fehlerbehebung
+
+https://kb.netapp.com/Advice_and_Troubleshooting/Cloud_Services/Cloud_Sync/Cloud_Sync_FAQ:_Support_and_Troubleshooting["NetApp Knowledgebase: FAQ zu Cloud Sync: Support und Fehlerbehebung"^]
+
+
+
+== Data Broker - tief greifend
+
+Die folgende Frage bezieht sich auf den Data Broker.
+
+
+
+=== Können Sie die Architektur des Data Brokers erläutern?
+
+Sicher. Hier die wichtigsten Punkte:
+
+* Der Data Broker ist eine Node.js-Anwendung, die auf einem Linux-Host ausgeführt wird.
+* Cloud Sync stellt den Daten-Broker wie folgt bereit:
++
+** AWS: Aus einer AWS CloudFormation Vorlage
+** Azure: Von Azure Resource Manager
+** Google: Von Google Cloud Deployment Manager
+** Wenn Sie Ihren eigenen Linux-Host verwenden, müssen Sie die Software manuell installieren
+
+
+* Die Data Broker-Software aktualisiert sich automatisch auf die neueste Version.
+* Der Data Broker nutzt AWS SQS als zuverlässigen und sicheren Kommunikationskanal sowie zur Steuerung und Überwachung. SQS bietet auch eine Persistenzschicht.
+* Sie können einer Beziehung zusätzliche Datenvermittler hinzufügen, um die Übertragungsgeschwindigkeit zu erhöhen und eine hohe Verfügbarkeit hinzuzufügen. Bei Ausfall eines Data Brokers besteht Service-Ausfallsicherheit.
+

@@ -1,0 +1,105 @@
+---
+sidebar: sidebar 
+permalink: task_sync_installing_gcp.html 
+keywords: data broker, install, gcp, google, networking, permissions, regions, install data broker in gcp, install in gcp, deploy in gcp, deploy data broker in gcp, install data broker in google, install in google, deploy in google, deploy data broker in google, networking requirements, port, ports, 443, port 443, ntp, network time protocol, gcp data broker, service account 
+summary: Wenn Sie eine Synchronisierungsbeziehung erstellen, wählen Sie die Option GCP Data Broker, um die Data Broker-Software auf einer neuen virtuellen Maschineninstanz in einem VPC bereitzustellen. Cloud Sync führt Sie durch den Installationsprozess, aber die Anforderungen und Schritte werden auf dieser Seite wiederholt, um Sie bei der Vorbereitung auf die Installation zu unterstützen. 
+---
+= Installation des Daten-Brokers in Google Cloud Platform
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie eine Synchronisierungsbeziehung erstellen, wählen Sie die Option GCP Data Broker, um die Data Broker-Software auf einer neuen virtuellen Maschineninstanz in einem VPC bereitzustellen. Cloud Sync führt Sie durch den Installationsprozess, aber die Anforderungen und Schritte werden auf dieser Seite wiederholt, um Sie bei der Vorbereitung auf die Installation zu unterstützen.
+
+Sie haben auch die Möglichkeit, den Data Broker auf einem vorhandenen Linux-Host in der Cloud oder vor Ort zu installieren. link:task_sync_installing_linux.html["Weitere Informationen ."].
+
+
+
+== Unterstützte GCP-Regionen
+
+Alle Regionen werden unterstützt.
+
+
+
+== Netzwerkanforderungen
+
+* Der Daten-Broker benötigt eine ausgehende Internetverbindung, damit er den Cloud Sync Service für Aufgaben über Port 443 abfragen kann.
++
+Wenn Cloud Sync den Data Broker in GCP implementiert, erstellt es eine Sicherheitsgruppe, die die erforderliche ausgehende Kommunikation ermöglicht.
+
++
+Wenn Sie die ausgehende Verbindung begrenzen müssen, lesen Sie link:reference_sync_networking.html["Die Liste der Endpunkte, die der Datenmanager kontaktiert"].
+
+* NetApp empfiehlt die Konfiguration des Quell-, Ziel- und Daten-Brokers für die Verwendung eines NTP-Services (Network Time Protocol). Die Zeitdifferenz zwischen den drei Komponenten darf 5 Minuten nicht überschreiten.
+
+
+
+
+== Erforderliche Berechtigungen zum Bereitstellen des Data Brokers in GCP
+
+Stellen Sie sicher, dass der GCP-Benutzer, der den Daten-Broker bereitstellt, folgende Berechtigungen hat:
+
+[source, yaml]
+----
+- compute.networks.list
+- compute.regions.list
+- deploymentmanager.deployments.create
+- deploymentmanager.deployments.delete
+- deploymentmanager.operations.get
+- iam.serviceAccounts.list
+----
+
+
+== Für das Servicekonto erforderliche Berechtigungen
+
+Wenn Sie den Datenvermittler bereitstellen, müssen Sie ein Servicekonto mit den folgenden Berechtigungen auswählen:
+
+[source, yaml]
+----
+- logging.logEntries.create
+- resourcemanager.projects.get
+- storage.buckets.get
+- storage.buckets.list
+- storage.objects.*
+----
+
+
+== Installation des Data Brokers
+
+Sie können einen Daten-Broker in GCP installieren, wenn Sie eine Synchronisierungsbeziehung erstellen.
+
+.Schritte
+. Klicken Sie Auf *Neuen Sync Erstellen*.
+. Wählen Sie auf der Seite *Synchronisierungsbeziehung definieren* eine Quelle und ein Ziel aus und klicken Sie auf *Weiter*.
++
+Führen Sie die Schritte aus, bis Sie zur Seite *Data Broker* gelangen.
+
+. Klicken Sie auf der Seite *Data Broker* auf *Daten Broker erstellen* und wählen Sie dann *Google Cloud Platform* aus.
++
+Wenn Sie bereits einen Daten-Broker haben, müssen Sie auf klicken image:screenshot_plus_icon.gif["Ein Screenshot, wenn das Pluszeichen angezeigt wird"] Symbol zuerst.
+
++
+image:screenshot_create_data_broker.gif["Screenshot der Seite „Data Broker“ mit der Wahl zwischen einem AWS, Azure, GCP und einem Daten-Broker vor Ort."]
+
+. Geben Sie einen Namen für den Daten-Broker ein und klicken Sie auf *Weiter*.
+. Wenn Sie dazu aufgefordert werden, melden Sie sich bei Ihrem Google-Konto an.
++
+Das Formular ist Eigentum und wird von Google gehostet. Ihre Zugangsdaten werden nicht an NetApp bereitgestellt.
+
+. Wählen Sie ein Projekt- und ein Servicekonto aus, und wählen Sie dann einen Speicherort für den Datenvermittler aus.
++
+image:screenshot_data_broker_gcp.gif["Ein Screenshot mit den Informationen, die für die Bereitstellung eines Daten-Brokers in Google Cloud erforderlich sind"]
+
+. Sobald der Datenvermittler verfügbar ist, klicken Sie in Cloud Sync auf *Weiter*.
++
+Die Bereitstellung der Instanz dauert etwa 5 bis 10 Minuten. Sie können den Fortschritt des Cloud Sync-Dienstes überwachen, der automatisch aktualisiert wird, wenn die Instanz verfügbar ist.
+
+. Füllen Sie die Seiten im Assistenten aus, um die neue Synchronisierungsbeziehung zu erstellen.
+
+
+Sie haben einen Datenvermittler in GCP implementiert und eine neue Synchronisierungsbeziehung erstellt. Sie können diesen Daten-Broker mit zusätzlichen Synchronisierungsbeziehungen verwenden.

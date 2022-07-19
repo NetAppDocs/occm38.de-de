@@ -1,0 +1,141 @@
+---
+sidebar: sidebar 
+permalink: concept_cloud_sync.html 
+keywords: cloud sync, overview, conceptual, how, data broker, service 
+summary: Der NetApp Cloud Sync Service bietet eine einfache, sichere und automatisierte Möglichkeit zur Migration Ihrer Daten auf beliebige Ziele, in der Cloud oder vor Ort. 
+---
+= Übersicht über Cloud Sync
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Der NetApp Cloud Sync Service bietet eine einfache, sichere und automatisierte Möglichkeit zur Migration Ihrer Daten auf beliebige Ziele, in der Cloud oder vor Ort. Ob es sich um einen dateibasierten NAS-Datensatz (NFS oder SMB), um ein S3-Objektformat (Amazon Simple Storage Service), eine NetApp StorageGRID Appliance oder einen anderen Cloud-Provider-Objektspeicher handelt: Cloud Sync kann diesen für Sie konvertieren und verschieben.
+
+
+
+== Funktionen
+
+Sehen Sie sich das folgende Video an, um einen Überblick über Cloud Sync zu erhalten:
+
+video::oZNJtLvgNfQ[youtube,width=848,height=480]
+
+
+== Funktionsweise von Cloud Sync
+
+Cloud Sync ist eine SaaS-Plattform (Software-as-a-Service), die aus einem Datenmanager, einer Cloud-basierten Schnittstelle, die über Cloud Manager verfügbar ist, sowie aus einer Quelle und einem Ziel besteht.
+
+Die folgende Abbildung zeigt die Beziehung zwischen Cloud Sync-Komponenten:
+
+image:diagram_cloud_sync_overview.gif["Konzeptionelles Bild, das den Datenfluss von einer Quelle zu einem Ziel zeigt. Die Data Broker-Software fungiert als Vermittler und fragt den Cloud Sync Service nach Aufgaben ab."]
+
+Die NetApp Daten-Broker Software synchronisiert Daten von einer Quelle zu einem Ziel (dies wird als „_Sync Relationship_“ bezeichnet). Sie können den Data Broker in AWS, Azure, Google Cloud Platform oder vor Ort ausführen. Der Daten-Broker benötigt eine ausgehende Internetverbindung über Port 443, damit er mit dem Cloud Sync-Dienst kommunizieren und sich mit einigen anderen Diensten und Repositorys in Verbindung setzen kann. link:reference_sync_networking.html["Zeigen Sie die Liste der Endpunkte an"].
+
+Nach der ersten Kopie synchronisiert der Service alle geänderten Daten auf der Grundlage des von Ihnen festgelegten Zeitplans.
+
+
+
+== Unterstützte Speichertypen
+
+Cloud Sync unterstützt folgende Speichertypen:
+
+* Beliebiger NFS-Server
+* Alle SMB-Server
+* AWS EFS
+* AWS S3
+* Azure Blob
+* Azure NetApp Dateien
+* Cloud Volumes Service
+* Cloud Volumes ONTAP
+* Google Cloud Storage
+* IBM Cloud Objekt-Storage
+* On-Premises-ONTAP-Cluster
+* ONTAP S3 Storage
+* StorageGRID
+
+
+link:reference_sync_requirements.html["Unterstützte Synchronisierungsbeziehungen prüfen"].
+
+
+
+== Kosten
+
+Mit der Nutzung von Cloud Sync sind zwei Arten von Kosten verbunden: Ressourcengebühren und Servicegebühren.
+
+Ressourcenkosten:: Ressourcengebühren beziehen sich auf die Computing- und Storage-Kosten für den Betrieb des Daten-Brokers in der Cloud.
+Servicegebühren:: Es gibt zwei Möglichkeiten, für Synchronisierungsbeziehungen zu bezahlen, nachdem die 14-tägige kostenlose Testversion abgelaufen ist. Als erste Option können Sie AWS oder Azure abonnieren, wodurch Sie stündlich oder jährlich bezahlen können. Die zweite Option besteht darin, Lizenzen direkt von NetApp zu erwerben. Lesen Sie die folgenden Abschnitte, um weitere Details zu erhalten.
+
+
+
+
+=== Marketplace-Abonnement
+
+Wenn Sie den Cloud Sync Service von AWS oder Azure abonnieren, können Sie die Kosten pro Stunde oder pro Jahr zahlen. link:task_sync_licensing.html["Sie können sich für die Anmeldung über AWS oder Azure anmelden"], Je nachdem, wo Sie abgerechnet werden möchten.
+
+Stündliche Abonnements:: Bei einem nutzungsbasierten Abonnement auf Stundenbasis berechnet der Cloud Sync Service jede Stunde, basierend auf der Anzahl der erstellten Synchronisierungsbeziehungen.
++
+--
+* https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-sync-service?tab=PlansAndPrice["Preise in Azure anzeigen"^]
+* https://aws.amazon.com/marketplace/pp/B01LZV5DUJ["Pay-as-you-go-Preise in AWS anzeigen"^]
+
+
+--
+Jahresabonnements:: Ein Jahresabonnement bietet eine Lizenz für 20 Synchronisierungsbeziehungen, die Sie vorab bezahlen. Wenn Sie über 20 synchrone Beziehungen verfügen und über Azure angemeldet sind, zahlen Sie für die zusätzlichen Beziehungen pro Stunde.
++
+--
+https://aws.amazon.com/marketplace/pp/B06XX5V3M2["Jährliche Preise in AWS anzeigen"^]
+
+--
+
+
+
+
+=== Lizenzen von NetApp
+
+Eine weitere Möglichkeit, für Synchronisierungsbeziehungen vorab zu bezahlen, besteht darin, Lizenzen direkt von NetApp zu erwerben. Mit jeder Lizenz können Sie bis zu 20 Synchronisierungsbeziehungen erstellen.
+
+Sie können diese Lizenzen mit einem AWS- oder Azure-Abonnement verwenden. Wenn Sie beispielsweise 25 Synchronisierungsbeziehungen haben, können Sie die ersten 20 Synchronisierungsbeziehungen mit einer Lizenz bezahlen und dann mit den restlichen 5 Synchronisierungsbeziehungen von AWS oder Azure bezahlen.
+
+link:task_sync_licensing.html["Erfahren Sie, wie Sie Lizenzen erwerben und zu Cloud Sync hinzufügen"].
+
+
+
+=== Lizenzbestimmungen
+
+Kunden, die eine Bring Your Own License (Byol) für den Cloud Sync Service erwerben, sollten sich der Einschränkungen im Zusammenhang mit der Lizenzberechtigung bewusst sein.
+
+* Der Kunde ist berechtigt, die Byol-Lizenz für einen Zeitraum von höchstens einem Jahr ab Lieferdatum zu nutzen.
+* Kunden haben das Recht, die Byol-Lizenz zu nutzen, um insgesamt 20 einzelne Verbindungen zwischen einer Quelle und einem Ziel (jeweils eine "Sync-Beziehung") herzustellen und nicht zu überschreiten.
+* Die Berechtigung eines Kunden erlischt mit Ablauf der einjährigen Lizenzlaufzeit, unabhängig davon, ob der Kunde die 20-Sync-Beziehungs-Limitierung erreicht hat.
+* Falls der Kunde seine Lizenz erneuern möchte, werden nicht verwendete Synchronisierungsbeziehungen, die mit der vorherigen Lizenzgewährung verknüpft waren, NICHT auf die Lizenzverlängerung übertragen.
+
+
+
+
+== Datenschutz
+
+NetApp hat keinen Zugriff auf Ihre Zugangsdaten, die Sie während der Nutzung des Cloud Sync-Dienstes zur Verfügung stellen. Die Anmeldeinformationen werden direkt auf dem Data Broker-Computer in Ihrem Netzwerk gespeichert.
+
+Abhängig von der ausgewählten Konfiguration werden Sie möglicherweise von Cloud Sync aufgefordert, Anmeldeinformationen einzugeben, wenn Sie eine neue Beziehung erstellen. Wenn Sie beispielsweise eine Beziehung einrichten, die einen SMB-Server umfasst, oder den Daten-Broker in AWS bereitstellen.
+
+Diese Zugangsdaten werden immer direkt beim Data Broker selbst gespeichert. Der Daten-Broker befindet sich auf einem Rechner im Netzwerk, unabhängig davon, ob er sich vor Ort oder in Ihrem Cloud-Konto befindet. Die Zugangsdaten werden NetApp nie zur Verfügung gestellt.
+
+Die Anmeldedaten werden mithilfe von HashiCorp Vault lokal auf dem Daten-Broker-Rechner verschlüsselt.
+
+
+
+== Einschränkungen
+
+* Cloud Sync wird in China nicht unterstützt.
+* Neben China wird der Cloud Sync Data Broker in den folgenden Regionen nicht unterstützt:
++
+** AWS GovCloud (USA)
+** Azure US Gov
+** Azure US DoD
+
+
+

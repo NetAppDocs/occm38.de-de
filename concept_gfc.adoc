@@ -1,0 +1,166 @@
+---
+sidebar: sidebar 
+permalink: concept_gfc.html 
+keywords: global file cache 
+summary: Mit NetApp Global File Cache können Sie Silos verteilter File Server zu einem zusammenhängenden globalen Storage-System in der Public Cloud konsolidieren. Dadurch wird ein global zugängliches File-System in der Cloud geschaffen, das alle Remote-Standorte so nutzen kann, als ob sie lokal wären. 
+---
+= Erfahren Sie mehr über Global File Cache
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Mit NetApp Global File Cache können Sie Silos verteilter File Server zu einem zusammenhängenden globalen Storage-System in der Public Cloud konsolidieren. Dadurch wird ein global zugängliches File-System in der Cloud geschaffen, das alle Remote-Standorte so nutzen kann, als ob sie lokal wären.
+
+
+
+== Überblick
+
+Die Implementierung von Global File Cache verursacht gegenüber einer verteilten Storage-Architektur einen zentralen, einzigen Storage-Platzbedarf, der an jedem Standort lokales Datenmanagement, Backup, Sicherheitsmanagement, Storage und Infrastruktur erfordert.
+
+image:diagram_gfc_image1.png["Ein Diagramm, das zeigt, wie Remote-Standorte mithilfe von Global File Cache auf ein einzelnes Shared-Filesystem zugreifen."]
+
+
+
+== Funktionen
+
+Global File Cache ermöglicht die folgenden Funktionen:
+
+* Konsolidieren und zentralisieren Sie Ihre Daten in die Public Cloud und profitieren Sie von der Skalierbarkeit und Performance von Storage-Lösungen der Enterprise-Klasse
+* Erstellen Sie einen einzigen Datensatz für alle Benutzer weltweit und nutzen Sie intelligentes Datei-Caching, um globalen Datenzugriff, Zusammenarbeit und Performance zu verbessern
+* Sie erhalten einen eigenständigen, automatisierten Cache, der vollständige Datenkopien und Backups überflüssig macht. Nutzen Sie lokales Datei-Caching für aktive Daten und senken Sie die Storage-Kosten
+* Transparenter Zugriff von Remote-Standorten über einen globalen Namespace mit zentraler Dateisperrung in Echtzeit
+
+
+Weitere Informationen zu den Funktionen und Anwendungsfällen von Global File Cache finden Sie hier https://cloud.netapp.com/global-file-cache["Hier"^].
+
+
+
+== Globale File Cache-Komponenten
+
+Global File Cache besteht aus folgenden Komponenten:
+
+* Global File Cache Management Server
+* Globaler File Cache-Kern
+* Global File Cache Edge (an Remote-Standorten implementiert)
+
+
+Die globale File Cache Core Instanz wird in die File Shares Ihres Unternehmens eingebunden, die auf der bevorzugten Back-End-Storage-Plattform gehostet werden (wie Cloud Volumes ONTAP, Cloud Volumes Service, Und Azure NetApp Files). Außerdem wurde eine globale File Cache-Fabric-Strategie entwickelt, mit der unstrukturierte Daten in einem einzigen Datensatz konsolidiert und zentralisiert werden können. Dabei spielt es keine Rolle, ob sich die Daten auf einer oder mehreren Storage-Plattformen in der Public Cloud befinden.
+
+image:diagram_gfc_image2.png["Ein Diagramm zeigt die Details einer Implementierung von Global File Cache mit in Remote-Zweigstellen installierter Software und einem zentralen Server in der Cloud"]
+
+
+
+== Unterstützte Storage-Plattformen
+
+Die unterstützten Storage-Plattformen für Global File Cache unterscheiden sich je nach gewählter Implementierungsoption.
+
+
+
+=== Automatisierte Implementierungsoptionen
+
+Global File Cache wird bei Implementierung mit Cloud Manager für die folgenden Typen von Arbeitsumgebungen unterstützt:
+
+* Cloud Volumes ONTAP in Azure
+* Cloud Volumes ONTAP in AWS
+
+
+Mit dieser Konfiguration können Sie die gesamte Implementierung des Global File Cache Servers einschließlich Global File Cache Management Server und Global File Cache Core in Cloud Manager implementieren und managen.
+
+
+
+=== Optionen für manuelle Implementierung
+
+Außerdem werden globale File-Cache-Konfigurationen mit Cloud Volumes ONTAP, Cloud Volumes Service oder Azure NetApp Files unterstützt, die auf der Public-Cloud-Storage-Infrastruktur von Microsoft Azure, Google Cloud Platform oder Amazon Web Services installiert sind. Lösungen vor Ort sind auch auf NetApp AFF und FAS Plattformen verfügbar. In diesen Installationen müssen die serverseitigen Komponenten des Global File Cache nicht mit Cloud Manager, sondern manuell konfiguriert und bereitgestellt werden.
+
+Siehe link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["NetApp Global File Cache User Guide"^] Entsprechende Details.
+
+
+
+== Funktionsweise von Global File Cache
+
+Global File Cache erstellt eine Software Fabric, in der aktive Datensätze an Remote-Standorten weltweit im Cache gespeichert werden. Geschäftliche Benutzer haben somit einen transparenten Datenzugriff und eine optimale Performance auf globaler Ebene.
+
+image:diagram_gfc_image3.png["Ein Diagramm mit den Komponenten des Global File Cache am Edge und im Core."]
+
+Die in diesem Beispiel referenzierte Topologie ist ein Hub-and-Spoke-Modell, wobei das Netzwerk von Remote-Zweigstellen/-Standorten auf einen gemeinsamen Datensatz in der Cloud zugreift. Die wichtigsten Punkte dieses Beispiels sind:
+
+* Zentralisierter Datastore:
++
+** Public-Cloud-Storage-Plattform der Enterprise-Klasse, wie Cloud Volumes ONTAP
+
+
+* Global File Cache Fabric:
++
+** Erweiterung des zentralen Datenspeichers an die Remote-Standorte
+** Global File Cache Core Instance, Mounten in File Shares (SMB) des Unternehmens.
+** Global File Cache Edge-Instanzen, die an jedem Remote-Standort ausgeführt werden.
+** Stellt an jedem Remote-Standort einen virtuellen Dateifreigabe bereit, der Zugriff auf zentrale Daten ermöglicht.
+** Hostet den Intelligent File Cache auf einem benutzerdefinierten NTFS-Volume (`D:\`).
+
+
+* Netzwerkkonfiguration:
++
+** Multi-Protokoll-Label-Switching (MPLS)-, ExpressRoute- oder VPN-Konnektivität
+
+
+* Integration in die Active Directory-Domänendienste des Kunden.
+* DFS-Namespace für die Verwendung eines globalen Namespace (empfohlen).
+
+
+
+
+== Kosten
+
+Die Kosten für die Verwendung von Global File Cache hängen von der Art der Installation ab, die Sie ausgewählt haben.
+
+* Bei allen Installationen müssen Sie ein oder mehrere Volumes in der Cloud (Cloud Volumes ONTAP, Cloud Volumes Service oder Azure NetApp Files) implementieren. Daraus entstehen Gebühren vom ausgewählten Cloud-Provider.
+* Bei allen Installationen müssen Sie zudem zwei oder mehr Virtual Machines (VMs) in der Cloud implementieren. Daraus entstehen Gebühren vom ausgewählten Cloud-Provider.
++
+** Global File Cache Management-Server:
++
+In Azure wird dies auf einer D2S_V3 VM oder einer gleichwertigen (2 vCPU/8 GB RAM) mit 127GB Premium SSD ausgeführt
+
++
+In AWS wird dies auf einer m4.Large oder einer gleichwertigen Instanz (2 vCPU/8 GB RAM) mit 127GB Allzweck-SSD ausgeführt
+
+** Globaler File-Cache-Kern:
++
+In Azure wird dies auf einer D4s_V3 VM oder einer äquivalenten VM (4 vCPU/16 GB RAM) mit 127GB Premium SSD ausgeführt
+
++
+In AWS wird dies auf einer m4.xlarge oder einer äquivalenten Instanz (4 vCPU/16 GB RAM) mit einer universell einsetzbaren 127-GB-SSD ausgeführt
+
+
+
+* Bei der Installation mit Cloud Volumes ONTAP in Azure oder AWS (die unterstützten Konfigurationen sind vollständig über Cloud Manager implementiert) fallen pro Standort 3,000 US-Dollar an (für jede Global File Cache Edge Instanz).
+* Bei der Installation mit den manuellen Bereitstellungsoptionen ist die Preisgestaltung unterschiedlich. Eine allgemeine Einschätzung der Kosten finden Sie unter https://cloud.netapp.com/global-file-cache/roi["Berechnen Sie Ihr Einsparungspotenzial"^] Oder wenden Sie sich an Ihren Global File Cache Solutions Engineer, um die besten Optionen für die Implementierung in Ihrem Unternehmen zu besprechen.
+
+
+
+
+== Lizenzierung
+
+Global File Cache umfasst einen Software-basierten License Management Server (LMS), mit dem Sie Ihr Lizenzmanagement konsolidieren und Lizenzen mithilfe eines automatisierten Mechanismus auf alle Core- und Edge-Instanzen implementieren können.
+
+Wenn Sie Ihre erste Core-Instanz im Datacenter oder in der Cloud implementieren, können Sie diese Instanz als LMS für Ihr Unternehmen festlegen. Diese LMS-Instanz ist einmal konfiguriert, stellt eine Verbindung zum Abonnementdienst (über HTTPS) her und validiert Ihr Abonnement mit der Kunden-ID, die unsere Support-/Operations-Abteilung bei Aktivierung des Abonnements bereitstellt. Nachdem Sie diese Bezeichnung erstellt haben, verknüpfen Sie Ihre Edge-Instanzen mit dem LMS, indem Sie Ihre Kunden-ID und die IP-Adresse der LMS-Instanz angeben.
+
+Wenn Sie zusätzliche Edge-Lizenzen erwerben oder Ihr Abonnement verlängern, aktualisiert unsere Support-/Operations-Abteilung die Lizenzdetails, beispielsweise die Anzahl der Websites oder das Enddatum des Abonnements. Nachdem das LMS den Abonnementdienst abgefragt hat, werden die Lizenzdetails automatisch auf der LMS-Instanz aktualisiert und gelten für Ihre GFC Core- und Edge-Instanzen.
+
+Siehe link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["NetApp Global File Cache User Guide"^] Weitere Details zur Lizenzierung.
+
+
+
+== Einschränkungen
+
+* Die in Cloud Manager unterstützte Version des globalen Datei-Caches setzt voraus, dass die als zentraler Storage verwendete Back-End-Storage-Plattform eine Arbeitsumgebung sein muss, in der Sie einen einzelnen Cloud Volumes ONTAP Node oder ein HA-Paar in Azure oder AWS implementiert haben.
++
+Andere Storage-Plattformen und andere Cloud-Provider werden derzeit nicht mit Cloud Manager unterstützt, können jedoch mit älteren Implementierungsverfahren implementiert werden.
+
+
+
+Diese anderen Konfigurationen, beispielsweise Global File Cache Using Cloud Volumes ONTAP, Cloud Volumes Service, and Azure NetApp Files on Microsoft Azure, Google Cloud und AWS, werden weiterhin mit den älteren Verfahren unterstützt. Siehe link:https://cloud.netapp.com/global-file-cache/onboarding["Global File Cache: Überblick und Onboarding"^] Entsprechende Details.

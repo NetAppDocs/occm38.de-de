@@ -1,0 +1,64 @@
+---
+sidebar: sidebar 
+permalink: reference_legal_notices.html 
+keywords: copyrights, notice, trademarks, patents, privacy, open source 
+summary: Rechtliche Hinweise ermöglichen den Zugriff auf Copyright-Erklärungen, Marken, Patente und mehr. 
+---
+= Rechtliche Hinweise
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Rechtliche Hinweise ermöglichen den Zugriff auf Copyright-Erklärungen, Marken, Patente und mehr.
+
+
+
+== Urheberrecht
+
+http://www.netapp.com/us/legal/copyright.aspx[]
+
+
+
+== Marken
+
+NetApp, das NETAPP Logo und die auf der NetApp Markenseite aufgeführten Marken sind Marken von NetApp Inc. Andere Firmen- und Produktnamen können Marken der jeweiligen Eigentümer sein.
+
+http://www.netapp.com/us/legal/netapptmlist.aspx[]
+
+
+
+== Patente
+
+Eine aktuelle Liste der NetApp Patente finden Sie unter:
+
+https://www.netapp.com/us/media/patents-page.pdf[]
+
+
+
+== Datenschutzrichtlinie
+
+https://www.netapp.com/us/legal/privacypolicy/index.aspx[]
+
+
+
+== Open Source
+
+In den Benachrichtigungsdateien finden Sie Informationen zu Urheberrechten und Lizenzen von Drittanbietern, die in der NetApp Software verwendet werden.
+
+* link:media/notice_cloud_manager_3.8.7.pdf["Hinweis zu Cloud Manager 3.8.7"^]
+* link:media/notice_cloud_manager_3.8.6.pdf["Hinweis zu Cloud Manager 3.8.6"^]
+* link:media/notice_cloud_manager_3.8.5.pdf["Hinweis zu Cloud Manager 3.8.5"^]
+* link:media/notice_cloud_manager_3.8.4.pdf["Hinweis zu Cloud Manager 3.8.4"^]
+* link:media/notice_cloud_manager_3.8.3.pdf["Hinweis zu Cloud Manager 3.8.3"^]
+* link:media/notice_cloud_manager_3.8.2.pdf["Hinweis zu Cloud Manager 3.8.2"^]
+* link:media/notice_cloud_manager_3.8.1.pdf["Hinweis zu Cloud Manager 3.8.1"^]
+* link:media/notice_cloud_manager_3.8.pdf["Hinweis zu Cloud Manager 3.8"^]
+* link:media/notice_cloud_backup_service.pdf["Hinweis zum Cloud Backup Service"^]
+* link:media/notice_global_file_cache.pdf["Hinweis für Global File Cache"^]
+* link:media/notice_cloud_compliance.pdf["Hinweis zu Cloud Compliance"^]
+

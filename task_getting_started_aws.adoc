@@ -1,0 +1,74 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_aws.html 
+keywords: amazon web services, aws, netapp, data fabric, hybrid cloud, cloud, public cloud, networking, vpc, quick, getting started, install, installing, deploy, deploying, setup, setting up, launching, requirements, prerequisites, cloud central, get started, network, vpn, multi-cloud, tier, tiering, storage tier, data tier, vpc endpoint, endpoint, S3, subscribe, subscribing, marketplace, granting, permissions, policy, iam policy, ec2 console, ami, mediator, connectivity, internet, outbound, endpoint, connection, networks, replicating, ec2 service, policies, attach, iam user, access key, secret key, keys, sign up, cloud manager, cloud volumes ontap, cloud ontap, create 
+summary: Erste Schritte mit Cloud Volumes ONTAP für AWS 
+---
+= Erste Schritte mit Cloud Volumes ONTAP für AWS
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Erste Schritte mit Cloud Volumes ONTAP für AWS
+
+
+
+==== Einen Konnektor erstellen
+
+[role="quick-margin-para"]
+Wenn Sie keine haben link:concept_connectors.html["Stecker"] Dennoch muss ein Kontoadministrator einen erstellen. link:task_creating_connectors_aws.html["Erfahren Sie, wie Sie in AWS einen Connector erstellen können"].
+
+[role="quick-margin-para"]
+Wenn Sie Ihre erste Cloud Volumes ONTAP-Arbeitsumgebung erstellen, werden Sie von Cloud Manager aufgefordert, einen Connector bereitzustellen, wenn Sie noch keinen haben.
+
+
+
+==== Planen Sie Ihre Konfiguration
+
+[role="quick-margin-para"]
+Cloud Manager bietet vorkonfigurierte Pakete, die Ihren Workload-Anforderungen entsprechen, oder Sie können eine eigene Konfiguration erstellen. Wenn Sie sich für eine eigene Konfiguration entscheiden, sollten Sie sich mit den verfügbaren Optionen vertraut machen. link:task_planning_your_config.html["Weitere Informationen ."].
+
+
+
+==== Richten Sie Ihr Netzwerk ein
+
+. Stellen Sie sicher, dass Ihre VPC und Subnetze die Konnektivität zwischen dem Connector und Cloud Volumes ONTAP unterstützen.
+. Aktivieren Sie den Outbound-Internetzugang über die Ziel-VPC, damit der Connector und der Cloud Volumes ONTAP mehrere Endpunkte kontaktieren können.
++
+Dieser Schritt ist wichtig, da der Connector Cloud Volumes ONTAP nicht ohne Outbound-Internetzugang verwalten kann. Wenn Sie die ausgehende Verbindung begrenzen müssen, lesen Sie die Liste der Endpunkte für link:reference_networking_aws.html["Anschluss und Cloud Volumes ONTAP"].
+
+. Richten Sie einen VPC-Endpunkt für den S3-Dienst ein.
++
+Ein VPC-Endpunkt ist erforderlich, wenn Sie kalte Daten von Cloud Volumes ONTAP auf kostengünstigen Objekt-Storage einstufen möchten.
+
+
+
+[role="quick-margin-para"]
+link:reference_networking_aws.html["Erfahren Sie mehr über Netzwerkanforderungen"].
+
+
+
+==== AWS KMS einrichten
+
+[role="quick-margin-para"]
+Wenn Sie Amazon Verschlüsselung mit Cloud Volumes ONTAP verwenden möchten, müssen Sie sicherstellen, dass ein aktiver Kundenstammschlüssel (CMK) vorhanden ist. Außerdem müssen Sie die Schlüsselrichtlinie für jedes CMK ändern, indem Sie die IAM-Rolle hinzufügen, die dem Connector Berechtigungen als_Key-Benutzer_ bereitstellt. link:task_setting_up_kms.html["Weitere Informationen ."].
+
+
+
+==== Starten Sie Cloud Volumes ONTAP mit Cloud Manager
+
+[role="quick-margin-para"]
+Klicken Sie auf *Arbeitsumgebung hinzufügen*, wählen Sie den Systemtyp aus, den Sie bereitstellen möchten, und führen Sie die Schritte im Assistenten aus. link:task_deploying_otc_aws.html["Lesen Sie Schritt-für-Schritt-Anleitungen"].
+
+.Weiterführende Links
+* link:concept_evaluating.html["Bewertung"]
+* link:task_creating_connectors_aws.html["Erstellen eines Connectors über Cloud Manager"]
+* link:task_launching_aws_mktp.html["Einführen eines Connectors über den AWS Marketplace"]
+* link:task_installing_linux.html["Installieren der Connector-Software auf einem Linux-Host"]
+* link:reference_permissions.html#what-cloud-manager-does-with-aws-permissions["Was Cloud Manager mit AWS-Berechtigungen macht"]
+

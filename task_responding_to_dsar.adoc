@@ -1,0 +1,67 @@
+---
+sidebar: sidebar 
+permalink: task_responding_to_dsar.html 
+keywords: dsar, data subject access request, search, search for name, report, gdpr, data privacy laws, data subject, compliance 
+summary: 'Reagieren Sie auf eine DSAR (Data Subject Access Request), indem Sie nach dem vollständigen Namen oder der bekannten Kennung (z. B. einer E-Mail-Adresse) eines Studienteilnehmers suchen und dann einen Bericht herunterladen. Der Bericht soll Ihrem Unternehmen helfen, die Vorgaben der DSGVO oder ähnlicher Datenschutzgesetze einzuhalten.' 
+---
+= Reaktion auf eine Zugriffsanfrage für betroffene Person
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Reagieren Sie auf eine DSAR (Data Subject Access Request), indem Sie nach dem vollständigen Namen oder der bekannten Kennung (z. B. einer E-Mail-Adresse) eines Studienteilnehmers suchen und dann einen Bericht herunterladen. Der Bericht soll Ihrem Unternehmen helfen, die Vorgaben der DSGVO oder ähnlicher Datenschutzgesetze einzuhalten.
+
+
+NOTE: NetApp kann keine Garantie für 100 % Genauigkeit der persönlichen Daten und für sensible personenbezogene Daten, die Cloud Compliance identifiziert hat, geben. Überprüfen Sie die Informationen immer, indem Sie die Daten überprüfen.
+
+
+
+== Was ist ein Antrag auf Zugang für betroffene Person?
+
+Datenschutzvorschriften wie die Europäische DSGVO erteilen Betroffenen (wie Kunden oder Mitarbeitern) das Recht, auf ihre personenbezogenen Daten zuzugreifen. Wenn eine betroffene Person diese Informationen anfordert, wird dies als DSAR (Zugriffsanfrage für betroffene Person) bezeichnet. Unternehmen sind verpflichtet, auf diese Anfragen „ohne unzumutbare Verzögerung“ und spätestens innerhalb eines Monats nach Eingang zu reagieren.
+
+
+
+== Wie kann Cloud Compliance Ihnen helfen, auf einen DSAR zu reagieren?
+
+Wenn Sie eine Suche des Betroffenen durchführen, findet Cloud Compliance alle Dateien, die den Namen oder die Kennung der betreffenden Person enthalten. Cloud Compliance prüft die neuesten vorindizierten Daten auf den Namen oder die Kennung. Es wird kein neuer Scan gestartet.
+
+Nachdem die Suche abgeschlossen ist, können Sie die Liste der Dateien für einen Bericht für die Anforderung von Datensubjekten herunterladen. Der Bericht sammelt Erkenntnisse aus den Daten und stellt die Daten zu rechtlichen Bedingungen bereit, die Sie an die Person zurücksenden können.
+
+
+
+== Suchen nach Betroffenen und Herunterladen von Berichten
+
+Suchen Sie nach dem vollständigen Namen oder der bekannten Kennung des Betroffenen, und laden Sie dann einen Dateilistenbericht oder einen DSAR-Bericht herunter. Suchen Sie nach link:task_controlling_private_data.html#types-of-personal-data["Alle persönlichen Informationstypen"^].
+
+Nur Englisch wird bei der Suche nach den Namen von Betroffenen unterstützt. Support für weitere Sprachen wird später hinzugefügt.
+
+
+NOTE: Die Suche nach Betroffenen wird derzeit in Datenbanken nicht unterstützt.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf *Cloud Compliance*.
+. Klicken Sie Auf *Data Subjects*.
+. Suchen Sie nach dem vollständigen Namen oder der bekannten Kennung des Betroffenen.
++
+Hier ein Beispiel, das eine Suche nach dem Namen _john doe_ zeigt:
+
++
+image:screenshot_dsar_search.gif["Ein Screenshot, der eine Suche nach dem Namen \"John Doe\" nach einem DSAR zeigt."]
+
+. Wählen Sie eine der folgenden Optionen:
++
+** *Download DSAR Report*: Eine formelle Antwort auf die Zugriffsanfrage, die Sie an den Betroffenen senden können. Dieser Bericht enthält automatisch generierte Informationen auf der Grundlage von Daten, die Cloud Compliance dem Betroffenen zur Verfügung stellte und für die Nutzung als Vorlage konzipiert wurde. Füllen Sie das Formular aus und überprüfen Sie es intern, bevor Sie es an den Betroffenen senden.
+** *Ergebnisse untersuchen*: Eine Seite, auf der Sie die Daten untersuchen können, indem Sie nach einer bestimmten Datei suchen, sortieren, Details erweitern und die Dateiliste herunterladen.
++
+
+NOTE: Wenn es mehr als 10,000 Ergebnisse gibt, werden nur die Top 10,000 in der Dateiliste angezeigt.
+
+
+
+

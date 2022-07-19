@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: task_adding_nss_accounts.html 
+keywords: adding, creating, netapp support site account, nss 
+summary: Um ein BYOL-System zu implementieren, muss ein NetApp Support Site Konto in Cloud Manager hinzugefügt werden. Zudem müssen Pay-as-you-go-Systeme registriert und ein Upgrade der ONTAP Software durchgeführt werden. 
+---
+= Hinzufügen von NetApp Support Site Konten zu Cloud Manager
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Um ein BYOL-System zu implementieren, muss ein NetApp Support Site Konto in Cloud Manager hinzugefügt werden. Zudem müssen Pay-as-you-go-Systeme registriert und ein Upgrade der ONTAP Software durchgeführt werden.
+
+Sehen Sie sich das folgende Video an und erfahren Sie, wie Sie NetApp Support Site Accounts in Cloud Manager hinzufügen. Oder blättern Sie nach unten, um die Schritte zu lesen.
+
+video::V2fLTyztqYQ[youtube,width=848,height=480]
+Sie müssen einen Konnektor erstellen, bevor Sie Cloud Manager-Einstellungen ändern können. link:concept_connectors.html#how-to-create-a-connector["Erfahren Sie, wie"].
+
+.Schritte
+. Wenn Sie noch keinen NetApp Support Site Account haben, http://now.netapp.com/newuser/["Eine anmeldung"^].
+. Klicken Sie oben rechts in der Cloud Manager-Konsole auf das Symbol Einstellungen und wählen Sie *Anmeldeinformationen*.
++
+image:screenshot_settings_icon.gif["Ein Screenshot, in dem das Symbol „Einstellungen“ oben rechts in der Cloud Manager Konsole angezeigt wird."]
+
+. Klicken Sie auf *Anmeldedaten hinzufügen* und wählen Sie *NetApp Support Site*.
+. Geben Sie einen Namen für das Konto an, und geben Sie dann den Benutzernamen und das Kennwort ein.
++
+** Das Konto muss ein Kundenkonto auf Kundenebene sein (kein Gast- oder Temporkonto).
+** Wenn Sie Byol-Systeme implementieren möchten:
++
+*** Das Konto muss für den Zugriff auf die Seriennummern der BYOL-Systeme autorisiert sein.
+*** Wenn Sie ein sicheres BYOL-Abonnement erworben haben, ist ein sicheres NSS-Konto erforderlich.
+
+
+
+
+. Klicken Sie Auf *Konto Erstellen.*
+
+
+Benutzer können jetzt das Konto beim Erstellen neuer Cloud Volumes ONTAP Systeme und bei der Registrierung vorhandener Systeme auswählen.
+
+* link:task_deploying_otc_aws.html["Starten von Cloud Volumes ONTAP in AWS"]
+* link:task_deploying_otc_azure.html["Starten von Cloud Volumes ONTAP in Azure"]
+* link:task_registering.html["Registrieren von Pay-as-you-go-Systemen"]
+* link:concept_licensing.html["Cloud Manager managt Lizenzdateien"]
+

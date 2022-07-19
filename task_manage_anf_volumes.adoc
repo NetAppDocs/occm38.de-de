@@ -1,0 +1,131 @@
+---
+sidebar: sidebar 
+permalink: task_manage_anf_volumes.html 
+keywords: azure netapp files, create volumes, delete volumes, create nfs volumes, delete nfs volumes, netapp account, capacity pool, create capacity pool, azure netapp files permissions, azure permissions, mount path, get mount path, find mount path, mount volume 
+summary: Nach der Einrichtung der Arbeitsumgebung können Sie Azure NetApp Files Konten, Kapazitätspools, Volumes und Snapshots erstellen und managen. 
+---
+= Erstellen und Verwalten von Volumes für Azure NetApp Files
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Nach der Einrichtung der Arbeitsumgebung können Azure NetApp Files Konten, Kapazitäts-Pools, Volumes und Snapshots erstellt und gemanagt werden.
+
+
+
+== Volumes werden erstellt
+
+NFS- oder SMB-Volumes können in einem neuen oder vorhandenen Azure NetApp Files-Konto erstellt werden.
+
+.Schritte
+. Öffnen Sie die Azure NetApp Files-Arbeitsumgebung.
+. Klicken Sie Auf *Neues Volume Hinzufügen*.
+. Geben Sie die erforderlichen Informationen auf den einzelnen Seiten an:
++
+** *Azure NetApp Files-Konto*: Wählen Sie ein bestehendes Azure NetApp Files-Konto oder erstellen Sie ein neues Konto.
++
+image:screenshot_anf_create_account.gif["Einen Screenshot der Felder, die zum Erstellen eines Azure NetApp Files Kontos erforderlich sind, der einen Namen, ein Azure Abonnement, einen Standort und eine Ressourcengruppe umfasst."]
+
+** *Kapazitäts-Pool*: Wählen Sie einen vorhandenen Kapazitäts-Pool aus oder erstellen Sie einen neuen Kapazitäts-Pool.
++
+Wenn Sie einen neuen Kapazitätspool erstellen, müssen Sie eine Größe angeben und ein auswählen https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-service-levels["Service-Level"^].
+
++
+Die Mindestgröße für den Kapazitäts-Pool beträgt 4 TB. Sie können eine Größe in einem Vielfachen von 4 TB angeben.
+
+** *Details & Tags*: Geben Sie einen Namen und Größe des Datenträgers, vnet und Subnetz ein, in dem sich das Volume befinden soll, und geben Sie optional Tags für das Volume an.
+** *Protokoll*: Wählen Sie das NFS- oder SMB-Protokoll und geben Sie die erforderlichen Informationen ein.
++
+Dies ist ein Beispiel für die Details für NFS.
+
++
+image:screenshot_anf_nfs.gif[""]
+
++
+Dies ist ein Beispiel für Details für SMB. Sie müssen Active Directory-Informationen bereitstellen, wenn Sie Ihr erstes SMB-Volume einrichten.
+
++
+image:screenshot_anf_smb.gif[""]
+
+
+
+. Klicken Sie Auf *Volumen Hinzufügen*.
+
+
+
+
+== Montage der Volumen
+
+Sie können das Volume in einem Cloud Manager mounten und auf einem Host zugreifen, indem Sie die Anweisungen im Anschluss nehmen.
+
+.Schritte
+. Öffnen Sie die Arbeitsumgebung.
+. Bewegen Sie den Mauszeiger über die Lautstärke, und wählen Sie *Mounten Sie die Lautstärke*.
++
+image:screenshot_anf_hover.gif[""]
+
+. Befolgen Sie die Anweisungen zum Montieren des Volumens.
+
+
+
+
+== Bearbeiten von Größe und Tags eines Volumens
+
+Nachdem Sie ein Volume erstellt haben, können Sie dessen Größe und Tags jederzeit ändern.
+
+.Schritte
+. Öffnen Sie die Arbeitsumgebung.
+. Bewegen Sie den Mauszeiger über die Lautstärke und wählen Sie *Bearbeiten*.
+. Ändern Sie die Größe und die Tags nach Bedarf.
+. Klicken Sie Auf *Anwenden*.
+
+
+
+
+== Verwalten von Snapshot Kopien
+
+Snapshot Kopien erstellen eine zeitpunktgenaue Kopie des Volume. Erstellen Sie Snapshot Kopien, stellen Sie die Daten in einem neuen Volume wieder her und löschen Sie Snapshot Kopien.
+
+.Schritte
+. Öffnen Sie die Arbeitsumgebung.
+. Bewegen Sie den Mauszeiger über das Volume und wählen Sie eine der verfügbaren Optionen zum Managen von Snapshot Kopien aus:
++
+** *Erstellen Sie eine Snapshot Kopie*
+** *Wiederherstellen auf einem neuen Volume*
+** *Löschen einer Snapshot Kopie*
+
+
+. Befolgen Sie die Anweisungen, um die ausgewählte Aktion abzuschließen.
+
+
+
+
+== Volumes werden gelöscht
+
+Löschen Sie die Volumes, die Sie nicht mehr benötigen.
+
+.Schritte
+. Öffnen Sie die Arbeitsumgebung.
+. Bewegen Sie den Mauszeiger über die Lautstärke und klicken Sie auf *Löschen*.
+. Bestätigen Sie, dass Sie das Volume löschen möchten.
+
+
+
+
+== Azure NetApp Files wird entfernt
+
+Durch diese Aktion wird Azure NetApp Files aus Cloud Manager entfernt. Ihr Azure NetApp Files-Konto oder Ihre Volumes werden nicht gelöscht. Sie können Azure NetApp Files jederzeit wieder zu Cloud Manager hinzufügen.
+
+.Schritte
+. Öffnen Sie die Azure NetApp Files-Arbeitsumgebung.
+. Wählen Sie oben rechts auf der Seite das Menü Aktionen aus und klicken Sie auf *Azure NetApp Files entfernen*.
++
+image:screenshot_anf_remove.gif[""]
+
+. Klicken Sie zur Bestätigung auf *Entfernen*.
+

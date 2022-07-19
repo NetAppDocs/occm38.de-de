@@ -1,0 +1,82 @@
+---
+sidebar: sidebar 
+permalink: task_provisioning_ontap.html 
+keywords: ontap, cluster, manage, provision, provisioning, volumes, discovering, fas, aff, creating volumes, adding volumes 
+summary: Nachdem Sie den lokalen ONTAP-Cluster von Cloud Manager entdeckt haben, können Sie die Arbeitsumgebung für die Storage-Bereitstellung öffnen. 
+---
+= Managen von Storage für ONTAP-Cluster
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+Nachdem Sie den ONTAP Cluster von Cloud Manager entdeckt haben, können Sie die Arbeitsumgebung für das Bereitstellen und Managen von Storage öffnen.
+
+
+
+== Erstellen von Volumes für ONTAP Cluster
+
+Cloud Manager ermöglicht die Bereitstellung von NFS-, CIFS- und iSCSI-Volumes auf ONTAP Clustern.
+
+Die Datenprotokolle müssen über System Manager oder die CLI auf dem Cluster eingerichtet werden.
+
+Sie können Volumes auf vorhandenen Aggregaten erstellen. Sie können keine neuen Aggregate aus Cloud Manager erstellen.
+
+.Schritte
+. Doppelklicken Sie auf der Seite Arbeitsumgebungen auf den Namen des ONTAP Clusters, auf dem Sie Volumes bereitstellen möchten.
+. Klicken Sie Auf *Neues Volume Hinzufügen*.
+. Geben Sie auf der Seite Neues Volume erstellen die Details für das Volume ein und klicken Sie dann auf *Erstellen*.
++
+Einige der Felder auf dieser Seite sind selbsterklärend. In der folgenden Tabelle werden Felder beschrieben, für die Sie möglicherweise Hilfe benötigen:
+
++
+[cols="2,6"]
+|===
+| Feld | Beschreibung 
+
+
+| Größe | Die maximale Größe, die Sie eingeben können, hängt weitgehend davon ab, ob Sie Thin Provisioning aktivieren, wodurch Sie ein Volume erstellen können, das größer ist als der derzeit verfügbare physische Storage. 
+
+
+| Snapshot-Richtlinie | Eine Snapshot Kopierrichtlinie gibt die Häufigkeit und Anzahl der automatisch erstellten NetApp Snapshot Kopien an. Bei einer NetApp Snapshot Kopie handelt es sich um ein zeitpunktgenaues Filesystem Image, das keine Performance-Einbußen aufweist und minimalen Storage erfordert. Sie können die Standardrichtlinie oder keine auswählen. Sie können keine für transiente Daten auswählen, z. B. tempdb für Microsoft SQL Server. 
+
+
+| Zugriffskontrolle (nur für NFS) | Eine Exportrichtlinie definiert die Clients im Subnetz, die auf das Volume zugreifen können. Standardmäßig gibt Cloud Manager einen Wert ein, der Zugriff auf alle Instanzen im Subnetz ermöglicht. 
+
+
+| Berechtigungen und Benutzer/Gruppen (nur für CIFS) | Mit diesen Feldern können Sie die Zugriffsebene auf eine Freigabe für Benutzer und Gruppen steuern (auch Zugriffssteuerungslisten oder ACLs genannt). Sie können lokale oder domänenbasierte Windows-Benutzer oder -Gruppen oder UNIX-Benutzer oder -Gruppen angeben. Wenn Sie einen Domain-Windows-Benutzernamen angeben, müssen Sie die Domäne des Benutzers mit dem Format Domain\Benutzername einschließen. 
+
+
+| Initiatorgruppe und IQN (nur für iSCSI) | ISCSI-Storage-Ziele werden LUNs (logische Einheiten) genannt und Hosts als Standard-Block-Geräte präsentiert. Initiatorgruppen sind Tabellen mit iSCSI-Host-Node-Namen und steuern, welche Initiatoren Zugriff auf welche LUNs haben. ISCSI-Ziele werden über standardmäßige Ethernet-Netzwerkadapter (NICs), TCP Offload Engine (TOE) Karten mit Software-Initiatoren, konvergierte Netzwerkadapter (CNAs) oder dedizierte Host Bust Adapter (HBAs) mit dem Netzwerk verbunden und durch iSCSI Qualified Names (IQNs) identifiziert. Wenn Sie ein iSCSI-Volume erstellen, erstellt Cloud Manager automatisch eine LUN für Sie. Wir haben es einfach gemacht, indem wir nur eine LUN pro Volumen erstellen, so gibt es keine Verwaltung beteiligt. Nachdem Sie das Volume erstellt haben, wählen Sie es aus, klicken Sie auf Ziel-IQN, und verwenden Sie dann den IQN, um eine Verbindung zur LUN von Ihren Hosts herzustellen. 
+
+
+| Nutzungsprofil | Mithilfe von Nutzungsprofilen werden die NetApp Storage-Effizienzfunktionen definiert, die für ein Volume aktiviert sind. 
+|===
+
+
+
+
+== Datenreplizierung
+
+Sie können Daten zwischen Cloud Volumes ONTAP Systemen und ONTAP Clustern replizieren, indem Sie sich für eine einmalige Datenreplizierung entscheiden, mit der Sie Daten in die und aus der Cloud verschieben können, oder für einen wiederkehrenden Zeitplan, der zur Disaster Recovery oder langfristigen Aufbewahrung beitragen kann.
+
+link:task_replicating_data.html["Klicken Sie hier, um weitere Informationen zu erhalten"].
+
+
+
+== Daten werden gesichert
+
+Über den Cloud Manager Backup to Cloud Service können Sie Daten-Backups von Ihrem lokalen ONTAP System auf kostengünstigen Objekt-Storage in der Cloud erstellen. Dieser Service bietet Backup- und Restore-Funktionen zum Schutz und zum langfristigen Archiv Ihrer Cloud-Daten.
+
+link:task_backup_from_ontap.html["Klicken Sie hier, um weitere Informationen zu erhalten"].
+
+
+
+== Daten-Tiering in die Cloud
+
+Erweitern Sie Ihr Datacenter in die Cloud durch das automatische Tiering inaktiver Daten von ONTAP Clustern in Objekt-Storage.
+
+link:concept_cloud_tiering.html["Klicken Sie hier, um weitere Informationen zu erhalten"].

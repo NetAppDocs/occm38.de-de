@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: concept_overview_cvo.html 
+keywords: what is cloud volumes ontap, cloud volumes ontap features, features, cloud volumes ontap overview, overview of cloud volumes ontap 
+summary: Mit Cloud Volumes ONTAP können Sie Ihre Cloud Storage-Kosten und -Performance optimieren und gleichzeitig die Datensicherung, -Sicherheit und -Compliance verbessern. 
+---
+= Weitere Informationen zu Cloud Volumes ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Mit Cloud Volumes ONTAP können Sie Ihre Cloud Storage-Kosten und -Performance optimieren und gleichzeitig die Datensicherung, -Sicherheit und -Compliance verbessern.
+
+Cloud Volumes ONTAP ist eine rein softwarebasierte Storage Appliance, auf der ONTAP Datenmanagement-Software in der Cloud ausgeführt wird. Das System bietet Storage der Enterprise-Klasse mit den folgenden wichtigen Funktionen:
+
+* Storage-Effizienz
++
+Nutzen Sie integrierte Datendeduplizierung, Datenkomprimierung, Thin Provisioning und Klonen und minimieren Sie so die Storage-Kosten.
+
+* Hochverfügbarkeit
++
+Zuverlässigkeit der Enterprise-Klasse und unterbrechungsfreien Betrieb bei Ausfällen in der Cloud-Umgebung sicherstellen.
+
+* Datensicherung
++
+Cloud Volumes ONTAP nutzt SnapMirror, die branchenführende Replizierungstechnologie von NetApp, um On-Premises-Daten in der Cloud zu replizieren, sodass einfach sekundäre Kopien für diverse Anwendungsfälle verfügbar sind.
+
++
+Die Integration von Cloud Volumes ONTAP in Cloud Backup Service bietet zudem Backup- und Restore-Funktionen zur Sicherung und zur Langzeitarchivierung Ihrer Cloud-Daten.
+
+* Daten-Tiering
++
+Wechseln Sie nach Bedarf zwischen hochperformanten Storage Pools, ohne Applikationen offline zu schalten.
+
+* Applikationskonsistenz
++
+Konsistenz von NetApp Snapshot Kopien mit NetApp SnapCenter sicherstellen.
+
+* Datensicherheit
++
+Cloud Volumes ONTAP unterstützt die Datenverschlüsselung und bietet Schutz vor Viren und Ransomware.
+
+* Kontrolloptionen für die Einhaltung des Datenschutzes
++
+Durch die Integration in Cloud Compliance können Sie den Datenkontext verstehen und sensible Daten identifizieren.
+
+
+
+
+NOTE: Lizenzen für ONTAP Funktionen sind im Lieferumfang von Cloud Volumes ONTAP enthalten.
+
+https://docs.netapp.com/us-en/cloud-volumes-ontap/index.html["Anzeigen der unterstützten Cloud Volumes ONTAP Konfigurationen"^]
+
+https://cloud.netapp.com/ontap-cloud["Erfahren Sie mehr über Cloud Volumes ONTAP"^]

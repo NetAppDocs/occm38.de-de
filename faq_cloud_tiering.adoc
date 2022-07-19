@@ -1,0 +1,186 @@
+---
+sidebar: sidebar 
+permalink: faq_cloud_tiering.html 
+keywords: faq, questions, requirements, service connector, object store, object storage, aws, azure, bucket, cluster, aggregate, s3, storage class, standard, inactive data reporting, auto, volume tiering policy, policy, tiering policy, snapshot, cold, inactive, infrequent 
+summary: Diese FAQ kann Ihnen helfen, wenn Sie nur nach einer schnellen Antwort auf eine Frage suchen. 
+---
+= Cloud Tiering – technische FAQ
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Diese FAQ kann Ihnen helfen, wenn Sie nur nach einer schnellen Antwort auf eine Frage suchen.
+
+
+
+== ONTAP
+
+Die nachfolgenden Fragen betreffen ONTAP.
+
+
+
+=== Welche Anforderungen gelten für mein ONTAP Cluster?
+
+Es hängt davon ab, wo Sie die „kalten“ Daten Tiering verschieben. Beachten Sie Folgendes:
+
+* link:task_tiering_onprem_aws.html#preparing-your-ontap-clusters["Tiering von Daten von lokalen ONTAP Clustern zu Amazon S3"]
+* link:task_tiering_onprem_azure.html#preparing-your-ontap-clusters["Tiering von Daten von lokalen ONTAP Clustern zu Azure Blob Storage"]
+* link:task_tiering_onprem_gcp.html#preparing-your-ontap-clusters["Tiering von Daten aus lokalen ONTAP Clustern in Google Cloud Storage"]
+* link:task_tiering_onprem_storagegrid.html#preparing-your-ontap-clusters["Tiering von Daten von lokalen ONTAP Clustern zu StorageGRID"]
+
+
+
+
+=== Ermöglicht Cloud Tiering die Berichterstellung inaktiver Daten?
+
+Ja, mit Cloud Tiering können Sie auf jedem Aggregat inaktive Daten erstellen. Durch diese Einstellung können wir die Menge inaktiver Daten ermitteln, die zu kostengünstigem Objekt-Storage verschoben werden können.
+
+
+
+=== Kann ich Daten von NAS-Volumes und SAN-Volumes verschieben?
+
+Mit Cloud Tiering lassen sich Daten von NAS Volumes in die Public Cloud und von SAN Volumes in eine Private Cloud mithilfe von StorageGRID verschieben.
+
+
+
+=== Wie sieht es mit Cloud Volumes ONTAP aus?
+
+Wenn Sie über Cloud Volumes ONTAP Systeme verfügen, finden Sie sie im Cluster Dashboard, sodass Sie einen umfassenden Überblick über Daten-Tiering in Ihrer Hybrid-Cloud-Infrastruktur erhalten.
+
+Über die Cluster-Konsole können Sie Tiering-Informationen anzeigen, die ähnlich wie bei einem ONTAP-Cluster vor Ort sind: Systemzustand, aktuelle Einsparungen, Einsparmöglichkeiten, Details zu Volumes und Aggregaten usw.
+
+Cloud Volumes ONTAP Systeme sind schreibgeschützt aus Cloud Tiering. Sie können kein Daten-Tiering auf Cloud Volumes ONTAP über Cloud Tiering einrichten. Sie werden weiterhin Tiering auf die gleiche Weise einrichten: Aus der Arbeitsumgebung in Cloud Manager.
+
+
+
+== Objekt-Storage
+
+Die folgenden Fragen betreffen den Objekt-Storage.
+
+
+
+=== Welche Objekt-Storage-Anbieter werden unterstützt?
+
+Es werden Amazon S3, Azure Blob Storage, Google Cloud Storage und StorageGRID über das S3-Protokoll unterstützt.
+
+
+
+=== Kann ich meinen eigenen Bucket/Container verwenden?
+
+Ja, können Sie. Wenn Sie Daten-Tiering einrichten, können Sie einen neuen Bucket/Container hinzufügen oder einen vorhandenen Bucket/Container auswählen.
+
+
+
+=== Welche Regionen werden unterstützt?
+
+* link:reference_aws_support.html["Unterstützte AWS-Regionen"]
+* link:reference_azure_support.html["Unterstützte Azure Regionen"]
+* link:reference_google_support.html["Unterstützte Google Cloud Regionen"]
+
+
+
+
+=== Welche S3-Storage-Klassen werden unterstützt?
+
+Cloud Tiering unterstützt Daten-Tiering in die Storage-Klasse _Standard_, _Standard-infrequent Access_, _One Zone-IA_ oder _Intelligent_. Siehe link:reference_aws_support.html["Unterstützte S3-Storage-Klassen"] Entnehmen.
+
+
+
+=== Welche Azure Blob-Zugriffsebenen werden unterstützt?
+
+Cloud-Tiering nutzt automatisch die Zugriffsebene „_Hot_“ für Ihre inaktiven Daten.
+
+
+
+=== Welche Storage-Klassen werden für Google Cloud Storage unterstützt?
+
+Cloud Tiering nutzt die _Standard_ Storage-Klasse für inaktive Daten.
+
+
+
+=== Verwendet Cloud Tiering einen Objektspeicher für den gesamten Cluster oder einen pro Aggregat?
+
+Ein Objektspeicher für das gesamte Cluster.
+
+
+
+=== Kann ich Richtlinien auf meinen Objektspeicher anwenden, um Daten unabhängig vom Tiering zu verschieben?
+
+Nein, Cloud Tiering unterstützt keine Objekt-Lifecycle-Managementregeln, die Daten aus Objektspeichern verschieben oder löschen.
+
+
+
+== Anschlüsse
+
+Die folgenden Fragen beziehen sich auf Steckverbinder.
+
+
+
+=== Wo muss der Connector installiert werden?
+
+* Beim Tiering von Daten zu S3 kann ein Connector in einer AWS VPC oder am Standort des Unternehmens residieren.
+* Beim Tiering von Daten zu Blob Storage muss ein Connector in einer Azure vnet residieren.
+* Bei einem Tiering von Daten zu Google Cloud Storage muss ein Connector in einer Google Cloud Platform VPC abgelegt werden.
+* Beim Tiering von Daten zu StorageGRID muss ein Connector auf einem lokalen Linux-Host residieren.
+
+
+
+
+== Netzwerkbetrieb
+
+Die folgenden Fragen beziehen sich auf das Netzwerk.
+
+
+
+=== Welche Netzwerkanforderungen gibt es?
+
+* Das ONTAP Cluster initiiert eine HTTPS-Verbindung über Port 443 zum Objekt-Storage-Provider.
++
+ONTAP liest und schreibt Daten auf und aus dem Objekt-Storage. Objekt-Storage startet nie, er reagiert einfach nur.
+
+* Bei StorageGRID initiiert das ONTAP-Cluster eine HTTPS-Verbindung über einen vom Benutzer angegebenen Port zum StorageGRID (der Port ist während der Tiering-Einrichtung konfigurierbar).
+* Für einen Connector wird eine ausgehende HTTPS-Verbindung über Port 443 zu Ihren ONTAP-Clustern, zum Objektspeicher und zum Cloud Tiering-Service benötigt.
+
+
+Weitere Informationen finden Sie unter:
+
+* link:task_tiering_onprem_aws.html["Tiering von Daten von lokalen ONTAP Clustern zu Amazon S3"]
+* link:task_tiering_onprem_azure.html["Tiering von Daten von lokalen ONTAP Clustern zu Azure Blob Storage"]
+* link:task_tiering_onprem_gcp.html["Tiering von Daten aus lokalen ONTAP Clustern in Google Cloud Storage"]
+* link:task_tiering_onprem_storagegrid.html["Tiering von Daten von lokalen ONTAP Clustern zu StorageGRID"]
+
+
+
+
+== Berechtigungen
+
+Die folgenden Fragen beziehen sich auf Berechtigungen.
+
+
+
+=== Welche Berechtigungen sind in AWS erforderlich?
+
+Berechtigungen erforderlich link:task_tiering_onprem_aws#preparing-amazon-s3["Zum Managen des S3-Buckets"].
+
+
+
+=== Welche Berechtigungen sind in Azure erforderlich?
+
+Außerhalb der Berechtigungen, die zur Bereitstellung für Cloud Manager erforderlich sind, sind keine zusätzlichen Berechtigungen erforderlich.
+
+
+
+=== Welche Berechtigungen sind bei der Google Cloud Platform erforderlich?
+
+Storage-Admin-Berechtigungen sind für ein Servicekonto mit Speicherzugriffsschlüsseln erforderlich.
+
+
+
+=== Welche Berechtigungen sind für StorageGRID erforderlich?
+
+link:task_tiering_onprem_storagegrid.html#preparing-storagegrid["S3 Berechtigungen sind erforderlich"].

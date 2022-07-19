@@ -1,0 +1,115 @@
+---
+sidebar: sidebar 
+permalink: task_managing_licenses.html 
+keywords: license, licensing, install, updating license, system license, add system license, adding a system license, byol license, add byol license, update byol license, nlf, license generator, backup license, add backup license, update backup license 
+summary: Fügen Sie eine Cloud Volumes ONTAP-BYOL-Systemlizenz hinzu, um zusätzliche Kapazität hinzuzufügen, eine vorhandene Systemlizenz zu aktualisieren und BYOL-Lizenzen für Backup in der Cloud zu managen. 
+---
+= Byol-Lizenzen für Cloud Volumes ONTAP verwalten
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Fügen Sie eine Cloud Volumes ONTAP-BYOL-Systemlizenz hinzu, um zusätzliche Kapazität hinzuzufügen, eine vorhandene Systemlizenz zu aktualisieren und BYOL-Lizenzen für Backup in der Cloud zu managen.
+
+
+
+== Verwalten von Systemlizenzen
+
+Sie können mehrere Lizenzen für ein Cloud Volumes ONTAP BYOL-System erwerben und so mehr als 368 TB Kapazität zuweisen. Beispielsweise können Sie zwei Lizenzen erwerben, um Cloud Volumes ONTAP bis zu 736 TB Kapazität zuzuweisen. Alternativ können Sie vier Lizenzen erwerben, um bis zu 1.4 PB zu erhalten.
+
+Die Anzahl der Lizenzen, die Sie für ein Single Node-System oder ein HA-Paar erwerben können, ist unbegrenzt.
+
+
+
+=== Abrufen einer Systemlizenzdatei
+
+In den meisten Fällen kann Cloud Manager Ihre Lizenzdatei automatisch über Ihren NetApp Support Site Account beziehen. Aber wenn es nicht kann, dann müssen Sie die Lizenzdatei manuell hochladen. Wenn Sie die Lizenzdatei nicht haben, können Sie sie von netapp.com beziehen.
+
+.Schritte
+. Wechseln Sie zum https://register.netapp.com/register/getlicensefile["NetApp Lizenzdatei-Generator"^] Und loggen Sie sich mit Ihren Anmeldedaten für die NetApp Support Site ein.
+. Geben Sie Ihr Passwort ein, wählen Sie Ihr Produkt aus, geben Sie die Seriennummer ein, bestätigen Sie, dass Sie die Datenschutzrichtlinie gelesen und akzeptiert haben, und klicken Sie dann auf *Absenden*.
++
+*Beispiel*
+
++
+image:screenshot_license_generator.gif["Screenshot: Zeigt ein Beispiel für die ausgefüllte Webseite des NetApp License File Generator, einschließlich eines Passworts, eines Produkts (NetApp Cloud Volumes ONTAP Byol für AWS) und einer Produktseriennummer."]
+
+. Wählen Sie aus, ob Sie die Datei serialnumber.NLF JSON per E-Mail oder direkt herunterladen möchten.
+
+
+
+
+=== Hinzufügen einer neuen Systemlizenz
+
+Fügen Sie jederzeit eine neue BYOL-Systemlizenz hinzu, um Ihrem Cloud Volumes ONTAP BYOL-System weitere 368 TB zusätzlicher Kapazität zuzuweisen.
+
+.Schritte
+. Öffnen Sie in Cloud Manager die BYOL-Arbeitsumgebung von Cloud Volumes ONTAP.
+. Klicken Sie auf das Menü-Symbol und dann auf *Lizenz*.
++
+image:screenshot_menu_license.gif["Ein Screenshot, der das Menüsymbol in einer Arbeitsumgebung zeigt. Mit der Option Lizenz können Sie eine Lizenzdatei hochladen."]
+
+. Klicken Sie auf *CVO-Systemlizenz hinzufügen*.
++
+image:screenshot_system_license.gif["Ein Screenshot einer Cloud Volumes ONTAP-Systemlizenz, in der die Schaltfläche zum Hinzufügen einer Systemlizenz und zum Aktualisieren einer Systemlizenz angezeigt wird."]
+
+. Geben Sie die Seriennummer ein oder laden Sie die Lizenzdatei hoch.
+. Klicken Sie Auf *Lizenz Hinzufügen*.
+
+
+Cloud Manager installiert die neue Lizenzdatei auf dem Cloud Volumes ONTAP System.
+
+
+
+=== Aktualisieren einer Systemlizenz
+
+Wenn Sie ein Byol Abonnement erneuern, indem Sie sich an einen NetApp Vertreter wenden, erhält Cloud Manager automatisch die neue Lizenz von NetApp und installiert sie auf dem Cloud Volumes ONTAP System.
+
+Wenn Cloud Manager über die sichere Internetverbindung nicht auf die Lizenzdatei zugreifen kann, können Sie die Datei selbst beziehen und die Datei anschließend manuell auf Cloud Manager hochladen.
+
+.Schritte
+. Öffnen Sie in Cloud Manager die BYOL-Arbeitsumgebung von Cloud Volumes ONTAP.
+. Klicken Sie auf das Menü-Symbol und dann auf *Lizenz*.
+. Klicken Sie auf *Aktualisieren der CVO-Systemlizenz*.
++
+image:screenshot_system_license.gif["Ein Screenshot einer Cloud Volumes ONTAP-Systemlizenz, in der die Schaltfläche zum Hinzufügen einer Systemlizenz und zum Aktualisieren einer Systemlizenz angezeigt wird."]
+
+. Klicken Sie auf *Datei hochladen* und wählen Sie die Lizenzdatei aus.
+. Klicken Sie Auf *Lizenz Aktualisieren*.
+
+
+Cloud Manager aktualisiert die Lizenz auf dem Cloud Volumes ONTAP System.
+
+
+
+== Hinzufügen und Aktualisieren der Backup-BYOL-Lizenz
+
+Auf der Seite „Byol Licenses“ können Sie Ihre BYOL-Lizenz für Backups hinzufügen oder aktualisieren.
+
+.Schritte
+. Öffnen Sie in Cloud Manager die BYOL-Arbeitsumgebung von Cloud Volumes ONTAP.
+. Klicken Sie auf das Menü-Symbol und dann auf *Lizenz*.
++
+image:screenshot_menu_license.gif["Ein Screenshot, der das Menüsymbol in einer Arbeitsumgebung zeigt. Mit der Option Lizenz können Sie eine Lizenzdatei hochladen."]
+
+. Klicken Sie abhängig davon, ob Sie eine neue Lizenz hinzufügen oder eine vorhandene Lizenz aktualisieren möchten, auf *Backup License* oder auf *Update Backup License*.
++
+image:screenshot_backup_byol_license.png["Ein Screenshot, der die BYOL-Lizenzseite mit Schaltflächen für das Hinzufügen und Aktualisieren von Backuplizenzen zeigt"]
+
+. Geben Sie die Lizenzinformationen ein und klicken Sie auf *Lizenz hinzufügen*:
++
+** Wenn Sie die Seriennummer haben, wählen Sie die Option *Byol-Seriennummer eingeben* und geben Sie die Seriennummer ein.
+** Wenn Sie über die Backup-Lizenzdatei verfügen, wählen Sie die Option *BYOL-Lizenz hochladen* aus, und folgen Sie den Anweisungen, um die Datei anzuhängen.
++
+image:screenshot_backup_byol_license_add.png["Ein Screenshot, der die Seite zum Hinzufügen der Backup-BYOL-Lizenz zeigt."]
+
+
+
+
+
+Cloud Manager fügt die Lizenz hinzu oder aktualisiert sie, sodass Ihr Cloud-Service für Backup aktiv ist.

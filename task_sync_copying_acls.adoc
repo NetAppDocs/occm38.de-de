@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: task_sync_copying_acls.html 
+keywords: permissions, access control list, acls, ntfs, cifs, smb, shares, robocopy, copy, transfer, activate, operating system, os, ram, cpu, networking, copy acls to the target 
+summary: 'Cloud Sync kann Zugriffssteuerungslisten (ACLs) zwischen einer SMB-Quell-Freigabe und einer SMB-Zielfreigabe kopieren. Bei Bedarf können Sie die ACLs manuell mit robocopy beibehalten.' 
+---
+= Kopieren von ACLs zwischen SMB-Freigaben
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Sync kann Zugriffssteuerungslisten (ACLs) zwischen einer SMB-Quell-Freigabe und einer SMB-Zielfreigabe kopieren. Bei Bedarf können Sie die ACLs manuell mithilfe von robocopy beibehalten.
+
+.Wahlmöglichkeiten
+*  up Cloud Sync to copy ACLs between SMB servers,Richten Sie Cloud Sync so ein, dass ACLs automatisch kopiert werden
+*  copying ACLs,Kopieren Sie die ACLs manuell
+
+
+
+
+== Cloud Sync einrichten, um ACLs zwischen SMB-Servern zu kopieren
+
+Kopieren Sie ACLs zwischen SMB-Servern, indem Sie eine Einstellung aktivieren, wenn Sie eine Beziehung erstellen oder nachdem Sie eine Beziehung erstellt haben.
+
+Beachten Sie, dass diese Funktion für neue Synchronisierungsbeziehungen verfügbar ist, die nach der Version vom 23. Februar 2020 erstellt wurden. Wenn Sie möchten, um dieses Feature mit bestehenden Beziehungen vor diesem Datum erstellt verwenden, dann müssen Sie die Beziehung neu erstellen.
+
+.Was Sie und#8217;ll benötigen
+* Eine neue Sync-Beziehung oder eine bestehende Sync-Beziehung, die nach dem Release des 23. Februar 2020 erstellt wurde.
+* Jeder Typ von Daten-Broker.
++
+Diese Funktion arbeitet mit jedem Datentyp Broker zusammen – AWS, Azure, Google Cloud Platform oder On-Premises-Daten-Broker. Der On-Premises-Daten-Broker kann ausgeführt werden link:task_sync_installing_linux.html["Alle unterstützten Betriebssysteme"].
+
+
+
+.Schritte für eine neue Beziehung
+. Klicken Sie in Cloud Sync auf *Neuen Sync erstellen*.
+. Ziehen Sie *SMB Server* an die Quelle und das Ziel und klicken Sie auf *Weiter*.
+. Auf der Seite *SMB Server*:
++
+.. Geben Sie einen neuen SMB-Server ein oder wählen Sie einen vorhandenen Server aus und klicken Sie auf *Weiter*.
+.. Geben Sie die Anmeldedaten für den SMB-Server ein.
+.. Wählen Sie *Zugriffssteuerungslisten zum Ziel kopieren* und klicken Sie auf *Weiter*.
++
+image:screenshot_acl_support.gif["Ein Screenshot, in dem die Option zum Aktivieren von Copy Access Control-Listen auf das Ziel angezeigt wird."]
+
+
+
+. Befolgen Sie die übrigen Anweisungen, um die Synchronisierungsbeziehung zu erstellen.
+
+
+.Schritte für eine bestehende Beziehung
+. Zeigen Sie mit der Maus auf die Synchronisierungsbeziehung, und klicken Sie auf das Aktionsmenü.
+. Klicken Sie Auf *Einstellungen*.
+. Wählen Sie *Zugriffssteuerungslisten zum Ziel kopieren* aus.
+. Klicken Sie Auf *Einstellungen Speichern*.
+
+
+Beim Synchronisieren von Daten behält Cloud Sync die ACLs zwischen den Quell- und Ziel-SMB-Freigaben vor.
+
+
+
+== Manuelles Kopieren von ACLs
+
+Sie können ACLs manuell zwischen SMB-Freigaben beibehalten, indem Sie den Befehl Windows robocopy verwenden.
+
+.Schritte
+. Identifizieren Sie einen Windows-Host mit vollem Zugriff auf beide SMB-Freigaben.
+. Wenn einer der Endpunkte eine Authentifizierung erfordert, verwenden Sie den Befehl *net use*, um eine Verbindung zu den Endpunkten vom Windows-Host herzustellen.
++
+Sie müssen diesen Schritt ausführen, bevor Sie Robocopy verwenden.
+
+. Von Cloud Sync aus: Erstellen Sie eine neue Beziehung zwischen Quell- und Ziel-SMB-Freigaben, oder synchronisieren Sie eine vorhandene Beziehung.
+. Führen Sie nach Abschluss der Datensynchronisierung den folgenden Befehl vom Windows-Host aus aus, um die ACLs und Besitzrechte zu synchronisieren:
++
+ robocopy /E /COPY:SOU /secfix [source] [target] /w:0 /r:0 /XD ~snapshots /UNILOG:”[logfilepath]
++
+Es sollten sowohl _Source_ als auch _Target_ mit dem UNC-Format angegeben werden. Beispiel: \\<Server>\<Freigabe>\<Pfad>
+
+

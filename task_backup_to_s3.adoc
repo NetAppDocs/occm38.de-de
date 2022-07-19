@@ -1,0 +1,170 @@
+---
+sidebar: sidebar 
+permalink: task_backup_to_s3.html 
+keywords: backing up, back up, backup, backup cloud volumes ontap, back up cloud volumes ontap, cloud volumes ontap, aws, aws s3, amazon s3, s3 bucket, back up volumes, Backup to Cloud, cloud backup service 
+summary: Führen Sie einige Schritte aus, um mit dem Backup von Daten von Cloud Volumes ONTAP in Amazon S3 zu beginnen. 
+---
+= Daten-Backups in Amazon S3 sichern
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Führen Sie einige Schritte aus, um mit dem Backup von Daten von Cloud Volumes ONTAP in Amazon S3 zu beginnen.
+
+
+
+== Schnellstart
+
+Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den verbleibenden Abschnitten, um ausführliche Informationen zu erhalten.
+
+
+
+==== Überprüfen Sie die Unterstützung Ihrer Konfiguration
+
+* Cloud Volumes ONTAP 9.6 oder höher wird in AWS ausgeführt.
+* Sie haben sich für das angemeldet https://aws.amazon.com/marketplace/pp/B07QX2QLXX["Cloud Manager Marketplace Backup-Angebot"^], Oder Sie haben gekauft link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["Und aktiviert"^] Eine BYOL-Lizenz für Backup in der Cloud von NetApp
+* Die IAM-Rolle, die Cloud Manager Berechtigungen bereitstellt, umfasst die neuesten S3-Berechtigungen https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager-Richtlinie"^].
+
+
+
+
+==== Aktivieren Sie Backup in der Cloud auf Ihrem neuen oder vorhandenen System
+
+* Neue Systeme: Backup in der Cloud ist standardmäßig im Assistenten für die Arbeitsumgebung aktiviert. Achten Sie darauf, dass die Option aktiviert bleibt.
+* Bestehende Systeme: Wählen Sie die Arbeitsumgebung aus und klicken Sie auf *Aktivieren* neben dem Dienst Backup to Cloud im rechten Fenster, und folgen Sie dann dem Setup-Assistenten.
++
+image:screenshot_backup_to_s3_icon.gif["Ein Screenshot, der die Schaltfläche Backup to Cloud Activate zeigt, die nach der Auswahl einer Arbeitsumgebung verfügbar ist."]
+
+
+
+
+
+==== Definieren der Backup-Richtlinie
+
+[role="quick-margin-para"]
+Die Standardrichtlinie sichert Volumes täglich und speichert die letzten 30 Backup-Kopien jedes Volumes. Ändern Sie zu wöchentlichen oder monatlichen Backups oder wählen Sie eine der systemdefinierten Richtlinien mit mehr Optionen aus. Sie können auch die Anzahl der beizubehaltenden Backup-Kopien ändern.
+
+[role="quick-margin-para"]
+image:screenshot_backup_settings.png["Ein Screenshot mit den Einstellungen für Backup in der Cloud, in dem Sie Ihren Backup-Zeitplan und den Aufbewahrungszeitraum auswählen können."]
+
+
+
+==== Wählen Sie die Volumes aus, die Sie sichern möchten
+
+[role="quick-margin-para"]
+Legen Sie fest, welche Volumes Sie in der Seite Volumes auswählen sichern möchten.
+
+
+
+==== Stellen Sie Ihre Daten nach Bedarf wieder her
+
+[role="quick-margin-para"]
+Wählen Sie in der Sicherungsliste ein Volume aus, wählen Sie ein Backup aus und stellen Sie dann Daten aus dem Backup auf ein neues Volume wieder her.
+
+[role="quick-margin-para"]
+image:screenshot_backup_to_s3_restore_icon.gif["Ein Screenshot des Wiederherstellungssymbols für ein Backup, nachdem Sie ein Volume ausgewählt haben."]
+
+
+
+== Anforderungen
+
+Lesen Sie die folgenden Anforderungen, um sicherzustellen, dass Sie über eine unterstützte Konfiguration verfügen, bevor Sie mit dem Backup von Volumes in S3 beginnen.
+
+Unterstützte ONTAP-Versionen:: Cloud Volumes ONTAP 9.6 und höher
+Unterstützte AWS-Regionen:: Backup in die Cloud wird in allen AWS Regionen unterstützt https://cloud.netapp.com/cloud-volumes-global-regions["Wobei Cloud Volumes ONTAP unterstützt wird"^].
+Lizenzanforderungen:: Bei der Lizenzierung von Backup in die Cloud-PAYGO ist im AWS Marketplace ein Cloud Manager-Abonnement verfügbar, das Implementierungen von Cloud Volumes ONTAP 9.6 und höher (PAYGO) und Backup in der Cloud ermöglicht. Sie müssen https://aws.amazon.com/marketplace/pp/B07QX2QLXX["Abonnieren Sie dieses Cloud Manager Abonnement"^] Vor Aktivierung von Backup in der Cloud. Die Abrechnung für Backup in der Cloud erfolgt über dieses Abonnement.
++
+--
+Für die BYOL-Lizenzierung von Backup in der Cloud benötigen Sie kein AWS Backup in der Cloud Abonnement. Sie benötigen die Seriennummer von NetApp, mit der Sie den Service für die Dauer und die Kapazität der Lizenz nutzen können. Siehe link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["Hinzufügen und Aktualisieren der Backup-BYOL-Lizenz"^].
+
+Darüber hinaus müssen Sie über ein AWS Abonnement für den Speicherplatz verfügen, auf dem sich Ihre Backups befinden.
+
+--
+AWS Berechtigungen erforderlich:: Die IAM-Rolle, die Cloud Manager über Berechtigungen verfügt, muss die neuesten S3-Berechtigungen enthalten https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager-Richtlinie"^].
++
+--
+Hier sind die spezifischen Berechtigungen aus der Richtlinie:
+
+[source, json]
+----
+{
+            "Sid": "backupPolicy",
+            "Effect": "Allow",
+            "Action": [
+                "s3:DeleteBucket",
+                "s3:GetLifecycleConfiguration",
+                "s3:PutLifecycleConfiguration",
+                "s3:PutBucketTagging",
+                "s3:ListBucketVersions",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketTagging",
+                "s3:GetBucketLocation",
+                "s3:GetBucketPolicyStatus",
+                "s3:GetBucketPublicAccessBlock",
+                "s3:GetBucketAcl",
+                "s3:GetBucketPolicy",
+                "s3:PutBucketPublicAccessBlock"
+            ],
+            "Resource": [
+                "arn:aws:s3:::netapp-backup-*"
+            ]
+        },
+----
+--
+
+
+
+
+== Aktivieren von Backup in der Cloud auf einem neuen System
+
+Backup in der Cloud ist standardmäßig im Assistenten für die Arbeitsumgebung aktiviert. Achten Sie darauf, dass die Option aktiviert bleibt.
+
+.Schritte
+. Klicken Sie auf *Cloud Volumes ONTAP erstellen*.
+. Wählen Sie Amazon Web Services als Cloud-Provider und wählen Sie dann einen einzelnen Node oder ein HA-System.
+. Füllen Sie die Seite „Details & Credentials“ aus.
+. Lassen Sie auf der Seite Dienste den Dienst aktiviert, und klicken Sie auf *Weiter*.
++
+image:screenshot_backup_to_s3.gif["Zeigt die Option Backup in der Cloud im Assistenten für die Arbeitsumgebung."]
+
+. Führen Sie die Seiten im Assistenten aus, um das System bereitzustellen.
+
+
+Backup in der Cloud ist auf dem System aktiviert und sichert Volumes täglich und speichert die letzten 30 Backup-Kopien.
+
+link:task_managing_backups.html["Sie können Backups managen, indem Sie den Backup-Zeitplan ändern, Volumes wiederherstellen und mehr"^].
+
+
+
+== Aktivieren von Backup in der Cloud auf einem vorhandenen System
+
+Sie können Backup in die Cloud jederzeit direkt aus der Arbeitsumgebung aktivieren.
+
+.Schritte
+. Wählen Sie die Arbeitsumgebung aus und klicken Sie im rechten Fenster neben dem Dienst Backup to Cloud auf *Aktivieren*.
++
+image:screenshot_backup_to_s3_icon.gif["Ein Screenshot, der die Schaltfläche „Backup to Cloud Settings“ zeigt, die nach der Auswahl einer Arbeitsumgebung verfügbar ist."]
+
+. Legen Sie den Backup-Zeitplan und den Aufbewahrungswert fest und klicken Sie auf *Weiter*.
++
+image:screenshot_backup_settings.png["Ein Screenshot, der die Einstellungen für Backup in der Cloud zeigt, in denen Sie Ihren Zeitplan und die Backup-Aufbewahrung auswählen können."]
+
++
+Siehe link:concept_backup_to_cloud.html#the-schedule-is-daily-weekly-monthly-or-a-combination["Die Liste der vorhandenen Richtlinien"^].
+
+. Wählen Sie die Volumes aus, die Sie sichern möchten, und klicken Sie auf *Aktivieren*.
++
+image:screenshot_backup_select_volumes.png["Ein Screenshot, wie die Volumes ausgewählt werden, die gesichert werden."]
+
+
+
+Backup in der Cloud beginnt die ersten Backups jedes ausgewählten Volumes.
+
+link:task_managing_backups.html["Sie können Backups managen, indem Sie den Backup-Zeitplan ändern, Volumes wiederherstellen und mehr"^].

@@ -1,0 +1,149 @@
+---
+sidebar: sidebar 
+permalink: concept_connectors.html 
+keywords: 'concept, connectors, learn about connectors, service connectors, what are connectors, what is a connector, what"s a connector, days, 14 days' 
+summary: In den meisten Fällen müssen Sie einen Connector in Ihrer Cloud oder Ihrem On-Premises-Netzwerk bereitstellen. Mit dem Connector kann Cloud Manager Ressourcen und Prozesse in Ihrer Public Cloud-Umgebung managen. 
+---
+= Erfahren Sie mehr über Steckverbinder
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+In den meisten Fällen muss ein Account-Administrator einen _Connector_ in Ihrer Cloud oder Ihrem On-Premises-Netzwerk bereitstellen. Mit dem Connector kann Cloud Manager Ressourcen und Prozesse in Ihrer Public Cloud-Umgebung managen.
+
+
+
+== Wenn ein Stecker erforderlich ist
+
+Für die Nutzung der folgenden Funktionen in Cloud Manager ist ein Connector erforderlich:
+
+* Cloud Volumes ONTAP
+* On-Premises ONTAP Cluster
+* Cloud-Compliance
+* Kubernetes
+* Backup in die Cloud
+* Monitoring
+* Lokales Tiering
+* Globaler Datei-Cache
+* Amazon S3 Bucket-Erkennung
+
+
+Für Azure NetApp Files, Cloud Volumes Service oder Cloud Sync ist ein Stecker *_Not_ erforderlich.
+
+
+NOTE: Während kein Connector für die Einrichtung und das Management von Azure NetApp Files erforderlich ist, ist jedoch ein Connector erforderlich, wenn Sie Azure NetApp Files-Daten mithilfe von Cloud Compliance scannen möchten.
+
+
+
+== Unterstützte Standorte
+
+Ein Connector wird an folgenden Stellen unterstützt:
+
+* Amazon Web Services
+* Microsoft Azure
+* Google Cloud
+* Vor Ort
+
+
+
+NOTE: Wenn Sie ein Cloud Volumes ONTAP-System in Google Cloud erstellen möchten, dann müssen Sie einen Connector in Google Cloud laufen, sowie. Sie können keinen Konnektor verwenden, der an einem anderen Standort ausgeführt wird.
+
+
+
+== Anschlüsse sollten weiterhin ausgeführt werden
+
+Ein Steckverbinder sollte immer weiter laufen. Es ist wichtig für den fortwährenden Zustand und Betrieb der Services, die Sie ermöglichen.
+
+Ein Connector ist beispielsweise eine wichtige Komponente im Zustand und Betrieb von Cloud Volumes ONTAP PAYGO-Systemen. Wenn ein Konnektor heruntergefahren wird, werden die Cloud Volumes ONTAP PAYGO-Systeme nach einem Verlust der Kommunikation mit einem Konnektor länger als 14 Tage heruntergefahren.
+
+
+
+== So erstellen Sie einen Konnektor
+
+Ein Kontoadministrator muss einen Konnektor erstellen, bevor ein Workspace-Administrator eine Cloud Volumes ONTAP-Arbeitsumgebung erstellen und eine der anderen oben aufgeführten Funktionen verwenden kann.
+
+Ein Kontoadministrator kann auf verschiedene Arten einen Connector erstellen:
+
+* Direkt über Cloud Manager (empfohlen)
++
+** link:task_creating_connectors_aws.html["In AWS erstellen"]
+** link:task_creating_connectors_azure.html["In Azure erstellen"]
+** link:task_creating_connectors_gcp.html["In GCP erstellen"]
+
+
+* link:task_launching_aws_mktp.html["Über AWS Marketplace"]
+* link:task_launching_azure_mktp.html["Über den Azure Marketplace"]
+* link:task_installing_linux.html["Durch Herunterladen und Installieren der Software auf einem vorhandenen Linux-Host"]
+
+
+Wenn Sie Ihre erste Cloud Volumes ONTAP-Arbeitsumgebung erstellen, werden Sie von Cloud Manager aufgefordert, einen Connector zu erstellen, falls noch kein Connector vorhanden ist.
+
+
+
+== Berechtigungen
+
+Zur Erstellung des Connectors sind spezielle Berechtigungen erforderlich, und für die Instanz des Connectors selbst sind weitere Berechtigungen erforderlich.
+
+
+
+=== Berechtigungen zum Erstellen eines Connectors
+
+Der Benutzer, der einen Connector aus Cloud Manager erstellt, benötigt spezielle Berechtigungen, um die Instanz bei Ihrem bevorzugten Cloud-Provider bereitzustellen. Cloud Manager erinnert Sie an die Berechtigungsanforderungen bei der Erstellung eines Connectors.
+
+https://mysupport.netapp.com/site/info/cloud-manager-policies["Zeigen Sie Richtlinien für jeden Cloud-Provider an"^].
+
+
+
+=== Berechtigungen für die Connector-Instanz
+
+Für die Ausführung von Vorgängen in Ihrem Auftrag benötigt der Connector spezielle Cloud-Provider-Berechtigungen. Beispiel für die Implementierung und das Management von Cloud Volumes ONTAP.
+
+Wenn Sie einen Connector direkt aus Cloud Manager erstellen, erstellt Cloud Manager den Connector mit den entsprechenden Berechtigungen. Es gibt nichts, was Sie tun müssen.
+
+Wenn Sie den Connector selbst über AWS Marketplace, Azure Marketplace oder die Software manuell installieren, müssen Sie sicherstellen, dass die entsprechenden Berechtigungen vorhanden sind.
+
+https://mysupport.netapp.com/site/info/cloud-manager-policies["Zeigen Sie Richtlinien für jeden Cloud-Provider an"^].
+
+
+
+== Wann werden mehrere Anschlüsse verwendet
+
+In einigen Fällen benötigen Sie möglicherweise nur einen Connector, aber Sie benötigen möglicherweise zwei oder mehr Anschlüsse.
+
+Hier nur ein paar Beispiele:
+
+* Sie nutzen eine Multi-Cloud-Umgebung (AWS und Azure), d. h. einen Connector in AWS und einen anderen in Azure. Jedes managt die Cloud Volumes ONTAP Systeme, die in diesen Umgebungen ausgeführt werden.
+* Ein Service-Provider nutzt möglicherweise ein Cloud Central Konto, um seinen Kunden Services bereitzustellen, und nutzt ein anderes Konto, um eine seiner Geschäftsbereiche Disaster Recovery zu bieten. Jedes Konto hätte separate Anschlüsse.
+
+
+
+
+== Wann muss zwischen den Anschlüssen gewechselt werden
+
+Wenn Sie Ihren ersten Connector erstellen, verwendet Cloud Manager diesen Connector automatisch für jede von Ihnen erstellte zusätzliche Arbeitsumgebung. Wenn Sie einen zusätzlichen Connector erstellen, müssen Sie zwischen diesen wechseln, um die für jeden Connector spezifischen Arbeitsumgebungen zu sehen.
+
+link:task_managing_connectors.html#switch-between-connectors["Erfahren Sie, wie Sie zwischen den Anschlüssen wechseln"].
+
+
+
+== Die lokale Benutzeroberfläche
+
+Während Sie fast alle Aufgaben aus dem ausführen sollten https://cloudmanager.netapp.com["SaaS-Benutzeroberfläche"^], Eine lokale Benutzeroberfläche ist weiterhin auf dem Connector verfügbar. Diese Schnittstelle wird für einige Aufgaben benötigt, die über den Connector selbst ausgeführt werden müssen:
+
+* link:task_configuring_proxy.html["Festlegen eines Proxyservers"]
+* Installation eines Patches (Sie arbeiten in der Regel mit NetApp Mitarbeitern zusammen, um einen Patch zu installieren)
+* Herunterladen von AutoSupport-Meldungen (normalerweise gerichtet von NetApp Mitarbeitern, wenn Sie Probleme haben)
+
+
+link:task_managing_connectors.html#accessing-the-local-ui["Erfahren Sie, wie Sie auf die lokale Benutzeroberfläche zugreifen"].
+
+
+
+== Connector-Upgrades
+
+Der Connector aktualisiert seine Software automatisch auf die neueste Version, solange er hat link:reference_networking_cloud_manager.html["Outbound-Internetzugang"] Um das Softwareupdate zu erhalten.

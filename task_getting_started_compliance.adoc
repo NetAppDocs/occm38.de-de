@@ -1,0 +1,177 @@
+---
+sidebar: sidebar 
+permalink: task_getting_started_compliance.html 
+keywords: cloud compliance, get started, enable cloud compliance, cifs credentials, smb credentials, outbound internet, endpoints, cloud compliance internet, web browser connectivity, cloud compliance access, privacy, compliance, dp volumes, data protection volumes 
+summary: Erste Schritte mit Cloud Compliance für Azure NetApp Files oder Cloud Volumes ONTAP in AWS oder Azure 
+---
+= Erste Schritte mit Cloud Compliance für Cloud Volumes ONTAP und Azure NetApp Files
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Erste Schritte mit Cloud Compliance für Cloud Volumes ONTAP oder Azure NetApp Files
+
+
+
+== Schnellstart
+
+Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den verbleibenden Abschnitten, um ausführliche Informationen zu erhalten.
+
+
+
+==== Implementieren der Cloud Compliance-Instanz
+
+[role="quick-margin-para"]
+link:task_deploy_cloud_compliance.html["Cloud Compliance in Cloud Manager implementieren"^] Falls noch keine Instanz implementiert wurde.
+
+
+
+==== Cloud Compliance in Ihren Arbeitsumgebungen
+
+[role="quick-margin-para"]
+Klicken Sie auf *Cloud Compliance*, wählen Sie die Registerkarte *Konfiguration* und aktivieren Sie Compliance-Scans für bestimmte Arbeitsumgebungen.
+
+
+
+==== Zugriff auf Volumes sicherstellen
+
+[role="quick-margin-para"]
+Jetzt, wo Cloud Compliance aktiviert ist, stellen Sie sicher, dass die IT auf Volumes zugreifen kann.
+
+* Die Cloud Compliance Instanz benötigt eine Netzwerkverbindung zu jedem Cloud Volumes ONTAP- oder Azure NetApp Files-Subnetz.
+* Sicherheitsgruppen für Cloud Volumes ONTAP müssen eingehende Verbindungen aus der Cloud-Compliance-Instanz zulassen.
+* Die NFS-Volume-Exportrichtlinien müssen den Zugriff aus der Cloud Compliance-Instanz zulassen.
+* Cloud Compliance benötigt Active Directory-Anmeldeinformationen zum Scannen von CIFS Volumes.
++
+Klicken Sie auf *Cloud Compliance* > *Scan-Konfiguration* > *CIFS-Anmeldeinformationen bearbeiten* und geben Sie die Anmeldeinformationen an. Die Anmeldedaten können schreibgeschützt sein. Durch Admin-Berechtigungen wird jedoch sichergestellt, dass Cloud Compliance Daten lesen kann, die erhöhte Berechtigungen erfordern.
+
+
+
+
+
+==== Konfigurieren Sie die Volumes für das Scannen
+
+[role="quick-margin-para"]
+Wählen Sie die Volumes aus, die Sie scannen möchten, und Cloud Compliance beginnt, sie zu scannen.
+
+
+
+== Bereitstellen der Instanz für Cloud-Compliance
+
+link:task_deploy_cloud_compliance.html["Cloud Compliance in Cloud Manager implementieren"^] Falls noch keine Instanz implementiert wurde.
+
+
+
+== Cloud Compliance in Ihren Arbeitsumgebungen
+
+. Klicken Sie oben im Cloud Manager auf *Cloud Compliance* und wählen Sie dann die Registerkarte *Konfiguration* aus.
++
+image:screenshot_cloud_compliance_we_scan_config.png["Ein Screenshot der Registerkarte Scankonfiguration unmittelbar nach der Bereitstellung der Cloud Compliance-Instanz."]
+
+. Um alle Volumes in einer Arbeitsumgebung zu scannen, klicken Sie auf *Compliance für alle Volumes aktivieren*.
++
+Um nur bestimmte Volumes in einer Arbeitsumgebung zu scannen, klicken Sie auf *oder wählen Sie Volumes* und wählen Sie dann die Volumes aus, die Sie scannen möchten.
+
+
+
+Siehe  and disabling compliance scans on volumes,Aktivieren und Deaktivieren von Compliance-Scans auf Volumes Entsprechende Details.
+
+Cloud Compliance beginnt mit der Überprüfung der Daten in den einzelnen Arbeitsumgebungen. Die Ergebnisse werden im Compliance-Dashboard verfügbar sein, sobald Cloud Compliance die ersten Scans abgeschlossen hat. Die Dauer, die von der Datenmenge abhängt, kann ein paar Minuten oder Stunden betragen.
+
+
+
+== Es wird sichergestellt, dass Cloud Compliance Zugriff auf Volumes hat
+
+Stellen Sie sicher, dass Cloud Compliance auf Volumes zugreifen kann, indem Sie Ihre Netzwerk-, Sicherheitsgruppen- und Exportrichtlinien prüfen. Cloud Compliance muss über CIFS-Anmeldedaten bereitgestellt werden, damit der Zugriff auf CIFS Volumes möglich ist.
+
+.Schritte
+. Vergewissern Sie sich, dass eine Netzwerkverbindung zwischen Cloud Compliance-Instanz und jedem Netzwerk besteht, das Volumes für Cloud Volumes ONTAP oder Azure NetApp Files umfasst.
++
+
+NOTE: Bei Azure NetApp Files kann Cloud Compliance Volumes nur in derselben Region wie Cloud Manager überprüfen.
+
+. Stellen Sie sicher, dass die Sicherheitsgruppe für Cloud Volumes ONTAP eingehenden Datenverkehr aus der Cloud-Compliance-Instanz zulässt.
++
+Sie können entweder die Sicherheitsgruppe für den Datenverkehr von der IP-Adresse der Cloud Compliance-Instanz öffnen oder die Sicherheitsgruppe für den gesamten Datenverkehr im virtuellen Netzwerk öffnen.
+
+. Vergewissern Sie sich, dass die NFS-Volume-Exportrichtlinien die IP-Adresse der Cloud Compliance-Instanz enthalten, damit sie auf die Daten der einzelnen Volumes zugreifen können.
+. Wenn Sie CIFS verwenden, geben Sie Cloud Compliance mit Active Directory Anmeldedaten ein, damit CIFS Volumes gescannt werden können.
++
+.. Klicken Sie oben im Cloud Manager auf *Cloud Compliance*.
+.. Klicken Sie auf die Registerkarte *Konfiguration*.
++
+image:screenshot_cifs_credentials.gif["Ein Screenshot der Registerkarte „Compliance“ mit der Schaltfläche „Scanstatus“, die oben rechts im Inhaltsfenster verfügbar ist."]
+
+.. Klicken Sie für jede Arbeitsumgebung auf *CIFS-Anmeldeinformationen bearbeiten* und geben Sie den Benutzernamen und das Passwort ein, die Cloud Compliance für den Zugriff auf CIFS-Volumes auf dem System benötigt.
++
+Die Anmeldedaten können schreibgeschützt sein. Durch Admin-Berechtigungen wird jedoch sichergestellt, dass Cloud Compliance Daten lesen kann, die erhöhte Berechtigungen benötigen. Die Anmeldedaten werden in der Instanz Cloud Compliance gespeichert.
+
++
+Nach Eingabe der Anmeldedaten sollte eine Meldung angezeigt werden, dass alle CIFS-Volumes erfolgreich authentifiziert wurden.
+
++
+image:screenshot_cifs_status.gif["Ein Screenshot, der die Seite Scankonfiguration und ein Cloud Volumes ONTAP-System anzeigt, für das CIFS-Anmeldedaten erfolgreich bereitgestellt wurden."]
+
+
+
+. Klicken Sie auf der Seite _Scan Configuration_ auf *Details anzeigen*, um den Status für jedes CIFS- und NFS-Volume zu überprüfen und eventuelle Fehler zu beheben.
++
+Das folgende Bild zeigt beispielsweise drei Volumes, von denen Cloud Compliance aufgrund von Netzwerkverbindungsproblemen zwischen der Cloud-Compliance-Instanz und dem Volume nicht scannen kann.
+
++
+image:screenshot_compliance_volume_details.gif["Ein Screenshot der Seite „Details anzeigen“ in der Scankonfiguration mit drei Volumes, von denen einer aufgrund der Netzwerkverbindung zwischen Cloud Compliance und dem Volume nicht gescannt wird."]
+
+
+
+
+
+== Aktivieren und Deaktivieren von Compliance-Scans auf Volumes
+
+Sie können das Scannen von Volumes in einer Arbeitsumgebung jederzeit über die Seite Scankonfiguration anhalten oder starten. Wir empfehlen, alle Volumen zu scannen.
+
+image:screenshot_volume_compliance_selection.png["Ein Screenshot der Scan-Konfigurationsseite, auf der Sie das Scannen einzelner Volumes aktivieren oder deaktivieren können."]
+
+[cols="40,50"]
+|===
+| An: | Tun Sie dies: 
+
+
+| Deaktivieren Sie das Scannen nach einem Volume | Bewegen Sie den Lautstärkeregler nach links 
+
+
+| Deaktivieren Sie das Scannen für alle Volumes | Bewegen Sie den Schieberegler *Compliance für alle Volumes* nach links 
+
+
+| Aktivieren Sie das Scannen nach einem Volume | Bewegen Sie den Lautstärkeregler nach rechts 
+
+
+| Aktivieren Sie das Scannen für alle Volumes | Bewegen Sie den Schieberegler *Compliance für alle Volumes* nach rechts 
+|===
+
+TIP: Neue Volumes, die der Arbeitsumgebung hinzugefügt werden, werden nur dann automatisch gescannt, wenn die Einstellung *Compliance für alle Volumes* aktivieren aktiviert ist. Wenn diese Einstellung deaktiviert ist, müssen Sie das Scannen für jedes neue Volumen aktivieren, das Sie in der Arbeitsumgebung erstellen.
+
+
+
+== Scannen von Datensicherungs-Volumes
+
+Standardmäßig werden Datensicherungs-Volumes nicht gescannt, weil sie nicht extern zugänglich sind und Cloud Compliance nicht darauf zugreifen kann. Diese Volumes sind normalerweise Ziel-Volumes für SnapMirror Vorgänge über ein ONTAP-Cluster vor Ort.
+
+Zunächst erkennt die Liste der Cloud-Compliance-Volumes diese Volumes als _Type_ *DP* mit dem _Status_ *Not Scanning* und dem _required Action_ *Enable Access to DP Volumes*.
+
+image:screenshot_cloud_compliance_dp_volumes.png["Ein Screenshot mit der Schaltfläche Zugriff auf DP-Volumes aktivieren, die Sie zum Scannen von Datensicherungs-Volumes auswählen können."]
+
+Wenn Sie diese Datensicherungs-Volumes scannen möchten:
+
+. Klicken Sie oben auf der Seite auf die Schaltfläche *Zugriff auf DP-Volumes aktivieren*.
+. Aktivieren Sie jedes DP-Volume, das Sie scannen möchten, oder verwenden Sie die Kontrolle *Compliance für alle Volumes aktivieren*, um alle Volumes, einschließlich aller DP-Volumes, zu aktivieren.
+
+
+Sobald Cloud Compliance aktiviert ist, erstellt jedes DP Volume eine NFS-Freigabe, die für Compliance aktiviert wurde, sodass sie gescannt werden kann. Die Richtlinien für den Share-Export erlauben nur den Zugriff aus der Cloud Compliance-Instanz.
+
+
+NOTE: In der Liste der Volumes werden nur Volumes angezeigt, die anfangs als NFS-Volumes im Quell-ONTAP-System erstellt wurden. Quell-Volumes, die zunächst als CIFS erstellt wurden, werden derzeit nicht in Cloud Compliance angezeigt.

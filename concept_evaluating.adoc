@@ -1,0 +1,44 @@
+---
+sidebar: sidebar 
+permalink: concept_evaluating.html 
+keywords: free trial, evaluation, evaluate, eval license, evaluation license, 30-day trial, 30 day trial, 30 day free trial 
+summary: Vor der Zahlung für die Software können Sie Cloud Volumes ONTAP auswerten. Am häufigsten starten Sie die PAYGO-Version Ihres ersten Cloud Volumes ONTAP-Systems, um eine kostenlose 30-Tage-Testversion zu erhalten. Auch eine Evaluation-BYOL-Lizenz ist eine Option. 
+---
+= Bewertung
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Vor der Zahlung für die Software können Sie Cloud Volumes ONTAP auswerten. Am häufigsten starten Sie die PAYGO-Version Ihres ersten Cloud Volumes ONTAP-Systems, um eine kostenlose 30-Tage-Testversion zu erhalten. Auch eine Evaluation-BYOL-Lizenz ist eine Option.
+
+Wenn Sie Hilfe bei Ihren Machbarkeitsstudien benötigen, wenden Sie sich an https://cloud.netapp.com/contact-cds["Das Vertriebsteam"^] Oder wenden Sie sich an die Chat-Option, die über verfügbar ist https://cloud.netapp.com["NetApp Cloud Central"^] Und aus Cloud Manager heraus.
+
+
+
+== 30-Tage-Testversionen für PAYGO
+
+Wenn Sie für Cloud Volumes ONTAP nutzungsbasiert bezahlen möchten, steht Ihnen eine kostenlose 30-Tage-Testversion zur Verfügung. Eine kostenlose 30-Tage-Testversion von Cloud Volumes ONTAP können Sie von Cloud Manager starten, indem Sie Ihr erstes Cloud Volumes ONTAP-System für einen Zahler erstellen.
+
+Für die Instanz fallen keine stündlichen Lizenzgebühren für Software an, es gelten jedoch nach wie vor Gebühren für die Infrastruktur Ihres Cloud-Providers.
+
+Eine kostenlose Testversion wird automatisch in ein kostenpflichtiges stündliches Abonnement umgewandelt, sobald diese abläuft. Wenn Sie die Instanz innerhalb des Zeitlimits beenden, ist die nächste Instanz, die Sie bereitstellen, nicht Teil der kostenlosen Testversion (selbst wenn sie innerhalb dieser 30 Tage bereitgestellt wird).
+
+Die Very-As-you-go-Tests werden bei einem Cloud-Provider vergeben und können auf keinen Fall erweitert werden.
+
+
+
+== Evaluierungslizenzen für BYOL
+
+Kunden, die mit dem Kauf einer NetApp Lizenz rechnen, erwerben Cloud Volumes ONTAP eine Evaluierungslizenz. Sie können eine Evaluierungslizenz von Ihrem Account-Team, Ihrem Sales Engineer oder Ihrem Partner erhalten.
+
+Der Auswertungsschlüssel ist 30 Tage lang gut und kann mehrmals, jeweils für 30 Tage (unabhängig vom Erstellungstag) verwendet werden.
+
+Nach 30 Tagen werden tägliche Abschaltungen stattfinden, daher ist es am besten, im Voraus zu planen. Für ein in-Place-Upgrade kann eine neue BYOL-Lizenz auf die Evaluierungslizenz angewendet werden (hierfür ist ein Neustart einzelner Node-Systeme erforderlich). Ihre gehosteten Daten werden am Ende des Testzeitraums *nicht* gelöscht.
+
+
+TIP: Sie können kein Upgrade der Cloud Volumes ONTAP Software mit einer Evaluierungslizenz durchführen.

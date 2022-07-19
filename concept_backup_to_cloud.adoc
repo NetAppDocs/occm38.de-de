@@ -1,0 +1,208 @@
+---
+sidebar: sidebar 
+permalink: concept_backup_to_cloud.html 
+keywords: backing up, restoring, back up, backup, restore, cloud volumes ontap, aws, azure, s3, blob, back up volumes, Backup to Cloud, restore volumes, billing, cost, on-premises ONTAP, onprem 
+summary: Der Add-on-Service für Cloud Volumes ONTAP und ONTAP Cluster vor Ort bietet Backup- und Restore-Funktionen zur Sicherung und zum langfristigen Archiv Ihrer Cloud-Daten. Backups werden in einem Objektspeicher in Ihrem Cloud-Konto gespeichert, unabhängig von Volume Snapshot Kopien für die kurzfristige Wiederherstellung oder das Klonen. 
+---
+= Erfahren Sie mehr über Backup in der Cloud
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Der Add-on-Service für Cloud Volumes ONTAP und ONTAP Cluster vor Ort bietet Backup- und Restore-Funktionen zur Sicherung und zum langfristigen Archiv Ihrer Cloud-Daten. Backups werden in einem Objektspeicher in Ihrem Cloud-Konto gespeichert, unabhängig von Volume Snapshot Kopien für die kurzfristige Wiederherstellung oder das Klonen.
+
+Backup in der Cloud wird von dem unterstützt https://cloud.netapp.com/cloud-backup-service["Cloud-Backup-Service"^].
+
+
+NOTE: Alle Backup- und Restore-Vorgänge müssen mit Cloud Manager durchgeführt werden. Alle Maßnahmen, die direkt von ONTAP oder Ihrem Cloud-Provider ausgeführt werden, führen zu einer nicht unterstützten Konfiguration.
+
+
+
+== Funktionen
+
+* Erstellen Sie unabhängige Kopien Ihrer Datenvolumen in der Cloud auf kostengünstigen Objekt-Storage.
+* Backup-Daten werden mit AES-256-Bit-Verschlüsselung im Ruhezustand und TLS 1.2 HTTPS-Verbindungen im Übertragungsprozess gesichert.
+* Backup von der Cloud in die Cloud und von lokalen ONTAP Systemen in die Cloud.
+* Unterstützung für bis zu 1,019 Backups eines einzelnen Volumes.
+* Wiederherstellung von Daten aus einem bestimmten Zeitpunkt
+* Stellen Sie die Daten auf einem Volume im Quellsystem oder einem anderen System wieder her.
+
+
+
+
+== Unterstützte Arbeitsumgebungen und Objekt-Storage-Anbieter
+
+Backup in der Cloud wird mit den folgenden Arbeitsumgebungen unterstützt:
+
+* Cloud Volumes ONTAP in AWS
+* Cloud Volumes ONTAP in Azure
+* On-Premises ONTAP Cluster
+
+
+
+
+== Kosten
+
+Backup in der Cloud ist in zwei Preisoptionen erhältlich: Bring Your Own License (BYOL) und Pay as you Go (PAYGO).
+
+Bei BYOL bezahlen Sie NetApp für den Service für einen Zeitraum von 6 Monaten und für eine maximale Backup-Kapazität von 10 GB (vor der Storage-Effizienz). Sie müssen dann Ihren Cloud-Provider für Objekt-Storage-Kosten bezahlen. Sie erhalten eine Seriennummer, die Sie auf der Seite „Cloud Manager Licensing“ eingeben, um den Service zu aktivieren. Wenn eine der beiden Limits erreicht ist, müssen Sie die Lizenz erneuern. Siehe link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["Hinzufügen und Aktualisieren der Backup-BYOL-Lizenz"^]. Die BYOL-Lizenz für Backup gilt für alle mit dem verbundenen Cloud Volumes ONTAP-Systeme link:concept_cloud_central_accounts.html["Cloud Central Konto"^].
+
+Bei PAYGO müssen Sie Ihren Cloud-Provider für Objekt-Storage-Kosten und NetApp für Backup-Lizenzkosten bezahlen. Die Lizenzkosten basieren auf der genutzten Kapazität (vor der Nutzung von Storage-Effizienz):
+
+* AWS, https://aws.amazon.com/marketplace/pp/B07QX2QLXX["Weitere Informationen zu den Preisen finden Sie im Cloud Manager Marketplace Angebot"^].
+* Azure: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Weitere Informationen zu den Preisen finden Sie im Cloud Manager Marketplace Angebot"^].
+
+
+
+
+=== Kostenlose Testversion
+
+Eine kostenlose 30-Tage-Testversion ist erhältlich. Wenn Sie die Testversion verwenden, werden Sie über die Anzahl der noch freien Testtage informiert. Am Ende Ihrer kostenlosen Testversion werden Backups nicht mehr erstellt. Sie müssen den Service abonnieren oder eine Lizenz erwerben, um den Service weiterhin nutzen zu können.
+
+Die Sicherung wird nicht gelöscht, wenn der Dienst deaktiviert ist. Cloud-Provider stellen weiterhin die Kosten für Objekt-Storage für die von Ihren Backups verwendete Kapazität in Rechnung, es sei denn, die Backups werden gelöscht.
+
+
+
+== So funktioniert Backup in der Cloud
+
+Wenn Sie das Backup in der Cloud auf einem Cloud Volumes ONTAP- oder lokalen ONTAP-System aktivieren, führt der Service ein vollständiges Backup Ihrer Daten durch. Volume Snapshots werden nicht im Backup-Image berücksichtigt. Nach dem ersten Backup sind alle weiteren Backups inkrementell, das heißt, dass nur geänderte Blöcke und neue Blöcke gesichert werden.
+
+
+
+=== Speicherort von Backups
+
+Backup-Kopien werden in einem S3-Bucket oder Azure Blob-Container gespeichert, den Cloud Manager in Ihrem Cloud-Konto erstellt. Bei Cloud Volumes ONTAP Systemen wird der Objektspeicher in derselben Region erstellt, in der sich das Cloud Volumes ONTAP System befindet. Bei ONTAP-Systemen vor Ort identifizieren Sie die Region, wenn Sie den Service aktivieren.
+
+Ein Objektspeicher pro Cloud Volumes ONTAP oder ein On-Premises ONTAP System steht zur Verfügung. Cloud Manager benennt den Objektspeicher wie folgt: netapp-Backup-_clusterUUID_
+
+Stellen Sie sicher, dass Sie diesen Objektspeicher nicht löschen.
+
+Hinweise:
+
+* In AWS ermöglicht Cloud Manager das https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html["Amazon S3 Block – Public Access-Funktion"^] Auf dem S3-Bucket.
+* In Azure verwendet Cloud Manager eine neue oder vorhandene Ressourcengruppe mit einem Storage-Konto für den Blob-Container.
+
+
+
+
+=== Unterstützte S3-Storage-Klassen
+
+In Amazon S3 beginnen Backups in der Klasse „ _Standard_ Storage“ und wechseln nach 30 Tagen zur Storage-Klasse „ _Standard-infrequent Access_“.
+
+
+
+=== Unterstützte Azure Blob-Zugriffsebenen
+
+In Azure ist jedes Backup der „_Cold_ Access Tier“ zugeordnet.
+
+
+
+=== Backup-Einstellungen sind systemweit
+
+Wenn Sie Backup in der Cloud aktivieren, werden alle Volumes, die Sie im System identifizieren, in der Cloud gesichert.
+
+Der Zeitplan und die Anzahl der zu behaltenden Backups werden auf Systemebene festgelegt. Die Backup-Einstellungen wirken sich auf alle Volumes im System aus.
+
+
+
+=== Der Zeitplan ist täglich, wöchentlich, monatlich oder eine Kombination
+
+Sie können tägliche, wöchentliche oder monatliche Backups aller Volumes auswählen. Sie haben außerdem die Wahl zwischen einer der systemdefinierten Richtlinien, die 3 Monate, 1 Jahr und 7 Jahre Backups und Aufbewahrung bieten. Im Folgenden werden die Richtlinien aufgeführt:
+
+[cols="30,20,20,20,30"]
+|===
+| Name Der Richtlinie 3+| Backups pro Intervall... | Maximale Backups 
+
+
+|  | * Daily* | *Wöchentlich* | *Monatlich* |  
+
+
+| Netapp3MonatDatenhaltung | 30 | 13 | 3 | 46 
+
+
+| Netapp1YearRetention | 30 | 13 | 12 | 55 
+
+
+| Netapp7YearsRetention | 30 | 53 | 84 | 167 
+|===
+Sobald Sie die maximale Anzahl von Backups für eine Kategorie oder ein Intervall erreicht haben, werden ältere Backups entfernt, sodass Sie immer über die aktuellsten Backups verfügen.
+
+Beachten Sie, dass die Aufbewahrungsdauer für Backups von Datensicherungs-Volumes identisch ist mit der in der SnapMirror Quell-Beziehung definierten Aufbewahrungsdauer. Sie können dies gegebenenfalls mithilfe der API ändern.
+
+
+
+=== Backups werden um Mitternacht erstellt
+
+* Tägliche Backups beginnen jeden Tag kurz nach Mitternacht.
+* Wöchentliche Backups beginnen direkt nach Mitternacht am Sonntagmorgen.
+* Monatliche Backups beginnen knapp nach Mitternacht am ersten jedes Monats.
+
+
+Zu diesem Zeitpunkt können Sie keine Backup-Operationen zu einem vom Benutzer bestimmten Zeitpunkt planen.
+
+
+
+=== Backup-Kopien sind mit Ihrem Cloud Central Konto verknüpft
+
+Backup-Kopien sind dem zugewiesen link:concept_cloud_central_accounts.html["Cloud Central Konto"^] In der sich Cloud Manager befindet.
+
+Wenn sich mehrere Cloud Manager Systeme im selben Cloud Central Konto befinden, zeigt jedes Cloud Manager System dieselbe Liste von Backups an. Dazu gehören auch die Backups, die mit Cloud Volumes ONTAP und lokalen ONTAP Instanzen aus anderen Cloud Manager Systemen verbunden sind.
+
+
+
+=== Überlegungen zu BYOL-Lizenzen
+
+Bei Verwendung einer BYOL-Lizenz für Backup in der Cloud benachrichtigt Sie Cloud Manager, wenn sich Backups dem Kapazitätslimit nähern oder sich dem Ablaufdatum der Lizenz nähern. Sie erhalten folgende Benachrichtigungen:
+
+* Wenn Backups 80 % der lizenzierten Kapazität erreicht haben, und noch einmal, wenn Sie die Obergrenze erreicht haben
+* 30 Tage, bevor eine Lizenz abläuft, und wieder, wenn die Lizenz abläuft
+
+
+Verwenden Sie das Chat-Symbol rechts unten in der Cloud Manager-Schnittstelle, um Ihre Lizenz zu verlängern, wenn Sie diese Benachrichtigungen erhalten.
+
+Zwei Dinge können passieren, wenn Ihre Lizenz abläuft:
+
+* Wenn das Konto, das Sie für Ihre ONTAP-Systeme nutzen, über ein Marketplace-Konto verfügt, läuft der Backup-Service weiter, wird jedoch von einem PAYGO-Lizenzmodell übernommen. Sie zahlen durch Ihren Cloud-Provider für Objekt-Storage-Kosten und durch NetApp für Backup-Lizenzkosten für die Kapazität, die Ihre Backups verwenden.
+* Wenn das Konto, das Sie für Ihre ONTAP Systeme verwenden, kein Marketplace-Konto hat, läuft der Backup-Service weiter, Sie erhalten jedoch weiterhin die Ablaufdatum.
+
+
+Nach der Erneuerung des BYOL-Abonnements erhält Cloud Manager automatisch die neue Lizenz von NetApp und installiert sie. Wenn Cloud Manager nicht über die sichere Internetverbindung auf die Lizenzdatei zugreifen kann, können Sie die Datei selbst beziehen und sie manuell in Cloud Manager hochladen. Anweisungen hierzu finden Sie unter link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["Hinzufügen und Aktualisieren der Backup-BYOL-Lizenz"^].
+
+Systeme, die auf eine PAYGO-Lizenz verschoben wurden, werden automatisch an die BYOL-Lizenz zurückgegeben. Systeme, die ohne Lizenz ausgeführt wurden, erhalten die Warnmeldung nicht mehr und werden für Backups belastet, die während des Lizenzzeitraums aufgetreten sind.
+
+
+
+== Unterstützte Volumes
+
+Backup in der Cloud unterstützt Volumes mit Lese- und Schreibvorgängen sowie Datensicherungs-Volumes (DP).
+
+FlexGroup Volumes werden derzeit nicht unterstützt.
+
+
+
+== Einschränkungen
+
+* WORM Storage (SnapLock) wird nicht auf einem Cloud Volumes ONTAP oder On-Premises-System unterstützt, wenn Backup in der Cloud aktiviert ist.
+* Einschränkungen bei Backups von lokalen ONTAP-Systemen in die Cloud:
++
+** Der On-Prem-Cluster muss ONTAP 9.7P5 oder höher ausführen.
+** Cloud Manager muss auf Azure implementiert werden. Für lokale Cloud Manager Implementierungen wird keine Unterstützung geboten.
+** Der Zielspeicherort für Backups ist nur Objekt-Storage auf Azure.
+** Backups können nur auf in Azure implementierten Cloud Volumes ONTAP Systemen wiederhergestellt werden. Das Backup kann nicht auf einem lokalen ONTAP System oder auf einem Cloud Volumes ONTAP System mit einem anderen Cloud-Provider wiederhergestellt werden.
+
+
+* Bei der Sicherung von Datensicherungs-Volumes (DP) muss die für die SnapMirror-Richtlinie definierte Regel auf dem Quell-Volume ein Etikett verwenden, das mit den zulässigen Backup in Cloud-Richtlinien * Daily*, *Weekly* oder *monthly* übereinstimmt. Ansonsten wird der Backup für das DP-Volume fehlschlagen.
+* Wenn Sie in Azure Backup in Cloud aktivieren, wenn Cloud Volumes ONTAP bereitgestellt wird, erstellt Cloud Manager die Ressourcengruppe für Sie, und Sie können sie nicht ändern. Wenn Sie Ihre eigene Ressourcengruppe auswählen möchten, wenn Sie Backup in Cloud aktivieren, *deaktivieren* Backup in Cloud bei der Bereitstellung von Cloud Volumes ONTAP und aktivieren dann Backup in Cloud und wählen Sie die Ressourcengruppe aus der Seite Backup in Cloud Einstellungen.
+* Beim Backup von Volumes aus Cloud Volumes ONTAP Systemen werden die außerhalb von Cloud Manager erstellten Volumes nicht automatisch gesichert.
++
+Wenn Sie beispielsweise ein Volume aus der ONTAP CLI, der ONTAP API oder dem System Manager erstellen, wird das Volume nicht automatisch gesichert.
+
++
+Wenn Sie diese Volumes sichern möchten, müssen Sie Backup in Cloud deaktivieren und dann erneut aktivieren.
+
+

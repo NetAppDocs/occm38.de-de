@@ -1,0 +1,86 @@
+---
+sidebar: sidebar 
+permalink: task_sync_licensing.html 
+keywords: license, subscription, registering, subscribing, subscribing in aws, subscribing in azure, subscribing to aws, subscribing to azure, aws marketplace, azure marketplace, netapp license, byol license, purchase a license, license settings, pay for relationships, paygo, annual, pay-as-you-go 
+summary: Es gibt zwei Möglichkeiten, für Synchronisierungsbeziehungen zu bezahlen, nachdem die 14-tägige kostenlose Testversion abgelaufen ist. Die erste Option ist „Pay-as-you-go“. Die zweite Option besteht darin, Lizenzen direkt von NetApp zu erwerben. 
+---
+= Bezahlen für Synchronisierungsbeziehungen, sobald die kostenlose Testversion endet
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+Es gibt zwei Möglichkeiten, für Synchronisierungsbeziehungen zu bezahlen, nachdem die 14-tägige kostenlose Testversion abgelaufen ist. Die erste Option besteht darin, AWS oder Azure zu abonnieren, um nutzungsbasiert zu bezahlen oder jährlich zu zahlen. Die zweite Option besteht darin, Lizenzen direkt von NetApp zu erwerben.
+
+Sie können Lizenzen von NetApp mit einem AWS- oder Azure-Abonnement verwenden. Wenn Sie beispielsweise 25 Synchronisierungsbeziehungen haben, können Sie die ersten 20 Synchronisierungsbeziehungen mit einer Lizenz bezahlen und dann mit den restlichen 5 Synchronisierungsbeziehungen von AWS oder Azure bezahlen.
+
+link:concept_cloud_sync.html["Erfahren Sie mehr über die Funktionsweise von Lizenzen"].
+
+.Was ist, wenn ich nicht und#8217;t sofort zahlen, nachdem meine kostenlose Testversion endet?
+****
+Sie werden keine weiteren Beziehungen erstellen können. Bestehende Beziehungen werden nicht gelöscht, Sie können jedoch erst dann Änderungen an ihnen vornehmen, wenn Sie eine Lizenz abonnieren oder eingeben.
+
+****
+
+
+== Abonnieren von AWS
+
+AWS ermöglicht Ihnen, nutzungsbasiert zu zahlen oder jährlich zu zahlen.
+
+.Schritte zum nutzungsbasierten Bezahlen
+. Klicken Sie Auf *Sync > Licensing*.
+. Wählen Sie *AWS* aus
+. Klicken Sie auf *Abonnieren* und dann auf *Weiter*.
+. Melden Sie sich über den AWS Marketplace an, und melden Sie sich dann wieder beim Cloud Sync Service an, um die Registrierung abzuschließen.
++
+Das folgende Video zeigt den Prozess:
+
++
+video::video_cloud_sync_registering.mp4[width=848,height=480]
+
+
+.Jährliche Zahlung
+. https://aws.amazon.com/marketplace/pp/B06XX5V3M2["Rufen Sie die AWS Marketplace Seite auf"^].
+. Klicken Sie auf *Weiter zur Anmeldung*.
+. Wählen Sie Ihre Vertragsoptionen aus und klicken Sie auf *Vertrag erstellen*.
+
+
+
+
+== Abonnieren von Azure
+
+Azure ermöglicht Ihnen, nutzungsbasiert zu zahlen oder jährlich zu zahlen.
+
+Ein Azure Benutzerkonto, das Mitarbeiter- oder Eigentümerberechtigungen für das entsprechende Abonnement besitzt.
+
+.Schritte
+. Klicken Sie Auf *Sync > Licensing*.
+. Wählen Sie *Azure*.
+. Klicken Sie auf *Abonnieren* und dann auf *Weiter*.
+. Klicken Sie im Azure-Portal auf *Erstellen*, wählen Sie Ihre Optionen aus und klicken Sie auf *Abonnieren*.
++
+Wählen Sie * monatlich*, um auf Stundenbasis zu bezahlen, oder *jährlich*, um für ein Jahr im Voraus zu bezahlen.
+
+. Wenn die Bereitstellung abgeschlossen ist, klicken Sie im Benachrichtigungs-Popup auf den Namen der SaaS-Ressource.
+. Klicken Sie auf *Konto konfigurieren*, um zu Cloud Sync zurückzukehren.
++
+Das folgende Video zeigt den Prozess:
+
++
+video::video_cloud_sync_registering_azure.mp4[width=848,height=480]
+
+
+
+
+== Erwerb von Lizenzen von NetApp und deren Ergänzung zu Cloud Sync
+
+Um Ihre Synchronisierungsbeziehungen vorab zu bezahlen, müssen Sie eine oder mehrere Lizenzen erwerben und sie dem Cloud Sync Service hinzufügen.
+
+.Schritte
+. Erwerben Sie eine Lizenz per mailto:ng-cloudsync-contact@netapp.com?subject=Cloud%20Sync%20Service%20-%20BYOL%20License%20Kauf%20Anforderung[Kontakt mit NetApp].
+. Klicken Sie in Cloud Manager auf *Sync > Licensing*.
+. Klicken Sie auf *Lizenz hinzufügen* und fügen Sie die Lizenz hinzu.
+

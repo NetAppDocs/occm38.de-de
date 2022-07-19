@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: task_managing_compliance.html 
+keywords: remove, delete, stop, stop scans, stop scanning, cloud compliance, stop cloud compliance, delete cloud compliance, terminate, deactivate, deactivating cloud compliance 
+summary: Wenn Sie dies benötigen, können Sie verhindern, dass Cloud Compliance eine oder mehrere Arbeitsumgebungen scannen kann. Sie können auch die Cloud Compliance-Instanz löschen, wenn Sie Cloud Compliance nicht mehr in Ihrer Arbeitsumgebung verwenden möchten. 
+---
+= Deaktivieren Von Cloud Compliance
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie benötigen, können Sie verhindern, dass Cloud Compliance eine oder mehrere Arbeitsumgebungen oder Datenbanken scannt. Sie können auch die Cloud Compliance-Instanz löschen, wenn Sie Cloud Compliance nicht mehr in Ihrer Arbeitsumgebung verwenden möchten.
+
+
+
+== Deaktivieren von Compliance-Scans für eine Arbeitsumgebung
+
+Wenn Sie Scans deaktivieren, scannt Cloud Compliance die Daten auf dem System nicht mehr und entfernt alle indizierten Compliance-Einblicke aus der Cloud Compliance Instanz (die Daten aus der Arbeitsumgebung oder der Datenbank selbst werden nicht gelöscht).
+
+Klicken Sie auf der Seite _Scan Configuration_ auf image:screenshot_gallery_options.gif["Schaltfläche „Mehr“"] Klicken Sie in der Zeile für die Arbeitsumgebung auf *Compliance deaktivieren*.
+
+image:screenshot_deactivate_compliance_scan.png["Ein Screenshot des Aktionssymbols, in dem Sie Scan deaktivieren wählen können. Diese Option ist verfügbar, nachdem Sie auf der Seite Arbeitsumgebungen eine Arbeitsumgebung ausgewählt haben."]
+
+
+TIP: Sie können bei der Auswahl der Arbeitsumgebung auch die Compliance-Scans für eine Arbeitsumgebung im Fenster „Services“ deaktivieren.
+
+
+
+== Löschen der Cloud-Compliance-Instanz
+
+Sie können die Cloud Compliance-Instanz löschen, wenn Sie Cloud Compliance nicht mehr verwenden möchten. Durch das Löschen der Instanz werden auch die zugehörigen Festplatten gelöscht, auf denen sich die indizierten Daten befinden.
+
+.Schritt
+. Gehen Sie zur Konsole Ihres Cloud-Providers und löschen Sie die Instanz für Cloud Compliance.
++
+Der Name der Instanz ist _CloudCompliance_ mit einem generierten Hash (UUID), der verknüpft ist. Beispiel: _CloudCompliance-16bb6564-38ad-4080-9a92-36f5fd2f71c7_
+
+

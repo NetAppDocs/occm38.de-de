@@ -1,0 +1,70 @@
+---
+sidebar: sidebar 
+permalink: reference_connector_default_config.html 
+keywords: linux, user name, operating system, installation files, installation folder, folder, log, logs, service, mysql, packages, linux 
+summary: Wenn Sie eine Fehlerbehebung für den Konnektor benötigen, können Sie die Konfiguration des Connectors unter Umständen besser verstehen. 
+---
+= Standardkonfiguration für den Konnektor
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie eine Fehlerbehebung für den Konnektor benötigen, können Sie die Konfiguration des Connectors unter Umständen besser verstehen.
+
+* Bei der Implementierung des Connectors über Cloud Manager (oder direkt über den Marketplace eines Cloud-Providers) ist Folgendes zu beachten:
++
+** In AWS lautet der Benutzername für die EC2 Linux-Instanz ec2-user.
+** Das Betriebssystem für das Image lautet wie folgt:
++
+*** AWS: Red hat Enterprise Linux 7.5 (HVM)
+*** Azure: Red hat Enterprise Linux 7.6 (HVM)
+*** GCP: CentOS 7.6
++
+Das Betriebssystem enthält keine GUI. Sie müssen ein Terminal verwenden, um auf das System zuzugreifen.
+
+
+
+
+
+* Der Installationsordner des Connectors befindet sich an folgender Stelle:
++
+/opt/application/netapp/cloudmanager
+
+* Protokolldateien befinden sich im folgenden Ordner:
++
+/opt/application/netapp/cloudmanager/log
+
+* Der Cloud Manager Service heißt occm.
+* Der occm-Dienst ist vom MySQL-Dienst abhängig.
++
+Wenn der MySQL-Dienst nicht verfügbar ist, ist auch der occm-Dienst nicht verfügbar.
+
+* Cloud Manager installiert die folgenden Pakete auf dem Linux-Host, sofern sie noch nicht installiert sind:
++
+** 7-Zip
+** AWSCLI
+** Docker
+** Java
+** Kubectl
+** MySQL
+** Tridentctl
+** Ziehen
+** Wget
+
+
+* Der Connector verwendet die folgenden Ports auf dem Linux-Host:
++
+** 80 für HTTP-Zugriff
+** 443 für HTTPS-Zugriff
+** 3306 für die Cloud Manager-Datenbank
+** 8080 für den Cloud Manager-API-Proxy
+** 8666 für die Service Manager API
+** 8777 für die Health-Checker Container Service API
+
+
+

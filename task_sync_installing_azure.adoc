@@ -1,0 +1,104 @@
+---
+sidebar: sidebar 
+permalink: task_sync_installing_azure.html 
+keywords: data broker, install, azure, networking, permissions, regions, install data broker in azure, install in azure, deploy in azure, deploy data broker in azure, networking requirements, port, ports, 443, port 443, ntp, network time protocol, azure data broker 
+summary: Wenn Sie eine Synchronisierungsbeziehung erstellen, wählen Sie die Option Azure Data Broker, um die Data Broker-Software auf einer neuen virtuellen Maschine in einem VNet bereitzustellen. Cloud Sync führt Sie durch den Installationsprozess, aber die Anforderungen und Schritte werden auf dieser Seite wiederholt, um Sie bei der Vorbereitung auf die Installation zu unterstützen. 
+---
+= Installieren des Data Brokers in Azure
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie eine Synchronisierungsbeziehung erstellen, wählen Sie die Option Azure Data Broker, um die Data Broker-Software auf einer neuen virtuellen Maschine in einem VNet bereitzustellen. Cloud Sync führt Sie durch den Installationsprozess, aber die Anforderungen und Schritte werden auf dieser Seite wiederholt, um Sie bei der Vorbereitung auf die Installation zu unterstützen.
+
+Sie haben auch die Möglichkeit, den Data Broker auf einem vorhandenen Linux-Host in der Cloud oder vor Ort zu installieren. link:task_sync_installing_linux.html["Weitere Informationen ."].
+
+
+
+== Unterstützte Azure Regionen
+
+Alle Regionen werden unterstützt, mit Ausnahme der Regionen China, US Gov und US DoD.
+
+
+
+== Netzwerkanforderungen
+
+* Der Daten-Broker benötigt eine ausgehende Internetverbindung, damit er den Cloud Sync Service für Aufgaben über Port 443 abfragen kann.
++
+Wenn Cloud Sync den Data Broker in Azure bereitstellt, erstellt es eine Sicherheitsgruppe, die die erforderliche ausgehende Kommunikation ermöglicht.
+
++
+Wenn Sie die ausgehende Verbindung begrenzen müssen, lesen Sie link:reference_sync_networking.html["Die Liste der Endpunkte, die der Datenmanager kontaktiert"].
+
+* NetApp empfiehlt die Konfiguration des Quell-, Ziel- und Daten-Brokers für die Verwendung eines NTP-Services (Network Time Protocol). Die Zeitdifferenz zwischen den drei Komponenten darf 5 Minuten nicht überschreiten.
+
+
+
+
+== Authentifizierungsmethode
+
+Bei der Bereitstellung des Daten-Brokers müssen Sie eine Authentifizierungsmethode wählen: Ein Passwort oder ein SSH Public-Private Key Pair.
+
+Hilfe zum Erstellen eines Schlüsselpaares finden Sie unter https://docs.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys["Azure Dokumentation: Erstellen und Verwenden eines öffentlichen SSH-privaten Schlüsselpaares für Linux VMs in Azure"^].
+
+
+
+== Installation des Data Brokers
+
+Sie können einen Data Broker in Azure installieren, wenn Sie eine Synchronisierungsbeziehung erstellen.
+
+.Schritte
+. Klicken Sie Auf *Neuen Sync Erstellen*.
+. Wählen Sie auf der Seite *Synchronisierungsbeziehung definieren* eine Quelle und ein Ziel aus und klicken Sie auf *Weiter*.
++
+Füllen Sie die Seiten aus, bis Sie zur Seite *Data Broker* gelangen.
+
+. Klicken Sie auf der Seite *Data Broker* auf *Daten Broker erstellen* und wählen Sie dann *Microsoft Azure* aus.
++
+Wenn Sie bereits einen Daten-Broker haben, müssen Sie auf klicken image:screenshot_plus_icon.gif["Ein Screenshot, wenn das Pluszeichen angezeigt wird"] Symbol zuerst.
+
++
+image:screenshot_create_data_broker.gif["Screenshot der Seite „Data Broker“ mit der Wahl zwischen einem AWS, Azure, GCP und einem Daten-Broker vor Ort."]
+
+. Geben Sie einen Namen für den Daten-Broker ein und klicken Sie auf *Weiter*.
+. Wenn Sie dazu aufgefordert werden, melden Sie sich bei Ihrem Microsoft-Konto an. Wenn Sie nicht aufgefordert werden, klicken Sie auf *in Azure* anmelden.
++
+Das Formular ist Eigentum von Microsoft und wird von Microsoft gehostet. Ihre Zugangsdaten werden nicht an NetApp bereitgestellt.
+
+. Wählen Sie einen Speicherort für den Daten-Broker aus, und geben Sie grundlegende Details zur virtuellen Maschine ein.
++
+image:screenshot_azure_data_broker.gif["Einen Screenshot der Seite zur Azure Bereitstellung mit den folgenden Feldern: Abonnement, Azure-Region, vnet, Subnetz, VM-Name, Benutzername, Authentifizierungsmethode und Ressourcengruppe."]
+
+. Klicken Sie auf *Weiter* und lassen Sie die Seite offen, bis die Bereitstellung abgeschlossen ist.
++
+Dieser Vorgang kann bis zu 7 Minuten dauern.
+
+. Klicken Sie in Cloud Sync auf *Weiter*, sobald der Datenvermittler verfügbar ist.
+. Füllen Sie die Seiten im Assistenten aus, um die neue Synchronisierungsbeziehung zu erstellen.
+
+
+Sie haben einen Data Broker in Azure bereitgestellt und eine neue Synchronisierungsbeziehung erstellt. Sie können diesen Daten-Broker mit zusätzlichen Synchronisierungsbeziehungen verwenden.
+
+.Möchten Sie eine Nachricht über die Notwendigkeit einer Administratorerklärung erhalten?
+****
+Wenn Microsoft Sie benachrichtigt, dass eine Administratorgenehmigung erforderlich ist, da Cloud Sync die Berechtigung für den Zugriff auf Ressourcen in Ihrem Unternehmen benötigt, stehen Ihnen zwei Optionen zur Verfügung:
+
+. Bitten Sie Ihren AD-Administrator, Ihnen die folgende Berechtigung zu erteilen:
++
+In Azure gehen Sie zu *Admin Center > Azure AD > Users and Groups > User Settings* und aktivieren Sie *Benutzer können den Zugriff von Apps auf Unternehmensdaten für sie zustimmen*.
+
+. Bitten Sie Ihren AD-Administrator um Zustimmung für *CloudSync-AzureDataBrokerCreator* unter Verwendung der folgenden URL (dies ist der Admin-Einwilligungsendpunkt):
++
+\https://login.microsoftonline.com/{FILL HIER IHRE MANDANTEN-ID}/v2.0/adminZustimmung?Client_id=8ee4ca3a-bafa-4831-97cc-5a38923c85&redirect_uri=https://cloudsync.netapp.com&scope=https://management.azure.com/user_impersonationhttps://graph.microsoft.com/User.Read
+
++
+Wie in der URL dargestellt, ist unsere App-URL \https://cloudsync.netapp.com und die Application-Client-ID 8ee4ca3a-bafa-4831-97cc-5a38923cab85.
+
+
+
+****

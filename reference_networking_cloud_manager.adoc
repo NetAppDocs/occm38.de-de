@@ -1,0 +1,606 @@
+---
+sidebar: sidebar 
+permalink: reference_networking_cloud_manager.html 
+keywords: networking, network, requirements, connection, connections, vpc, security group, security groups, subnets, proxy server, vpn, outbound, inbound, connections, jump host, URL, URLs, endpoints, endpoint, ports 
+summary: Richten Sie Ihr Netzwerk ein, damit der Connector Ressourcen und Prozesse in Ihrer Public Cloud-Umgebung managen kann. Der wichtigste Schritt besteht darin, ausgehenden Internetzugriff auf verschiedene Endpunkte zu gewährleisten. 
+---
+= Netzwerkanforderungen für den Connector
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Richten Sie Ihr Netzwerk ein, damit der Connector Ressourcen und Prozesse innerhalb Ihrer Public Cloud-Umgebung managen kann. Der wichtigste Schritt besteht darin, ausgehenden Internetzugriff auf verschiedene Endpunkte zu gewährleisten.
+
+
+TIP: Wenn Ihr Netzwerk für die gesamte Kommunikation mit dem Internet einen Proxyserver verwendet, können Sie den Proxyserver über die Seite Einstellungen angeben. Siehe link:task_configuring_proxy.html["Konfigurieren des Connectors für die Verwendung eines Proxy-Servers"].
+
+
+
+== Verbindung zu Zielnetzwerken
+
+Ein Connector erfordert eine Netzwerkverbindung zu der Art der Arbeitsumgebung, die Sie erstellen und die Dienste, die Sie planen zu ermöglichen.
+
+Wenn Sie beispielsweise einen Connector in Ihrem Unternehmensnetzwerk installieren, müssen Sie eine VPN-Verbindung zur VPC oder vnet einrichten, in der Sie Cloud Volumes ONTAP starten.
+
+
+
+== Outbound-Internetzugang
+
+Für den Connector ist ein abgehender Internetzugang erforderlich, um Ressourcen und Prozesse in Ihrer Public Cloud-Umgebung zu managen. Der ausgehende Internetzugang ist auch erforderlich, wenn Sie den Connector manuell auf einem Linux-Host installieren oder auf die lokale UI zugreifen möchten, die auf dem Connector ausgeführt wird.
+
+In den folgenden Abschnitten werden die spezifischen Endpunkte beschrieben.
+
+
+
+=== Endpunkte zum Management von Ressourcen in AWS
+
+Ein Connector kontaktiert die folgenden Endpunkte beim Management von Ressourcen in AWS:
+
+[cols="43,57"]
+|===
+| Endpunkte | Zweck 
+
+
+ a| 
+AWS-Services (amazonaws.com):
+
+* CloudFormation
+* Elastic Compute Cloud (EC2)
+* Key Management Service (KMS)
+* Security Token Service (STS)
+* Simple Storage Service (S3)
+
+
+Der genaue Endpunkt hängt von der Region ab, in der Sie Cloud Volumes ONTAP implementieren. https://docs.aws.amazon.com/general/latest/gr/rande.html["Weitere Informationen finden Sie in der AWS-Dokumentation."^]
+| Ermöglicht die Implementierung und das Management von Cloud Volumes ONTAP in AWS mit dem Connector 
+
+
+| \https://api.services.cloud.netapp.com:443 | API-Anfragen an NetApp Cloud Central. 
+
+
+| \https://cloud.support.netapp.com.s3.us-west-1.amazonaws.com | Bietet Zugriff auf Software-Images, Manifeste und Vorlagen. 
+
+
+| \https://repo.cloud.support.netapp.com | Wird zum Herunterladen der Abhängigkeiten von Cloud Manager verwendet. 
+
+
+| \http://repo.mysql.com/ | Zum Herunterladen von MySQL. 
+
+
+| \https://cognito-idp.us-east-1.amazonaws.com \https://cognito-identity.us-east-1.amazonaws.com \https://sts.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.amazonaws.com | Ermöglicht dem Connector, auf Manifeste, Vorlagen und Cloud Volumes ONTAP Upgrade-Images zuzugreifen und diese herunterzuladen. 
+
+
+| \https://cloudmanagerinfraprod.azurecr.io | Zugriff auf Software-Images von Container-Komponenten für eine Infrastruktur, die Docker ausführt und eine Lösung für die Service-Integration mit Cloud Manager bietet. 
+
+
+| \https://kinesis.us-east-1.amazonaws.com | Ermöglicht NetApp das Streamen von Daten aus Audit-Datensätzen. 
+
+
+| \https://cloudmanager.cloud.netapp.com | Kommunikation mit dem Cloud Manager-Service, der Cloud Central-Konten einschließt 
+
+
+| \https://netapp-cloud-account.auth0.com | Kommunikation mit NetApp Cloud Central für zentralisierte Benutzerauthentifizierung 
+
+
+| \https://w86yt021u5.execute-api.us-east-1.amazonaws.com/production/whitelist | Wird verwendet, um Ihre AWS Konto-ID der Liste der zugelassenen Benutzer für die Sicherung in S3 hinzuzufügen. 
+
+
+| \https://support.netapp.com/aods/asupmessage \https://support.netapp.com/asupprod/post/1.0/postAsup | Kommunikation mit NetApp AutoSupport. 
+
+
+| \https://support.netapp.com/svcgw \https://support.netapp.com/ServiceGW/entitlement \https://eval.lic.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com.s3.us-west-1.amazonaws.com | Kommunikation mit NetApp bei Systemlizenzrechten und Support-Registrierung 
+
+
+| \https://client.infra.support.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.us-west-1.amazonaws.com \https://trigger.asup.netapp.com.s3.us-west-1.amazonaws.com | Er ermöglicht NetApp, Informationen zu sammeln, die für die Behebung von Support-Problemen erforderlich sind. 
+
+
+| \https://ipa-signer.cloudmanager.netapp.com | Ermöglicht Cloud Manager die Generierung von Lizenzen (beispielsweise eine FlexCache Lizenz für Cloud Volumes ONTAP) 
+
+
+| \https://packages.cloud.google.com/yum \https://github.com/NetApp/trident/releases/download/ | Erforderlich, um Cloud Volumes ONTAP Systeme mit einem Kubernetes Cluster zu verbinden Mit den Endpunkten ist die Installation von NetApp Trident möglich. 
+
+
+ a| 
+Verschiedene Standorte von Drittanbietern, z. B.:
+
+* \https://repo1.maven.org/maven2
+* \https://oss.sonatype.org/content/repositories
+* \https://repo.typesafe.com
+
+
+An Standorten von Drittanbietern können Änderungen vorgenommen werden.
+| Während Upgrades lädt Cloud Manager die neuesten Pakete für Abhängigkeiten von Drittanbietern herunter. 
+|===
+
+
+=== Endpunkte zum Managen von Ressourcen in Azure
+
+Ein Connector kontaktiert folgende Endpunkte beim Managen von Ressourcen in Azure:
+
+[cols="43,57"]
+|===
+| Endpunkte | Zweck 
+
+
+| \https://management.azure.com \https://login.microsoftonline.com | Ermöglicht Cloud Manager die Implementierung und das Management von Cloud Volumes ONTAP in den meisten Azure Regionen. 
+
+
+| \https://management.microsoftazure.de \https://login.microsoftonline.de | Ermöglicht Cloud Manager die Implementierung und das Management von Cloud Volumes ONTAP in den Azure Germany Regionen. 
+
+
+| \https://management.usgovcloudapi.net \https://login.microsoftonline.com | Ermöglicht Cloud Manager die Implementierung und das Management von Cloud Volumes ONTAP in den Azure US Gov Regionen. 
+
+
+| \https://api.services.cloud.netapp.com:443 | API-Anfragen an NetApp Cloud Central. 
+
+
+| \https://cloud.support.netapp.com.s3.us-west-1.amazonaws.com | Bietet Zugriff auf Software-Images, Manifeste und Vorlagen. 
+
+
+| \https://repo.cloud.support.netapp.com | Wird zum Herunterladen der Abhängigkeiten von Cloud Manager verwendet. 
+
+
+| \http://repo.mysql.com/ | Zum Herunterladen von MySQL. 
+
+
+| \https://cognito-idp.us-east-1.amazonaws.com \https://cognito-identity.us-east-1.amazonaws.com \https://sts.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.amazonaws.com | Ermöglicht dem Connector, auf Manifeste, Vorlagen und Cloud Volumes ONTAP Upgrade-Images zuzugreifen und diese herunterzuladen. 
+
+
+| \https://cloudmanagerinfraprod.azurecr.io | Zugriff auf Software-Images von Container-Komponenten für eine Infrastruktur, die Docker ausführt und eine Lösung für die Service-Integration mit Cloud Manager bietet. 
+
+
+| \https://kinesis.us-east-1.amazonaws.com | Ermöglicht NetApp das Streamen von Daten aus Audit-Datensätzen. 
+
+
+| \https://cloudmanager.cloud.netapp.com | Kommunikation mit dem Cloud Manager-Service, der Cloud Central-Konten einschließt 
+
+
+| \https://netapp-cloud-account.auth0.com | Kommunikation mit NetApp Cloud Central für zentralisierte Benutzerauthentifizierung 
+
+
+| \https://mysupport.netapp.com | Kommunikation mit NetApp AutoSupport. 
+
+
+| \https://support.netapp.com/svcgw \https://support.netapp.com/ServiceGW/entitlement \https://eval.lic.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com.s3.us-west-1.amazonaws.com | Kommunikation mit NetApp bei Systemlizenzrechten und Support-Registrierung 
+
+
+| \https://client.infra.support.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.us-west-1.amazonaws.com \https://trigger.asup.netapp.com.s3.us-west-1.amazonaws.com | Er ermöglicht NetApp, Informationen zu sammeln, die für die Behebung von Support-Problemen erforderlich sind. 
+
+
+| \https://ipa-signer.cloudmanager.netapp.com | Ermöglicht Cloud Manager die Generierung von Lizenzen (beispielsweise eine FlexCache Lizenz für Cloud Volumes ONTAP) 
+
+
+| \https://packages.cloud.google.com/yum \https://github.com/NetApp/trident/releases/download/ | Erforderlich, um Cloud Volumes ONTAP Systeme mit einem Kubernetes Cluster zu verbinden Mit den Endpunkten ist die Installation von NetApp Trident möglich. 
+
+
+| *.blob.core.windows.net | Bei Verwendung eines Proxy erforderlich für HA-Paare 
+
+
+ a| 
+Verschiedene Standorte von Drittanbietern, z. B.:
+
+* \https://repo1.maven.org/maven2
+* \https://oss.sonatype.org/content/repositories
+* \https://repo.typesafe.com
+
+
+An Standorten von Drittanbietern können Änderungen vorgenommen werden.
+| Während Upgrades lädt Cloud Manager die neuesten Pakete für Abhängigkeiten von Drittanbietern herunter. 
+|===
+
+
+=== Endpunkte für das Management von Ressourcen in GCP
+
+Ein Connector kontaktiert die folgenden Endpunkte beim Management von Ressourcen in GCP:
+
+[cols="43,57"]
+|===
+| Endpunkte | Zweck 
+
+
+| \https://www.googleapis.com | Ermöglicht dem Connector den Kontakt zu Google APIs für die Bereitstellung und das Management von Cloud Volumes ONTAP in GCP. 
+
+
+| \https://api.services.cloud.netapp.com:443 | API-Anfragen an NetApp Cloud Central. 
+
+
+| \https://cloud.support.netapp.com.s3.us-west-1.amazonaws.com | Bietet Zugriff auf Software-Images, Manifeste und Vorlagen. 
+
+
+| \https://repo.cloud.support.netapp.com | Wird zum Herunterladen der Abhängigkeiten von Cloud Manager verwendet. 
+
+
+| \http://repo.mysql.com/ | Zum Herunterladen von MySQL. 
+
+
+| \https://cognito-idp.us-east-1.amazonaws.com \https://cognito-identity.us-east-1.amazonaws.com \https://sts.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.amazonaws.com | Ermöglicht dem Connector, auf Manifeste, Vorlagen und Cloud Volumes ONTAP Upgrade-Images zuzugreifen und diese herunterzuladen. 
+
+
+| \https://cloudmanagerinfraprod.azurecr.io | Zugriff auf Software-Images von Container-Komponenten für eine Infrastruktur, die Docker ausführt und eine Lösung für die Service-Integration mit Cloud Manager bietet. 
+
+
+| \https://kinesis.us-east-1.amazonaws.com | Ermöglicht NetApp das Streamen von Daten aus Audit-Datensätzen. 
+
+
+| \https://cloudmanager.cloud.netapp.com | Kommunikation mit dem Cloud Manager-Service, der Cloud Central-Konten einschließt 
+
+
+| \https://netapp-cloud-account.auth0.com | Kommunikation mit NetApp Cloud Central für zentralisierte Benutzerauthentifizierung 
+
+
+| \https://mysupport.netapp.com | Kommunikation mit NetApp AutoSupport. 
+
+
+| \https://support.netapp.com/svcgw \https://support.netapp.com/ServiceGW/entitlement \https://eval.lic.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com.s3.us-west-1.amazonaws.com | Kommunikation mit NetApp bei Systemlizenzrechten und Support-Registrierung 
+
+
+| \https://client.infra.support.netapp.com.s3.us-west-1.amazonaws.com \https://cloud-support-netapp-com-accelerated.s3.us-west-1.amazonaws.com \https://trigger.asup.netapp.com.s3.us-west-1.amazonaws.com | Er ermöglicht NetApp, Informationen zu sammeln, die für die Behebung von Support-Problemen erforderlich sind. 
+
+
+| \https://ipa-signer.cloudmanager.netapp.com | Ermöglicht Cloud Manager die Generierung von Lizenzen (beispielsweise eine FlexCache Lizenz für Cloud Volumes ONTAP) 
+
+
+| \https://packages.cloud.google.com/yum \https://github.com/NetApp/trident/releases/download/ | Erforderlich, um Cloud Volumes ONTAP Systeme mit einem Kubernetes Cluster zu verbinden Mit den Endpunkten ist die Installation von NetApp Trident möglich. 
+
+
+ a| 
+Verschiedene Standorte von Drittanbietern, z. B.:
+
+* \https://repo1.maven.org/maven2
+* \https://oss.sonatype.org/content/repositories
+* \https://repo.typesafe.com
+
+
+An Standorten von Drittanbietern können Änderungen vorgenommen werden.
+| Während Upgrades lädt Cloud Manager die neuesten Pakete für Abhängigkeiten von Drittanbietern herunter. 
+|===
+
+
+=== Endpunkte zum Installieren des Connectors auf einem Linux-Host
+
+Sie haben die Möglichkeit, die Connector-Software manuell auf Ihrem eigenen Linux-Host zu installieren. In diesem Fall muss das Installationsprogramm für den Connector während des Installationsvorgangs auf die folgenden URLs zugreifen:
+
+* \http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm
+* \https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+* \https://s3.amazonaws.com/aws-cli/awscli-bundle.zip
+
+
+Der Host versucht möglicherweise, während der Installation Betriebssystempakete zu aktualisieren. Der Host kann verschiedene Spiegelungsstandorte für diese Betriebssystempakete kontaktieren.
+
+
+
+=== Endpunkte, auf die Sie über Ihren Webbrowser zugreifen, wenn Sie die lokale Benutzeroberfläche verwenden
+
+Während Sie fast alle Aufgaben über die SaaS-Benutzeroberfläche ausführen sollten, steht auf dem Connector weiterhin eine lokale Benutzeroberfläche zur Verfügung. Die Maschine, auf der der Webbrowser ausgeführt wird, muss über Verbindungen zu den folgenden Endpunkten verfügen:
+
+[cols="43,57"]
+|===
+| Endpunkte | Zweck 
+
+
+| Der Connector-Host  a| 
+Sie müssen die IP-Adresse des Hosts aus einem Webbrowser eingeben, um die Cloud Manager-Konsole zu laden.
+
+Je nach Ihrer Verbindung mit Ihrem Cloud-Provider können Sie die private IP oder eine dem Host zugewiesene öffentliche IP verwenden:
+
+* Eine private IP funktioniert, wenn Sie über ein VPN verfügen und direkten Zugriff auf Ihr virtuelles Netzwerk haben
+* Eine öffentliche IP funktioniert in jedem Netzwerkszenario
+
+
+In jedem Fall sollten Sie den Netzwerkzugriff sichern, indem Sie sicherstellen, dass die Sicherheitsgruppenregeln den Zugriff nur von autorisierten IPs oder Subnetzen ermöglichen.
+
+
+
+| \https://auth0.com \https://cdn.auth0.com \https://netapp-cloud-account.auth0.com \https://services.cloud.netapp.com | Ihr Webbrowser stellt über NetApp Cloud Central eine Verbindung zu diesen Endpunkten her, um eine zentralisierte Benutzerauthentifizierung zu ermöglichen. 
+
+
+| \https://widget.intercom.io | Für Ihren Produkt-Chat, der Ihnen das Gespräch mit NetApp Cloud-Experten ermöglicht. 
+|===
+
+
+== Ports und Sicherheitsgruppen
+
+Es gibt keinen eingehenden Datenverkehr zum Konnektor, es sei denn, Sie initiieren ihn. HTTP und HTTPS bieten den Zugriff auf link:concept_connectors.html#the-local-user-interface["Lokale Benutzeroberfläche"], Die Sie in seltenen Fällen verwenden. SSH ist nur erforderlich, wenn Sie eine Verbindung zum Host zur Fehlerbehebung herstellen müssen.
+
+
+
+=== Regeln für den Connector in AWS
+
+Die Sicherheitsgruppe für den Konnektor erfordert sowohl ein- als auch ausgehende Regeln.
+
+
+
+==== Regeln für eingehende Anrufe
+
+Die Quelle für eingehende Regeln in der vordefinierten Sicherheitsgruppe ist 0.0.0.0/0.
+
+[cols="10,10,80"]
+|===
+| Protokoll | Port | Zweck 
+
+
+| SSH | 22 | Bietet SSH-Zugriff auf den Connector-Host 
+
+
+| HTTP | 80 | Bietet HTTP-Zugriff von Client-Webbrowsern auf die lokale Benutzeroberfläche und Verbindungen von Cloud Compliance 
+
+
+| HTTPS | 443 | Bietet HTTPS-Zugriff von Client-Webbrowsern auf die lokale Benutzeroberfläche 
+
+
+| TCP | 3128 | Bietet die Cloud Compliance-Instanz einen Internetzugang, wenn Ihr AWS-Netzwerk keine NAT oder Proxy verwendet 
+|===
+
+
+==== Regeln für ausgehende Anrufe
+
+Die vordefinierte Sicherheitsgruppe für den Konnektor öffnet den gesamten ausgehenden Datenverkehr. Wenn dies akzeptabel ist, befolgen Sie die grundlegenden Regeln für ausgehende Anrufe. Wenn Sie strengere Regeln benötigen, verwenden Sie die erweiterten Outbound-Regeln.
+
+
+
+===== Grundlegende Regeln für ausgehende Anrufe
+
+Die vordefinierte Sicherheitsgruppe für den Connector enthält die folgenden ausgehenden Regeln.
+
+[cols="20,20,60"]
+|===
+| Protokoll | Port | Zweck 
+
+
+| Alle TCP | Alle | Gesamter abgehender Datenverkehr 
+
+
+| Alle UDP-Protokolle | Alle | Gesamter abgehender Datenverkehr 
+|===
+
+
+===== Erweiterte Outbound-Regeln
+
+Wenn Sie starre Regeln für ausgehenden Datenverkehr benötigen, können Sie die folgenden Informationen verwenden, um nur die Ports zu öffnen, die für die ausgehende Kommunikation durch den Konnektor erforderlich sind.
+
+
+NOTE: Die Quell-IP-Adresse ist der Connector-Host.
+
+[cols="5*"]
+|===
+| Service | Protokoll | Port | Ziel | Zweck 
+
+
+.9+| Active Directory | TCP | 88 | Active Directory-Gesamtstruktur | Kerberos V-Authentifizierung 
+
+
+| TCP | 139 | Active Directory-Gesamtstruktur | Sitzung für den NETBIOS-Dienst 
+
+
+| TCP | 389 | Active Directory-Gesamtstruktur | LDAP 
+
+
+| TCP | 445 | Active Directory-Gesamtstruktur | Microsoft SMB/CIFS über TCP mit NETBIOS-Framing 
+
+
+| TCP | 464 | Active Directory-Gesamtstruktur | Kerberos V Passwort ändern und festlegen (SET_CHANGE) 
+
+
+| TCP | 749 | Active Directory-Gesamtstruktur | Active Directory Kerberos V - Kennwort ändern und festlegen (RPCSEC_GSS) 
+
+
+| UDP | 137 | Active Directory-Gesamtstruktur | NetBIOS-Namensdienst 
+
+
+| UDP | 138 | Active Directory-Gesamtstruktur | Netbios Datagramm-Dienst 
+
+
+| UDP | 464 | Active Directory-Gesamtstruktur | Kerberos-Schlüsselverwaltung 
+
+
+| API-Aufrufe und AutoSupport | HTTPS | 443 | Outbound-Internet und ONTAP Cluster Management LIF | API-Aufrufe an AWS und ONTAP und Senden von AutoSupport Nachrichten an NetApp 
+
+
+.2+| API-Aufrufe | TCP | 3000 | ONTAP Cluster Management LIF | API-Aufrufe für ONTAP 
+
+
+| TCP | 8088 | Backup auf S3 | API-Aufrufe zur Sicherung in S3 
+
+
+| DNS | UDP | 53 | DNS | Wird für die DNS-Auflösung durch Cloud Manager verwendet 
+
+
+| Cloud-Compliance | HTTP | 80 | Cloud Compliance Instanz | Cloud Compliance für Cloud Volumes ONTAP 
+|===
+
+
+=== Regeln für den Connector in Azure
+
+Die Sicherheitsgruppe für den Konnektor erfordert sowohl ein- als auch ausgehende Regeln.
+
+
+
+==== Regeln für eingehende Anrufe
+
+Die Quelle für eingehende Regeln in der vordefinierten Sicherheitsgruppe ist 0.0.0.0/0.
+
+[cols="3*"]
+|===
+| Port | Protokoll | Zweck 
+
+
+| 22 | SSH | Bietet SSH-Zugriff auf den Connector-Host 
+
+
+| 80 | HTTP | Bietet HTTP-Zugriff von Client-Webbrowsern auf die lokale Benutzeroberfläche 
+
+
+| 443 | HTTPS | Bietet HTTPS-Zugriff von Client-Webbrowsern auf die lokale Benutzeroberfläche 
+|===
+
+
+==== Regeln für ausgehende Anrufe
+
+Die vordefinierte Sicherheitsgruppe für den Konnektor öffnet den gesamten ausgehenden Datenverkehr. Wenn dies akzeptabel ist, befolgen Sie die grundlegenden Regeln für ausgehende Anrufe. Wenn Sie strengere Regeln benötigen, verwenden Sie die erweiterten Outbound-Regeln.
+
+
+
+===== Grundlegende Regeln für ausgehende Anrufe
+
+Die vordefinierte Sicherheitsgruppe für den Connector enthält die folgenden ausgehenden Regeln.
+
+[cols="3*"]
+|===
+| Port | Protokoll | Zweck 
+
+
+| Alle | Alle TCP | Gesamter abgehender Datenverkehr 
+
+
+| Alle | Alle UDP-Protokolle | Gesamter abgehender Datenverkehr 
+|===
+
+
+===== Erweiterte Outbound-Regeln
+
+Wenn Sie starre Regeln für ausgehenden Datenverkehr benötigen, können Sie die folgenden Informationen verwenden, um nur die Ports zu öffnen, die für die ausgehende Kommunikation durch den Konnektor erforderlich sind.
+
+
+NOTE: Die Quell-IP-Adresse ist der Connector-Host.
+
+[cols="5*"]
+|===
+| Service | Port | Protokoll | Ziel | Zweck 
+
+
+.9+| Active Directory | 88 | TCP | Active Directory-Gesamtstruktur | Kerberos V-Authentifizierung 
+
+
+| 139 | TCP | Active Directory-Gesamtstruktur | Sitzung für den NETBIOS-Dienst 
+
+
+| 389 | TCP | Active Directory-Gesamtstruktur | LDAP 
+
+
+| 445 | TCP | Active Directory-Gesamtstruktur | Microsoft SMB/CIFS über TCP mit NETBIOS-Framing 
+
+
+| 464 | TCP | Active Directory-Gesamtstruktur | Kerberos V Passwort ändern und festlegen (SET_CHANGE) 
+
+
+| 749 | TCP | Active Directory-Gesamtstruktur | Active Directory Kerberos V - Kennwort ändern und festlegen (RPCSEC_GSS) 
+
+
+| 137 | UDP | Active Directory-Gesamtstruktur | NetBIOS-Namensdienst 
+
+
+| 138 | UDP | Active Directory-Gesamtstruktur | Netbios Datagramm-Dienst 
+
+
+| 464 | UDP | Active Directory-Gesamtstruktur | Kerberos-Schlüsselverwaltung 
+
+
+| API-Aufrufe und AutoSupport | 443 | HTTPS | Outbound-Internet und ONTAP Cluster Management LIF | API-Aufrufe an AWS und ONTAP und Senden von AutoSupport Nachrichten an NetApp 
+
+
+| API-Aufrufe | 3000 | TCP | ONTAP Cluster Management LIF | API-Aufrufe für ONTAP 
+
+
+| DNS | 53 | UDP | DNS | Wird für die DNS-Auflösung durch Cloud Manager verwendet 
+|===
+
+
+=== Regeln für den Connector in GCP
+
+Die Firewall-Regeln für den Connector erfordern sowohl ein- als auch ausgehende Regeln.
+
+
+
+==== Regeln für eingehende Anrufe
+
+Die Quelle für eingehende Regeln in den vordefinierten Firewall-Regeln ist 0.0.0.0/0.
+
+[cols="10,10,80"]
+|===
+| Protokoll | Port | Zweck 
+
+
+| SSH | 22 | Bietet SSH-Zugriff auf den Connector-Host 
+
+
+| HTTP | 80 | Bietet HTTP-Zugriff von Client-Webbrowsern auf die lokale Benutzeroberfläche 
+
+
+| HTTPS | 443 | Bietet HTTPS-Zugriff von Client-Webbrowsern auf die lokale Benutzeroberfläche 
+|===
+
+
+==== Regeln für ausgehende Anrufe
+
+Die vordefinierten Firewall-Regeln für den Connector öffnen den gesamten ausgehenden Datenverkehr. Wenn dies akzeptabel ist, befolgen Sie die grundlegenden Regeln für ausgehende Anrufe. Wenn Sie strengere Regeln benötigen, verwenden Sie die erweiterten Outbound-Regeln.
+
+
+
+===== Grundlegende Regeln für ausgehende Anrufe
+
+Die vordefinierten Firewall-Regeln für den Connector enthalten die folgenden ausgehenden Regeln.
+
+[cols="20,20,60"]
+|===
+| Protokoll | Port | Zweck 
+
+
+| Alle TCP | Alle | Gesamter abgehender Datenverkehr 
+
+
+| Alle UDP-Protokolle | Alle | Gesamter abgehender Datenverkehr 
+|===
+
+
+===== Erweiterte Outbound-Regeln
+
+Wenn Sie starre Regeln für ausgehenden Datenverkehr benötigen, können Sie die folgenden Informationen verwenden, um nur die Ports zu öffnen, die für die ausgehende Kommunikation durch den Konnektor erforderlich sind.
+
+
+NOTE: Die Quell-IP-Adresse ist der Connector-Host.
+
+[cols="5*"]
+|===
+| Service | Protokoll | Port | Ziel | Zweck 
+
+
+.9+| Active Directory | TCP | 88 | Active Directory-Gesamtstruktur | Kerberos V-Authentifizierung 
+
+
+| TCP | 139 | Active Directory-Gesamtstruktur | Sitzung für den NETBIOS-Dienst 
+
+
+| TCP | 389 | Active Directory-Gesamtstruktur | LDAP 
+
+
+| TCP | 445 | Active Directory-Gesamtstruktur | Microsoft SMB/CIFS über TCP mit NETBIOS-Framing 
+
+
+| TCP | 464 | Active Directory-Gesamtstruktur | Kerberos V Passwort ändern und festlegen (SET_CHANGE) 
+
+
+| TCP | 749 | Active Directory-Gesamtstruktur | Active Directory Kerberos V - Kennwort ändern und festlegen (RPCSEC_GSS) 
+
+
+| UDP | 137 | Active Directory-Gesamtstruktur | NetBIOS-Namensdienst 
+
+
+| UDP | 138 | Active Directory-Gesamtstruktur | Netbios Datagramm-Dienst 
+
+
+| UDP | 464 | Active Directory-Gesamtstruktur | Kerberos-Schlüsselverwaltung 
+
+
+| API-Aufrufe und AutoSupport | HTTPS | 443 | Outbound-Internet und ONTAP Cluster Management LIF | API ruft GCP und ONTAP ab und sendet AutoSupport Nachrichten an NetApp 
+
+
+| API-Aufrufe | TCP | 3000 | ONTAP Cluster Management LIF | API-Aufrufe für ONTAP 
+
+
+| DNS | UDP | 53 | DNS | Wird für die DNS-Auflösung durch Cloud Manager verwendet 
+|===

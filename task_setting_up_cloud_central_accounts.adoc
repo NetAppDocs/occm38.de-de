@@ -1,0 +1,121 @@
+---
+sidebar: sidebar 
+permalink: task_setting_up_cloud_central_accounts.html 
+keywords: account settings, workspaces, Connector, account admin, workspace admin, users, associate, disassociate, add user, add users, user management, administer, user, management, account, user account, user accounts, create workspace, add workspace, setup workspace, workspace, Connector, manage Connector, manage workspace, associate Connector 
+summary: Wenn Sie sich zum ersten Mal bei Cloud Manager anmelden, werden Sie aufgefordert, ein NetApp Cloud Central Konto zu erstellen. Dieses Konto bietet Mandantenfähigkeit und ermöglicht es Ihnen, Benutzer und Ressourcen in isolierten Arbeitsbereichen zu organisieren. 
+---
+= Einrichtung von Workspaces und Benutzern im Cloud Central Konto
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Wenn Sie sich zum ersten Mal bei Cloud Manager anmelden, werden Sie aufgefordert, ein _NetApp Cloud Central Konto_ zu erstellen. Dieses Konto bietet Mandantenfähigkeit und ermöglicht es Ihnen, Benutzer und Ressourcen in isolierten Arbeitsbereichen zu organisieren_.
+
+link:concept_cloud_central_accounts.html["Erfahren Sie mehr über die Funktionsweise von Cloud Central-Accounts"].
+
+Richten Sie Ihr Cloud Central-Konto ein, damit Benutzer in einem Arbeitsbereich auf Cloud Manager zugreifen können. Fügen Sie einfach einen einzelnen Benutzer hinzu oder fügen Sie mehrere Benutzer und Arbeitsbereiche hinzu.
+
+
+
+== Arbeitsbereiche werden hinzugefügt
+
+In Cloud Manager können Sie mithilfe von Workspaces eine Reihe von Arbeitsumgebungen von anderen Arbeitsumgebungen und anderen Benutzern isolieren. Sie können beispielsweise zwei Arbeitsbereiche erstellen und jedem Arbeitsbereich separate Benutzer zuordnen.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf das Dropdown-Menü *Konto*.
++
+image:screenshot_account_settings_menu.gif["Ein Screenshot, der die Option „Account Settings“ im oberen Banner von Cloud Manager zeigt."]
+
+. Klicken Sie neben dem aktuell ausgewählten Konto auf *Konto verwalten*.
++
+image:screenshot_manage_account_settings.gif["Ein Screenshot, in dem die Option „Kontoeinstellungen verwalten“ angezeigt wird, die im Dropdown-Menü „Konto“ verfügbar ist."]
+
+. Klicken Sie Auf *Arbeitsbereiche*.
+. Klicken Sie Auf *Neuen Arbeitsbereich Hinzufügen*.
+. Geben Sie einen Namen für den Arbeitsbereich ein und klicken Sie auf *Hinzufügen*.
+
+
+Wenn ein Workspace-Administrator Zugriff auf diesen Arbeitsbereich benötigt, müssen Sie den Benutzer zuordnen. Außerdem müssen Sie Connectors mit dem Arbeitsbereich verknüpfen, damit Arbeitsbereichsadministratoren diese Connectors verwenden können.
+
+
+
+== Benutzer hinzufügen
+
+Cloud Central Benutzer werden mit dem Cloud Central Konto verknüpft, damit diese Arbeitsumgebungen in Cloud Manager erstellen und verwalten können.
+
+.Schritte
+. Wenn der Benutzer dies noch nicht getan hat, bitten Sie den Benutzer, zu wechseln https://cloud.netapp.com["NetApp Cloud Central"^] Und melden Sie sich an.
+. Klicken Sie oben im Cloud Manager auf das Dropdown-Menü *Konto* und klicken Sie auf *Konto verwalten*.
++
+image:screenshot_manage_account_settings.gif["Ein Screenshot, in dem die Option „Kontoeinstellungen verwalten“ angezeigt wird, die im Dropdown-Menü „Konto“ verfügbar ist."]
+
+. Klicken Sie auf der Registerkarte Benutzer auf *Benutzer verknüpfen*.
+. Geben Sie die E-Mail-Adresse des Benutzers ein, und wählen Sie eine Rolle für den Benutzer aus:
++
+** *Account Admin*: Kann jede Aktion in Cloud Manager ausführen.
+** *Workspace Admin*: Kann Ressourcen in zugewiesenen Workspaces erstellen und verwalten.
+** *Compliance Viewer*: Kann nur Compliance-Informationen anzeigen und Berichte für Arbeitsbereiche erstellen, auf die sie zugreifen können.
+
+
+. Wenn Sie Workspace Admin oder Compliance Viewer ausgewählt haben, wählen Sie eine oder mehrere Arbeitsbereiche aus, die diesem Benutzer zugeordnet werden sollen.
++
+image:screenshot_associate_user.gif["Ein Screenshot, der zeigt, wie ein Benutzer durch Auswahl einer Rolle und der zugehörigen Arbeitsbereiche zugeordnet wird."]
+
+. Klicken Sie Auf * Benutzer Verknüpfen*.
+
+
+Der Benutzer sollte eine E-Mail von NetApp Cloud Central mit dem Titel „Account Association“ erhalten. Die E-Mail enthält die für den Zugriff auf Cloud Manager erforderlichen Informationen.
+
+
+
+== Verknüpfen von Workspace-Administratoren mit Arbeitsbereichen
+
+Sie können Workspace-Administratoren jederzeit mit zusätzlichen Arbeitsbereichen verknüpfen. Durch die Verknüpfung des Benutzers können die Arbeitsumgebungen in diesem Arbeitsbereich erstellt und angezeigt werden.
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf das Dropdown-Menü *Konto* und klicken Sie auf *Konto verwalten*.
++
+image:screenshot_manage_account_settings.gif["Ein Screenshot, in dem die Option „Kontoeinstellungen verwalten“ angezeigt wird, die im Dropdown-Menü „Konto“ verfügbar ist."]
+
+. Klicken Sie auf der Registerkarte Benutzer auf das Aktionsmenü in der Zeile, die dem Benutzer entspricht.
++
+image:screenshot_associate_user_workspace.gif["Ein Screenshot, der das Aktionsmenü anzeigt, das verfügbar ist, wenn der Mauszeiger über den Namen eines Benutzers in der Benutzertabelle bewegt wird."]
+
+. Klicken Sie Auf *Arbeitsbereiche Verwalten*.
+. Wählen Sie einen oder mehrere Arbeitsbereiche aus, und klicken Sie auf *Anwenden*.
+
+
+Der Benutzer kann jetzt über Cloud Manager auf diese Arbeitsbereiche zugreifen, solange der Connector auch mit den Arbeitsbereichen verknüpft war.
+
+
+
+== Verknüpfen von Connectors mit Arbeitsbereichen
+
+Sie müssen einen Connector mit Arbeitsbereichen verknüpfen, damit Arbeitsbereichsadministratoren diese Connectors zum Erstellen von Cloud Volumes ONTAP-Systemen verwenden können.
+
+Wenn Sie nur Kontoadministratoren haben, ist es nicht erforderlich, den Connector mit Arbeitsbereichen zu verknüpfen. Account-Administratoren haben standardmäßig die Möglichkeit, auf alle Workspaces in Cloud Manager zuzugreifen.
+
+link:concept_cloud_central_accounts.html#users-workspaces-and-service-connectors["Erfahren Sie mehr über Benutzer, Arbeitsbereiche und Connectors"].
+
+.Schritte
+. Klicken Sie oben im Cloud Manager auf das Dropdown-Menü *Konto* und klicken Sie auf *Konto verwalten*.
++
+image:screenshot_manage_account_settings.gif["Ein Screenshot, in dem die Option „Kontoeinstellungen verwalten“ angezeigt wird, die im Dropdown-Menü „Konto“ verfügbar ist."]
+
+. Klicken Sie Auf *Connector*.
+. Klicken Sie auf *Arbeitsbereiche verwalten* für den Konnektor, den Sie verknüpfen möchten.
+. Wählen Sie einen oder mehrere Arbeitsbereiche aus, und klicken Sie auf *Anwenden*.
+
+
+Workspace-Administratoren können diese Anschlüsse jetzt verwenden, um Cloud Volumes ONTAP-Systeme zu erstellen.
+
+
+
+== Was kommt als Nächstes?
+
+Nachdem Sie Ihr Konto eingerichtet haben, können Sie es jederzeit verwalten, indem Sie Benutzer entfernen, Arbeitsbereiche, Connectors und Abonnements verwalten. link:task_managing_cloud_central_accounts.html["Weitere Informationen ."].

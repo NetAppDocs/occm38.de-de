@@ -1,0 +1,439 @@
+---
+sidebar: sidebar 
+permalink: reference_cvs_service_levels_and_quotas.html 
+keywords: Cloud Volumes Service for AWS, service levels, bandwidth, capacity, quotas, inodes 
+summary: Die Kosten für Cloud Volumes Service für AWS basieren auf dem Service-Level und der zugewiesenen Kapazität, die Sie auswählen. Durch die Auswahl des geeigneten Service Levels und der Kapazität erfüllen Sie Ihre Storage-Anforderungen zu den niedrigsten Kosten. 
+---
+= Service Level und zugewiesene Kapazität
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Die Kosten für Cloud Volumes Service für AWS basieren auf dem _Service Level_ und der von Ihnen ausgewählten _zugewiesenen Kapazität_. Durch die Auswahl des geeigneten Service Levels und der Kapazität erfüllen Sie Ihre Storage-Anforderungen zu den niedrigsten Kosten.
+
+
+
+== Überlegungen
+
+Storage-Anforderungen beinhalten zwei grundlegende Aspekte:
+
+* Storage_Capacity_ für das Speichern von Daten
+* Storage _Bandbreite_ für die Interaktion mit Daten
+
+
+Wenn Sie mehr Speicherplatz verbrauchen als die für das Volume ausgewählte Kapazität, gelten die folgenden Überlegungen:
+
+* Sie werden die zusätzliche Storage-Kapazität, die Sie verbrauchen, zu dem von Ihrem Service Level definierten Preis in Rechnung gestellt.
+* Die für das Volume verfügbare Storage-Bandbreite wächst erst, wenn Sie die zugewiesene Kapazitätsgröße erhöhen oder den Service Level ändern.
+
+
+
+
+== Service-Leveln
+
+Cloud Volumes Service für AWS unterstützt drei Service-Level. Sie geben Ihren Service-Level an, wenn Sie das Volume erstellen oder ändern.
+
+Die Service Levels werden auf unterschiedliche Storage-Kapazitäts- und Storage-Anforderungen abgestimmt:
+
+* **Standard** (Kapazität)
++
+Wenn Sie Kapazität zu den niedrigsten Kosten benötigen und Ihre Bandbreitenanforderungen begrenzt sind, eignen sich die standardmäßigen Service-Levels möglicherweise am besten für Sie. Ein Beispiel hierfür ist die Nutzung des Volumes als Backup-Ziel.
+
++
+** Bandbreite: 16 KB Bandbreite pro bereitgestelltem GB Kapazität
+
+
+* **Premium** (ein ausgewogenes Verhältnis von Kapazität und Performance)
++
+Wenn Ihre Applikation einen ausgewogenen Bedarf an Storage-Kapazität und Bandbreite hat, ist das Premium Service Level möglicherweise am besten für Sie geeignet. Dieses Level ist pro MB/s günstiger als das Standard-Service-Level und ist zudem pro GB günstiger als das Extreme Service Level.
+
++
+** Bandbreite: 64 KB Bandbreite pro bereitgestelltem GB Kapazität
+
+
+* **Extreme** (Leistung)
++
+Das extrem hohe Service-Level ist hinsichtlich der Storage-Bandbreite am kostengünstigsten. Wenn Ihre Applikation eine Storage-Bandbreite ohne die damit verbundene Nachfrage nach viel Storage-Kapazität benötigt, ist das Extreme Service Level wahrscheinlich das richtige für Sie.
+
++
+** Bandbreite: 128 KB Bandbreite pro bereitgestelltem GB Kapazität
+
+
+
+
+
+
+== Zugewiesene Kapazität
+
+Beim Erstellen oder Ändern des Volume wird die zugewiesene Kapazität für das Volume angegeben.
+
+Wählen Sie Ihr Service Level zwar basierend auf Ihren allgemeinen und allgemeinen geschäftlichen Anforderungen aus, Sie sollten jedoch Ihre zugewiesene Kapazitätsgröße entsprechend den spezifischen Anforderungen von Applikationen auswählen, zum Beispiel:
+
+* Wie viel Speicherplatz benötigen die Applikationen
+* Wie viel Storage-Bandbreite pro Sekunde benötigen die Applikationen oder Benutzer
+
+
+Die zugewiesene Kapazität wird in GB angegeben. Die zugewiesene Kapazität eines Volumes kann im Bereich von 100 GB bis 100,000 GB (entspricht 100 TB) eingestellt werden.
+
+
+
+=== Anzahl Inodes
+
+Volumes kleiner als oder gleich 1 TB können bis zu 20 Millionen Inodes belegen. Die Zahl der Inodes steigt um 20 Millionen pro TB, die Sie zuweisen, bis zu einem Maximum von 100 Millionen Inodes.
+
+* \<= 1 TB = 20 Millionen Inodes
+* >1 TB bis 2 TB = 40 Millionen Inodes
+* >2 TB bis 3 TB = 60 Millionen Inodes
+* >3 TB bis 4 TB = 80 Millionen Inodes
+* >4 TB bis 100 TB = 100 Millionen Inodes
+
+
+
+
+== Bandbreite
+
+Die Kombination aus Service Level und der ausgewählten Kapazität bestimmt die maximale Bandbreite für das Volume.
+
+Wenn Ihre Applikationen oder Benutzer mehr Bandbreite benötigen als Ihre Auswahl, können Sie den Service Level ändern oder die zugewiesene Kapazität erhöhen. Die Änderungen unterbrechen den Datenzugriff nicht.
+
+
+
+== Auswählen des Service-Levels und der zugewiesenen Kapazität
+
+Um das für Ihren Bedarf am besten geeignete Service-Level und die zugewiesene Kapazität auszuwählen, müssen Sie wissen, wie viel Kapazität und Bandbreite Sie zu Spitzenzeiten oder am Edge-Bereich benötigen.
+
+
+
+=== Liste der Service Level und der zugewiesenen Kapazität
+
+Die Spalte links zeigt die Kapazität an, und die anderen Spalten definieren die verfügbaren MB/s an jedem Kapazitätspunkt basierend auf dem Service Level.
+
+Siehe link:https://aws.amazon.com/marketplace/pp/B07MF4GHYW?qid=1595869056263&sr=0-2&ref_=srh_res_product_title["Abonnementpreise für Verträge"] Und link:https://aws.amazon.com/marketplace/pp/B0848MXK74?qid=1595869056263&sr=0-1&ref_=srh_res_product_title["Metered-Abonnementpreise"^] Für vollständige Details zum Preis.
+
+[cols="15,15,15,15"]
+|===
+| Kapazität (TB) | Standard (MB/s) | Premium (MB/s) | Extrem (MB/s) 
+
+
+| 0.1 (100 GB) | 1.6 | 6.4 | 12.8 
+
+
+| 1 | 16 | 64 | 128 
+
+
+| 2 | 32 | 128 | 256 
+
+
+| 3 | 48 | 192 | 384 
+
+
+| 4 | 64 | 256 | 512 
+
+
+| 5 | 80 | 320 | 640 
+
+
+| 6 | 96 | 384 | 768 
+
+
+| 7 | 112 | 448 | 896 
+
+
+| 8 | 128 | 512 | 1,024 
+
+
+| 9 | 144 | 576 | 1,152 
+
+
+| 10 | 160 | 640 | 1,280 
+
+
+| 11 | 176 | 704 | 1,408 
+
+
+| 12 | 192 | 768 | 1,536 
+
+
+| 13 | 208 | 832 | 1,664 
+
+
+| 14 | 224 | 896 | 1,792 
+
+
+| 15 | 240 | 960 | 1,920 
+
+
+| 16 | 256 | 1,024 | 2,048 
+
+
+| 17 | 272 | 1,088 | 2,176 
+
+
+| 18 | 288 | 1,152 | 2,304 
+
+
+| 19 | 304 | 1,216 | 2,432 
+
+
+| 20 | 320 | 1,280 | 2,560 
+
+
+| 21 | 336 | 1,344 | 2,688 
+
+
+| 22 | 352 | 1,408 | 2,816 
+
+
+| 23 | 368 | 1,472 | 2,944 
+
+
+| 24 | 384 | 1,536 | 3,072 
+
+
+| 25 | 400 | 1,600 | 3,200 
+
+
+| 26 | 416 | 1,664 | 3,328 
+
+
+| 27 | 432 | 1,728 | 3,456 
+
+
+| 28 | 448 | 1,792 | 3,584 
+
+
+| 29 | 464 | 1,856 | 3,712 
+
+
+| 30 | 480 | 1,920 | 3,840 
+
+
+| 31 | 496 | 1,984 | 3,968 
+
+
+| 32 | 512 | 2,048 | 4,096 
+
+
+| 33 | 528 | 2,112 | 4,224 
+
+
+| 34 | 544 | 2,176 | 4,352 
+
+
+| 35 | 560 | 2,240 | 4,480 
+
+
+| 36 | 576 | 2,304 | 4,500 
+
+
+| 37 | 592 | 2,368 | 4,500 
+
+
+| 38 | 608 | 2,432 | 4,500 
+
+
+| 39 | 624 | 2,496 | 4,500 
+
+
+| 40 | 640 | 2,560 | 4,500 
+
+
+| 41 | 656 | 2,624 | 4,500 
+
+
+| 42 | 672 | 2,688 | 4,500 
+
+
+| 43 | 688 | 2,752 | 4,500 
+
+
+| 44 | 704 | 2,816 | 4,500 
+
+
+| 45 | 720 | 2,880 | 4,500 
+
+
+| 46 | 736 | 2,944 | 4,500 
+
+
+| 47 | 752 | 3,008 | 4,500 
+
+
+| 48 | 768 | 3,072 | 4,500 
+
+
+| 49 | 784 | 3,136 | 4,500 
+
+
+| 50 | 800 | 3,200 | 4,500 
+
+
+| 51 | 816 | 3,264 | 4,500 
+
+
+| 52 | 832 | 3,328 | 4,500 
+
+
+| 53 | 848 | 3,392 | 4,500 
+
+
+| 54 | 864 | 3,456 | 4,500 
+
+
+| 55 | 880 | 3,520 | 4,500 
+
+
+| 56 | 896 | 3,584 | 4,500 
+
+
+| 57 | 912 | 3,648 | 4,500 
+
+
+| 58 | 928 | 3,712 | 4,500 
+
+
+| 59 | 944 | 3,776 | 4,500 
+
+
+| 60 | 960 | 3,840 | 4,500 
+
+
+| 61 | 976 | 3,904 | 4,500 
+
+
+| 62 | 992 | 3,968 | 4,500 
+
+
+| 63 | 1,008 | 4,032 | 4,500 
+
+
+| 64 | 1,024 | 4,096 | 4,500 
+
+
+| 65 | 1,040 | 4,160 | 4,500 
+
+
+| 66 | 1,056 | 4,224 | 4,500 
+
+
+| 67 | 1,072 | 4,288 | 4,500 
+
+
+| 68 | 1,088 | 4,352 | 4,500 
+
+
+| 69 | 1,104 | 4,416 | 4,500 
+
+
+| 70 | 1,120 | 4,480 | 4,500 
+
+
+| 71 | 1,136 | 4,500 | 4,500 
+
+
+| 72 | 1,152 | 4,500 | 4,500 
+
+
+| 73 | 1,168 | 4,500 | 4,500 
+
+
+| 74 | 1,184 | 4,500 | 4,500 
+
+
+| 75 | 1,200 | 4,500 | 4,500 
+
+
+| 76 | 1,216 | 4,500 | 4,500 
+
+
+| 77 | 1,232 | 4,500 | 4,500 
+
+
+| 78 | 1,248 | 4,500 | 4,500 
+
+
+| 79 | 1,264 | 4,500 | 4,500 
+
+
+| 80 | 1,280 | 4,500 | 4,500 
+
+
+| 81 | 1,296 | 4,500 | 4,500 
+
+
+| 82 | 1,312 | 4,500 | 4,500 
+
+
+| 83 | 1,328 | 4,500 | 4,500 
+
+
+| 84 | 1,344 | 4,500 | 4,500 
+
+
+| 85 | 1,360 | 4,500 | 4,500 
+
+
+| 86 | 1,376 | 4,500 | 4,500 
+
+
+| 87 | 1,392 | 4,500 | 4,500 
+
+
+| 88 | 1,408 | 4,500 | 4,500 
+
+
+| 89 | 1,424 | 4,500 | 4,500 
+
+
+| 90 | 1,440 | 4,500 | 4,500 
+
+
+| 91 | 1,456 | 4,500 | 4,500 
+
+
+| 92 | 1,472 | 4,500 | 4,500 
+
+
+| 93 | 1,488 | 4,500 | 4,500 
+
+
+| 94 | 1,504 | 4,500 | 4,500 
+
+
+| 95 | 1,520 | 4,500 | 4,500 
+
+
+| 96 | 1,536 | 4,500 | 4,500 
+
+
+| 97 | 1,552 | 4,500 | 4,500 
+
+
+| 98 | 1,568 | 4,500 | 4,500 
+
+
+| 99 | 1,584 | 4,500 | 4,500 
+
+
+| 100 | 1,600 | 4,500 | 4,500 
+|===
+
+
+=== Beispiel 1
+
+Beispielsweise benötigt Ihre Applikation 25 TB Kapazität und 100 MB/s Bandbreite. Bei einer Kapazität von 25 TB würde das Standard Service Level 400 MB/s Bandbreite zu einem Preis von 2,500 US-Dollar bereitstellen (Schätzung: Siehe aktuelle Preise). Damit ist Standard in diesem Fall das am besten geeignete Servicelevel.
+
+image:diagram_service_level_quota_example1.png["Auswahl von Service Level und Kapazität, Beispiel 1"]
+
+
+
+=== Beispiel 2
+
+Beispielsweise benötigt Ihre Applikation 12 TB Kapazität und eine Spitzenbandbreite von 800 MB/s. Obwohl das extreme Service-Level die Anforderungen der Applikation an die 12-TB-Marke erfüllen kann, ist es kostengünstiger (Schätzung: Siehe aktueller Preis), 13 TB auf dem Premium-Service-Level auszuwählen.
+
+image:diagram_service_level_quota_example2.png["Auswahl von Service-Leveln und Kapazitäten, Beispiel 2"]

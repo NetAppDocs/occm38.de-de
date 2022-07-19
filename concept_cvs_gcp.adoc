@@ -1,0 +1,76 @@
+---
+sidebar: sidebar 
+permalink: concept_cvs_gcp.html 
+keywords: cloud volumes service for gcp, google cloud, cloud volumes, cloud volumes service subscription 
+summary: Mit NetApp Cloud Volumes Service für Google Cloud können Sie im Handumdrehen Multi-Protokoll-Workloads hinzufügen und sowohl Windows-basierte als auch UNIX-basierte Applikationen erstellen und implementieren. 
+---
+= Erfahren Sie mehr über Cloud Volumes Service für Google Cloud
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Mit NetApp Cloud Volumes Service für Google Cloud können Sie im Handumdrehen Multi-Protokoll-Workloads hinzufügen und sowohl Windows-basierte als auch UNIX-basierte Applikationen erstellen und implementieren.
+
+
+
+== Zentrale Punkte:
+
+* Migrieren von Daten zwischen On-Premises-Systemen und Google Cloud
+* Stellen Sie Volumes von 1 bis 100 tib in Sekundenschnelle bereit.
+* Multi-Protokoll-Unterstützung (ein NFS- oder SMB-Volume kann erstellt werden)
+* Sichern Sie Ihre Daten mit automatisierten, effizienten Snapshots.
+* Beschleunigte Applikationsentwicklung durch schnelles Klonen
+
+
+
+
+== Kosten
+
+Volumes, die im Cloud Volumes Service für Google Cloud erstellt wurden, stellen für Ihr Abonnement des Services statt über Cloud Manager eine Gebühr in Rechnung.
+
+link:https://console.cloud.google.com/marketplace/product/endpoints/cloudvolumesgcp-api.netapp.com?q=cloud%20volumes%20service["Preise anzeigen"^]
+
+Es fallen keine Kosten an, eine Region oder ein Volumen von Cloud Volumes Service für Google Cloud von Cloud Manager zu entdecken.
+
+
+
+== Unterstützte Regionen
+
+link:https://cloud.google.com/solutions/partners/netapp-cloud-volumes/regional-availability["Unterstützte Google-Cloud-Regionen anzeigen."^]
+
+
+
+== Bevor Sie beginnen
+
+Cloud Manager kann vorhandene Cloud Volumes Service für GCP-Abonnements und Volumes ermitteln. Siehe https://cloud.google.com/solutions/partners/netapp-cloud-volumes/["NetApp Cloud Volumes Service für Google Cloud - Dokumentation"^] Wenn Sie Ihr Abonnement noch nicht eingerichtet haben.
+
+
+
+== Hilfe wird abgerufen
+
+Verwenden Sie den Chat von Cloud Manager für allgemeine Fragen zum Cloud Volumes Service Betrieb in Cloud Manager.
+
+Für allgemeine Fragen zu Cloud Volumes Service für Google Cloud senden Sie eine E-Mail an das Google Cloud Team von NetApp unter gcinfo@netapp.com.
+
+Bei technischen Problemen in Verbindung mit Ihren Cloud Volumes können Sie über die Google Cloud Console einen technischen Support-Case erstellen. Siehe link:https://cloud.google.com/solutions/partners/netapp-cloud-volumes/support["Support erhalten"^] Entsprechende Details.
+
+
+
+== Einschränkungen
+
+* Cloud Manager unterstützt bei der Verwendung von Cloud Volumes Service Volumes keine Datenreplizierung zwischen Arbeitsumgebungen.
+* Das Löschen Ihres Cloud Volumes Service für Google Cloud Abonnements aus Cloud Manager wird nicht unterstützt. Dies ist nur über die Google Cloud Console möglich.
+
+
+
+
+== Weiterführende Links
+
+* https://cloud.netapp.com/cloud-volumes-service-for-gcp["NetApp Cloud Central: Cloud Volumes Service für Google Cloud"^]
+* https://cloud.google.com/solutions/partners/netapp-cloud-volumes/["NetApp Cloud Volumes Service für Google Cloud - Dokumentation"^]
+
