@@ -29,28 +29,28 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Voraussetzungen prüfen
+==== image:number1.png["Nummer 1"] Voraussetzungen prüfen
 
 [role="quick-margin-para"]
-Stellen Sie sicher, dass Ihre Umgebung die Voraussetzungen erfüllt, einschließlich Konnektivität zwischen Kubernetes-Clustern und Cloud Volumes ONTAP, Konnektivität zwischen Kubernetes-Clustern und einem Connector, mindestens Kubernetes-Version von 1.14, mindestens einen Worker-Node in einem Cluster und mehr.  prerequisites,Eine vollständige Liste finden Sie hier.
+Stellen Sie sicher, dass Ihre Umgebung die Voraussetzungen erfüllt, einschließlich Konnektivität zwischen Kubernetes-Clustern und Cloud Volumes ONTAP, Konnektivität zwischen Kubernetes-Clustern und einem Connector, mindestens Kubernetes-Version von 1.14, mindestens einen Worker-Node in einem Cluster und mehr. <<Voraussetzungen prüfen,Eine vollständige Liste finden Sie hier>>.
 
 
 
-==== Fügen Sie Ihre Kubernetes Cluster zu Cloud Manager hinzu
+==== image:number2.png["Nummer 2"] Fügen Sie Ihre Kubernetes Cluster zu Cloud Manager hinzu
 
 [role="quick-margin-para"]
 Klicken Sie in Cloud Manager auf *Kubernetes*, um Cluster direkt aus dem Managed Service Ihres Cloud-Providers zu ermitteln, oder importieren Sie einen Cluster, indem Sie eine kubeconfig-Datei bereitstellen.
 
 
 
-==== Verbinden Sie die Cluster mit Cloud Volumes ONTAP
+==== image:number3.png["Nummer 3"] Verbinden Sie die Cluster mit Cloud Volumes ONTAP
 
 [role="quick-margin-para"]
 Klicken Sie nach dem Hinzufügen eines Kubernetes-Clusters auf *Verbinden mit der Arbeitsumgebung*, um den Cluster mit einem oder mehreren Cloud Volumes ONTAP-Systemen zu verbinden.
 
 
 
-==== Starten Sie die Bereitstellung persistenter Volumes
+==== image:number4.png["Nummer 4"] Starten Sie die Bereitstellung persistenter Volumes
 
 [role="quick-margin-para"]
 Persistente Volumes können über native Kubernetes-Schnittstellen und -Konstrukte angefordert und gemanagt werden. Cloud Manager erstellt NFS- und iSCSI-Storage-Klassen, die bei der Bereitstellung persistenter Volumes genutzt werden können.
@@ -174,6 +174,7 @@ Nach dem Hochladen der Datei überprüft Cloud Manager die Verbindung zum Cluste
 
 
 
+.Ergebnis
 Cloud Manager fügt den Kubernetes-Cluster hinzu. Sie können das Cluster jetzt mit Cloud Volumes ONTAP verbinden.
 
 
@@ -200,6 +201,7 @@ image:screenshot_kubernetes_confirm.gif["Ein Screenshot der Seite „Bestätigen
 . Klicken Sie Auf *Arbeitsumgebung Hinzufügen*.
 
 
+.Ergebnis
 Cloud Manager verbindet die Arbeitsumgebung mit dem Cluster, was bis zu 15 Minuten dauert.
 
 
@@ -252,6 +254,7 @@ Wenn Sie den Cluster zum Cloud Manager hinzugefügt haben, indem Sie die kubecon
 . Wenn Sie durch Ihren Webbrowser aufgefordert werden, wählen Sie die aktualisierte kubeconfg-Datei aus und klicken Sie auf *Öffnen*.
 
 
+.Ergebnis
 Cloud Manager aktualisiert die Informationen zum Kubernetes-Cluster auf der Grundlage der neuesten kubeconfig Datei.
 
 
@@ -270,6 +273,7 @@ image:screenshot_kubernetes_disconnect.gif["Ein Screenshot der Tabelle „Arbeit
 . Klicken Sie Auf *Trennen*.
 
 
+.Ergebnis
 Cloud Manager trennt die Verbindung des Clusters vom Cloud Volumes ONTAP System.
 
 

@@ -16,6 +16,7 @@ summary: Für den Einstieg wird Sie möglicherweise von Ihrem NetApp Vertriebsmi
 [role="lead"]
 Um Ihnen bei den ersten Schritten zu helfen, wird Sie möglicherweise von Ihrem NetApp Vertriebsmitarbeiter nach Ihrer Cloud Manager System-ID gefragt. Die ID wird in der Regel für Lizenzierungs- und Fehlerbehebungszwecke verwendet.
 
+.Was Sie benötigen
 Sie müssen einen Konnektor erstellen, bevor Sie Cloud Manager-Einstellungen ändern können. link:concept_connectors.html#how-to-create-a-connector["Erfahren Sie, wie"].
 
 .Schritte

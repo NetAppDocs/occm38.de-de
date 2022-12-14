@@ -51,7 +51,7 @@ Falls Sie Daten häufiger synchronisieren möchten, link:task_sync_managing_rela
 
 
 
-== Was Sie für die ersten Schritte benötigen
+== Was Sie benötigen, um zu beginnen
 
 Stellen Sie sicher, dass Sie über Folgendes verfügen:
 
@@ -136,4 +136,5 @@ image:screenshot_nfs_encryption_review.gif["Ein Screenshot, der den Bildschirm \
 
 
 
+.Ergebnis
 Cloud Sync beginnt mit der Erstellung der neuen Synchronisierungsbeziehung. Klicken Sie anschließend auf *Anzeigen in Dashboard*, um Details zur neuen Beziehung anzuzeigen.

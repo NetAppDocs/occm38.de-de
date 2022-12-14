@@ -40,6 +40,7 @@ image:screenshot_manage_account_settings.gif["Ein Screenshot, in dem die Option 
 . Geben Sie einen Namen für den Arbeitsbereich ein und klicken Sie auf *Hinzufügen*.
 
 
+.Nachdem Sie fertig sind
 Wenn ein Workspace-Administrator Zugriff auf diesen Arbeitsbereich benötigt, müssen Sie den Benutzer zuordnen. Außerdem müssen Sie Connectors mit dem Arbeitsbereich verknüpfen, damit Arbeitsbereichsadministratoren diese Connectors verwenden können.
 
 
@@ -69,6 +70,7 @@ image:screenshot_associate_user.gif["Ein Screenshot, der zeigt, wie ein Benutzer
 . Klicken Sie Auf * Benutzer Verknüpfen*.
 
 
+.Ergebnis
 Der Benutzer sollte eine E-Mail von NetApp Cloud Central mit dem Titel „Account Association“ erhalten. Die E-Mail enthält die für den Zugriff auf Cloud Manager erforderlichen Informationen.
 
 
@@ -90,6 +92,7 @@ image:screenshot_associate_user_workspace.gif["Ein Screenshot, der das Aktionsme
 . Wählen Sie einen oder mehrere Arbeitsbereiche aus, und klicken Sie auf *Anwenden*.
 
 
+.Ergebnis
 Der Benutzer kann jetzt über Cloud Manager auf diese Arbeitsbereiche zugreifen, solange der Connector auch mit den Arbeitsbereichen verknüpft war.
 
 
@@ -112,6 +115,7 @@ image:screenshot_manage_account_settings.gif["Ein Screenshot, in dem die Option 
 . Wählen Sie einen oder mehrere Arbeitsbereiche aus, und klicken Sie auf *Anwenden*.
 
 
+.Ergebnis
 Workspace-Administratoren können diese Anschlüsse jetzt verwenden, um Cloud Volumes ONTAP-Systeme zu erstellen.
 
 

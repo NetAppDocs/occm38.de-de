@@ -16,6 +16,7 @@ summary: Der Kontoadministrator kann eine Einstellung in Cloud Manager aktiviere
 [role="lead"]
 Der Kontoadministrator kann eine Einstellung in Cloud Manager aktivieren, die Probleme mit dem Cloud Volumes ONTAP Storage Failover bei Azure-Wartungereignissen verhindert. Wenn Sie diese Einstellung aktivieren, sperrt Cloud Volumes ONTAP Vetoes CIFS und setzt aktive CIFS-Sitzungen zurück.
 
+.Über diese Aufgabe
 Microsoft Azure plant regelmäßige Wartungsereignisse auf seinen Virtual Machines. Wenn auf einem Node in einem Cloud Volumes ONTAP HA-Paar ein Wartungsereignis stattfindet, initiiert das HA-Paar das Storage Takeover. Wenn während dieses Wartungsereignisses aktive CIFS-Sitzungen vorhanden sind, können die Sperren von CIFS-Dateien das Storage-Failover verhindern.
 
 Wenn Sie diese Einstellung aktivieren, setzt Cloud Volumes ONTAP die Sperren zurück und setzt die aktiven CIFS-Sitzungen zurück. So kann das HA-Paar während dieser Wartungsereignisse das Storage Failover abschließen.
@@ -23,6 +24,7 @@ Wenn Sie diese Einstellung aktivieren, setzt Cloud Volumes ONTAP die Sperren zur
 
 IMPORTANT: Dieser Prozess kann CIFS-Clients stören. Daten, die nicht von CIFS-Clients übertragen werden, können verloren gehen.
 
+.Was Sie benötigen
 Sie müssen einen Konnektor erstellen, bevor Sie Cloud Manager-Einstellungen ändern können. link:concept_connectors.html#how-to-create-a-connector["Erfahren Sie, wie"].
 
 .Schritte

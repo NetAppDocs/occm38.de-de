@@ -80,6 +80,7 @@ image:screenshot_connector_remove.gif["Ein Screenshot des Connectors-Widgets, in
 . Geben Sie den Namen des zu bestätigenden Connectors ein, und klicken Sie anschließend auf Entfernen.
 
 
+.Ergebnis
 Cloud Manager entfernt den Connector aus seinen Datensätzen.
 
 

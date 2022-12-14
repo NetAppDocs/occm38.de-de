@@ -16,6 +16,7 @@ summary: Mit Cloud Manager können Sie die Kosten anzeigen, die für die Ausfüh
 [role="lead"]
 Mit Cloud Manager können Sie die Ressourcenkosten anzeigen, die mit der Ausführung von Cloud Volumes ONTAP in AWS verbunden sind. Außerdem erfahren Sie, wie viel Geld Sie durch den Einsatz von NetApp Funktionen zur Senkung der Storage-Kosten gespart haben.
 
+.Über diese Aufgabe
 Cloud Manager aktualisiert die Kosten bei Aktualisierung der Seite. Die endgültigen Kostendetails finden Sie in AWS.
 
 .Schritt

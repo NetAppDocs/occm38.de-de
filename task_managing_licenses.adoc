@@ -62,6 +62,7 @@ image:screenshot_system_license.gif["Ein Screenshot einer Cloud Volumes ONTAP-Sy
 . Klicken Sie Auf *Lizenz Hinzufügen*.
 
 
+.Ergebnis
 Cloud Manager installiert die neue Lizenzdatei auf dem Cloud Volumes ONTAP System.
 
 
@@ -83,6 +84,7 @@ image:screenshot_system_license.gif["Ein Screenshot einer Cloud Volumes ONTAP-Sy
 . Klicken Sie Auf *Lizenz Aktualisieren*.
 
 
+.Ergebnis
 Cloud Manager aktualisiert die Lizenz auf dem Cloud Volumes ONTAP System.
 
 
@@ -112,4 +114,5 @@ image:screenshot_backup_byol_license_add.png["Ein Screenshot, der die Seite zum 
 
 
 
+.Ergebnis
 Cloud Manager fügt die Lizenz hinzu oder aktualisiert sie, sodass Ihr Cloud-Service für Backup aktiv ist.

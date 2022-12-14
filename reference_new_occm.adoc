@@ -54,11 +54,11 @@ Sie bezahlen für Daten-Tiering von einem ONTAP Cluster vor Ort in die Cloud üb
 
 == Cloud Manager 3.8.9 (4. Okt. 2020)
 
-*  Compliance enhancements
-*  Volumes Service for AWS enhancements
-*  Sync integration
-*  management enhancements
-*  for Government regions
+* <<Verbesserungen bei Cloud Compliance>>
+* <<Verbesserungen von Cloud Volumes Service für AWS>>
+* <<Cloud Sync Integration>>
+* <<Verbesserungen beim Account-Management>>
+* <<Änderungen für Regierungsregionen>>
 
 
 
@@ -162,12 +162,12 @@ link:concept_gfc.html["Erfahren Sie mehr über Global File Cache"].
 
 == Cloud Manager 3.8.8 (9. Sept. 2020)
 
-*  for Cloud Volumes Service for Google Cloud
-*  to Cloud now supports on-premises ONTAP clusters
-*  to Cloud enhancements
-*  Compliance enhancements
-*  navigation
-*  improvements
+* <<Unterstützung von Cloud Volumes Service für Google Cloud>>
+* <<Backup in die Cloud unterstützt jetzt lokale ONTAP Cluster>>
+* <<Backup in die Cloud>>
+* <<Verbesserungen bei Cloud Compliance>>
+* <<Navigation wurde aktualisiert>>
+* <<Verbesserte Administration>>
 
 
 
@@ -253,13 +253,13 @@ https://occm-sample-policies.s3.amazonaws.com/Policy_for_cloud_Manager_Azure_3.8
 
 == Cloud Manager 3.8.7 (3. August 2020)
 
-*  software-as-a-service experience
-*  Volumes ONTAP enhancements
-*  NetApp Files enhancements
-*  Volumes Service for AWS enhancements
-*  Compliance enhancements
-*  to Cloud enhancements
-*  for Global File Cache
+* <<Neue Software-als-Service-Lösung>>
+* <<Verbesserungen von Cloud Volumes ONTAP>>
+* <<Verbesserungen von Azure NetApp Files>>
+* <<Verbesserungen von Cloud Volumes Service für AWS>>
+* <<Verbesserungen bei Cloud Compliance>>
+* <<Backup in die Cloud>>
+* <<Unterstützung für Global File Cache>>
 
 
 
@@ -488,8 +488,8 @@ Stellen Sie sicher, dass Ihre Firewall über Cloud Manager den Zugriff auf diese
 
 == Cloud Manager 3.8.6 (6. Juli 2020)
 
-*  for iSCSI volumes
-*  for the All tiering policy
+* <<Unterstützung für iSCSI-Volumes>>
+* <<Unterstützung für die All-Tiering-Richtlinie>>
 
 
 
@@ -519,9 +519,9 @@ Wir führen eine Software-als-Service-Erfahrung für Cloud Manager ein. Durch di
 
 == Cloud Manager 3.8.5 (31. Mai 2020)
 
-*  subscription required in the Azure Marketplace
-*  to Cloud enhancements
-*  Compliance enhancements
+* <<Im Azure Marketplace ist ein neues Abonnement erforderlich>>
+* <<Backup in die Cloud>>
+* <<Verbesserungen bei Cloud Compliance>>
 
 
 
@@ -601,11 +601,11 @@ Alle Backups für ein bestimmtes Volume können nun direkt über die Benutzerobe
 
 == Cloud Manager 3.8.3 (5. April 2020)
 
-*  Tiering integration
-*  migration to Azure NetApp Files
-*  Compliance enhancements
-*  to S3 enhancements
-*  volumes using APIs
+* <<Integration von Cloud-Tiering>>
+* <<Datenmigration auf Azure NetApp Files>>
+* <<Verbesserungen bei Cloud Compliance>>
+* <<Backup auf S3-Verbesserungen>>
+* <<ISCSI-Volumes mit APIs>>
 
 
 
@@ -683,10 +683,10 @@ Mit den Cloud Manager APIs können Sie jetzt iSCSI Volumes erstellen. link:api.h
 
 == Cloud Manager 3.8.2 (1. März 2020)
 
-*  S3 working environments
-*  Compliance enhancements
-*  version for volumes
-*  for Azure US Gov regions
+* <<Amazon S3-Arbeitsumgebungen>>
+* <<Verbesserungen bei Cloud Compliance>>
+* <<NFS-Version für Volumes>>
+* <<Support für Azure US-Regionen>>
 
 
 
@@ -786,9 +786,9 @@ Wir haben die Unterstützung für neue EC2 Instanzen eingeführt und eine Änder
 
 == Cloud Manager 3.8.1 (2. Februar 2020)
 
-*  Compliance enhancements
-*  to accounts and subscriptions
-*  enhancements
+* <<Verbesserungen bei Cloud Compliance>>
+* <<Erweiterungen für Konten und Abonnements>>
+* <<Verbesserungen in der Zeitleiste>>
 
 
 
@@ -869,8 +869,8 @@ image:screenshot_timeline.gif["Ein Screenshot der Zeitleiste, die in Cloud Manag
 
 == Cloud Manager 3.8 (8. Januar 2020)
 
-*  enhancements in Azure
-*  tiering enhancements in GCP
+* <<HA-Verbesserungen in Azure>>
+* <<Verbesserungen beim Daten-Tiering in GCP>>
 
 
 

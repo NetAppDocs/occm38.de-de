@@ -41,6 +41,7 @@ image:screenshot_compute_add_account.gif["Ein Screenshot, der jedes auf der Verb
 
 
 
+.Ergebnis
 Cloud Analyzer beginnt mit der Verarbeitung Ihrer AWS Kontodaten. Wenn Sie über mehrere Konten verfügen, beginnt Cloud Analyzer mit schreibgeschützten Funktionen für alle verknüpften Konten unter dem Hauptzahlerkonto. Wenn Sie mehr Details zu den potenziellen Einsparungen für diese Accounts erhalten möchten, müssen Sie sie ebenfalls anschließen. Weitere Informationen zu diesem Prozess finden Sie im folgenden Abschnitt.
 
 

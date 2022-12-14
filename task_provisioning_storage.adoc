@@ -25,11 +25,13 @@ IMPORTANT: Alle Festplatten und Aggregate müssen direkt aus Cloud Manager erste
 
 Wenn Sie nach dem Starten eines Cloud Volumes ONTAP Systems mehr Storage benötigen, können Sie aus Cloud Manager neue FlexVol Volumes für NFS, CIFS oder iSCSI erstellen.
 
-Wenn Sie ein iSCSI-Volume erstellen, erstellt Cloud Manager automatisch eine LUN für Sie. Wir haben es einfach gemacht, indem wir nur eine LUN pro Volumen erstellen, so gibt es keine Verwaltung beteiligt. Nachdem Sie das Volume erstellt haben,  a LUN to a host,Verwenden Sie den IQN, um von den Hosts eine Verbindung zur LUN herzustellen.
+.Über diese Aufgabe
+Wenn Sie ein iSCSI-Volume erstellen, erstellt Cloud Manager automatisch eine LUN für Sie. Wir haben es einfach gemacht, indem wir nur eine LUN pro Volumen erstellen, so gibt es keine Verwaltung beteiligt. Nachdem Sie das Volume erstellt haben, <<Verbinden einer LUN mit einem Host,Verwenden Sie den IQN, um von den Hosts eine Verbindung zur LUN herzustellen>>.
 
 
 NOTE: Sie können weitere LUNs aus System Manager oder der CLI erstellen.
 
+.Bevor Sie beginnen
 Wenn Sie CIFS in AWS verwenden möchten, müssen Sie DNS und Active Directory eingerichtet haben. Weitere Informationen finden Sie unter link:reference_networking_aws.html["Netzwerkanforderungen für Cloud Volumes ONTAP für AWS"].
 
 .Schritte
@@ -125,8 +127,10 @@ Weitere Informationen finden Sie unter:
 . Klicken Sie Auf *Go*.
 
 
+.Ergebnis
 Cloud Volumes ONTAP stellt das Volume bereit.
 
+.Nachdem Sie fertig sind
 Wenn Sie eine CIFS-Freigabe bereitgestellt haben, erteilen Sie Benutzern oder Gruppen Berechtigungen für die Dateien und Ordner, und überprüfen Sie, ob diese Benutzer auf die Freigabe zugreifen und eine Datei erstellen können.
 
 Wenn Sie Kontingente auf Volumes anwenden möchten, müssen Sie System Manager oder die CLI verwenden. Mithilfe von Quotas können Sie den Speicherplatz und die Anzahl der von einem Benutzer, einer Gruppe oder qtree verwendeten Dateien einschränken oder nachverfolgen.
@@ -146,6 +150,7 @@ Standardmäßig erstellt Cloud Manager Volumes auf dem ersten Node in einer HA-K
 . Geben Sie Details für den neuen Volume ein und klicken Sie dann auf *Erstellen*.
 
 
+.Nachdem Sie fertig sind
 Sie können bei Bedarf weitere Volumes auf diesem Aggregat erstellen.
 
 

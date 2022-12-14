@@ -47,6 +47,7 @@ TIP: Cloud Manager ändert den Node nach dem anderen ordnungsgemäß, indem es T
 . Wählen Sie eine Instanz oder einen Maschinentyp aus, aktivieren Sie das Kontrollkästchen, um zu bestätigen, dass Sie die Auswirkungen der Änderung verstehen, und klicken Sie dann auf *OK*.
 
 
+.Ergebnis
 Cloud Volumes ONTAP wird mit der neuen Konfiguration neu gestartet.
 
 
@@ -58,6 +59,7 @@ Nachdem Sie Pay-as-you-go Cloud Volumes ONTAP Systeme gestartet haben, können S
 
 NOTE: In GCP ist für jede Pay-as-you-go-Konfiguration ein einziger Maschinentyp verfügbar. Sie können nicht zwischen verschiedenen Maschinentypen wählen.
 
+.Über diese Aufgabe
 Beachten Sie Folgendes, um zwischen nutzungsbasierten Lizenzen zu wechseln:
 
 * Der Vorgang startet Cloud Volumes ONTAP neu.
@@ -75,6 +77,7 @@ Bei HA-Paaren ist die Änderung unterbrechungsfrei. Ha-Paare stellen weiterhin D
 . Wählen Sie einen Lizenztyp und einen Instanztyp oder Maschinentyp aus, aktivieren Sie das Kontrollkästchen, um zu bestätigen, dass Sie die Auswirkungen der Änderung verstehen, und klicken Sie dann auf *OK*.
 
 
+.Ergebnis
 Cloud Volumes ONTAP wird mit der neuen Lizenz, dem Instanztyp oder dem Maschinentyp oder beides neu gebootet.
 
 
@@ -154,6 +157,7 @@ Das neue Kennwort muss sich von einem der letzten sechs Kennwörter unterscheide
 
 Standardmäßig ist Cloud Volumes ONTAP so konfiguriert, dass 9.000 MTU (auch Jumbo Frames genannt) verwendet werden, wenn Sie die c4.4xlarge Instanz oder die c4.8xlarge Instanz in AWS auswählen. Sie können die Netzwerk-MTU auf 1.500 Byte ändern, wenn dies für Ihre Netzwerkkonfiguration besser geeignet ist.
 
+.Über diese Aufgabe
 Eine maximale Netzwerkübertragungseinheit (Maximum Transmission Unit, MTU) von 9.000 Byte bietet den höchstmöglichen Netzwerkdurchsatz für bestimmte Konfigurationen.
 
 9.000 MTU ist eine gute Wahl, wenn Clients in demselben VPC mit dem Cloud Volumes ONTAP System kommunizieren und einige oder alle dieser Clients ebenfalls 9.000 MTU unterstützen. Wenn der Datenverkehr den VPC verlässt, kann es zu einer Paketfragmentierung kommen, die die Performance beeinträchtigt.
@@ -178,4 +182,5 @@ Sie können die AWS-Routing-Tabellen mit Routen zu den unverankerten IP-Adressen
 . Ändern Sie die Liste der ausgewählten Routentabellen und klicken Sie dann auf *Speichern*.
 
 
+.Ergebnis
 Cloud Manager sendet eine AWS-Anforderung zum Ändern der Routentabellen.

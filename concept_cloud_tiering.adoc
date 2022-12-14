@@ -116,7 +116,7 @@ Cloud Tiering funktioniert auf hohem Niveau wie folgt:
 . Sie erstellen ein Tiering, indem Sie Details zu Ihrem Objekt-Storage angeben, einschließlich Bucket/Container, Storage-Klasse oder Zugriffsebene.
 . Cloud Manager konfiguriert ONTAP so, dass er den Objekt-Storage-Provider verwendet. Dabei wird die Menge der aktiven und inaktiven Daten auf dem Cluster erkannt.
 . Sie wählen die zu Tier zupassenden Volumes und die Tiering-Richtlinie für diese Volumes aus.
-. ONTAP beginnt mit dem Tiering inaktiver Daten zum Objektspeicher, sobald die Daten die Schwellenwerte erreicht haben, die als inaktiv eingestuft werden sollen (siehe  tiering policies).
+. ONTAP beginnt mit dem Tiering inaktiver Daten zum Objektspeicher, sobald die Daten die Schwellenwerte erreicht haben, die als inaktiv eingestuft werden sollen (siehe <<Richtlinien für das Volume-Tiering>>).
 
 
 

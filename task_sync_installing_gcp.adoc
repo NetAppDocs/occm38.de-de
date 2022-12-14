@@ -102,4 +102,5 @@ Die Bereitstellung der Instanz dauert etwa 5 bis 10 Minuten. Sie können den For
 . Füllen Sie die Seiten im Assistenten aus, um die neue Synchronisierungsbeziehung zu erstellen.
 
 
+.Ergebnis
 Sie haben einen Datenvermittler in GCP implementiert und eine neue Synchronisierungsbeziehung erstellt. Sie können diesen Daten-Broker mit zusätzlichen Synchronisierungsbeziehungen verwenden.

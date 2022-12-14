@@ -130,4 +130,5 @@ Die Installation wird ausgeführt.
 . Starten Sie nach Abschluss der Installation den Server neu, wenn Sie dazu aufgefordert werden.
 
 
+.Nächste Schritte
 Weitere Informationen zur erweiterten Konfiguration von Global File Cache Edge finden Sie im link:https://repo.cloudsync.netapp.com/gfc/NetApp%20GFC%20-%20User%20Guide.pdf["NetApp Global File Cache User Guide"^].

@@ -328,7 +328,7 @@ Stellen Sie sicher, dass Ihre Quelle und Ihre Ziele die folgenden Anforderungen 
 
 
 
-=== Anforderungen für AWS S3-Bucket
+=== [[s3]]AWS S3-Bucket-Anforderungen
 
 Stellen Sie sicher, dass Ihr AWS S3-Bucket die folgenden Anforderungen erfüllt.
 
@@ -375,7 +375,7 @@ image:screenshot_iam_role_arn.gif["Ein Screenshot der AWS IAM-Konsole mit einem 
 
 
 
-=== Azure Blob Storage-Anforderungen
+=== [[Blob]]Azure Blob Storage-Anforderungen
 
 Stellen Sie sicher, dass Ihr Azure Blob Storage die folgenden Anforderungen erfüllt.
 

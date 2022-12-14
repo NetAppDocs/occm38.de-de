@@ -95,6 +95,8 @@ image:screenshot_activate_license.gif["Ein Screenshot der Licensing-Seite, auf d
 . Klicken Sie auf *Lizenz aktivieren*.
 
 
+.Ergebnis
 Cloud Tiering registriert die Lizenz und installiert sie im Cluster.
 
+.Nachdem Sie fertig sind
 Wenn Sie zu einem späteren Zeitpunkt zusätzliche Kapazität erwerben, wird die Lizenz für das Cluster automatisch mit der neuen Kapazität aktualisiert. Es ist nicht erforderlich, eine neue NetApp Lizenzdatei (NetApp License File, NLF) auf das Cluster anzuwenden.

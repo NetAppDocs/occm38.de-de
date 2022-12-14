@@ -82,6 +82,7 @@ Dieser Vorgang kann bis zu 7 Minuten dauern.
 . Füllen Sie die Seiten im Assistenten aus, um die neue Synchronisierungsbeziehung zu erstellen.
 
 
+.Ergebnis
 Sie haben einen Data Broker in Azure bereitgestellt und eine neue Synchronisierungsbeziehung erstellt. Sie können diesen Daten-Broker mit zusätzlichen Synchronisierungsbeziehungen verwenden.
 
 .Möchten Sie eine Nachricht über die Notwendigkeit einer Administratorerklärung erhalten?

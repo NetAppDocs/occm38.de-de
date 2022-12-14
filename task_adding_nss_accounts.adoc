@@ -19,6 +19,7 @@ Um ein BYOL-System zu implementieren, muss ein NetApp Support Site Konto in Clou
 Sehen Sie sich das folgende Video an und erfahren Sie, wie Sie NetApp Support Site Accounts in Cloud Manager hinzufügen. Oder blättern Sie nach unten, um die Schritte zu lesen.
 
 video::V2fLTyztqYQ[youtube,width=848,height=480]
+.Was Sie benötigen
 Sie müssen einen Konnektor erstellen, bevor Sie Cloud Manager-Einstellungen ändern können. link:concept_connectors.html#how-to-create-a-connector["Erfahren Sie, wie"].
 
 .Schritte
@@ -42,6 +43,7 @@ image:screenshot_settings_icon.gif["Ein Screenshot, in dem das Symbol „Einstel
 . Klicken Sie Auf *Konto Erstellen.*
 
 
+.Was kommt als Nächstes?
 Benutzer können jetzt das Konto beim Erstellen neuer Cloud Volumes ONTAP Systeme und bei der Registrierung vorhandener Systeme auswählen.
 
 * link:task_deploying_otc_aws.html["Starten von Cloud Volumes ONTAP in AWS"]

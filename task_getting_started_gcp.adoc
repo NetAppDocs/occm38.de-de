@@ -18,7 +18,7 @@ Erste Schritte mit Cloud Volumes ONTAP für GCP
 
 
 
-==== Einen Konnektor erstellen
+==== image:number1.png["Nummer 1"] Einen Konnektor erstellen
 
 [role="quick-margin-para"]
 Wenn Sie keine haben link:concept_connectors.html["Stecker"] Dennoch muss ein Kontoadministrator einen erstellen. link:task_creating_connectors_gcp.html["Connector in GCP erstellen"].
@@ -28,15 +28,16 @@ Wenn Sie Ihre erste Cloud Volumes ONTAP-Arbeitsumgebung erstellen, werden Sie vo
 
 
 
-==== Planen Sie Ihre Konfiguration
+==== image:number2.png["Nummer 2"] Planen Sie Ihre Konfiguration
 
 [role="quick-margin-para"]
 Cloud Manager bietet vorkonfigurierte Pakete, die Ihren Workload-Anforderungen entsprechen, oder Sie können eine eigene Konfiguration erstellen. Wenn Sie sich für eine eigene Konfiguration entscheiden, sollten Sie sich mit den verfügbaren Optionen vertraut machen. link:task_planning_your_config_gcp.html["Weitere Informationen ."].
 
 
 
-==== Richten Sie Ihr Netzwerk ein
+==== image:number3.png["Nummer 3"] Richten Sie Ihr Netzwerk ein
 
+[role="quick-margin-list"]
 . Stellen Sie sicher, dass Ihre VPC und Subnetze die Konnektivität zwischen dem Connector und Cloud Volumes ONTAP unterstützen.
 . Aktivieren Sie den Outbound-Internetzugang über die Ziel-VPC, damit der Connector und der Cloud Volumes ONTAP mehrere Endpunkte kontaktieren können.
 +
@@ -49,11 +50,12 @@ link:reference_networking_gcp.html["Erfahren Sie mehr über Netzwerkanforderunge
 
 
 
-==== GCP für Daten-Tiering einrichten
+==== image:number4.png["Nummer 4"] GCP für Daten-Tiering einrichten
 
 [role="quick-margin-para"]
 Für das Tiering von kalten Daten von Cloud Volumes ONTAP auf kostengünstigen Objekt-Storage (ein Google Cloud-Storage-Bucket) müssen zwei Anforderungen erfüllt werden:
 
+[role="quick-margin-list"]
 . https://cloud.google.com/vpc/docs/configure-private-google-access["Konfigurieren Sie das Cloud Volumes ONTAP-Subnetz für privaten Google-Zugriff"^].
 . https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account["Service-Konto für Daten-Tiering einrichten"^]:
 +
@@ -74,11 +76,12 @@ Wenn Sie kein Daten-Tiering aktivieren und bei der Erstellung des Cloud Volumes 
 
 
 
-==== Aktivieren Sie Google Cloud-APIs
+==== image:number5.png["Nummer 5"] Aktivieren Sie Google Cloud-APIs
 
 [role="quick-margin-para"]
 https://cloud.google.com/apis/docs/getting-started#enabling_apis["Aktivieren Sie die folgenden Google Cloud APIs in Ihrem Projekt"^]. Diese APIs sind für die Implementierung des Connectors und der Cloud Volumes ONTAP erforderlich.
 
+[role="quick-margin-list"]
 * Cloud Deployment Manager V2-API
 * Cloud-ProtokollierungsAPI
 * Cloud Resource Manager API
@@ -88,7 +91,7 @@ https://cloud.google.com/apis/docs/getting-started#enabling_apis["Aktivieren Sie
 
 
 
-==== Starten Sie Cloud Volumes ONTAP mit Cloud Manager
+==== image:number6.png["Nummer 6"] Starten Sie Cloud Volumes ONTAP mit Cloud Manager
 
 [role="quick-margin-para"]
 Klicken Sie auf *Arbeitsumgebung hinzufügen*, wählen Sie den Systemtyp aus, den Sie bereitstellen möchten, und führen Sie die Schritte im Assistenten aus. link:task_deploying_gcp.html["Lesen Sie Schritt-für-Schritt-Anleitungen"].

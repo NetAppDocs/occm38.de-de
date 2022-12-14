@@ -67,6 +67,7 @@ image:screenshot_set_up_cloud_manager.gif["Ein Screenshot, der den Bildschirm Cl
 
 
 
+.Ergebnis
 Der Connector ist jetzt installiert und eingerichtet. Sie müssen Azure Berechtigungen erteilen, bevor Benutzer Cloud Volumes ONTAP in Azure bereitstellen können.
 
 
@@ -123,4 +124,5 @@ NOTE: Cloud Manager Operator ist der im angegebene Standardname https://mysuppor
 
 
 
+.Ergebnis
 Der Connector verfügt nun über die Berechtigungen, die die IT für das Management von Ressourcen und Prozessen in Ihrer Public Cloud-Umgebung benötigt. Cloud Manager nutzt diesen Connector automatisch bei der Erstellung neuer Arbeitsumgebungen. Aber wenn Sie mehr als einen Connector haben, müssen Sie dies tun link:task_managing_connectors.html["Wechseln Sie zwischen ihnen"].

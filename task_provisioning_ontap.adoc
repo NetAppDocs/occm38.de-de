@@ -21,8 +21,10 @@ Nachdem Sie den ONTAP Cluster von Cloud Manager entdeckt haben, können Sie die 
 
 Cloud Manager ermöglicht die Bereitstellung von NFS-, CIFS- und iSCSI-Volumes auf ONTAP Clustern.
 
+.Bevor Sie beginnen
 Die Datenprotokolle müssen über System Manager oder die CLI auf dem Cluster eingerichtet werden.
 
+.Über diese Aufgabe
 Sie können Volumes auf vorhandenen Aggregaten erstellen. Sie können keine neuen Aggregate aus Cloud Manager erstellen.
 
 .Schritte

@@ -24,29 +24,30 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Überprüfen Sie die Unterstützung Ihrer Konfiguration
+==== image:number1.png["Nummer 1"] Überprüfen Sie die Unterstützung Ihrer Konfiguration
 
 [role="quick-margin-para"]
 Sie benötigen eine Neuinstallation von Cloud Manager 3.8.4 oder höher in AWS, Cloud Volumes ONTAP in AWS und als neuer Cloud Insights Kunde.
 
 
 
-==== Aktivieren Sie die Überwachung auf Ihrem neuen oder vorhandenen System
+==== image:number2.png["Nummer 2"] Aktivieren Sie die Überwachung auf Ihrem neuen oder vorhandenen System
 
+[role="quick-margin-list"]
 * Neue Arbeitsumgebungen: Achten Sie darauf, Monitoring aktiviert zu halten, wenn Sie die Arbeitsumgebung erstellen (es ist standardmäßig aktiviert).
 * Bestehende Arbeitsumgebungen: Wählen Sie eine Arbeitsumgebung und klicken Sie auf *Monitoring starten*.
 
 
 
 
-==== Anzeigen von Performance-Daten
+==== image:number3.png["Nummer 3"] Anzeigen von Performance-Daten
 
 [role="quick-margin-para"]
 Klicken Sie auf *Monitoring* und zeigen Sie Leistungsdaten für Ihre Volumes an.
 
 
 
-==== Abonnieren Sie Cloud Insights
+==== image:number4.png["Nummer 4"] Abonnieren Sie Cloud Insights
 
 [role="quick-margin-para"]
 Wenn Sie sich für eine kostenlose 30-Tage-Testversion anmelden, werden auch weiterhin Performance-Daten in Cloud Manager und Cloud Insights gespeichert. https://docs.netapp.com/us-en/cloudinsights/concept_subscribing_to_cloud_insights.html["Erfahren Sie, wie Sie abonniert werden können"^].
@@ -165,6 +166,7 @@ image:screenshot_cloud_insights.gif["Ein Screenshot, der den Cloud Insights-Link
 
 
 
+.Ergebnis
 Cloud Insights in einer neuen Browser-Registerkarte öffnen. Wenn Sie Hilfe benötigen, lesen Sie den https://docs.netapp.com/us-en/cloudinsights["Cloud Insights-Dokumentation"^].
 
 

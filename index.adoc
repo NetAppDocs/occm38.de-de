@@ -16,7 +16,7 @@ Cloud Manager ist IT-Experten und Cloud-Architekten in der Lage, ihre Hybrid-Mul
 
 
 
-== Entdecken Sie, was neu ist
+== Entdecken Sie die Neuigkeiten
 
 * link:reference_key_changes.html["Wichtige Änderungen in Cloud Manager"]
 * link:reference_new_occm.html["Neuerungen in Cloud Manager"]

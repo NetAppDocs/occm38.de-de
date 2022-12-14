@@ -21,6 +21,7 @@ Wenn Sie ein erweitertes Management von Cloud Volumes ONTAP durchführen müssen
 
 Möglicherweise müssen Sie einige Cloud Volumes ONTAP-Aufgaben aus System Manager ausführen. Hierbei handelt es sich um ein Browser-basiertes Managementtool, das auf dem Cloud Volumes ONTAP System ausgeführt wird. Sie müssen beispielsweise System Manager verwenden, wenn Sie LUNs erstellen möchten.
 
+.Bevor Sie beginnen
 Der Computer, von dem aus Sie auf Cloud Manager zugreifen, muss über eine Netzwerkverbindung zu Cloud Volumes ONTAP verfügen. Sie müssen sich beispielsweise von einem Jump Host in AWS oder Azure bei Cloud Manager anmelden.
 
 
@@ -36,6 +37,7 @@ System Manager wird in eine neue Browser-Registerkarte geladen.
 . Geben Sie im Anmeldebildschirm im Feld Benutzername * das Passwort ein, das Sie beim Erstellen der Arbeitsumgebung angegeben haben, und klicken Sie dann auf *Anmelden*.
 
 
+.Ergebnis
 Die System Manager-Konsole wird geladen. Sie können es jetzt zum Managen von Cloud Volumes ONTAP verwenden.
 
 
@@ -44,6 +46,7 @@ Die System Manager-Konsole wird geladen. Sie können es jetzt zum Managen von Cl
 
 Die Cloud Volumes ONTAP CLI ermöglicht Ihnen die Ausführung aller administrativen Befehle und ist eine gute Wahl für erweiterte Aufgaben oder wenn Sie sich mit der CLI besser vertraut machen. Sie können über Secure Shell (SSH) eine Verbindung zur CLI herstellen.
 
+.Bevor Sie beginnen
 Der Host, von dem aus Sie SSH für die Verbindung zu Cloud Volumes ONTAP verwenden, muss über eine Netzwerkverbindung zu Cloud Volumes ONTAP verfügen. Sie müssen beispielsweise SSH von einem Jump Host in AWS oder Azure verwenden.
 
 

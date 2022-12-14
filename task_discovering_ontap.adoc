@@ -15,7 +15,7 @@ summary: Cloud Manager kann die ONTAP Cluster in Ihrer lokalen Umgebung, in eine
 
 Cloud Manager kann die ONTAP Cluster in Ihrer lokalen Umgebung, in einer NetApp Private Storage-Konfiguration und in der IBM Cloud erkennen. Die Entdeckung eines ONTAP Clusters ermöglicht die Provisionierung von Storage, Replizierung von Daten, Backup von Daten und das Tiering selten genutzter Daten aus einem lokalen Cluster in die Cloud.
 
-.Was Sie und#8217;ll benötigen
+.Was Sie benötigen
 * Ein Connector, der bei einem Cloud-Provider oder vor Ort installiert ist.
 +
 Wenn kalte Daten in die Cloud verschoben werden sollen, sollten Sie die Anforderungen für den Connector prüfen, je nachdem, wo Sie kalte Daten Tiering möchten.
@@ -56,4 +56,5 @@ image:screenshot_discover_ontap.gif["Ein Screenshot, der ein Beispiel für die S
 . Geben Sie auf der Seite Details einen Namen und eine Beschreibung für die Arbeitsumgebung ein und klicken Sie dann auf *Go*.
 
 
+.Ergebnis
 Cloud Manager erkennt das Cluster. Sie können jetzt Volumes erstellen, Daten in den und aus dem Cluster replizieren, Daten-Tiering in die Cloud einrichten, Volumes in der Cloud sichern und System Manager starten, um erweiterte Aufgaben auszuführen.

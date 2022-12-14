@@ -119,8 +119,10 @@ NOTE: Cloud Manager verschiebt das Volume in ein vorhandenes Aggregat, das den a
 
 Managen Sie Aggregate selbst, indem Sie Festplatten hinzufügen, Informationen über die Aggregate anzeigen und sie löschen.
 
+.Bevor Sie beginnen
 Wenn Sie ein Aggregat löschen möchten, müssen Sie zunächst die Volumes im Aggregat gelöscht haben.
 
+.Über diese Aufgabe
 Wenn einem Aggregat nicht mehr genügend Speicherplatz zur Verfügung steht, können Sie Volumes mithilfe von OnCommand System Manager in ein anderes Aggregat verschieben.
 
 .Schritte
@@ -196,6 +198,7 @@ Wenn Sie Ihre DNS-Server oder Active Directory-Domain ändern, müssen Sie den C
 . Klicken Sie Auf *Speichern*.
 
 
+.Ergebnis
 Cloud Volumes ONTAP aktualisiert den CIFS-Server mit den Änderungen.
 
 
@@ -223,11 +226,11 @@ Anweisungen hierzu finden Sie im http://docs.netapp.com/ontap-9/topic/com.netapp
 Cloud Manager zeigt möglicherweise eine Meldung "Aktion erforderlich" an, die besagt, dass das Verschieben eines Volumes erforderlich ist, um Kapazitätsprobleme zu vermeiden, aber keine Empfehlungen zur Behebung des Problems geben kann. In diesem Fall müssen Sie herausfinden, wie das Problem behoben werden kann, und dann ein oder mehrere Volumes verschieben.
 
 .Schritte
-.  how to correct capacity issues,Identifizieren, wie das Problem behoben werden kann.
+. <<Identifizieren, wie Kapazitätsprobleme behoben werden,Identifizieren, wie das Problem behoben werden kann>>.
 . Verschieben Sie Volumes basierend auf Ihrer Analyse, um Kapazitätsprobleme zu vermeiden:
 +
-**  volumes to another system to avoid capacity issues,Volumes werden in ein anderes System verschoben.
-**  volumes to another aggregate to avoid capacity issues,Verschieben Sie Volumes zu einem anderen Aggregat auf demselben System.
+** <<Verschieben von Volumes auf ein anderes System, um Kapazitätsprobleme zu vermeiden,Volumes werden in ein anderes System verschoben>>.
+** <<Verschieben von Volumes in ein anderes Aggregat, um Kapazitätsprobleme zu vermeiden,Verschieben Sie Volumes zu einem anderen Aggregat auf demselben System>>.
 
 
 
@@ -282,6 +285,7 @@ Weitere Informationen finden Sie unter link:task_managing_storage.html#moving-vo
 
 Sie können ein oder mehrere Volumes in ein anderes Cloud Volumes ONTAP System verschieben, um Kapazitätsprobleme zu vermeiden. Dies kann erforderlich sein, wenn das System die Festplattengrenze erreicht hat.
 
+.Über diese Aufgabe
 Sie können die folgenden Schritte in dieser Aufgabe ausführen, um die folgende Meldung "Aktion erforderlich" zu korrigieren:
 
  Moving a volume is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you because the system has reached the disk limit.
@@ -311,6 +315,7 @@ Weitere Informationen finden Sie unter link:task_managing_storage.html#managing-
 
 Sie können ein oder mehrere Volumes in ein anderes Aggregat verschieben, um Kapazitätsprobleme zu vermeiden.
 
+.Über diese Aufgabe
 Sie können die folgenden Schritte in dieser Aufgabe ausführen, um die folgende Meldung "Aktion erforderlich" zu korrigieren:
 
  Moving two or more volumes is necessary to avoid capacity issues; however, Cloud Manager cannot perform this action for you.

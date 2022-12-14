@@ -24,25 +24,26 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Implementieren der Cloud Compliance-Instanz
+==== image:number1.png["Nummer 1"] Implementieren der Cloud Compliance-Instanz
 
 [role="quick-margin-para"]
 link:task_deploy_cloud_compliance.html["Cloud Compliance in Cloud Manager implementieren"^] Falls noch keine Instanz implementiert wurde.
 
 
 
-==== Cloud Compliance in Ihren Arbeitsumgebungen
+==== image:number2.png["Nummer 2"] Cloud Compliance in Ihren Arbeitsumgebungen
 
 [role="quick-margin-para"]
 Klicken Sie auf *Cloud Compliance*, wählen Sie die Registerkarte *Konfiguration* und aktivieren Sie Compliance-Scans für bestimmte Arbeitsumgebungen.
 
 
 
-==== Zugriff auf Volumes sicherstellen
+==== image:number3.png["Nummer 3"] Zugriff auf Volumes sicherstellen
 
 [role="quick-margin-para"]
 Jetzt, wo Cloud Compliance aktiviert ist, stellen Sie sicher, dass die IT auf Volumes zugreifen kann.
 
+[role="quick-margin-list"]
 * Die Cloud Compliance Instanz benötigt eine Netzwerkverbindung zu jedem Cloud Volumes ONTAP- oder Azure NetApp Files-Subnetz.
 * Sicherheitsgruppen für Cloud Volumes ONTAP müssen eingehende Verbindungen aus der Cloud-Compliance-Instanz zulassen.
 * Die NFS-Volume-Exportrichtlinien müssen den Zugriff aus der Cloud Compliance-Instanz zulassen.
@@ -54,7 +55,7 @@ Klicken Sie auf *Cloud Compliance* > *Scan-Konfiguration* > *CIFS-Anmeldeinforma
 
 
 
-==== Konfigurieren Sie die Volumes für das Scannen
+==== image:number4.png["Nummer 4"] Konfigurieren Sie die Volumes für das Scannen
 
 [role="quick-margin-para"]
 Wählen Sie die Volumes aus, die Sie scannen möchten, und Cloud Compliance beginnt, sie zu scannen.
@@ -79,8 +80,9 @@ Um nur bestimmte Volumes in einer Arbeitsumgebung zu scannen, klicken Sie auf *o
 
 
 
-Siehe  and disabling compliance scans on volumes,Aktivieren und Deaktivieren von Compliance-Scans auf Volumes Entsprechende Details.
+Siehe <<Aktivieren und Deaktivieren von Compliance-Scans auf Volumes,Aktivieren und Deaktivieren von Compliance-Scans auf Volumes>> Entsprechende Details.
 
+.Ergebnis
 Cloud Compliance beginnt mit der Überprüfung der Daten in den einzelnen Arbeitsumgebungen. Die Ergebnisse werden im Compliance-Dashboard verfügbar sein, sobald Cloud Compliance die ersten Scans abgeschlossen hat. Die Dauer, die von der Datenmenge abhängt, kann ein paar Minuten oder Stunden betragen.
 
 
@@ -165,6 +167,7 @@ Zunächst erkennt die Liste der Cloud-Compliance-Volumes diese Volumes als _Type
 
 image:screenshot_cloud_compliance_dp_volumes.png["Ein Screenshot mit der Schaltfläche Zugriff auf DP-Volumes aktivieren, die Sie zum Scannen von Datensicherungs-Volumes auswählen können."]
 
+.Schritte
 Wenn Sie diese Datensicherungs-Volumes scannen möchten:
 
 . Klicken Sie oben auf der Seite auf die Schaltfläche *Zugriff auf DP-Volumes aktivieren*.

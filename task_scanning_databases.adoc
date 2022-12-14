@@ -24,28 +24,28 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Datenbankvoraussetzungen prüfen
+==== image:number1.png["Nummer 1"] Datenbankvoraussetzungen prüfen
 
 [role="quick-margin-para"]
 Stellen Sie sicher, dass Ihre Datenbank unterstützt wird und dass Sie über die erforderlichen Informationen verfügen, um eine Verbindung zur Datenbank herzustellen.
 
 
 
-==== Implementieren der Cloud Compliance-Instanz
+==== image:number2.png["Nummer 2"] Implementieren der Cloud Compliance-Instanz
 
 [role="quick-margin-para"]
 link:task_deploy_cloud_compliance.html["Cloud Compliance in Cloud Manager implementieren"^] Falls noch keine Instanz implementiert wurde.
 
 
 
-==== Fügen Sie den Datenbankserver hinzu
+==== image:number3.png["Nummer 3"] Fügen Sie den Datenbankserver hinzu
 
 [role="quick-margin-para"]
 Fügen Sie den Datenbankserver hinzu, auf den Sie zugreifen möchten.
 
 
 
-==== Wählen Sie die Schemas aus
+==== image:number4.png["Nummer 4"] Wählen Sie die Schemas aus
 
 [role="quick-margin-para"]
 Wählen Sie die Schemata aus, die Sie scannen möchten.
@@ -133,6 +133,7 @@ image:screenshot_compliance_select_schemas.png["Ein Screenshot der Seite Scankon
 
 
 
+.Ergebnis
 Cloud Compliance beginnt mit dem Scannen der von Ihnen aktivierten Datenbankschemata. Wenn Fehler auftreten, werden sie in der Spalte Status angezeigt, neben der erforderlichen Aktion, um den Fehler zu beheben.
 
 

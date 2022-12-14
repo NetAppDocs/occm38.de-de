@@ -80,6 +80,7 @@ NOTE: Azure SetupAsService ist der Standardname, der in angegeben wird https://m
 
 
 
+.Ergebnis
 Der Azure-Benutzer verfügt nun über die erforderlichen Berechtigungen, um den Connector aus Cloud Manager zu implementieren.
 
 
@@ -88,7 +89,7 @@ Der Azure-Benutzer verfügt nun über die erforderlichen Berechtigungen, um den 
 
 Mit Cloud Manager können Sie einen Connector in Azure direkt von der Benutzeroberfläche aus erstellen.
 
-.Was Sie und#8217;ll benötigen
+.Was Sie benötigen
 * Der https://mysupport.netapp.com/site/info/cloud-manager-policies["Erforderliche Berechtigungen"^] Für Ihr Azure Konto.
 * Ein Azure Abonnement.
 * Eine vnet und Subnetz in Ihrer bevorzugten Azure-Region.
@@ -134,4 +135,5 @@ Die Virtual Machine sollte in ca. 7 Minuten einsatzbereit sein. Sie sollten auf 
 
 
 
+.Nachdem Sie fertig sind
 Sie müssen einen Connector mit Arbeitsbereichen verknüpfen, damit Arbeitsbereichsadministratoren diese Connectors zum Erstellen von Cloud Volumes ONTAP-Systemen verwenden können. Wenn Sie nur Kontoadministratoren haben, ist es nicht erforderlich, den Connector mit Arbeitsbereichen zu verknüpfen. Account-Administratoren haben standardmäßig die Möglichkeit, auf alle Workspaces in Cloud Manager zuzugreifen. link:task_setting_up_cloud_central_accounts.html#associating-connectors-with-workspaces["Weitere Informationen ."].

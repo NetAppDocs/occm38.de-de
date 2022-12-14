@@ -24,28 +24,28 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Einen Konnektor erstellen
+==== image:number1.png["Nummer 1"] Einen Konnektor erstellen
 
 [role="quick-margin-para"]
 Falls Sie noch keinen Connector haben, erstellen Sie in Azure oder AWS einen Connector. Siehe link:task_creating_connectors_aws.html["Erstellen eines Konnektors in AWS"] Oder link:task_creating_connectors_azure.html["Erstellen eines Connectors in Azure"].
 
 
 
-==== Voraussetzungen prüfen
+==== image:number2.png["Nummer 2"] Voraussetzungen prüfen
 
 [role="quick-margin-para"]
-Stellen Sie sicher, dass Ihre Cloud-Umgebung die Voraussetzungen erfüllt, die 16 vCPUs für die Cloud Compliance Instanz, Outbound-Internetzugang zur Instanz, Konnektivität zwischen Connector und Cloud Compliance über Port 80 umfassen kann.  prerequisites,Eine vollständige Liste finden Sie hier.
+Stellen Sie sicher, dass Ihre Cloud-Umgebung die Voraussetzungen erfüllt, die 16 vCPUs für die Cloud Compliance Instanz, Outbound-Internetzugang zur Instanz, Konnektivität zwischen Connector und Cloud Compliance über Port 80 umfassen kann. <<Voraussetzungen prüfen,Eine vollständige Liste finden Sie hier>>.
 
 
 
-==== Implementierung Von Cloud Compliance
+==== image:number3.png["Nummer 3"] Implementierung Von Cloud Compliance
 
 [role="quick-margin-para"]
 Starten Sie den Installationsassistenten, um die Cloud Compliance-Instanz in Cloud Manager zu implementieren.
 
 
 
-==== Abonnieren Sie den Cloud Compliance Service
+==== image:number4.png["Nummer 4"] Abonnieren Sie den Cloud Compliance Service
 
 [role="quick-margin-para"]
 Die ersten 1 TB an Daten, die Cloud Compliance in Cloud Manager scannt, sind kostenlos. Danach ist ein Abonnement für AWS oder Azure Marketplace erforderlich, um mit dem Scannen der Daten fortzufahren.
@@ -145,8 +145,10 @@ image:screenshot_cloud_compliance_wizard_start.png["Ein Screenshot des Cloud Com
 . Wenn die Instanz bereitgestellt wird, klicken Sie auf *Weiter zur Konfiguration*, um zur Seite _Scan Configuration_ zu gelangen.
 
 
+.Ergebnis
 Cloud Manager implementiert die Cloud Compliance-Instanz bei Ihrem Cloud-Provider.
 
+.Nächste Schritte
 Auf der Seite Scankonfiguration können Sie die Arbeitsumgebungen, Volumes und Buckets auswählen, die Sie auf Compliance überprüfen möchten. Sie können auch eine Verbindung zu einem Datenbankserver herstellen, um bestimmte Datenbankschemas zu scannen. Aktivieren Sie Cloud Compliance für eine dieser Datenquellen.
 
 
@@ -159,8 +161,9 @@ Sie können sich jederzeit für eine Anmeldung anmelden. Die Abrechnung erfolgt 
 
 image:screenshot_compliance_subscribe.png["Ein Screenshot, der zeigt, wie viele Daten gescannt werden, und die Schaltfläche Abonnieren, um den Service zu abonnieren."]
 
-*Hinweis:* Wenn Sie von Cloud Compliance aufgefordert werden, sich zu abonnieren, aber Sie bereits über ein Azure-Abonnement verfügen, verwenden Sie wahrscheinlich das alte *Cloud Manager*-Abonnement und müssen in das neue *NetApp Cloud Manager*-Abonnement wechseln. Siehe to the new Cloud Manager plan in Azure,Änderung im neuen NetApp Cloud Manager Plan in Azure Entsprechende Details.
+*Hinweis:* Wenn Sie von Cloud Compliance aufgefordert werden, sich zu abonnieren, aber Sie bereits über ein Azure-Abonnement verfügen, verwenden Sie wahrscheinlich das alte *Cloud Manager*-Abonnement und müssen in das neue *NetApp Cloud Manager*-Abonnement wechseln. Siehe<<Änderung beim neuen Cloud Manager Plan in Azure,Änderung im neuen NetApp Cloud Manager Plan in Azure>> Entsprechende Details.
 
+.Schritte
 Diese Schritte müssen von einem Benutzer ausgeführt werden, der über die Rolle _Account Admin_ verfügt.
 
 . Klicken Sie oben rechts in der Cloud Manager-Konsole auf das Symbol Einstellungen und wählen Sie *Anmeldeinformationen*.
@@ -206,6 +209,7 @@ Sie müssen diese Schritte ausführen und das neue *NetApp Cloud Manager* Abonne
 
 NOTE: Wenn Ihr Abonnement auf einem speziellen privaten Angebot ausgestellt wurde, müssen Sie sich an NetApp wenden, damit wir ein neues privates Angebot mit Compliance inbegriffen anbieten können.
 
+.Schritte
 Diese Schritte ähneln dem Hinzufügen eines neuen Abonnements wie oben beschrieben, variieren jedoch an einigen Stellen.
 
 . Klicken Sie oben rechts in der Cloud Manager-Konsole auf das Symbol Einstellungen und wählen Sie *Anmeldeinformationen*.

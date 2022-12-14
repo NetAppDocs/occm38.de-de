@@ -74,7 +74,7 @@ image:screenshot_anf_hover.gif[""]
 
 
 
-== Bearbeiten von Größe und Tags eines Volumens
+== Größe und Tags eines Volumes werden bearbeitet
 
 Nachdem Sie ein Volume erstellt haben, können Sie dessen Größe und Tags jederzeit ändern.
 

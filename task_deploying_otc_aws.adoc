@@ -34,6 +34,7 @@ NOTE: Sie müssen ein Kontoadministrator sein, um einen Konnektor zu erstellen. 
 * Wenn Sie CIFS verwenden möchten, müssen Sie DNS und Active Directory eingerichtet haben. Weitere Informationen finden Sie unter link:reference_networking_aws.html["Netzwerkanforderungen für Cloud Volumes ONTAP in AWS"].
 
 
+.Über diese Aufgabe
 Unmittelbar nach dem Erstellen der Arbeitsumgebung startet Cloud Manager eine Testinstanz im angegebenen VPC, um die Konnektivität zu überprüfen. Wenn dies erfolgreich ist, beendet Cloud Manager die Instanz sofort und beginnt dann mit der Implementierung des Cloud Volumes ONTAP Systems. Wenn Cloud Manager die Konnektivität nicht überprüfen kann, schlägt die Erstellung der Arbeitsumgebung fehl. Die Testinstanz ist entweder t2.nano (für Standard-VPC-Mandantenfähigkeit) oder m3.medium (für dedizierte VPC-Mandantenfähigkeit).
 
 .Schritte
@@ -227,6 +228,7 @@ Weitere Informationen finden Sie unter link:task_planning_your_config.html#choos
 
 
 
+.Ergebnis
 Cloud Manager startet die Cloud Volumes ONTAP Instanz. Sie können den Fortschritt in der Timeline verfolgen.
 
 Wenn beim Starten der Cloud Volumes ONTAP Instanz Probleme auftreten, lesen Sie die Fehlermeldung. Sie können auch die Arbeitsumgebung auswählen und auf Umgebung neu erstellen klicken.
@@ -259,8 +261,10 @@ NOTE: Sie müssen ein Kontoadministrator sein, um einen Konnektor zu erstellen. 
 * Wenn Sie CIFS verwenden möchten, müssen Sie DNS und Active Directory eingerichtet haben. Weitere Informationen finden Sie unter link:reference_networking_aws.html["Netzwerkanforderungen für Cloud Volumes ONTAP in AWS"].
 
 
+.Einschränkung
 Derzeit werden HA-Paare nicht mit Ausposten von AWS unterstützt.
 
+.Über diese Aufgabe
 Unmittelbar nach dem Erstellen der Arbeitsumgebung startet Cloud Manager eine Testinstanz im angegebenen VPC, um die Konnektivität zu überprüfen. Wenn dies erfolgreich ist, beendet Cloud Manager die Instanz sofort und beginnt dann mit der Implementierung des Cloud Volumes ONTAP Systems. Wenn Cloud Manager die Konnektivität nicht überprüfen kann, schlägt die Erstellung der Arbeitsumgebung fehl. Die Testinstanz ist entweder t2.nano (für Standard-VPC-Mandantenfähigkeit) oder m3.medium (für dedizierte VPC-Mandantenfähigkeit).
 
 .Schritte
@@ -461,6 +465,7 @@ Weitere Informationen finden Sie unter link:task_planning_your_config.html#choos
 
 
 
+.Ergebnis
 Cloud Manager startet das Paar Cloud Volumes ONTAP HA. Sie können den Fortschritt in der Timeline verfolgen.
 
 Wenn beim Starten des HA-Paars Probleme auftreten, überprüfen Sie die Fehlermeldung. Sie können auch die Arbeitsumgebung auswählen und auf Umgebung neu erstellen klicken.

@@ -24,11 +24,12 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Vorbereitung auf das Tiering von Daten auf Google Cloud Storage
+==== image:number1.png["Nummer 1"] Vorbereitung auf das Tiering von Daten auf Google Cloud Storage
 
 [role="quick-margin-para"]
 Sie benötigen Folgendes:
 
+[role="quick-margin-list"]
 * Ein AFF oder FAS System mit reinen SSD-Aggregaten, auf denen ONTAP 9.6 oder höher ausgeführt wird und eine HTTPS-Verbindung zu Google Cloud Storage besitzt.
 * Ein Servicekonto mit der vordefinierten Storage-Administratorrolle und Speicherzugriffsschlüsseln.
 * In einer Google Cloud Platform VPC wurde ein Connector installiert.
@@ -37,18 +38,19 @@ Sie benötigen Folgendes:
 
 
 
-==== Tiering einrichten
+==== image:number2.png["Nr. 2"] Tiering einrichten
 
 [role="quick-margin-para"]
 Wählen Sie in Cloud Manager eine lokale Arbeitsumgebung aus, klicken Sie auf *Setup Tiering* und folgen Sie den Aufforderungen, Daten auf Google Cloud Storage zu verschieben.
 
 
 
-==== Lizenzierung einrichten
+==== image:number3.png["Nummer 3"] Lizenzierung einrichten
 
 [role="quick-margin-para"]
 Nach Abschluss der kostenlosen Testversion zahlen Sie für Cloud Tiering über ein Pay-as-you-go-Abonnement, eine ONTAP-Tiering-Lizenz oder eine Kombination aus den beiden Optionen:
 
+[role="quick-margin-list"]
 * Wenn Sie sich für den GCP Marketplace anmelden möchten, klicken Sie auf *Tiering > Lizenzierung*, klicken Sie auf *Abonnieren* und folgen Sie dann den Anweisungen.
 * Um eine Tiering-Lizenz hinzuzufügen, mailto:ng-cloud-tiering@netapp.com?subject=Licensing[Kontaktieren Sie uns, wenn Sie eine kaufen müssen], und dann link:task_licensing_cloud_tiering.html["Fügen Sie ihn von Cloud Tiering zu Ihrem Cluster hinzu"].
 
@@ -160,7 +162,7 @@ Das müssen Sie unbedingt link:task_tiering_google.html#tiering-inactive-data-to
 
 Nach der Vorbereitung Ihrer Google Cloud Umgebung können Sie vom ersten Cluster aus inaktive Daten per Tiering verschieben.
 
-.Was Sie und#8217;ll benötigen
+.Was Sie benötigen
 * link:task_discovering_ontap.html["Eine Arbeitsumgebung vor Ort"].
 * Speicherzugriffsschlüssel für ein Servicekonto, das die Rolle Storage Admin hat.
 
@@ -196,8 +198,10 @@ image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_selec
 
 
 
+.Ergebnis
 Sie haben das Daten-Tiering von Volumes im Cluster erfolgreich in den Google Cloud Objektspeicher eingerichtet.
 
+.Was kommt als Nächstes?
 link:task_licensing_cloud_tiering.html["Denken Sie daran, den Cloud Tiering Service zu abonnieren"].
 
 Sie können auch weitere Cluster hinzufügen oder Informationen zu den aktiven und inaktiven Daten auf dem Cluster prüfen. Weitere Informationen finden Sie unter link:task_managing_tiering.html["Managen von Daten-Tiering von Clustern"].

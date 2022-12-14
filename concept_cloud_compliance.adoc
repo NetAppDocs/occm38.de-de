@@ -52,7 +52,7 @@ Cloud Compliance kann Daten aus folgenden Datenquellen scannen:
 +
 link:task_deploy_cloud_compliance.html#subscribing-to-the-cloud-compliance-service["Erfahren Sie, wie Sie abonniert werden können"^].
 
-* Für die Installation von Cloud Compliance ist die Implementierung einer Cloud-Instanz erforderlich, was für den Cloud-Provider, bei dem sie implementiert wird, Gebühren anfallen. Siehe  Cloud Compliance instance,Der für jeden Cloud-Provider implementierte Instanztyp
+* Für die Installation von Cloud Compliance ist die Implementierung einer Cloud-Instanz erforderlich, was für den Cloud-Provider, bei dem sie implementiert wird, Gebühren anfallen. Siehe <<Die Instanz für Cloud Compliance,Der für jeden Cloud-Provider implementierte Instanztyp>>
 * Cloud Compliance erfordert die Implementierung eines Konnektors. Aufgrund anderer Storage-Systeme und Services, die Sie in Cloud Manager verwenden, haben Sie häufig bereits einen Connector. Die Connector-Instanz verursacht Gebühren bei dem Cloud-Provider, wo sie implementiert wird. Siehe link:reference_cloud_mgr_reqs.html["Für jeden Cloud-Provider implementierte Instanztyp"^].
 
 

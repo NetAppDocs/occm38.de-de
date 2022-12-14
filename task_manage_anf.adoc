@@ -24,21 +24,21 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Zugriff anfordern
+==== image:number1.png["Nummer 1"] Zugriff anfordern
 
 [role="quick-margin-para"]
 https://aka.ms/azurenetappfiles["Online-Anforderung einreichen"^] Zugriff auf Azure NetApp Files zu erhalten.
 
 
 
-==== Richten Sie eine Azure AD-Applikation ein
+==== image:number2.png["Nummer 2"] Richten Sie eine Azure AD-Applikation ein
 
 [role="quick-margin-para"]
 Von Azure erteilen Sie Berechtigungen für eine Azure AD-Applikation und kopieren Sie die Anwendungs-ID (Client), die Verzeichnis- (Mandanten-)ID und den Wert eines Clientgeheimnisses.
 
 
 
-==== Schaffung einer Azure NetApp Files-Arbeitsumgebung
+==== image:number3.png["Nummer 3"] Schaffung einer Azure NetApp Files-Arbeitsumgebung
 
 [role="quick-margin-para"]
 Klicken Sie im Cloud Manager auf *Arbeitsumgebung hinzufügen* > *Microsoft Azure* > *Azure NetApp Files* und geben Sie dann Details zur AD-Anwendung an.
@@ -61,6 +61,7 @@ Cloud Manager benötigt Berechtigungen für die Einrichtung und das Management v
 
 Erstellen einer Azure Active Directory (AD)-Applikation und eines Service-Principal, den Cloud Manager für die rollenbasierte Zugriffssteuerung nutzen kann
 
+.Bevor Sie beginnen
 Sie müssen über die richtigen Berechtigungen in Azure verfügen, um eine Active Directory-Anwendung zu erstellen und die Anwendung einer Rolle zuzuweisen. Weitere Informationen finden Sie unter https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#required-permissions/["Microsoft Azure-Dokumentation: Erforderliche Berechtigungen"^].
 
 .Schritte
@@ -102,6 +103,7 @@ image:screenshot_anf_client_secret.gif["Ein Screenshot des Azure-Portals, in dem
 
 
 
+.Ergebnis
 Ihre AD-Anwendung ist jetzt eingerichtet und Sie sollten die Anwendungs-ID (Client), die Verzeichnis- (Mandanten-) ID und den Wert des Clientgeheimnisses kopiert haben. Sie müssen diese Informationen in Cloud Manager eingeben, wenn Sie eine Azure NetApp Files Arbeitsumgebung hinzufügen.
 
 
@@ -172,8 +174,10 @@ image:screenshot_anf_details.gif["Ein Screenshot der Felder, die zum Erstellen e
 . Klicken Sie Auf *Hinzufügen*.
 
 
+.Ergebnis
 Sie sollten nun über eine Azure NetApp Files-Arbeitsumgebung verfügen.
 
 image:screenshot_anf_we.gif["Ein Screenshot eines Azure NetApp Files Arbeitsumfelds."]
 
+.Was kommt als Nächstes?
 link:task_manage_anf_volumes.html["Beginnen Sie mit dem Erstellen und Managen von Volumes"].

@@ -63,7 +63,7 @@ image:screenshot_backup_manage_volumes_page.png["Die Seite Volumes managen, auf 
 
 
 
-*Hinweis:* Wenn ein Volume nicht gesichert werden soll, werden Sie Ihrem Cloud Provider weiterhin die Kosten für die Objektspeicherung für die Kapazität in Rechnung gestellt, die die Backups nutzen, es sei denn, Sie  backups,Löschen Sie die Backups.
+*Hinweis:* Wenn ein Volume nicht gesichert werden soll, werden Sie Ihrem Cloud Provider weiterhin die Kosten für die Objektspeicherung für die Kapazität in Rechnung gestellt, die die Backups nutzen, es sei denn, Sie <<Backups werden gelöscht,Löschen Sie die Backups>>.
 
 
 
@@ -100,6 +100,7 @@ image:screenshot_backup_to_s3_restore_options.gif["Ein Screenshot, der die Wiede
 
 
 
+.Ergebnis
 Cloud Manager erstellt auf Basis des ausgewählten Backups ein neues Volume. Das können Sie link:task_managing_storage.html#managing-existing-volumes["Verwalten Sie dieses neue Volume"^] Nach Bedarf.
 
 

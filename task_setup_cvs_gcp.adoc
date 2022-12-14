@@ -24,21 +24,21 @@ Führen Sie die Schritte schnell durch, oder rufen Sie den nächsten Abschnitt a
 
 
 
-==== Aktivieren Sie die Cloud Volumes Service-API
+==== image:number1.png["Nummer 1"] Aktivieren Sie die Cloud Volumes Service-API
 
 [role="quick-margin-para"]
 Aktivieren Sie von Google die Cloud Volumes Service für GCP-API, damit Cloud Manager die Abonnement- und Cloud-Volumes managen kann.
 
 
 
-==== Erstellen eines GCP-Service-Kontos und Zugangsdaten für den Download
+==== image:number2.png["Nummer 2"] Erstellen eines GCP-Service-Kontos und Zugangsdaten für den Download
 
 [role="quick-margin-para"]
 Erstellen Sie in Google ein GCP-Servicekonto und eine Rolle, damit Cloud Manager auf Ihr Cloud Volumes Service für GCP-Konto zugreifen kann.
 
 
 
-==== Einrichtung einer Cloud Volumes Service für GCP-Arbeitsumgebung
+==== image:number3.png["Nummer 3"] Einrichtung einer Cloud Volumes Service für GCP-Arbeitsumgebung
 
 [role="quick-margin-para"]
 Klicken Sie im Cloud Manager auf *Arbeitsumgebung hinzufügen* > *Google Cloud* > *Cloud Volumes Service* und geben Sie dann Details zum Servicekonto und dem Google Cloud Projekt an.
@@ -101,6 +101,7 @@ Wenn bereits Cloud Volumes für dieses Abonnement vorhanden sind, werden die Vol
 
 TIP: Wenn in mehreren GCP-Projekten Abonnements und Volumes vorhanden sind, müssen Sie diese Aufgabe für jedes Projekt ausführen.
 
+.Bevor Sie beginnen
 Beim Hinzufügen eines Abonnements für jedes Projekt müssen Sie über die folgenden Informationen verfügen:
 
 * Zugangsdaten für ein Servicekonto (JSON-privater Schlüssel, den Sie heruntergeladen haben)
@@ -126,6 +127,7 @@ image:screenshot_add_cvs_gcp_credentials.png["Screenshot mit den Zugangsdaten f�
 
 
 
+.Ergebnis
 Cloud Manager zeigt Ihre Arbeitsumgebung „Cloud Volumes Service for Google Cloud“ an.
 
 image:screenshot_cvs_gcp_cloud.png["Ein Screenshot von Cloud Volumes Service für die Google Cloud Arbeitsumgebung"]
@@ -134,4 +136,5 @@ Wenn bereits Cloud Volumes für dieses Abonnement vorhanden sind, werden die Vol
 
 Wenn für dieses Abonnement keine Cloud Volumes vorhanden sind, erstellen Sie sie jetzt.
 
+.Was kommt als Nächstes?
 link:task_manage_cvs_gcp.html["Beginnen Sie mit dem Erstellen und Managen von Volumes"].

@@ -24,8 +24,9 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Überprüfen Sie die Unterstützung Ihrer Konfiguration
+==== image:number1.png["Nummer 1"] Überprüfen Sie die Unterstützung Ihrer Konfiguration
 
+[role="quick-margin-list"]
 * Sie haben das On-Premises-Cluster erkannt und einer Arbeitsumgebung in Cloud Manager hinzugefügt. Siehe link:task_discovering_ontap.html["Erkennung von ONTAP Clustern"^] Entsprechende Details.
 * Sie verwenden ONTAP 9.7P5 oder höher auf dem Cluster.
 * Sie verfügen über ein gültiges Cloud-Provider-Abonnement für den Speicherplatz, auf dem sich Ihre Backups befinden.
@@ -34,7 +35,7 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Aktivieren Sie Backup in Cloud auf dem System
+==== image:number2.png["Nummer 2"] Aktivieren Sie Backup in Cloud auf dem System
 
 [role="quick-margin-para"]
 Wählen Sie die Arbeitsumgebung aus und klicken Sie im rechten Fenster neben dem Dienst Backup to Cloud auf *Aktivieren* und folgen Sie dann dem Setup-Assistenten.
@@ -44,7 +45,7 @@ image:screenshot_backup_to_s3_icon.gif["Ein Screenshot, der die Schaltfläche Ba
 
 
 
-==== Wählen Sie den Cloud-Provider aus und geben Sie die Anbieterdetails ein
+==== image:number3.png["Nummer 3"] Wählen Sie den Cloud-Provider aus und geben Sie die Anbieterdetails ein
 
 [role="quick-margin-para"]
 Wählen Sie den Provider aus, und wählen Sie dann das Provider-Abonnement, die Region und die Ressourcengruppe aus. Sie müssen außerdem den IPspace im ONTAP Cluster angeben, auf dem sich die Volumes befinden.
@@ -54,7 +55,7 @@ image:screenshot_backup_onprem_to_azure.png["In diesem Screenshot wird der Cloud
 
 
 
-==== Definieren der Backup-Richtlinie
+==== image:number4.png["Nummer 4"] Definieren der Backup-Richtlinie
 
 [role="quick-margin-para"]
 Die Standardrichtlinie sichert Volumes täglich und speichert die letzten 30 Backup-Kopien jedes Volumes. Ändern Sie zu wöchentlichen oder monatlichen Backups oder wählen Sie eine der systemdefinierten Richtlinien mit mehr Optionen aus.
@@ -64,14 +65,14 @@ image:screenshot_backup_onprem_policy.png["Ein Screenshot mit den Einstellungen 
 
 
 
-==== Wählen Sie die Volumes aus, die Sie sichern möchten
+==== image:number5.png["Nummer 5"] Wählen Sie die Volumes aus, die Sie sichern möchten
 
 [role="quick-margin-para"]
 Ermitteln Sie, welche Volumes vom Cluster aus gesichert werden sollen.
 
 
 
-==== Stellen Sie Ihre Daten nach Bedarf wieder her
+==== image:number6.png["Nummer 6"] Stellen Sie Ihre Daten nach Bedarf wieder her
 
 [role="quick-margin-para"]
 Wählen Sie aus der Liste der Backups ein Volume aus, wählen Sie ein Backup aus und stellen Sie dann die Daten aus dem Backup auf ein neues Volume in einem Cloud Volumes ONTAP System wieder her, das denselben Cloud-Provider verwendet.
@@ -142,6 +143,8 @@ image:screenshot_backup_select_onprem_volumes.png["Ein Screenshot, wie die Volum
 
 
 
+.Ergebnis
 Backup in der Cloud beginnt die ersten Backups jedes ausgewählten Volumes.
 
+.Was kommt als Nächstes?
 link:task_managing_backups.html["Sie können Backups managen, indem Sie den Backup-Zeitplan ändern, Volumes wiederherstellen und mehr"^].

@@ -27,6 +27,7 @@ NOTE: Sie müssen ein Kontoadministrator sein, um einen Konnektor zu erstellen. 
 * Für die Implementierung eines BYOL-Systems benötigen Sie für jeden Node die 20-stellige Seriennummer (Lizenzschlüssel).
 
 
+.Über diese Aufgabe
 Wenn Cloud Manager ein Cloud Volumes ONTAP-System in Azure erstellt, werden mehrere Azure-Objekte wie eine Ressourcengruppe, Netzwerkschnittstellen und Storage-Konten erstellt. Sie können eine Zusammenfassung der Ressourcen am Ende des Assistenten überprüfen.
 
 [WARNING]
@@ -210,6 +211,7 @@ Weitere Informationen finden Sie unter link:task_planning_your_config_azure.html
 
 
 
+.Ergebnis
 Cloud Manager implementiert das Cloud Volumes ONTAP System. Sie können den Fortschritt in der Timeline verfolgen.
 
 Wenn Sie Probleme bei der Implementierung des Cloud Volumes ONTAP Systems haben, lesen Sie die Fehlermeldung. Sie können auch die Arbeitsumgebung auswählen und auf *Umgebung neu erstellen* klicken.

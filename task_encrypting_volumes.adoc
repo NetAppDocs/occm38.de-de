@@ -23,6 +23,7 @@ Ab Cloud Volumes ONTAP 9.7 werden neue Aggregate standardmäßig NAE aktiviert h
 
 Cloud Volumes ONTAP unterstützt kein Onboard-Verschlüsselungsmanagement.
 
+.Was Sie benötigen
 Ihr Cloud Volumes ONTAP System sollte beim NetApp Support registriert sein. Ab Cloud Manager 3.7 wird auf jedem Cloud Volumes ONTAP System, das beim NetApp Support registriert ist, automatisch eine NetApp Volume Encryption Lizenz installiert.
 
 * link:task_adding_nss_accounts.html["Hinzufügen von NetApp Support Site Konten zu Cloud Manager"]

@@ -65,6 +65,7 @@ Das Zertifikat muss das mit Privacy Enhanced Mail (PEM) Base-64 codierte X.509-F
 |===
 
 
+.Ergebnis
 Cloud Manager verwendet jetzt das CA-signierte Zertifikat, um sicheren HTTPS-Zugriff zu ermöglichen. Die folgende Abbildung zeigt ein Cloud Manager-System, das für den sicheren Zugriff konfiguriert ist:
 
 image:screenshot_https_cert.gif["Screenshot: Zeigt die Seite HTTPS Setup an, nachdem Sie ein signiertes Zertifikat installiert haben. Auf der Seite werden die Zertifikateigenschaften und eine Option zum Erneuern des Zertifikats angezeigt."]
@@ -83,4 +84,5 @@ Details zum Cloud Manager-Zertifikat werden angezeigt, einschließlich des Ablau
 . Klicken Sie auf *HTTPS-Zertifikat erneuern* und befolgen Sie die Schritte, um eine CSR zu erstellen oder Ihr eigenes CA-signiertes Zertifikat zu installieren.
 
 
+.Ergebnis
 Cloud Manager verwendet das neue CA-signierte Zertifikat, um sicheren HTTPS-Zugriff zu ermöglichen.

@@ -49,6 +49,7 @@ Die in dieser YAML-Datei enthaltenen Berechtigungen unterscheiden sich von den B
 
 
 
+.Ergebnis
 Der GCP-Benutzer verfügt jetzt über die erforderlichen Berechtigungen, um den Connector aus Cloud Manager zu erstellen, und das Servicekonto für die Connector-VM wird eingerichtet.
 
 
@@ -75,7 +76,7 @@ Für die Bereitstellung des Connectors und der Cloud Volumes ONTAP sind mehrere 
 
 Mit Cloud Manager können Sie einen Connector in GCP direkt von der Benutzeroberfläche aus erstellen.
 
-.Was Sie und#8217;ll benötigen
+.Was Sie benötigen
 * Der https://mysupport.netapp.com/site/info/cloud-manager-policies["Erforderliche Berechtigungen"^] Für Ihren Google Cloud-Account.
 * Ein Google Cloud-Projekt.
 * Ein Servicekonto mit den erforderlichen Berechtigungen zum Erstellen und Verwalten von Cloud Volumes ONTAP.
@@ -118,4 +119,5 @@ Die Instanz sollte in ca. 7 Minuten fertig sein. Sie sollten auf der Seite bleib
 
 
 
+.Nachdem Sie fertig sind
 Sie müssen einen Connector mit Arbeitsbereichen verknüpfen, damit Arbeitsbereichsadministratoren diese Connectors zum Erstellen von Cloud Volumes ONTAP-Systemen verwenden können. Wenn Sie nur Kontoadministratoren haben, ist es nicht erforderlich, den Connector mit Arbeitsbereichen zu verknüpfen. Account-Administratoren haben standardmäßig die Möglichkeit, auf alle Workspaces in Cloud Manager zuzugreifen. link:task_setting_up_cloud_central_accounts.html#associating-connectors-with-workspaces["Weitere Informationen ."].

@@ -18,7 +18,7 @@ Erste Schritte mit Cloud Volumes ONTAP für AWS
 
 
 
-==== Einen Konnektor erstellen
+==== image:number1.png["Nummer 1"] Einen Konnektor erstellen
 
 [role="quick-margin-para"]
 Wenn Sie keine haben link:concept_connectors.html["Stecker"] Dennoch muss ein Kontoadministrator einen erstellen. link:task_creating_connectors_aws.html["Erfahren Sie, wie Sie in AWS einen Connector erstellen können"].
@@ -28,15 +28,16 @@ Wenn Sie Ihre erste Cloud Volumes ONTAP-Arbeitsumgebung erstellen, werden Sie vo
 
 
 
-==== Planen Sie Ihre Konfiguration
+==== image:number2.png["Nummer 2"] Planen Sie Ihre Konfiguration
 
 [role="quick-margin-para"]
 Cloud Manager bietet vorkonfigurierte Pakete, die Ihren Workload-Anforderungen entsprechen, oder Sie können eine eigene Konfiguration erstellen. Wenn Sie sich für eine eigene Konfiguration entscheiden, sollten Sie sich mit den verfügbaren Optionen vertraut machen. link:task_planning_your_config.html["Weitere Informationen ."].
 
 
 
-==== Richten Sie Ihr Netzwerk ein
+==== image:number3.png["Nummer 3"] Richten Sie Ihr Netzwerk ein
 
+[role="quick-margin-list"]
 . Stellen Sie sicher, dass Ihre VPC und Subnetze die Konnektivität zwischen dem Connector und Cloud Volumes ONTAP unterstützen.
 . Aktivieren Sie den Outbound-Internetzugang über die Ziel-VPC, damit der Connector und der Cloud Volumes ONTAP mehrere Endpunkte kontaktieren können.
 +
@@ -53,14 +54,14 @@ link:reference_networking_aws.html["Erfahren Sie mehr über Netzwerkanforderunge
 
 
 
-==== AWS KMS einrichten
+==== image:number4.png["Nummer 4"] AWS KMS einrichten
 
 [role="quick-margin-para"]
 Wenn Sie Amazon Verschlüsselung mit Cloud Volumes ONTAP verwenden möchten, müssen Sie sicherstellen, dass ein aktiver Kundenstammschlüssel (CMK) vorhanden ist. Außerdem müssen Sie die Schlüsselrichtlinie für jedes CMK ändern, indem Sie die IAM-Rolle hinzufügen, die dem Connector Berechtigungen als_Key-Benutzer_ bereitstellt. link:task_setting_up_kms.html["Weitere Informationen ."].
 
 
 
-==== Starten Sie Cloud Volumes ONTAP mit Cloud Manager
+==== image:number5.png["Nummer 5"] Starten Sie Cloud Volumes ONTAP mit Cloud Manager
 
 [role="quick-margin-para"]
 Klicken Sie auf *Arbeitsumgebung hinzufügen*, wählen Sie den Systemtyp aus, den Sie bereitstellen möchten, und führen Sie die Schritte im Assistenten aus. link:task_deploying_otc_aws.html["Lesen Sie Schritt-für-Schritt-Anleitungen"].

@@ -22,6 +22,7 @@ Wenn Sie benötigen, können Sie verhindern, dass Cloud Compliance eine oder meh
 
 Wenn Sie Scans deaktivieren, scannt Cloud Compliance die Daten auf dem System nicht mehr und entfernt alle indizierten Compliance-Einblicke aus der Cloud Compliance Instanz (die Daten aus der Arbeitsumgebung oder der Datenbank selbst werden nicht gelöscht).
 
+.Schritte
 Klicken Sie auf der Seite _Scan Configuration_ auf image:screenshot_gallery_options.gif["Schaltfläche „Mehr“"] Klicken Sie in der Zeile für die Arbeitsumgebung auf *Compliance deaktivieren*.
 
 image:screenshot_deactivate_compliance_scan.png["Ein Screenshot des Aktionssymbols, in dem Sie Scan deaktivieren wählen können. Diese Option ist verfügbar, nachdem Sie auf der Seite Arbeitsumgebungen eine Arbeitsumgebung ausgewählt haben."]

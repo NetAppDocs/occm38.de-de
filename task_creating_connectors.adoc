@@ -29,7 +29,7 @@ TIP: Wenn Sie Ihre erste Cloud Volumes ONTAP-Arbeitsumgebung erstellen, werden S
 
 Mit Cloud Manager können Sie einen Connector in AWS direkt von der Benutzeroberfläche aus erstellen. Sie haben auch die Möglichkeit zu wählen link:task_launching_aws_mktp.html["Erstellen Sie den Connector über den AWS Marketplace"], Oder link:task_installing_linux.html["Laden Sie die Software herunter und installieren Sie sie auf Ihrem eigenen Host"].
 
-.Was Sie und#8217;ll benötigen
+.Was Sie benötigen
 * Ein AWS-Zugriffsschlüssel und ein geheimer Schlüssel für einen IAM-Benutzer, der über den verfügt https://mysupport.netapp.com/site/info/cloud-manager-policies["Erforderliche Berechtigungen"^].
 * Ein VPC, Subnetz und Schlüsselpairs in Ihrer bevorzugten AWS Region.
 
@@ -72,7 +72,7 @@ Die Instanz sollte in ca. 7 Minuten fertig sein. Sie sollten auf der Seite bleib
 
 Mit Cloud Manager können Sie einen Connector in Azure direkt von der Benutzeroberfläche aus erstellen. Sie haben auch die Möglichkeit zu wählen link:task_launching_azure_mktp.html["Erstellen Sie den Connector aus dem Azure Marketplace"], Oder auf link:task_installing_linux.html["Laden Sie die Software herunter und installieren Sie sie auf Ihrem eigenen Host"].
 
-.Was Sie und#8217;ll benötigen
+.Was Sie benötigen
 * Der https://mysupport.netapp.com/site/info/cloud-manager-policies["Erforderliche Berechtigungen"^] Für Ihr Azure Konto.
 * Ein Azure Abonnement.
 * Eine vnet und Subnetz in Ihrer bevorzugten Azure-Region.
@@ -120,7 +120,7 @@ Die Virtual Machine sollte in ca. 7 Minuten einsatzbereit sein. Sie sollten auf 
 
 Mit Cloud Manager können Sie einen Connector in GCP direkt von der Benutzeroberfläche aus erstellen. Sie haben auch die Möglichkeit zu wählen link:task_installing_linux.html["Laden Sie die Software herunter und installieren Sie sie auf Ihrem eigenen Host"].
 
-.Was Sie und#8217;ll benötigen
+.Was Sie benötigen
 * Der https://mysupport.netapp.com/site/info/cloud-manager-policies["Erforderliche Berechtigungen"^] Für Ihren Google Cloud-Account.
 * Ein Google Cloud-Projekt.
 * Ein Servicekonto mit den erforderlichen Berechtigungen zum Erstellen und Verwalten von Cloud Volumes ONTAP.

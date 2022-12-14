@@ -24,11 +24,12 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Vorbereiten von Daten auf Azure Blob Storage
+==== image:number1.png["Nummer 1"] Vorbereiten von Daten auf Azure Blob Storage
 
 [role="quick-margin-para"]
 Sie benötigen Folgendes:
 
+[role="quick-margin-list"]
 * Ein AFF oder FAS System mit reinen SSD-Aggregaten, auf denen ONTAP 9.4 oder höher ausgeführt wird und eine HTTPS-Verbindung zum Azure Blob Storage verfügt.
 * Ein Connector in einem Azure vnet installiert.
 * Networking für einen Connector, der eine ausgehende HTTPS-Verbindung zum ONTAP Cluster in Ihrem Datacenter, zu Azure Blob Storage und zum Cloud Tiering Service ermöglicht
@@ -36,18 +37,19 @@ Sie benötigen Folgendes:
 
 
 
-==== Tiering einrichten
+==== image:number2.png["Nr. 2"] Tiering einrichten
 
 [role="quick-margin-para"]
 Wählen Sie in Cloud Manager eine lokale Arbeitsumgebung aus und klicken Sie auf *Setup Tiering* und folgen Sie den Aufforderungen zum Tiering von Daten auf Azure Blob Storage.
 
 
 
-==== Lizenzierung einrichten
+==== image:number3.png["Nummer 3"] Lizenzierung einrichten
 
 [role="quick-margin-para"]
 Nach Abschluss der kostenlosen Testversion zahlen Sie für Cloud Tiering über ein Pay-as-you-go-Abonnement, eine ONTAP-Tiering-Lizenz oder eine Kombination aus den beiden Optionen:
 
+[role="quick-margin-list"]
 * Wenn Sie einen Azure Marketplace abonnieren möchten, klicken Sie auf *Tiering > Lizenzierung*, klicken Sie auf *Abonnieren* und folgen Sie dann den Anweisungen.
 * Um eine Tiering-Lizenz hinzuzufügen, mailto:ng-cloud-tiering@netapp.com?subject=Licensing[Kontaktieren Sie uns, wenn Sie eine kaufen müssen], und dann link:task_licensing_cloud_tiering.html["Fügen Sie ihn von Cloud Tiering zu Ihrem Cluster hinzu"].
 
@@ -140,6 +142,7 @@ Wenn Sie über eine ExpressRoute oder eine VPN-Verbindung zwischen Ihrem ONTAP C
 
 Starten Sie nach der Vorbereitung der Azure Umgebung das Tiering inaktiver Daten aus dem ersten Cluster.
 
+.Was Sie benötigen
 link:task_discovering_ontap.html["Eine Arbeitsumgebung vor Ort"].
 
 .Schritte
@@ -176,8 +179,10 @@ image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_volumes_selec
 
 
 
+.Ergebnis
 Sie haben Daten-Tiering von Volumes auf dem Cluster erfolgreich in den Azure Blob Objekt-Storage eingerichtet.
 
+.Was kommt als Nächstes?
 link:task_licensing_cloud_tiering.html["Denken Sie daran, den Cloud Tiering Service zu abonnieren"].
 
 Sie können auch weitere Cluster hinzufügen oder Informationen zu den aktiven und inaktiven Daten auf dem Cluster prüfen. Weitere Informationen finden Sie unter link:task_managing_tiering.html["Managen von Daten-Tiering von Clustern"].

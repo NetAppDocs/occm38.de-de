@@ -20,15 +20,15 @@ Standardmäßig werden auf dem Cloud Compliance-Dashboard Compliance-Daten für 
 
 image:screenshot_compliance_dashboard.png["Einen Screenshot des Cloud Compliance Dashboards"]
 
-Wenn Sie Daten nur für einige der Arbeitsumgebungen sehen möchten,  data from specific working environments,Wählen Sie diese Arbeitsumgebungen aus.
+Wenn Sie Daten nur für einige der Arbeitsumgebungen sehen möchten, <<Anzeigen von Daten aus bestimmten Arbeitsumgebungen,Wählen Sie diese Arbeitsumgebungen aus>>.
 
 
 
 == Persönliche Daten
 
-Cloud Compliance identifiziert automatisch bestimmte Wörter, Strings und Muster (Regex) in den Daten. Beispielsweise personenbezogene Daten (Personal Identification Information, PII), Kreditkartennummern, Sozialversicherungsnummern und Kontonummern.  of personal data,Die vollständige Liste finden Sie hier.
+Cloud Compliance identifiziert automatisch bestimmte Wörter, Strings und Muster (Regex) in den Daten. Beispielsweise personenbezogene Daten (Personal Identification Information, PII), Kreditkartennummern, Sozialversicherungsnummern und Kontonummern. <<Arten personenbezogener Daten,Die vollständige Liste finden Sie hier>>.
 
-Für einige Arten von personenbezogenen Daten verwendet Cloud Compliance die _Proximity-Validierung_, um die Ergebnisse zu validieren. Die Validierung erfolgt, indem ein oder mehrere vordefinierte Schlüsselwörter in der Nähe der gefundenen personenbezogenen Daten gesucht werden. Cloud Compliance identifiziert z. B. eine US-amerikanische Sozialversicherungsnummer (SSN) als SSN, wenn sie neben ihr ein Näherungswort sieht - zum Beispiel _SSN_ oder _Sozialversicherung_.  of personal data,Die Liste unten Zeigt an, wann Cloud Compliance die Näherungsüberprüfung verwendet.
+Für einige Arten von personenbezogenen Daten verwendet Cloud Compliance die _Proximity-Validierung_, um die Ergebnisse zu validieren. Die Validierung erfolgt, indem ein oder mehrere vordefinierte Schlüsselwörter in der Nähe der gefundenen personenbezogenen Daten gesucht werden. Cloud Compliance identifiziert z. B. eine US-amerikanische Sozialversicherungsnummer (SSN) als SSN, wenn sie neben ihr ein Näherungswort sieht - zum Beispiel _SSN_ oder _Sozialversicherung_. <<Arten personenbezogener Daten,Die Liste unten>> Zeigt an, wann Cloud Compliance die Näherungsüberprüfung verwendet.
 
 
 
@@ -61,7 +61,7 @@ image:screenshot_compliance_investigation_filtered.png["Ein Screenshot der verf�
 
 === Arten personenbezogener Daten
 
-Die in Dateien gefundenen personenbezogenen Daten können allgemeine personenbezogene Daten oder nationale Kennungen sein. In der dritten Spalte wird angegeben, ob Cloud Compliance verwendet wird  data,Prüfung der Nähe Zum Validieren seiner Ergebnisse für die Kennung.
+Die in Dateien gefundenen personenbezogenen Daten können allgemeine personenbezogene Daten oder nationale Kennungen sein. In der dritten Spalte wird angegeben, ob Cloud Compliance verwendet wird <<Persönliche Daten,Prüfung der Nähe>> Zum Validieren seiner Ergebnisse für die Kennung.
 
 [cols="20,50,18"]
 |===
@@ -173,7 +173,7 @@ Die in Dateien gefundenen personenbezogenen Daten können allgemeine personenbez
 
 == Sensible persönliche Daten
 
-Cloud Compliance identifiziert automatisch spezielle Arten von sensiblen personenbezogenen Daten, wie sie in Datenschutzvorschriften wie z. B. definiert sind https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679&from=EN#d1e2051-1-1["Artikel 9 und 10 der DSGVO"^]. Beispielsweise Informationen über die Gesundheit einer Person, ethnische Herkunft oder sexuelle Orientierung.  of sensitive personal data,Die vollständige Liste finden Sie hier.
+Cloud Compliance identifiziert automatisch spezielle Arten von sensiblen personenbezogenen Daten, wie sie in Datenschutzvorschriften wie z. B. definiert sind https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679&from=EN#d1e2051-1-1["Artikel 9 und 10 der DSGVO"^]. Beispielsweise Informationen über die Gesundheit einer Person, ethnische Herkunft oder sexuelle Orientierung. <<Arten sensibler personenbezogener Daten,Die vollständige Liste finden Sie hier>>.
 
 Cloud Compliance verwendet künstliche Intelligenz (KI), NLP (Natural Language Processing), maschinelles Lernen (ML) und Cognitive Computing (CC), um die Bedeutung des von ihm gescannten Inhalts zu verstehen, um Entitäten zu extrahieren und entsprechend zu kategorisieren.
 
@@ -219,7 +219,7 @@ Sexualleben oder Orientierung Referenz:: Daten über das Sexualleben einer natü
 
 == Kategorien
 
-Bei Cloud Compliance werden die gescannten Daten in verschiedene Kategorien unterteilt. Kategorien sind Themen, die auf der KI-Analyse des Inhalts und der Metadaten jeder Datei basieren.  of categories,Siehe die Liste der Kategorien.
+Bei Cloud Compliance werden die gescannten Daten in verschiedene Kategorien unterteilt. Kategorien sind Themen, die auf der KI-Analyse des Inhalts und der Metadaten jeder Datei basieren. <<Arten von Kategorien,Siehe die Liste der Kategorien>>.
 
 Kategorien können Ihnen dabei helfen zu verstehen, was mit Ihren Daten passiert, indem Sie die Arten von Informationen anzeigen, die Sie haben. Beispielsweise kann eine Kategorie wie Lebensläufe oder Mitarbeiterverträge sensible Daten enthalten. Wenn Sie die Ergebnisse untersuchen, können Sie feststellen, dass Mitarbeiterverträge an einem unsicheren Ort gespeichert sind. Sie können das Problem dann beheben.
 
@@ -344,7 +344,7 @@ Metadatenkategorien::
 
 == Dateitypen
 
-Cloud Compliance greift die gescannten Daten auf und legt sie nach Dateityp fest. Die Überprüfung Ihrer Dateitypen kann Ihnen helfen, Ihre sensiblen Daten zu kontrollieren, da Sie möglicherweise feststellen können, dass bestimmte Dateitypen nicht richtig gespeichert sind.  of files,Siehe die Liste der Dateitypen.
+Cloud Compliance greift die gescannten Daten auf und legt sie nach Dateityp fest. Die Überprüfung Ihrer Dateitypen kann Ihnen helfen, Ihre sensiblen Daten zu kontrollieren, da Sie möglicherweise feststellen können, dass bestimmte Dateitypen nicht richtig gespeichert sind. <<Dateitypen,Siehe die Liste der Dateitypen>>.
 
 Sie können beispielsweise CAD-Dateien speichern, die sehr sensible Informationen über Ihr Unternehmen enthalten. Wenn diese nicht gesichert sind, können Sie die Kontrolle über vertrauliche Daten übernehmen, indem Sie Berechtigungen beschränken oder Dateien an einen anderen Speicherort verschieben.
 

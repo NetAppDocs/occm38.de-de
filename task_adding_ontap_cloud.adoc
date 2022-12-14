@@ -16,6 +16,7 @@ summary: Sie können vorhandene Cloud Volumes ONTAP Systeme erkennen und zu Clou
 [role="lead"]
 Sie können vorhandene Cloud Volumes ONTAP Systeme erkennen und zu Cloud Manager hinzufügen. Das könnte Sie erreichen, wenn Sie ein neues Cloud Manager System implementieren.
 
+.Bevor Sie beginnen
 Sie müssen das Kennwort für das Cloud Volumes ONTAP Admin-Benutzerkonto kennen.
 
 .Schritte
@@ -30,4 +31,5 @@ image:screenshot_discover.gif["Ein Screenshot, der einen Link zeigt, um ein vorh
 . Geben Sie auf der Seite Anmeldeinformationen das Kennwort für den Cloud Volumes ONTAP-Admin-Benutzer ein, und klicken Sie dann auf *Los*.
 
 
+.Ergebnis
 Cloud Manager fügt den Arbeitsbereich die Cloud Volumes ONTAP-Instanzen hinzu.

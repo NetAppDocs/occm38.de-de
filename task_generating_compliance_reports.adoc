@@ -16,7 +16,7 @@ summary: Cloud Compliance stellt Berichte bereit, anhand deren Sie den Status de
 [role="lead"]
 Cloud Compliance stellt Berichte bereit, anhand deren Sie den Status des Datenschutzprogramms Ihres Unternehmens besser verstehen können.
 
-Standardmäßig werden auf dem Cloud Compliance-Dashboard Compliance-Daten für alle Arbeitsumgebungen und Datenbanken angezeigt. Wenn Sie Berichte anzeigen möchten, die Daten nur für einige Arbeitsumgebungen enthalten,  the working environments for reports,Wählen Sie diese Arbeitsumgebungen aus.
+Standardmäßig werden auf dem Cloud Compliance-Dashboard Compliance-Daten für alle Arbeitsumgebungen und Datenbanken angezeigt. Wenn Sie Berichte anzeigen möchten, die Daten nur für einige Arbeitsumgebungen enthalten, <<Auswählen der Arbeitsumgebungen für Berichte,Wählen Sie diese Arbeitsumgebungen aus>>.
 
 
 NOTE: NetApp kann keine Garantie für 100 % Genauigkeit der persönlichen Daten und für sensible personenbezogene Daten, die Cloud Compliance identifiziert hat, geben. Überprüfen Sie die Informationen immer, indem Sie die Daten überprüfen.
@@ -27,7 +27,7 @@ NOTE: NetApp kann keine Garantie für 100 % Genauigkeit der persönlichen Daten 
 
 Der Datenschutzrisiko-Assessment-Bericht bietet einen Überblick über den Datenschutzrisikostatus Ihres Unternehmens, wie dies durch Datenschutzvorschriften wie DSGVO und CCPA erforderlich ist. Der Bericht enthält die folgenden Informationen:
 
-Compliance-Status:: A  score,Schweregrad Und die Verteilung von Daten, ganz gleich, ob es sich um unempfindliche, personenbezogene oder sensible Daten handelt.
+Compliance-Status:: A <<Schweregrad,Schweregrad>> Und die Verteilung von Daten, ganz gleich, ob es sich um unempfindliche, personenbezogene oder sensible Daten handelt.
 Assessment-Übersicht:: Eine Aufschlüsselung der gefundenen Arten von personenbezogenen Daten sowie der Kategorien von Daten.
 Betroffene in dieser Beurteilung:: Die Anzahl der Personen, nach Ort, für die nationale Kennungen gefunden wurden.
 
@@ -46,6 +46,7 @@ image:screenshot_privacy_risk_assessment.gif["Ein Screenshot der Registerkarte C
 
 
 
+.Ergebnis
 Cloud Compliance generiert einen PDF-Bericht, den Sie nach Bedarf prüfen und an andere Gruppen senden können.
 
 
@@ -125,6 +126,7 @@ image:screenshot_pci_dss.gif["Ein Screenshot der Registerkarte Compliance in Clo
 
 
 
+.Ergebnis
 Cloud Compliance generiert einen PDF-Bericht, den Sie nach Bedarf prüfen und an andere Gruppen senden können.
 
 
@@ -163,6 +165,7 @@ image:screenshot_hipaa.gif["Ein Screenshot der Registerkarte Compliance in Cloud
 
 
 
+.Ergebnis
 Cloud Compliance generiert einen PDF-Bericht, den Sie nach Bedarf prüfen und an andere Gruppen senden können.
 
 

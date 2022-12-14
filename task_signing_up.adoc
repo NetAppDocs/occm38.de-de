@@ -27,4 +27,5 @@ image:screenshot_cloud_central_signup.gif["Ein Screenshot des Anmeldeformulars f
 . Klicken Sie auf den Link in der E-Mail, um Ihre E-Mail-Adresse zu überprüfen.
 
 
+.Ergebnis
 Sie haben jetzt eine aktive Cloud Central-Benutzeranmeldung.

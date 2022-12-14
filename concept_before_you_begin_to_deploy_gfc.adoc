@@ -28,7 +28,7 @@ Wenn Sie Ihre Global File Cache-Bereitstellung entwerfen, müssen Sie entscheide
 * GFC Core Load Distributed-Design (Cold Standby)
 
 
-Siehe  guidelines So ermitteln Sie die maximale Anzahl an Edge-Instanzen und die Gesamtanzahl der Benutzer, die jede Konfiguration unterstützen kann:
+Siehe <<Richtlinien für die Dimensionierung>> So ermitteln Sie die maximale Anzahl an Edge-Instanzen und die Gesamtanzahl der Benutzer, die jede Konfiguration unterstützen kann:
 
 Wenden Sie sich an Ihren Global File Cache Solutions Engineer, um die besten Optionen für die Implementierung in Ihrem Unternehmen zu besprechen.
 

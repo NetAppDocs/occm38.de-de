@@ -80,6 +80,7 @@ Sie müssen diese Informationen in Cloud Manager eingeben, wenn Sie das GCP-Kont
 
 Nachdem Sie nun über einen Zugriffsschlüssel für ein Service-Konto verfügen, können Sie ihn dem Cloud Manager hinzufügen.
 
+.Was Sie benötigen
 Sie müssen einen Konnektor erstellen, bevor Sie Cloud Manager-Einstellungen ändern können. link:concept_connectors.html#how-to-create-a-connector["Erfahren Sie, wie"].
 
 .Schritte
@@ -95,6 +96,7 @@ Mithilfe der Schlüssel kann Cloud Manager einen Cloud Storage-Bucket für das D
 . Bestätigen Sie, dass die Richtlinienanforderungen erfüllt wurden, und klicken Sie dann auf *Konto erstellen*.
 
 
+.Was kommt als Nächstes?
 Sie können jetzt Daten-Tiering für einzelne Volumes auf einem Cloud Volumes ONTAP 9.6 System aktivieren, wenn Sie sie erstellen, ändern oder replizieren. Weitere Informationen finden Sie unter link:task_tiering.html["Tiering inaktiver Daten in kostengünstigen Objektspeicher"].
 
 Bevor Sie jedoch das tun, stellen Sie sicher, dass das Subnetz, in dem sich Cloud Volumes ONTAP befindet, für privaten Google-Zugriff konfiguriert ist. Anweisungen finden Sie unter https://cloud.google.com/vpc/docs/configure-private-google-access["Google Cloud Documentation: Configuring Private Google Access"^].

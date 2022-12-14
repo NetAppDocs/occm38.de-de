@@ -16,7 +16,7 @@ summary: In der GCP können Sie ein Single-Node-Cloud Volumes ONTAP-System einf�
 [role="lead"]
 In der GCP können Sie ein Single-Node-Cloud Volumes ONTAP-System einführen, indem Sie eine Arbeitsumgebung erstellen.
 
-.Was Sie und#8217;ll benötigen
+.Was Sie benötigen
 * Sie sollten ein haben link:task_creating_connectors_aws.html["Anschluss, der Ihrem Arbeitsbereich zugeordnet ist"].
 +
 
@@ -213,6 +213,7 @@ Weitere Informationen finden Sie unter link:task_planning_your_config_gcp.html#c
 
 
 
+.Ergebnis
 Cloud Manager implementiert das Cloud Volumes ONTAP System. Sie können den Fortschritt in der Timeline verfolgen.
 
 Wenn Sie Probleme bei der Implementierung des Cloud Volumes ONTAP Systems haben, lesen Sie die Fehlermeldung. Sie können auch die Arbeitsumgebung auswählen und auf *Umgebung neu erstellen* klicken.

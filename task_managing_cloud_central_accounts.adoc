@@ -49,6 +49,7 @@ image:screenshot_associate_user.gif["Ein Screenshot, der zeigt, wie ein Benutzer
 . Klicken Sie Auf * Benutzer Verknüpfen*.
 
 
+.Ergebnis
 Der Benutzer sollte eine E-Mail von NetApp Cloud Central mit dem Titel „Account Association“ erhalten. Die E-Mail enthält die für den Zugriff auf Cloud Manager erforderlichen Informationen.
 
 
@@ -69,6 +70,7 @@ image:screenshot_associate_user_workspace.gif["Ein Screenshot, der das Aktionsme
 . Klicken Sie zur Bestätigung auf *Benutzer entzuordnen* und klicken Sie zur Bestätigung auf *Mitarbeiter nicht zuordnen*.
 
 
+.Ergebnis
 Der Benutzer kann nicht mehr auf die Ressourcen in diesem Cloud Central Konto zugreifen.
 
 
@@ -90,6 +92,7 @@ image:screenshot_associate_user_workspace.gif["Ein Screenshot, der das Aktionsme
 . Wählen Sie die Arbeitsbereiche aus, die dem Benutzer zugeordnet werden sollen, und klicken Sie auf *Anwenden*.
 
 
+.Ergebnis
 Der Benutzer kann jetzt über Cloud Manager auf diese Arbeitsbereiche zugreifen, solange der Connector auch mit den Arbeitsbereichen verknüpft war.
 
 
@@ -112,7 +115,7 @@ Verwalten Sie Ihre Arbeitsbereiche, indem Sie sie erstellen, umbenennen und lös
 
 
 
-== Verwalten der Arbeitsbereiche eines Connectors
+== Verwalten von Arbeitsumgebungen eines Connectors
 
 Sie müssen den Connector mit Arbeitsbereichen verknüpfen, damit Workspace-Administratoren über Cloud Manager auf diese Arbeitsbereiche zugreifen können.
 

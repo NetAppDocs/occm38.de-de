@@ -46,7 +46,7 @@ Das AWS Benutzerkonto, das Sie für die Bereitstellung des Daten-Brokers verwend
 
 
 
-== Anforderungen für die Nutzung Ihrer eigenen IAM-Rolle mit dem AWS Data Broker
+== [[iam]]] Anforderungen, Ihre eigene IAM-Rolle mit dem AWS Daten-Broker zu nutzen
 
 Wenn Cloud Sync den Data Broker bereitstellt, erstellt es eine IAM-Rolle für die Data Brokerinstanz. Sie können den Data Broker auf Wunsch mit Ihrer eigenen IAM-Rolle bereitstellen. Sie können diese Option verwenden, wenn Ihr Unternehmen über strenge Sicherheitsrichtlinien verfügt.
 
@@ -92,7 +92,7 @@ Falls Sie keine Zugriffsschlüssel angeben möchten, klicken Sie auf den Link un
 video::video_cloud_sync.mp4[width=848,height=480]
 . Wenn Sie einen AWS-Zugriffsschlüssel eingegeben haben, wählen Sie einen Speicherort für die Instanz aus, wählen Sie ein Schlüsselpaar aus, wählen Sie aus, ob eine öffentliche IP-Adresse aktiviert werden soll, und wählen Sie dann eine vorhandene IAM-Rolle aus. Lassen Sie das Feld leer, sodass Cloud Sync die Rolle für Sie erstellt.
 +
-Wenn Sie Ihre eigene IAM-Rolle wählen, ,Sie müssen die erforderlichen Berechtigungen angeben.
+Wenn Sie Ihre eigene IAM-Rolle wählen, <<iam,Sie müssen die erforderlichen Berechtigungen angeben>>.
 
 +
 image:screenshot_aws_data_broker.gif["Einen Screenshot der Informationen, die Sie zur Bereitstellung eines Daten Brokers in AWS benötigen"]
@@ -107,4 +107,5 @@ image:screenshot_created_instance.gif["Dieser Screenshot zeigt eine erfolgreich 
 . Füllen Sie die Seiten im Assistenten aus, um die neue Synchronisierungsbeziehung zu erstellen.
 
 
+.Ergebnis
 Sie haben einen Daten-Broker in AWS implementiert und eine neue Synchronisierungsbeziehung erstellt. Sie können diesen Daten-Broker mit zusätzlichen Synchronisierungsbeziehungen verwenden.

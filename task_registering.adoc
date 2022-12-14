@@ -29,4 +29,5 @@ image:screenshot_menu_registration.gif["Screenshot: Zeigt die im Menüsymbol fü
 . Wählen Sie ein NetApp Support Site Konto aus und klicken Sie auf *Registrieren*.
 
 
+.Ergebnis
 Cloud Manager registriert das System bei NetApp.

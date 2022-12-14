@@ -143,7 +143,7 @@ Die folgenden Schritte enthalten Details zu den einzelnen möglichen Installatio
 `curl <URI> -o data_broker_installer.sh -x <proxy_username>:<proxy_password>@<proxy_host>:<proxy_port>`
 
 +
-URI:: Cloud Sync zeigt die URI der Installationsdatei auf der Seite mit den Anweisungen an, die beim Befolgen der Anweisungen zur Bereitstellung des On-Prem-Datenmakers geladen wird. Dieser URI wird hier nicht wiederholt, weil der Link dynamisch erzeugt wird und nur einmal verwendet werden kann.  the data broker,Führen Sie diese Schritte aus, um den URI aus Cloud Sync zu erhalten.
+URI:: Cloud Sync zeigt die URI der Installationsdatei auf der Seite mit den Anweisungen an, die beim Befolgen der Anweisungen zur Bereitstellung des On-Prem-Datenmakers geladen wird. Dieser URI wird hier nicht wiederholt, weil der Link dynamisch erzeugt wird und nur einmal verwendet werden kann. <<Installation des Data Brokers,Führen Sie diese Schritte aus, um den URI aus Cloud Sync zu erhalten>>.
 
 
 
@@ -173,8 +173,8 @@ chmod +x data_broker_installer.sh
 ./data_broker_installer.sh -a <aws_access_key> -s <aws_secret_key> -g <absolute_path_to_the_json_file> -h <proxy_host> -p <proxy_port> -u <proxy_username> -w <proxy_password>`
 
 +
-AWS-Schlüssel:: Dies sind die Tasten für den Benutzer, die Sie vorbereitet haben sollten  access to AWS,Befolgen Sie diese Schritte. Die AWS Schlüssel werden im Daten-Broker gespeichert, der in Ihrem lokalen oder Cloud-Netzwerk ausgeführt wird. NetApp verwendet die Schlüssel nicht außerhalb des Datenmaklers.
-JSON-Datei:: Dies ist die JSON-Datei, die einen Service-Account-Schlüssel enthält, den Sie vorbereitet haben sollten  access to Google Cloud,Befolgen Sie diese Schritte.
+AWS-Schlüssel:: Dies sind die Tasten für den Benutzer, die Sie vorbereitet haben sollten <<Zugriff auf AWS wird ermöglicht,Befolgen Sie diese Schritte>>. Die AWS Schlüssel werden im Daten-Broker gespeichert, der in Ihrem lokalen oder Cloud-Netzwerk ausgeführt wird. NetApp verwendet die Schlüssel nicht außerhalb des Datenmaklers.
+JSON-Datei:: Dies ist die JSON-Datei, die einen Service-Account-Schlüssel enthält, den Sie vorbereitet haben sollten <<Zugriff auf Google Cloud wird ermöglicht,Befolgen Sie diese Schritte>>.
 
 
 

@@ -24,8 +24,9 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Überprüfen Sie die Unterstützung Ihrer Konfiguration
+==== image:number1.png["Nummer 1"] Überprüfen Sie die Unterstützung Ihrer Konfiguration
 
+[role="quick-margin-list"]
 * Cloud Volumes ONTAP 9.6 oder höher wird in AWS ausgeführt.
 * Sie haben sich für das angemeldet https://aws.amazon.com/marketplace/pp/B07QX2QLXX["Cloud Manager Marketplace Backup-Angebot"^], Oder Sie haben gekauft link:task_managing_licenses.html#adding-and-updating-your-backup-byol-license["Und aktiviert"^] Eine BYOL-Lizenz für Backup in der Cloud von NetApp
 * Die IAM-Rolle, die Cloud Manager Berechtigungen bereitstellt, umfasst die neuesten S3-Berechtigungen https://mysupport.netapp.com/site/info/cloud-manager-policies["Cloud Manager-Richtlinie"^].
@@ -33,8 +34,9 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Aktivieren Sie Backup in der Cloud auf Ihrem neuen oder vorhandenen System
+==== image:number2.png["Nummer 2"] Aktivieren Sie Backup in der Cloud auf Ihrem neuen oder vorhandenen System
 
+[role="quick-margin-list"]
 * Neue Systeme: Backup in der Cloud ist standardmäßig im Assistenten für die Arbeitsumgebung aktiviert. Achten Sie darauf, dass die Option aktiviert bleibt.
 * Bestehende Systeme: Wählen Sie die Arbeitsumgebung aus und klicken Sie auf *Aktivieren* neben dem Dienst Backup to Cloud im rechten Fenster, und folgen Sie dann dem Setup-Assistenten.
 +
@@ -44,7 +46,7 @@ image:screenshot_backup_to_s3_icon.gif["Ein Screenshot, der die Schaltfläche Ba
 
 
 
-==== Definieren der Backup-Richtlinie
+==== image:number3.png["Nummer 3"] Definieren der Backup-Richtlinie
 
 [role="quick-margin-para"]
 Die Standardrichtlinie sichert Volumes täglich und speichert die letzten 30 Backup-Kopien jedes Volumes. Ändern Sie zu wöchentlichen oder monatlichen Backups oder wählen Sie eine der systemdefinierten Richtlinien mit mehr Optionen aus. Sie können auch die Anzahl der beizubehaltenden Backup-Kopien ändern.
@@ -54,14 +56,14 @@ image:screenshot_backup_settings.png["Ein Screenshot mit den Einstellungen für 
 
 
 
-==== Wählen Sie die Volumes aus, die Sie sichern möchten
+==== image:number4.png["Nummer 4"] Wählen Sie die Volumes aus, die Sie sichern möchten
 
 [role="quick-margin-para"]
 Legen Sie fest, welche Volumes Sie in der Seite Volumes auswählen sichern möchten.
 
 
 
-==== Stellen Sie Ihre Daten nach Bedarf wieder her
+==== image:number5.png["Nummer 5"] Stellen Sie Ihre Daten nach Bedarf wieder her
 
 [role="quick-margin-para"]
 Wählen Sie in der Sicherungsliste ein Volume aus, wählen Sie ein Backup aus und stellen Sie dann Daten aus dem Backup auf ein neues Volume wieder her.
@@ -137,8 +139,10 @@ image:screenshot_backup_to_s3.gif["Zeigt die Option Backup in der Cloud im Assis
 . Führen Sie die Seiten im Assistenten aus, um das System bereitzustellen.
 
 
+.Ergebnis
 Backup in der Cloud ist auf dem System aktiviert und sichert Volumes täglich und speichert die letzten 30 Backup-Kopien.
 
+.Was kommt als Nächstes?
 link:task_managing_backups.html["Sie können Backups managen, indem Sie den Backup-Zeitplan ändern, Volumes wiederherstellen und mehr"^].
 
 
@@ -165,6 +169,8 @@ image:screenshot_backup_select_volumes.png["Ein Screenshot, wie die Volumes ausg
 
 
 
+.Ergebnis
 Backup in der Cloud beginnt die ersten Backups jedes ausgewählten Volumes.
 
+.Was kommt als Nächstes?
 link:task_managing_backups.html["Sie können Backups managen, indem Sie den Backup-Zeitplan ändern, Volumes wiederherstellen und mehr"^].

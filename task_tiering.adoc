@@ -20,27 +20,29 @@ Zum Einrichten von Data Tiering müssen Sie lediglich Folgendes tun:
 
 
 
-==== Wählen Sie eine unterstützte Konfiguration aus
+==== image:number1.png["Nummer 1"] Wählen Sie eine unterstützte Konfiguration aus
 
 [role="quick-margin-para"]
 Die meisten Konfigurationen werden unterstützt. Wenn Sie über ein Cloud Volumes ONTAP Standard-, Premium- oder BYOL-System mit der aktuellsten Version verfügen, sollten Sie sich dafür entscheiden. link:task_tiering.html#configurations-that-support-data-tiering["Weitere Informationen ."].
 
 
 
-==== Stellen Sie die Konnektivität zwischen Cloud Volumes ONTAP und Objekt-Storage sicher
+==== image:number2.png["Nummer 2"] Stellen Sie die Konnektivität zwischen Cloud Volumes ONTAP und Objekt-Storage sicher
 
-* Für AWS ist ein VPC Endpunkt zu S3 erforderlich.  to tier cold data to AWS S3,Weitere Informationen ..
-* Bei Azure sind keine Vorgänge mehr notwendig, solange Cloud Manager über die erforderlichen Berechtigungen verfügt.  to tier cold data to Azure Blob storage,Weitere Informationen ..
-* Für GCP müssen Sie das Subnetz für privaten Google Access konfigurieren und ein Service-Konto einrichten.  to tier cold data to a Google Cloud Storage bucket,Weitere Informationen ..
+[role="quick-margin-list"]
+* Für AWS ist ein VPC Endpunkt zu S3 erforderlich. <<Anforderungen für das Tiering selten genutzter Daten in AWS S3,Weitere Informationen .>>.
+* Bei Azure sind keine Vorgänge mehr notwendig, solange Cloud Manager über die erforderlichen Berechtigungen verfügt. <<Tiering selten genutzter Daten auf Azure Blob Storage,Weitere Informationen .>>.
+* Für GCP müssen Sie das Subnetz für privaten Google Access konfigurieren und ein Service-Konto einrichten. <<Anforderungen für das Tiering selten genutzter Daten in einen Google Cloud Storage Bucket,Weitere Informationen .>>.
 
 
 
 
-==== Wählen Sie eine Tiering-Richtlinie beim Erstellen, Ändern oder Replizieren eines Volume
+==== image:number3.png["Nummer 3"] Wählen Sie eine Tiering-Richtlinie beim Erstellen, Ändern oder Replizieren eines Volume
 
 [role="quick-margin-para"]
 Cloud Manager fordert Sie auf, beim Erstellen, Ändern oder Replizieren eines Volume eine Tiering-Richtlinie auszuwählen.
 
+[role="quick-margin-list"]
 * link:task_tiering.html#tiering-data-from-read-write-volumes["Tiering von Daten auf Lese-/Schreib-Volumes"]
 * link:task_tiering.html#tiering-data-from-data-protection-volumes["Tiering von Daten auf Data-Protection-Volumes"]
 
@@ -205,4 +207,4 @@ Informationen zu unterstützten Speicherklassen finden Sie unter link:concept_da
 
 Nein, Sie können das Daten-Tiering nicht auf einem vorhandenen Aggregat aktivieren. Sie können Daten-Tiering nur auf neuen Aggregaten aktivieren.
 
-Sie können auch Daten-Tiering auf einem neuen Aggregat aktivieren link:task_provisioning_storage.html#creating-aggregates["Indem Sie ein Aggregat selbst erstellen"] Oder  data from read-write volumes,Indem ein neues Volume mit aktiviertem Daten-Tiering erstellt wird. Cloud Manager würde dann ein neues Aggregat für das Volume erstellen, wenn es bereits ein Daten-Tiering-fähiges Aggregat gibt.
+Sie können auch Daten-Tiering auf einem neuen Aggregat aktivieren link:task_provisioning_storage.html#creating-aggregates["Indem Sie ein Aggregat selbst erstellen"] Oder <<Tiering von Daten aus Volumes mit Lese- und Schreibvorgängen,Indem ein neues Volume mit aktiviertem Daten-Tiering erstellt wird>>. Cloud Manager würde dann ein neues Aggregat für das Volume erstellen, wenn es bereits ein Daten-Tiering-fähiges Aggregat gibt.

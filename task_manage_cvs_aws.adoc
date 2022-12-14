@@ -27,6 +27,7 @@ Wenn bereits Cloud Volumes für dieses Abonnement vorhanden sind, werden die Vol
 
 TIP: Wenn Sie über Abonnements und Volumes in mehreren AWS Regionen verfügen, müssen Sie diese Aufgabe für jede Region ausführen.
 
+.Bevor Sie beginnen
 Wenn Sie in jeder Region ein Abonnement hinzufügen, müssen Sie über die folgenden Informationen verfügen:
 
 * Cloud Volumes API-Schlüssel und geheimer Schlüssel: https://docs.netapp.com/us-en/cloud_volumes/aws/reference_cloud_volume_apis.html#finding-the-api-url-api-key-and-secret-key["In der Dokumentation zu Cloud Volumes Service für AWS erhalten Sie diese Informationen"^].
@@ -52,6 +53,7 @@ image:screenshot_add_cvs_aws_credentials.png["Screenshot mit den Zugangsdaten f�
 
 
 
+.Ergebnis
 In Cloud Manager wird die Konfiguration von Cloud Volumes Service für AWS auf der Seite Arbeitsumgebungen angezeigt.
 
 image:screenshot_cvs_aws_cloud.gif["Einen Screenshot von Cloud Volumes Service für AWS auf der Seite „Arbeitsumgebungen“."]
@@ -183,6 +185,7 @@ Siehe link:task_manage_cloud_volumes_snapshots.html#create_or_modify_a_snapshot_
 
 Das neue Volumen wird der Arbeitsumgebung hinzugefügt.
 
+.Nachdem Sie fertig sind
 Wenn dies das erste Volume ist, das in diesem AWS-Abonnement erstellt wurde, müssen Sie die AWS Management Console starten, damit Sie die beiden virtuellen Schnittstellen akzeptieren können, die in dieser AWS Region zum Verbinden aller Cloud Volumes verwendet werden. Siehe https://docs.netapp.com/us-en/cloud_volumes/aws/media/cvs_aws_account_setup.pdf["NetApp Cloud Volumes Service für AWS – Account Setup Guide"^] Entsprechende Details.
 
 Sie müssen die Schnittstellen innerhalb von 10 Minuten akzeptieren, nachdem Sie auf die Schaltfläche *Add Volume* geklickt haben, oder das System hat möglicherweise eine Auszeit. Sollte dies passieren, senden Sie eine E-Mail an cvs-support@netapp.com mit Ihrer AWS Kunden-ID und der NetApp Seriennummer. Der Support behebt das Problem, und Sie können den Onboarding-Prozess neu starten.

@@ -32,35 +32,35 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 
 
 
-==== Implementieren Sie Cloud Volumes ONTAP
+==== image:number1.png["Nummer 1"] Implementieren Sie Cloud Volumes ONTAP
 
 [role="quick-margin-para"]
 Implementierung von Cloud Volumes ONTAP in Azure oder AWS und Konfiguration von SMB-Dateifreigaben. Weitere Informationen finden Sie unter link:task_deploying_otc_azure.html["Starten von Cloud Volumes ONTAP in Azure"^] Oder link:task_deploying_otc_aws.html["Starten von Cloud Volumes ONTAP in AWS"^].
 
 
 
-==== Stellen Sie den Global File Cache Management Server bereit
+==== image:number2.png["Nummer 2"] Stellen Sie den Global File Cache Management Server bereit
 
 [role="quick-margin-para"]
 Stellen Sie eine Instanz des Global File Cache Management-Servers in derselben Arbeitsumgebung bereit wie die Instanz von Cloud Volumes ONTAP.
 
 
 
-==== Implementieren Sie den Global File Cache Core
+==== image:number3.png["Nummer 3"] Implementieren Sie den Global File Cache Core
 
 [role="quick-margin-para"]
 Stellen Sie eine oder mehrere Instanzen des globalen Datei-Cache-Kerns in derselben Arbeitsumgebung wie die Instanz von Cloud Volumes ONTAP bereit und fügen Sie sie in Ihre Active Directory-Domäne ein.
 
 
 
-==== Lizenz Für Globalen Datei-Cache
+==== image:number4.png["Nummer 4"] Lizenz Für Globalen Datei-Cache
 
 [role="quick-margin-para"]
 Konfigurieren Sie den Service für Global File Cache License Management Server (LMS) auf einer globalen File Cache Core-Instanz. Sie benötigen Ihre NSS-Anmeldedaten oder eine von NetApp bereitgestellte Kunden-ID, um Ihr Abonnement zu aktivieren.
 
 
 
-==== Implementieren Sie die globalen File Cache Edge-Instanzen
+==== image:number5.png["Nummer 5"] Implementieren Sie die globalen File Cache Edge-Instanzen
 
 [role="quick-margin-para"]
 Siehe link:task_deploy_gfc_edge_instances.html["Bereitstellung von Global File Cache Edge-Instanzen"^] Um die Global File Cache Edge-Instanzen an jedem Remote-Standort bereitzustellen. Dieser Schritt wurde nicht mit Cloud Manager ausgeführt.
@@ -162,6 +162,7 @@ image:screenshot_gfc_license2.png["Ein Screenshot, wie Sie eine LMS-Kunden-ID vo
 
 
 
+.Nächste Schritte
 Wenn Sie festgestellt haben, dass Sie mehrere Global File Cache-Kerne bereitstellen müssen, um Ihre Konfiguration zu unterstützen, klicken Sie im Dashboard auf *Core-Instanz hinzufügen* und folgen Sie dem Bereitstellungsassistenten.
 
 Nachdem Sie die Kernbereitstellung abgeschlossen haben, müssen Sie sie durchführen link:download_gfc_resources.html["Implementieren Sie die globalen File Cache Edge-Instanzen"^] In allen Ihren Remote-Standorten aus.

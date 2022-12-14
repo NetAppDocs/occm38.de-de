@@ -30,7 +30,7 @@ Cloud Manager zeigt eine Benachrichtigung in den Arbeitsumgebungen von Cloud Vol
 
 image:screenshot_cot_upgrade.gif["Screenshot: Zeigt die Benachrichtigung \"Neue verfügbare Version\" an, die auf der Seite \"Arbeitsumgebungen\" angezeigt wird, nachdem Sie eine Arbeitsumgebung ausgewählt haben."]
 
-Sie können den Upgrade-Prozess von dieser Benachrichtigung aus starten, die den Prozess automatisiert, indem Sie das Software-Image aus einem S3-Bucket beziehen, das Image installieren und das System dann neu starten. Weitere Informationen finden Sie unter  Cloud Volumes ONTAP from Cloud Manager notifications.
+Sie können den Upgrade-Prozess von dieser Benachrichtigung aus starten, die den Prozess automatisiert, indem Sie das Software-Image aus einem S3-Bucket beziehen, das Image installieren und das System dann neu starten. Weitere Informationen finden Sie unter <<Aktualisieren von Cloud Volumes ONTAP über Cloud Manager Benachrichtigungen>>.
 
 
 NOTE: Bei HA-Systemen in AWS kann Cloud Manager im Rahmen des Upgrades den HA-Mediator aktualisieren.
@@ -46,14 +46,14 @@ Cloud Manager bietet außerdem die folgenden erweiterten Optionen für die Aktua
 Diese Option ist hilfreich, wenn Cloud Manager nicht auf den S3-Bucket zugreifen kann, um die Software zu aktualisieren, wenn Ihnen ein Patch zur Verfügung steht oder wenn Sie die Software auf eine bestimmte Version herunterstufen möchten.
 
 +
-Weitere Informationen finden Sie unter  or downgrading Cloud Volumes ONTAP by using an HTTP or FTP server.
+Weitere Informationen finden Sie unter <<Upgrade oder Downgrade von Cloud Volumes ONTAP mit einem HTTP- oder FTP-Server>>.
 
 * Software-Updates mit dem alternativen Image auf dem System
 +
 Mit dieser Option können Sie auf die vorherige Version zurückstufen, indem Sie das alternative Software-Image zum Standardbild machen. Diese Option ist für HA-Paare nicht verfügbar.
 
 +
-Weitere Informationen finden Sie unter  Cloud Volumes ONTAP by using a local image.
+Weitere Informationen finden Sie unter <<Downgrade von Cloud Volumes ONTAP mit einem lokalen Image>>.
 
 
 
@@ -63,11 +63,11 @@ Weitere Informationen finden Sie unter  Cloud Volumes ONTAP by using a local ima
 
 Bevor Sie ein Upgrade oder Downgrade durchführen, müssen Sie sicherstellen, dass Ihre Systeme bereit sind, und alle erforderlichen Konfigurationsänderungen vornehmen.
 
-*  for downtime
-*  version requirements
-*  that automatic giveback is still enabled
-*  SnapMirror transfers
-*  that aggregates are online
+* <<Planung von Ausfallzeiten>>
+* <<Überprüfen der Versionsanforderungen>>
+* <<Es wird sichergestellt, dass das automatische Giveback weiterhin aktiviert ist>>
+* <<SnapMirror Übertragungen werden ausgesetzt>>
+* <<Überprüfen, ob Aggregate online sind>>
 
 
 
@@ -100,6 +100,7 @@ http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-hacg/GUID-3F50DE15-0D
 
 Wenn ein Cloud Volumes ONTAP System über aktive SnapMirror Beziehungen verfügt, sollten Sie die Übertragungen am besten unterbrechen, bevor Sie die Cloud Volumes ONTAP Software aktualisieren. Das Anhalten der Übertragungen verhindert SnapMirror Ausfälle. Sie müssen die Übertragungen vom Zielsystem anhalten.
 
+.Über diese Aufgabe
 In diesen Schritten wird die Verwendung von System Manager für Version 9.3 und höher beschrieben.
 
 .Schritte
@@ -114,6 +115,7 @@ In diesen Schritten wird die Verwendung von System Manager für Version 9.3 und 
 
 Aggregate für Cloud Volumes ONTAP muss online sein, bevor Sie die Software aktualisieren. Aggregate sollten in den meisten Konfigurationen online sein. Wenn dies nicht der Fall ist, sollten Sie sie jedoch online stellen.
 
+.Über diese Aufgabe
 In diesen Schritten wird die Verwendung von System Manager für Version 9.3 und höher beschrieben.
 
 .Schritte
@@ -137,6 +139,7 @@ image:screenshot_aggr_state.gif["Screenshot: Zeigt das Feld Status an, wenn Sie 
 
 Cloud Manager benachrichtigt Sie, wenn eine neue Version von Cloud Volumes ONTAP verfügbar ist. Klicken Sie auf die Benachrichtigung, um den Aktualisierungsprozess zu starten.
 
+.Bevor Sie beginnen
 Cloud Manager-Vorgänge wie die Erstellung von Volumes oder Aggregaten dürfen für das Cloud Volumes ONTAP System nicht ausgeführt werden.
 
 .Schritte
@@ -154,8 +157,10 @@ image:screenshot_cot_upgrade.gif["Screenshot: Zeigt die Benachrichtigung \"Neue 
 . Lesen Sie auf der Seite Prüfen und genehmigen die wichtigen Hinweise, wählen Sie *Ich verstehe...* und klicken Sie dann auf *Go*.
 
 
+.Ergebnis
 Cloud Manager startet das Software-Upgrade. Nach Abschluss der Softwareaktualisierung können Sie in der Arbeitsumgebung Aktionen ausführen.
 
+.Nachdem Sie fertig sind
 Wenn Sie SnapMirror Transfers ausgesetzt haben, setzen Sie die Transfers mit System Manager fort.
 
 
@@ -179,8 +184,10 @@ NOTE: Die vordefinierte Sicherheitsgruppe Cloud Volumes ONTAP ermöglicht standa
 . Klicken Sie zur Bestätigung auf *Weiter*.
 
 
+.Ergebnis
 Cloud Manager startet das Softwareupdate. Nach Abschluss der Softwareaktualisierung können Sie in der Arbeitsumgebung Aktionen ausführen.
 
+.Nachdem Sie fertig sind
 Wenn Sie SnapMirror Transfers ausgesetzt haben, setzen Sie die Transfers mit System Manager fort.
 
 
@@ -191,6 +198,7 @@ Der Wechsel von Cloud Volumes ONTAP auf eine frühere Version derselben Versions
 
 Jedes Cloud Volumes ONTAP System kann zwei Software-Images enthalten: Das aktuelle Image, das ausgeführt wird, und ein alternatives Image, das Sie booten können. Cloud Manager kann das alternative Bild als Standardbild ändern. Mit dieser Option können Sie auf die vorherige Version von Cloud Volumes ONTAP zurückstufen, wenn Probleme mit dem aktuellen Image auftreten.
 
+.Über diese Aufgabe
 Dieser Downgrade-Prozess ist nur für einzelne Cloud Volumes ONTAP Systeme verfügbar. Es ist nicht für HA-Paare verfügbar.
 
 .Schritte
@@ -199,6 +207,8 @@ Dieser Downgrade-Prozess ist nur für einzelne Cloud Volumes ONTAP Systeme verf�
 . Klicken Sie zur Bestätigung auf *Weiter*.
 
 
+.Ergebnis
 Cloud Manager startet das Softwareupdate. Nach Abschluss der Softwareaktualisierung können Sie in der Arbeitsumgebung Aktionen ausführen.
 
+.Nachdem Sie fertig sind
 Wenn Sie SnapMirror Transfers ausgesetzt haben, setzen Sie die Transfers mit System Manager fort.

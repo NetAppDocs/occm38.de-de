@@ -17,8 +17,8 @@ summary: 'Cloud Sync kann Zugriffssteuerungslisten (ACLs) zwischen einer SMB-Que
 Cloud Sync kann Zugriffssteuerungslisten (ACLs) zwischen einer SMB-Quell-Freigabe und einer SMB-Zielfreigabe kopieren. Bei Bedarf können Sie die ACLs manuell mithilfe von robocopy beibehalten.
 
 .Wahlmöglichkeiten
-*  up Cloud Sync to copy ACLs between SMB servers,Richten Sie Cloud Sync so ein, dass ACLs automatisch kopiert werden
-*  copying ACLs,Kopieren Sie die ACLs manuell
+* <<Cloud Sync einrichten, um ACLs zwischen SMB-Servern zu kopieren,Richten Sie Cloud Sync so ein, dass ACLs automatisch kopiert werden>>
+* <<Manuelles Kopieren von ACLs,Kopieren Sie die ACLs manuell>>
 
 
 
@@ -29,7 +29,7 @@ Kopieren Sie ACLs zwischen SMB-Servern, indem Sie eine Einstellung aktivieren, w
 
 Beachten Sie, dass diese Funktion für neue Synchronisierungsbeziehungen verfügbar ist, die nach der Version vom 23. Februar 2020 erstellt wurden. Wenn Sie möchten, um dieses Feature mit bestehenden Beziehungen vor diesem Datum erstellt verwenden, dann müssen Sie die Beziehung neu erstellen.
 
-.Was Sie und#8217;ll benötigen
+.Was Sie benötigen
 * Eine neue Sync-Beziehung oder eine bestehende Sync-Beziehung, die nach dem Release des 23. Februar 2020 erstellt wurde.
 * Jeder Typ von Daten-Broker.
 +
@@ -60,6 +60,7 @@ image:screenshot_acl_support.gif["Ein Screenshot, in dem die Option zum Aktivier
 . Klicken Sie Auf *Einstellungen Speichern*.
 
 
+.Ergebnis
 Beim Synchronisieren von Daten behält Cloud Sync die ACLs zwischen den Quell- und Ziel-SMB-Freigaben vor.
 
 

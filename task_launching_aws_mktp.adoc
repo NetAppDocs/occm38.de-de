@@ -77,4 +77,5 @@ image:screenshot_set_up_cloud_manager.gif["Ein Screenshot, in dem der Bildschirm
 
 
 
+.Ergebnis
 Der Connector ist jetzt mit Ihrem Cloud Central-Konto installiert und eingerichtet. Cloud Manager nutzt diesen Connector automatisch bei der Erstellung neuer Arbeitsumgebungen. Aber wenn Sie mehr als einen Connector haben, müssen Sie dies tun link:task_managing_connectors.html["Wechseln Sie zwischen ihnen"].

@@ -23,8 +23,8 @@ NOTE: Bei der Bereitstellung eines Connectors von Cloud Manager fügte Cloud Man
 
 *Auswahl*
 
-*  permissions by providing AWS keys
-*  permissions by assuming IAM roles in other accounts
+* <<Erteilen von Berechtigungen durch die Bereitstellung von AWS Schlüsseln>>
+* <<Gewährung von Berechtigungen durch Annahme von IAM-Rollen in anderen Konten>>
 
 
 .Wie kann ich meine AWS Zugangsdaten sicher drehen?
@@ -56,7 +56,8 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html["AW
 
 
 
-Das Konto verfügt nun über die erforderlichen Berechtigungen.  AWS credentials to Cloud Manager,Sie können es jetzt zu Cloud Manager hinzufügen.
+.Ergebnis
+Das Konto verfügt nun über die erforderlichen Berechtigungen. <<AWS Zugangsdaten zu Cloud Manager hinzufügen,Sie können es jetzt zu Cloud Manager hinzufügen>>.
 
 
 
@@ -100,7 +101,8 @@ image:screenshot_iam_create_role.gif["Ein Screenshot, der die Seite „Rolle ers
 
 
 
-Das Konto verfügt nun über die erforderlichen Berechtigungen.  AWS credentials to Cloud Manager,Sie können es jetzt zu Cloud Manager hinzufügen.
+.Ergebnis
+Das Konto verfügt nun über die erforderlichen Berechtigungen. <<AWS Zugangsdaten zu Cloud Manager hinzufügen,Sie können es jetzt zu Cloud Manager hinzufügen>>.
 
 
 
@@ -123,6 +125,7 @@ Um ein Pay-as-you-go Cloud Volumes ONTAP System zu erstellen, müssen AWS Zugang
 . Klicken Sie Auf *Hinzufügen*.
 
 
+.Ergebnis
 Sie können jetzt bei der Erstellung einer neuen Arbeitsumgebung auf eine andere Gruppe von Anmeldeinformationen von der Seite Details und Anmeldeinformationen wechseln:
 
 image:screenshot_accounts_switch_aws.gif["Ein Screenshot, in dem die Auswahl zwischen Cloud-Provider-Konten angezeigt wird, nachdem Sie auf der Seite Details  Credentials auf Switch Account geklickt haben."]
@@ -139,6 +142,7 @@ Es gibt zwei Szenarien, in denen Sie ein AWS Marketplace-Abonnement verknüpfen 
 * Sie möchten ein vorhandenes AWS Marketplace Abonnement durch ein neues Abonnement ersetzen.
 
 
+.Was Sie benötigen
 Sie müssen einen Konnektor erstellen, bevor Sie Cloud Manager-Einstellungen ändern können. link:concept_connectors.html#how-to-create-a-connector["Erfahren Sie, wie"].
 
 .Schritte
