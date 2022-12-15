@@ -3383,7 +3383,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-16 08:47:44 +0000">11/16/2022</time>
+    <time datetime="2022-12-14 18:18:34 +0000">12/14/2022</time>
     
   
 
@@ -3407,25 +3407,25 @@
 <p>Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den verbleibenden Abschnitten, um ausführliche Informationen zu erhalten.</p>
 </div>
 <div class="sect3">
-<h4 id="s3-anforderungen-in-ihrer-cloud-umgebung-einrichten">S3-Anforderungen in Ihrer Cloud-Umgebung einrichten</h4>
+<h4 id="s3-anforderungen-in-ihrer-cloud-umgebung-einrichten"><span class="image"><img src="./media/number1.png" alt="Nummer 1"></span> S3-Anforderungen in Ihrer Cloud-Umgebung einrichten</h4>
 <div class="paragraph quick-margin-para">
-<p>Stellen Sie sicher, dass Ihre Cloud-Umgebung die Anforderungen für Cloud Compliance erfüllen kann, einschließlich der Vorbereitung einer IAM-Rolle und der Einrichtung der Konnektivität von Cloud Compliance bis S3.  S3 prerequisites,Eine vollständige Liste finden Sie hier.</p>
+<p>Stellen Sie sicher, dass Ihre Cloud-Umgebung die Anforderungen für Cloud Compliance erfüllen kann, einschließlich der Vorbereitung einer IAM-Rolle und der Einrichtung der Konnektivität von Cloud Compliance bis S3. <a href="#überprüfen-der-s3-voraussetzungen">Eine vollständige Liste finden Sie hier</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="implementieren-der-cloud-compliance-instanz">Implementieren der Cloud Compliance-Instanz</h4>
+<h4 id="implementieren-der-cloud-compliance-instanz"><span class="image"><img src="./media/number2.png" alt="Nummer 2"></span> Implementieren der Cloud Compliance-Instanz</h4>
 <div class="paragraph quick-margin-para">
 <p><a href="task_deploy_cloud_compliance.html" target="_blank" rel="noopener">"Cloud Compliance in Cloud Manager implementieren"</a> Falls noch keine Instanz implementiert wurde.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="aktivieren-sie-compliance-in-ihrer-s3-arbeitsumgebung">Aktivieren Sie Compliance in Ihrer S3-Arbeitsumgebung</h4>
+<h4 id="aktivieren-sie-compliance-in-ihrer-s3-arbeitsumgebung"><span class="image"><img src="./media/number3.png" alt="Nummer 3"></span> Aktivieren Sie Compliance in Ihrer S3-Arbeitsumgebung</h4>
 <div class="paragraph quick-margin-para">
 <p>Wählen Sie die Amazon S3-Arbeitsumgebung aus, klicken Sie auf <strong>Compliance aktivieren</strong> und wählen Sie eine IAM-Rolle aus, die die erforderlichen Berechtigungen enthält.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="wählen-sie-die-zu-scannenden-buckets-aus">Wählen Sie die zu scannenden Buckets aus</h4>
+<h4 id="wählen-sie-die-zu-scannenden-buckets-aus"><span class="image"><img src="./media/number4.png" alt="Nummer 4"></span> Wählen Sie die zu scannenden Buckets aus</h4>
 <div class="paragraph quick-margin-para">
 <p>Wählen Sie die Buckets aus, die Sie scannen möchten, und Cloud Compliance beginnt mit dem Scannen.</p>
 </div>
@@ -3547,7 +3547,7 @@ Sie können keinen Proxy verwenden, um über das Internet nach S3 zu gelangen.
 </div>
 </li>
 <li>
-<p>Weisen Sie bei der entsprechenden Aufforderung der Cloud Compliance-Instanz eine IAM-Rolle zu  specific to S3,Die erforderlichen Berechtigungen.</p>
+<p>Weisen Sie bei der entsprechenden Aufforderung der Cloud Compliance-Instanz eine IAM-Rolle zu <a href="#Requirements specific to S3">Die erforderlichen Berechtigungen</a>.</p>
 <div class="paragraph">
 <p><span class="image"><img src="./media/screenshot_s3_compliance_iam_role.gif" alt="Screenshot zur Eingabe der AWS IAM-Rolle für Cloud Compliance"></span></p>
 </div>
@@ -3570,6 +3570,7 @@ Sie können Compliance-Scans für eine Arbeitsumgebung auch über die Seite Scan
 </table>
 </div>
 <div class="paragraph">
+<div class="title">Ergebnis</div>
 <p>Cloud Manager weist der Instanz die IAM-Rolle zu.</p>
 </div>
 </div>
@@ -3584,7 +3585,7 @@ Sie können Compliance-Scans für eine Arbeitsumgebung auch über die Seite Scan
 <p>Wenn Cloud Manager im AWS Konto ausgeführt wird, das über die S3-Buckets verfügt, die Sie scannen möchten, erkennt es diese Buckets und zeigt sie in einer Amazon S3-Arbeitsumgebung an.</p>
 </div>
 <div class="paragraph">
-<p>Auch Cloud Compliance kann  buckets from additional AWS accounts,Scannen von S3-Buckets, die in unterschiedlichen AWS Konten vorhanden sind.</p>
+<p>Auch Cloud Compliance kann <a href="#scannen-von-buckets-für-weitere-aws-konten">Scannen von S3-Buckets, die in unterschiedlichen AWS Konten vorhanden sind</a>.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Schritte</div>
@@ -3607,6 +3608,7 @@ Sie können Compliance-Scans für eine Arbeitsumgebung auch über die Seite Scan
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Ergebnis</div>
 <p>Cloud Compliance beginnt mit dem Scannen der aktivierten S3-Buckets. Wenn Fehler auftreten, werden sie neben der erforderlichen Aktion zur Behebung des Fehlers in der Spalte Status angezeigt.</p>
 </div>
 </div>
@@ -3717,6 +3719,7 @@ Sie können Compliance-Scans für eine Arbeitsumgebung auch über die Seite Scan
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Ergebnis</div>
 <p>Cloud Compliance beginnt mit dem Scannen der neuen aktivierten S3-Buckets.</p>
 </div>
 </div>

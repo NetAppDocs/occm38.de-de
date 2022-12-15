@@ -3383,7 +3383,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-16 08:47:44 +0000">11/16/2022</time>
+    <time datetime="2022-12-14 18:18:34 +0000">12/14/2022</time>
     
   
 
@@ -3422,25 +3422,25 @@ Die Kubernetes-Funktion wird nicht durch lokale ONTAP-Cluster unterstützt. Es w
 <p>Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den verbleibenden Abschnitten, um ausführliche Informationen zu erhalten.</p>
 </div>
 <div class="sect3">
-<h4 id="voraussetzungen-prüfen">Voraussetzungen prüfen</h4>
+<h4 id="voraussetzungen-prüfen"><span class="image"><img src="./media/number1.png" alt="Nummer 1"></span> Voraussetzungen prüfen</h4>
 <div class="paragraph quick-margin-para">
-<p>Stellen Sie sicher, dass Ihre Umgebung die Voraussetzungen erfüllt, einschließlich Konnektivität zwischen Kubernetes-Clustern und Cloud Volumes ONTAP, Konnektivität zwischen Kubernetes-Clustern und einem Connector, mindestens Kubernetes-Version von 1.14, mindestens einen Worker-Node in einem Cluster und mehr.  prerequisites,Eine vollständige Liste finden Sie hier.</p>
+<p>Stellen Sie sicher, dass Ihre Umgebung die Voraussetzungen erfüllt, einschließlich Konnektivität zwischen Kubernetes-Clustern und Cloud Volumes ONTAP, Konnektivität zwischen Kubernetes-Clustern und einem Connector, mindestens Kubernetes-Version von 1.14, mindestens einen Worker-Node in einem Cluster und mehr. <a href="#voraussetzungen-prüfen-2">Eine vollständige Liste finden Sie hier</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="fügen-sie-ihre-kubernetes-cluster-zu-cloud-manager-hinzu">Fügen Sie Ihre Kubernetes Cluster zu Cloud Manager hinzu</h4>
+<h4 id="fügen-sie-ihre-kubernetes-cluster-zu-cloud-manager-hinzu"><span class="image"><img src="./media/number2.png" alt="Nummer 2"></span> Fügen Sie Ihre Kubernetes Cluster zu Cloud Manager hinzu</h4>
 <div class="paragraph quick-margin-para">
 <p>Klicken Sie in Cloud Manager auf <strong>Kubernetes</strong>, um Cluster direkt aus dem Managed Service Ihres Cloud-Providers zu ermitteln, oder importieren Sie einen Cluster, indem Sie eine kubeconfig-Datei bereitstellen.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="verbinden-sie-die-cluster-mit-cloud-volumes-ontap">Verbinden Sie die Cluster mit Cloud Volumes ONTAP</h4>
+<h4 id="verbinden-sie-die-cluster-mit-cloud-volumes-ontap"><span class="image"><img src="./media/number3.png" alt="Nummer 3"></span> Verbinden Sie die Cluster mit Cloud Volumes ONTAP</h4>
 <div class="paragraph quick-margin-para">
 <p>Klicken Sie nach dem Hinzufügen eines Kubernetes-Clusters auf <strong>Verbinden mit der Arbeitsumgebung</strong>, um den Cluster mit einem oder mehreren Cloud Volumes ONTAP-Systemen zu verbinden.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="starten-sie-die-bereitstellung-persistenter-volumes">Starten Sie die Bereitstellung persistenter Volumes</h4>
+<h4 id="starten-sie-die-bereitstellung-persistenter-volumes"><span class="image"><img src="./media/number4.png" alt="Nummer 4"></span> Starten Sie die Bereitstellung persistenter Volumes</h4>
 <div class="paragraph quick-margin-para">
 <p>Persistente Volumes können über native Kubernetes-Schnittstellen und -Konstrukte angefordert und gemanagt werden. Cloud Manager erstellt NFS- und iSCSI-Storage-Klassen, die bei der Bereitstellung persistenter Volumes genutzt werden können.</p>
 </div>
@@ -3608,6 +3608,7 @@ Die Kubernetes-Funktion wird nicht durch lokale ONTAP-Cluster unterstützt. Es w
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Ergebnis</div>
 <p>Cloud Manager fügt den Kubernetes-Cluster hinzu. Sie können das Cluster jetzt mit Cloud Volumes ONTAP verbinden.</p>
 </div>
 </div>
@@ -3651,6 +3652,7 @@ Die Kubernetes-Funktion wird nicht durch lokale ONTAP-Cluster unterstützt. Es w
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Ergebnis</div>
 <p>Cloud Manager verbindet die Arbeitsumgebung mit dem Cluster, was bis zu 15 Minuten dauert.</p>
 </div>
 </div>
@@ -3733,6 +3735,7 @@ Die Kubernetes-Funktion wird nicht durch lokale ONTAP-Cluster unterstützt. Es w
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Ergebnis</div>
 <p>Cloud Manager aktualisiert die Informationen zum Kubernetes-Cluster auf der Grundlage der neuesten kubeconfig Datei.</p>
 </div>
 </div>
@@ -3762,6 +3765,7 @@ Die Kubernetes-Funktion wird nicht durch lokale ONTAP-Cluster unterstützt. Es w
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Ergebnis</div>
 <p>Cloud Manager trennt die Verbindung des Clusters vom Cloud Volumes ONTAP System.</p>
 </div>
 </div>

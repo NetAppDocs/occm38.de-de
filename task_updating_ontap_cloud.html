@@ -3383,7 +3383,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-16 08:47:44 +0000">11/16/2022</time>
+    <time datetime="2022-12-14 18:18:34 +0000">12/14/2022</time>
     
   
 
@@ -3418,7 +3418,7 @@
 <p><span class="image"><img src="./media/screenshot_cot_upgrade.gif" alt="Screenshot: Zeigt die Benachrichtigung &quot;Neue verfügbare Version&quot; an, die auf der Seite &quot;Arbeitsumgebungen&quot; angezeigt wird, nachdem Sie eine Arbeitsumgebung ausgewählt haben."></span></p>
 </div>
 <div class="paragraph">
-<p>Sie können den Upgrade-Prozess von dieser Benachrichtigung aus starten, die den Prozess automatisiert, indem Sie das Software-Image aus einem S3-Bucket beziehen, das Image installieren und das System dann neu starten. Weitere Informationen finden Sie unter  Cloud Volumes ONTAP from Cloud Manager notifications.</p>
+<p>Sie können den Upgrade-Prozess von dieser Benachrichtigung aus starten, die den Prozess automatisiert, indem Sie das Software-Image aus einem S3-Bucket beziehen, das Image installieren und das System dann neu starten. Weitere Informationen finden Sie unter <a href="#aktualisieren-von-cloud-volumes-ontap-über-cloud-manager-benachrichtigungen">Aktualisieren von Cloud Volumes ONTAP über Cloud Manager Benachrichtigungen</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -3445,7 +3445,7 @@ Bei HA-Systemen in AWS kann Cloud Manager im Rahmen des Upgrades den HA-Mediator
 <p>Diese Option ist hilfreich, wenn Cloud Manager nicht auf den S3-Bucket zugreifen kann, um die Software zu aktualisieren, wenn Ihnen ein Patch zur Verfügung steht oder wenn Sie die Software auf eine bestimmte Version herunterstufen möchten.</p>
 </div>
 <div class="paragraph">
-<p>Weitere Informationen finden Sie unter  or downgrading Cloud Volumes ONTAP by using an HTTP or FTP server.</p>
+<p>Weitere Informationen finden Sie unter <a href="#upgrade-oder-downgrade-von-cloud-volumes-ontap-mit-einem-http-oder-ftp-server">Upgrade oder Downgrade von Cloud Volumes ONTAP mit einem HTTP- oder FTP-Server</a>.</p>
 </div>
 </li>
 <li>
@@ -3454,7 +3454,7 @@ Bei HA-Systemen in AWS kann Cloud Manager im Rahmen des Upgrades den HA-Mediator
 <p>Mit dieser Option können Sie auf die vorherige Version zurückstufen, indem Sie das alternative Software-Image zum Standardbild machen. Diese Option ist für HA-Paare nicht verfügbar.</p>
 </div>
 <div class="paragraph">
-<p>Weitere Informationen finden Sie unter  Cloud Volumes ONTAP by using a local image.</p>
+<p>Weitere Informationen finden Sie unter <a href="#downgrade-von-cloud-volumes-ontap-mit-einem-lokalen-image">Downgrade von Cloud Volumes ONTAP mit einem lokalen Image</a>.</p>
 </div>
 </li>
 </ul>
@@ -3471,19 +3471,19 @@ Bei HA-Systemen in AWS kann Cloud Manager im Rahmen des Upgrades den HA-Mediator
 <div class="ulist">
 <ul>
 <li>
-<p>for downtime</p>
+<p><a href="#planung-von-ausfallzeiten">Planung von Ausfallzeiten</a></p>
 </li>
 <li>
-<p>version requirements</p>
+<p><a href="#überprüfen-der-versionsanforderungen">Überprüfen der Versionsanforderungen</a></p>
 </li>
 <li>
-<p>that automatic giveback is still enabled</p>
+<p><a href="#Es wird sichergestellt">dass das automatische Giveback weiterhin aktiviert ist</a></p>
 </li>
 <li>
-<p>SnapMirror transfers</p>
+<p><a href="#snapmirror-übertragungen-werden-ausgesetzt">SnapMirror Übertragungen werden ausgesetzt</a></p>
 </li>
 <li>
-<p>that aggregates are online</p>
+<p><a href="#Überprüfen">ob Aggregate online sind</a></p>
 </li>
 </ul>
 </div>
@@ -3520,6 +3520,7 @@ Bei HA-Systemen in AWS kann Cloud Manager im Rahmen des Upgrades den HA-Mediator
 <p>Wenn ein Cloud Volumes ONTAP System über aktive SnapMirror Beziehungen verfügt, sollten Sie die Übertragungen am besten unterbrechen, bevor Sie die Cloud Volumes ONTAP Software aktualisieren. Das Anhalten der Übertragungen verhindert SnapMirror Ausfälle. Sie müssen die Übertragungen vom Zielsystem anhalten.</p>
 </div>
 <div class="paragraph">
+<div class="title">Über diese Aufgabe</div>
 <p>In diesen Schritten wird die Verwendung von System Manager für Version 9.3 und höher beschrieben.</p>
 </div>
 <div class="olist arabic">
@@ -3543,6 +3544,7 @@ Bei HA-Systemen in AWS kann Cloud Manager im Rahmen des Upgrades den HA-Mediator
 <p>Aggregate für Cloud Volumes ONTAP muss online sein, bevor Sie die Software aktualisieren. Aggregate sollten in den meisten Konfigurationen online sein. Wenn dies nicht der Fall ist, sollten Sie sie jedoch online stellen.</p>
 </div>
 <div class="paragraph">
+<div class="title">Über diese Aufgabe</div>
 <p>In diesen Schritten wird die Verwendung von System Manager für Version 9.3 und höher beschrieben.</p>
 </div>
 <div class="olist arabic">
@@ -3585,6 +3587,7 @@ Bei HA-Systemen in AWS kann Cloud Manager im Rahmen des Upgrades den HA-Mediator
 <p>Cloud Manager benachrichtigt Sie, wenn eine neue Version von Cloud Volumes ONTAP verfügbar ist. Klicken Sie auf die Benachrichtigung, um den Aktualisierungsprozess zu starten.</p>
 </div>
 <div class="paragraph">
+<div class="title">Bevor Sie beginnen</div>
 <p>Cloud Manager-Vorgänge wie die Erstellung von Volumes oder Aggregaten dürfen für das Cloud Volumes ONTAP System nicht ausgeführt werden.</p>
 </div>
 <div class="olist arabic">
@@ -3617,9 +3620,11 @@ Bei HA-Systemen in AWS kann Cloud Manager im Rahmen des Upgrades den HA-Mediator
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Ergebnis</div>
 <p>Cloud Manager startet das Software-Upgrade. Nach Abschluss der Softwareaktualisierung können Sie in der Arbeitsumgebung Aktionen ausführen.</p>
 </div>
 <div class="paragraph">
+<div class="title">Nachdem Sie fertig sind</div>
 <p>Wenn Sie SnapMirror Transfers ausgesetzt haben, setzen Sie die Transfers mit System Manager fort.</p>
 </div>
 </div>
@@ -3672,9 +3677,11 @@ Die vordefinierte Sicherheitsgruppe Cloud Volumes ONTAP ermöglicht standardmä�
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Ergebnis</div>
 <p>Cloud Manager startet das Softwareupdate. Nach Abschluss der Softwareaktualisierung können Sie in der Arbeitsumgebung Aktionen ausführen.</p>
 </div>
 <div class="paragraph">
+<div class="title">Nachdem Sie fertig sind</div>
 <p>Wenn Sie SnapMirror Transfers ausgesetzt haben, setzen Sie die Transfers mit System Manager fort.</p>
 </div>
 </div>
@@ -3689,6 +3696,7 @@ Die vordefinierte Sicherheitsgruppe Cloud Volumes ONTAP ermöglicht standardmä�
 <p>Jedes Cloud Volumes ONTAP System kann zwei Software-Images enthalten: Das aktuelle Image, das ausgeführt wird, und ein alternatives Image, das Sie booten können. Cloud Manager kann das alternative Bild als Standardbild ändern. Mit dieser Option können Sie auf die vorherige Version von Cloud Volumes ONTAP zurückstufen, wenn Probleme mit dem aktuellen Image auftreten.</p>
 </div>
 <div class="paragraph">
+<div class="title">Über diese Aufgabe</div>
 <p>Dieser Downgrade-Prozess ist nur für einzelne Cloud Volumes ONTAP Systeme verfügbar. Es ist nicht für HA-Paare verfügbar.</p>
 </div>
 <div class="olist arabic">
@@ -3706,9 +3714,11 @@ Die vordefinierte Sicherheitsgruppe Cloud Volumes ONTAP ermöglicht standardmä�
 </ol>
 </div>
 <div class="paragraph">
+<div class="title">Ergebnis</div>
 <p>Cloud Manager startet das Softwareupdate. Nach Abschluss der Softwareaktualisierung können Sie in der Arbeitsumgebung Aktionen ausführen.</p>
 </div>
 <div class="paragraph">
+<div class="title">Nachdem Sie fertig sind</div>
 <p>Wenn Sie SnapMirror Transfers ausgesetzt haben, setzen Sie die Transfers mit System Manager fort.</p>
 </div>
 </div>

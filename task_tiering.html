@@ -3383,7 +3383,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-11-16 08:47:44 +0000">11/16/2022</time>
+    <time datetime="2022-12-14 18:18:34 +0000">12/14/2022</time>
     
   
 
@@ -3404,33 +3404,33 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="wählen-sie-eine-unterstützte-konfiguration-aus">Wählen Sie eine unterstützte Konfiguration aus</h4>
+<h4 id="wählen-sie-eine-unterstützte-konfiguration-aus"><span class="image"><img src="./media/number1.png" alt="Nummer 1"></span> Wählen Sie eine unterstützte Konfiguration aus</h4>
 <div class="paragraph quick-margin-para">
 <p>Die meisten Konfigurationen werden unterstützt. Wenn Sie über ein Cloud Volumes ONTAP Standard-, Premium- oder BYOL-System mit der aktuellsten Version verfügen, sollten Sie sich dafür entscheiden. <a href="task_tiering.html#configurations-that-support-data-tiering">"Weitere Informationen ."</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="stellen-sie-die-konnektivität-zwischen-cloud-volumes-ontap-und-objekt-storage-sicher">Stellen Sie die Konnektivität zwischen Cloud Volumes ONTAP und Objekt-Storage sicher</h4>
-<div class="ulist">
+<h4 id="stellen-sie-die-konnektivität-zwischen-cloud-volumes-ontap-und-objekt-storage-sicher"><span class="image"><img src="./media/number2.png" alt="Nummer 2"></span> Stellen Sie die Konnektivität zwischen Cloud Volumes ONTAP und Objekt-Storage sicher</h4>
+<div class="ulist quick-margin-list">
 <ul>
 <li>
-<p>Für AWS ist ein VPC Endpunkt zu S3 erforderlich.  to tier cold data to AWS S3,Weitere Informationen ..</p>
+<p>Für AWS ist ein VPC Endpunkt zu S3 erforderlich. <a href="#anforderungen-für-das-tiering-selten-genutzter-daten-in-aws-s3">Weitere Informationen .</a>.</p>
 </li>
 <li>
-<p>Bei Azure sind keine Vorgänge mehr notwendig, solange Cloud Manager über die erforderlichen Berechtigungen verfügt.  to tier cold data to Azure Blob storage,Weitere Informationen ..</p>
+<p>Bei Azure sind keine Vorgänge mehr notwendig, solange Cloud Manager über die erforderlichen Berechtigungen verfügt. <a href="#tiering-selten-genutzter-daten-auf-azure-blob-storage">Weitere Informationen .</a>.</p>
 </li>
 <li>
-<p>Für GCP müssen Sie das Subnetz für privaten Google Access konfigurieren und ein Service-Konto einrichten.  to tier cold data to a Google Cloud Storage bucket,Weitere Informationen ..</p>
+<p>Für GCP müssen Sie das Subnetz für privaten Google Access konfigurieren und ein Service-Konto einrichten. <a href="#anforderungen-für-das-tiering-selten-genutzter-daten-in-einen-google-cloud-storage-bucket">Weitere Informationen .</a>.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="wählen-sie-eine-tiering-richtlinie-beim-erstellen-ändern-oder-replizieren-eines-volume">Wählen Sie eine Tiering-Richtlinie beim Erstellen, Ändern oder Replizieren eines Volume</h4>
+<h4 id="wählen-sie-eine-tiering-richtlinie-beim-erstellen-ändern-oder-replizieren-eines-volume"><span class="image"><img src="./media/number3.png" alt="Nummer 3"></span> Wählen Sie eine Tiering-Richtlinie beim Erstellen, Ändern oder Replizieren eines Volume</h4>
 <div class="paragraph quick-margin-para">
 <p>Cloud Manager fordert Sie auf, beim Erstellen, Ändern oder Replizieren eines Volume eine Tiering-Richtlinie auszuwählen.</p>
 </div>
-<div class="ulist">
+<div class="ulist quick-margin-list">
 <ul>
 <li>
 <p><a href="task_tiering.html#tiering-data-from-read-write-volumes">"Tiering von Daten auf Lese-/Schreib-Volumes"</a></p>
@@ -3714,7 +3714,7 @@ Wenn Sie Aggregate selbst erstellen möchten, können Sie beim Erstellen von Agg
 <p>Nein, Sie können das Daten-Tiering nicht auf einem vorhandenen Aggregat aktivieren. Sie können Daten-Tiering nur auf neuen Aggregaten aktivieren.</p>
 </div>
 <div class="paragraph">
-<p>Sie können auch Daten-Tiering auf einem neuen Aggregat aktivieren <a href="task_provisioning_storage.html#creating-aggregates">"Indem Sie ein Aggregat selbst erstellen"</a> Oder  data from read-write volumes,Indem ein neues Volume mit aktiviertem Daten-Tiering erstellt wird. Cloud Manager würde dann ein neues Aggregat für das Volume erstellen, wenn es bereits ein Daten-Tiering-fähiges Aggregat gibt.</p>
+<p>Sie können auch Daten-Tiering auf einem neuen Aggregat aktivieren <a href="task_provisioning_storage.html#creating-aggregates">"Indem Sie ein Aggregat selbst erstellen"</a> Oder <a href="#tiering-von-daten-aus-volumes-mit-lese-und-schreibvorgängen">Indem ein neues Volume mit aktiviertem Daten-Tiering erstellt wird</a>. Cloud Manager würde dann ein neues Aggregat für das Volume erstellen, wenn es bereits ein Daten-Tiering-fähiges Aggregat gibt.</p>
 </div>
 </div>
 </div>
