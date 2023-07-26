@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: reference_earlier_versions.html 
-keywords: documentation, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 
+keywords: documentation, 3.6, 3.7 
 summary: Dokumentation für vorherige Versionen von Cloud Manager steht zur Verfügung, falls Sie die neueste Version nicht ausführen. 
 ---
 = Frühere Versionen der Cloud Manager-Dokumentation
@@ -18,8 +18,4 @@ Dokumentation für vorherige Versionen von Cloud Manager steht zur Verfügung, f
 
 * https://docs.netapp.com/us-en/occm37/["Cloud Manager 3.7"^]
 * https://docs.netapp.com/us-en/occm36/["Cloud Manager 3.6"^]
-* https://docs.netapp.com/us-en/occm35/["Cloud Manager 3.5"^]
-* https://docs.netapp.com/us-en/occm34/["Cloud Manager 3.4"^]
-* https://mysupport.netapp.com/documentation/docweb/index.html?productID=62509["Cloud Manager 3.3"^]
-* https://mysupport.netapp.com/documentation/docweb/index.html?productID=62391["Cloud Manager 3.2"^]
 
